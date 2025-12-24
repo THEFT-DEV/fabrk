@@ -1,0 +1,648 @@
+// Simplified Prisma Schema - ShipFast Style
+// Only essential models for SaaS boilerplate
+// Prisma 7: URL moved to prisma.config.ts, client generated to src/generated/prisma
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ===========================
+// AUTHENTICATION (NextAuth)
+// ===========================
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  image         String?
+  emailVerified DateTime?
+  password      String? // For credentials auth
+  role          Role      @default(USER)
+
+  // Stripe integration
+  customerId       String?   @unique // Stripe customer ID
+  tier             String    @default("free") // free, starter, pro
+  subscriptionTier String? // Subscription tier (for NextAuth session)
+  trialEndsAt      DateTime? // Trial expiration date
+  licenseKey       String?   @unique // Product license key
+
+  // GitHub access tracking
+  githubUsername     String?   // The GitHub username granted access
+  githubAccessAt     DateTime? // Timestamp when access was granted
+  githubAccessStatus String?   // Status: 'pending' | 'granted' | 'failed' | 'revoked'
+
+  // Simple security
+  resetToken     String?   @unique
+  resetExpires   DateTime?
+  verifyToken    String?   @unique
+  sessionVersion Int       @default(1) // Incremented to invalidate all sessions
+
+  // User preferences and settings
+  settings Json? // Privacy, notifications, language, appearance preferences
+
+  // Soft delete support (GDPR compliance)
+  deletedAt    DateTime? // Null = active, set = soft deleted
+  anonymizedAt DateTime? // When PII was anonymized
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  accounts            Account[]
+  sessions            Session[]
+  payments            Payment[]
+  mfaDevices          MFADevice[]
+  backupCodes         BackupCode[]
+  organizations       OrganizationMember[]
+  organizationInvites OrganizationInvite[]
+  uploads             Upload[]
+  auditLogs           AuditLog[]
+  notifications       Notification[]
+  apiKeys             ApiKey[]
+  consents            Consent[]
+  blogPosts           BlogPost[]
+  creditBalance       CreditBalance?
+
+  @@index([email])
+  @@index([deletedAt]) // For filtering active users
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+enum Role {
+  USER
+  ADMIN
+  SUPER_ADMIN
+}
+
+// ===========================
+// PAYMENTS (Stripe)
+// ===========================
+
+model Payment {
+  id              String   @id @default(cuid())
+  userId          String
+  stripeId        String   @unique // payment_intent or session id
+  stripePaymentId String? // Stripe payment_intent ID (for compatibility)
+  amount          Int // cents
+  status          String // succeeded, failed, pending
+  productId       String? // Your product identifier
+  createdAt       DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([stripeId])
+  @@index([userId, createdAt]) // Composite index for user payment history queries
+}
+
+// Prevent duplicate checkouts on refresh
+model CheckoutSession {
+  id        String   @id @default(cuid())
+  userId    String
+  sessionId String   @unique // Stripe checkout session ID
+  priceId   String
+  createdAt DateTime @default(now())
+  expiresAt DateTime // 24 hours
+
+  @@index([userId])
+  @@index([sessionId])
+}
+
+// Prevent duplicate webhook processing
+model WebhookEvent {
+  id        String   @id @default(cuid())
+  eventId   String   @unique // Stripe event ID
+  processed DateTime @default(now())
+
+  @@index([eventId])
+}
+
+// ===========================
+// MULTI-FACTOR AUTHENTICATION
+// ===========================
+
+model MFADevice {
+  id        String    @id @default(cuid())
+  userId    String
+  type      String    @default("totp") // totp, sms, webauthn
+  secret    String? // TOTP secret
+  verified  Boolean   @default(false)
+  name      String? // Device name
+  lastUsed  DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model BackupCode {
+  id        String    @id @default(cuid())
+  userId    String
+  code      String // Hashed backup code
+  used      Boolean   @default(false)
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([code])
+}
+
+// ===========================
+// TEAMS/ORGANIZATIONS
+// ===========================
+
+model Organization {
+  id             String   @id @default(cuid())
+  name           String
+  slug           String   @unique
+  description    String?
+  logo           String?
+  plan           String   @default("FREE") // FREE, STARTER, PRO, ENTERPRISE
+  customerId     String?  @unique // Stripe customer ID
+  subscriptionId String? // Stripe subscription ID
+  settings       Json? // Organization settings
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  members  OrganizationMember[]
+  invites  OrganizationInvite[]
+  uploads  Upload[]
+  apiKeys  ApiKey[]
+  webhooks Webhook[]
+
+  @@index([slug])
+}
+
+model OrganizationMember {
+  id             String   @id @default(cuid())
+  organizationId String
+  userId         String
+  role           OrgRole  @default(MEMBER)
+  joinedAt       DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, userId])
+  @@index([userId])
+  @@index([organizationId])
+}
+
+model OrganizationInvite {
+  id             String    @id @default(cuid())
+  organizationId String
+  email          String
+  role           OrgRole   @default(MEMBER)
+  invitedBy      String
+  token          String    @unique
+  expiresAt      DateTime
+  acceptedAt     DateTime?
+  createdAt      DateTime  @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  inviter      User         @relation(fields: [invitedBy], references: [id], onDelete: Cascade)
+
+  @@index([email])
+  @@index([token])
+}
+
+enum OrgRole {
+  OWNER
+  ADMIN
+  MEMBER
+  GUEST
+}
+
+// ===========================
+// FILE UPLOADS
+// ===========================
+
+model Upload {
+  id             String   @id @default(cuid())
+  userId         String
+  organizationId String?
+  filename       String
+  originalName   String
+  mimeType       String
+  size           Int // bytes
+  url            String
+  key            String // S3 key
+  bucket         String?
+  metadata       Json?
+  visibility     String   @default("private") // private, public
+  createdAt      DateTime @default(now())
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([organizationId])
+  @@index([organizationId, createdAt]) // Composite index for org file listings
+}
+
+// ===========================
+// BACKGROUND JOBS
+// ===========================
+
+model Job {
+  id           String    @id @default(cuid())
+  type         String // email, webhook, report, etc.
+  status       JobStatus @default(PENDING)
+  priority     Int       @default(0) // Higher = more priority
+  attempts     Int       @default(0)
+  maxAttempts  Int       @default(3)
+  data         Json? // Job payload
+  result       Json? // Job result
+  error        String? // Error message
+  scheduledFor DateTime? // For delayed jobs
+  startedAt    DateTime?
+  completedAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([type])
+  @@index([status])
+  @@index([scheduledFor])
+  @@index([status, scheduledFor]) // Composite index for job worker queries (10-100x faster)
+  @@index([status, priority, createdAt]) // Composite index for priority-based job processing
+}
+
+enum JobStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+// ===========================
+// EMAIL QUEUE
+// ===========================
+
+model EmailQueue {
+  id      String      @id @default(cuid())
+  type    EmailType // WELCOME, VERIFICATION, RESET, etc.
+  to      String // Recipient email
+  subject String
+  html    String      @db.Text
+  status  EmailStatus @default(PENDING)
+
+  // Optional associations
+  userId     String?
+  purchaseId String? // For purchase-related emails
+
+  // Metadata for template variables
+  metadata Json? // { licenseKey, magicLink, name, etc. }
+
+  // Retry logic
+  attempts    Int     @default(0)
+  maxAttempts Int     @default(3)
+  lastError   String? @db.Text
+
+  // Timestamps
+  sentAt    DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([status])
+  @@index([type])
+  @@index([createdAt])
+  @@index([userId])
+  @@index([status, attempts, createdAt]) // Composite index for email worker processing (polls every 5s)
+}
+
+enum EmailType {
+  WELCOME
+  VERIFICATION
+  RESET
+  INVOICE
+  NOTIFICATION
+}
+
+enum EmailStatus {
+  PENDING
+  SENDING
+  SENT
+  FAILED
+  CANCELLED
+}
+
+// ===========================
+// AUDIT LOGS
+// ===========================
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String // Who performed the action
+  action     String // Action type (e.g., "org.member.removed", "org.deleted")
+  resource   String? // Resource type (e.g., "organization", "user")
+  resourceId String? // ID of the affected resource
+  ipAddress  String? // IP address at time of action
+  userAgent  String? // Browser/device info
+  metadata   Json? // Additional context
+  createdAt  DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([action])
+  @@index([createdAt])
+  @@index([userId, createdAt]) // Composite index for user audit history queries
+  @@index([action, createdAt]) // Composite index for action-based audit queries
+  @@index([resource, resourceId]) // Composite index for resource-based audit queries
+}
+
+// ===========================
+// FEATURE FLAGS
+// ===========================
+
+model FeatureFlag {
+  id                String   @id @default(cuid())
+  name              String   @unique // Flag name (e.g., "new_dashboard")
+  description       String? // Human-readable description
+  enabled           Boolean  @default(false)
+  rolloutPercentage Int      @default(0) // 0-100
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([name])
+}
+
+// ===========================
+// NOTIFICATIONS
+// ===========================
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  type      NotificationType
+  title     String
+  message   String           @db.Text
+  read      Boolean          @default(false)
+  link      String? // Optional link to related resource
+  metadata  Json? // Additional data (organizationId, inviteId, etc.)
+  createdAt DateTime         @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([read])
+  @@index([createdAt])
+  @@index([userId, read, createdAt]) // Composite index for unread notifications queries
+}
+
+enum NotificationType {
+  ORG_INVITE
+  ORG_MEMBER_ADDED
+  ORG_MEMBER_REMOVED
+  ORG_ROLE_CHANGED
+  PAYMENT_SUCCESS
+  PAYMENT_FAILED
+  SECURITY_ALERT
+  SYSTEM
+}
+
+// ===========================
+// API KEYS
+// ===========================
+
+model ApiKey {
+  id             String    @id @default(cuid())
+  organizationId String
+  userId         String // Creator
+  name           String
+  keyPrefix      String    @unique // First 12 chars (e.g., "sk_live_abc1")
+  keyHash        String    @unique // SHA-256 hash of full key
+  permissions    String[] // Array of permissions (read, write, admin)
+  lastUsedAt     DateTime?
+  expiresAt      DateTime?
+  createdAt      DateTime  @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId])
+  @@index([userId])
+  @@index([keyPrefix])
+  @@index([keyHash])
+  @@index([organizationId, userId]) // Composite index for org API keys by creator
+}
+
+// ===========================
+// WEBHOOKS
+// ===========================
+
+model Webhook {
+  id             String   @id @default(cuid())
+  organizationId String
+  url            String
+  secret         String // HMAC signing secret
+  events         String[] // Array of event types to subscribe to
+  enabled        Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  deliveries   WebhookDelivery[]
+
+  @@index([organizationId])
+  @@index([enabled])
+}
+
+model WebhookDelivery {
+  id          String    @id @default(cuid())
+  webhookId   String
+  event       String
+  method      String    @default("POST") // HTTP method (GET, POST, PUT, DELETE, PATCH)
+  payload     Json // Request payload
+  status      String // pending, success, failed, retrying
+  statusCode  Int?
+  response    String?   @db.Text // Response payload
+  error       String?   @db.Text // Error message if failed
+  duration    Int? // Request duration in milliseconds
+  attempts    Int       @default(0)
+  nextRetryAt DateTime?
+  createdAt   DateTime  @default(now())
+
+  webhook Webhook @relation(fields: [webhookId], references: [id], onDelete: Cascade)
+
+  @@index([webhookId])
+  @@index([status, nextRetryAt])
+  @@index([createdAt])
+  @@index([webhookId, createdAt]) // Composite index for webhook delivery history queries
+}
+
+// ===========================
+// GDPR CONSENT TRACKING
+// ===========================
+
+model Consent {
+  id           String    @id @default(cuid())
+  userId       String
+  consentType  ConsentType
+  consentGiven Boolean
+  consentDate  DateTime  @default(now())
+  ipAddress    String?   // IP at time of consent (for audit)
+  userAgent    String?   // Browser/device info
+  withdrawnAt  DateTime? // When consent was revoked (null = active)
+  metadata     Json?     // Additional context (source, campaign, etc.)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, consentType]) // One consent record per type per user
+  @@index([userId])
+  @@index([consentType])
+  @@index([consentDate])
+  @@index([userId, consentType, withdrawnAt]) // For checking active consents
+}
+
+enum ConsentType {
+  MARKETING        // Marketing emails and communications
+  ANALYTICS        // Analytics and tracking
+  COOKIES          // Cookie usage beyond necessary
+  THIRD_PARTY      // Sharing with third parties
+  PROFILING        // User profiling and personalization
+  TERMS_OF_SERVICE // ToS acceptance
+  PRIVACY_POLICY   // Privacy policy acceptance
+}
+
+// ===========================
+// BLOG
+// ===========================
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title       String
+  excerpt     String?
+  content     String    @db.Text
+  featured    Boolean   @default(false)
+  published   Boolean   @default(false)
+
+  authorId    String
+  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  categoryId  String?
+  category    BlogCategory? @relation(fields: [categoryId], references: [id])
+
+  featuredImage String?
+  readTime    Int? // Estimated read time in minutes
+
+  // SEO fields
+  seoTitle       String?
+  seoDescription String?
+
+  // Analytics
+  viewCount   Int       @default(0)
+
+  // Timestamps
+  createdAt   DateTime  @default(now())
+  publishedAt DateTime?
+  updatedAt   DateTime  @updatedAt
+
+  @@index([authorId])
+  @@index([categoryId])
+  @@index([published])
+  @@index([featured])
+  @@index([createdAt])
+  @@index([publishedAt])
+}
+
+model BlogCategory {
+  id    String @id @default(cuid())
+  name  String @unique
+  slug  String @unique
+  description String?
+
+  posts BlogPost[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ===========================
+// AI CREDITS SYSTEM
+// ===========================
+
+model CreditBalance {
+  id               String   @id @default(cuid())
+  userId           String   @unique
+  balance          Int      @default(0)
+  monthlyAllowance Int      @default(100) // Based on tier
+  lastRefill       DateTime @default(now())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  user         User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions CreditTransaction[]
+
+  @@index([userId])
+}
+
+model CreditTransaction {
+  id          String                @id @default(cuid())
+  balanceId   String
+  amount      Int                   // Positive = add, Negative = deduct
+  type        CreditTransactionType
+  description String?
+  endpoint    String?               // Which AI endpoint was called
+  metadata    Json?
+  createdAt   DateTime              @default(now())
+
+  balance CreditBalance @relation(fields: [balanceId], references: [id], onDelete: Cascade)
+
+  @@index([balanceId])
+  @@index([createdAt])
+  @@index([type])
+}
+
+enum CreditTransactionType {
+  SUBSCRIPTION_REFILL
+  PURCHASE
+  USAGE
+  REFUND
+  BONUS
+}

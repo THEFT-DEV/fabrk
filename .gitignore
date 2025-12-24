@@ -1,0 +1,278 @@
+# dependencies
+node_modules
+.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# ============================================
+# INTERNAL DEVELOPMENT (NOT FOR CUSTOMERS)
+# ============================================
+
+# Archives - historical artifacts, audits, old code
+.archives/
+
+# MCP servers - internal AI tooling
+mcp-servers/
+.mcp.json
+
+# Reference boilerplates (local research only)
+Boilerplate/
+claude_prompts/
+sample_landing/
+agent-tools/
+ai-chatbot-main/
+
+# Internal development docs
+.internal/
+
+# Archive (legacy - use .archives/)
+.archive/
+
+# Agent workspace (local development only)
+.agent-workspace/
+
+# Development plans (local notes)
+.dev-plans/
+
+# ============================================
+# INTERNAL SCRIPTS (NOT FOR CUSTOMERS)
+# ============================================
+scripts/sync-*.mjs
+scripts/mcp-setup.mjs
+scripts/generate-*-metadata.mjs
+scripts/refactor-*.mjs
+scripts/add-library-navigation.mjs
+scripts/hex-to-oklch-converter.mjs
+scripts/count-ui-components.mjs
+scripts/update-markdown-dynamic-data.mjs
+
+# ============================================
+# INTERNAL DOCUMENTATION (NOT FOR CUSTOMERS)
+# ============================================
+docs/prompts/
+docs/11-marketing/
+docs/design-system/violations/
+docs/.internal/
+
+# docs/09-launch/ - keep customer-facing files, ignore internal
+docs/09-launch/DISTRIBUTION-*.md
+docs/09-launch/COMMUNITY-BUILDING-STRATEGY.md
+docs/09-launch/GITHUB-DISTRIBUTION-SETUP.md
+docs/09-launch/LAUNCH-PREPARATION-SUMMARY.md
+docs/09-launch/QA-CHECKLIST-v1.1.md
+docs/09-launch/RELEASE-READINESS.md
+
+# ============================================
+# INTERNAL GITHUB FILES (NOT FOR CUSTOMERS)
+# ============================================
+.github/CI-CD-*.md
+.github/WORKFLOWS-CREATED.txt
+.github/copilot-instructions.md
+.github/workflows/README.md
+.github/RELEASE_TEMPLATE.md
+
+# Backup files
+*.backup
+*.bak
+*.tmp
+
+# testing
+coverage
+.test-cache
+.vitest-cache
+
+# next.js
+.next/
+out/
+build
+dist
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# turbo
+.turbo
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# prisma
+prisma/*.db
+prisma/*.db-journal
+prisma/migrations
+src/generated/prisma
+
+# database backups
+backups/
+*.sql
+*.sql.gz
+
+# IDE
+.idea
+.vscode/settings.json
+.vscode/keybindings.json
+# Keep extensions.json in git
+*.swp
+*.swo
+*~
+
+# Keep .cursorrules in git
+
+# OS
+Thumbs.db
+.DS_Store
+
+# logs
+*.log
+
+# AI Logs (keep structure but not content)
+logs/sessions/*
+!logs/sessions/.gitkeep
+logs/daily/*
+!logs/daily/.gitkeep
+logs/metrics/*
+!logs/metrics/.gitkeep
+!logs/index.json
+!logs/WORK_LOG_*.md
+
+# temp files
+tmp/
+temp/
+
+# Supabase
+prod-ca-2021.crt
+
+# Documentation (keep setup logs)
+# SETUP_LOG.md is tracked for reference
+*storybook.log
+storybook-static
+
+# Archive (old tests and configs)
+archive/
+.cleargen/
+.project-archive/
+.test-backups/
+!archive/README.md
+docs/archive/
+!docs/archive/README.md
+
+# Docs - only track essential paths
+!docs/follow-this/
+!docs/README.md
+docs/*.md
+docs/api/
+!docs/*mcp*.md
+!docs/llms.txt
+!docs/ARCHITECTURE.md
+!docs/TESTING.md
+!docs/SECURITY.md
+!docs/ANALYTICS-SETUP.md
+!docs/LAUNCH-TIMELINE.md
+!docs/POST-LAUNCH-MONITORING.md
+!docs/CUSTOMER-ONBOARDING.md
+!docs/PERFORMANCE-OPTIMIZATION.md
+!docs/CONVERSION-OPTIMIZATION.md
+!docs/GROWTH-TACTICS.md
+!docs/API-REFERENCE.md
+!docs/SECURITY-BEST-PRACTICES.md
+!docs/TROUBLESHOOTING.md
+!docs/BACKUP-RECOVERY.md
+!docs/README.md
+!docs/ALTERNATIVE-DEPLOYMENTS.md
+!docs/COMPARISON.md
+!docs/COMPONENT-BEST-PRACTICES.md
+!docs/TESTING-GUIDE.md
+!docs/SEO-AEO-GEO-GUIDE.md
+!docs/SEO-QUICK-REFERENCE.md
+!docs/SECURITY-IMPLEMENTATION.md
+!docs/ENTERPRISE-FEATURES-SETUP.md
+!docs/COMPONENTS-INVENTORY.md
+!docs/DEPLOYMENT.md
+!docs/PERFORMANCE.md
+!docs/LIGHTHOUSE-CI.md
+!docs/LIGHTHOUSE-SETUP-SUMMARY.md
+!docs/ONBOARDING-CHECKLIST.md
+!docs/DISTRIBUTION-GITHUB.md
+
+# Test outputs and reports
+test-results.json
+test-results*.txt
+test_output.txt
+.vitest-cache/
+*.log
+coverage/
+test-results/
+playwright-report/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/tests/e2e/*.png
+/tests/e2e/*.mp4
+
+# Temporary test files
+tests/generated/
+tests/snapshots/**/__snapshots__/
+
+# Generated component sources (build-time generated)
+src/app/components/[slug]/generated-sources.ts
+
+# Lighthouse reports (build artifacts) - keep only organized ones in docs/
+lighthouse*.report.html
+lighthouse*.report.json
+.lighthouseci/
+!docs/04-reports/lighthouse/**/*.html
+!docs/04-reports/lighthouse/**/*.json
+
+# Screenshot generation logs
+comprehensive-screenshots.log
+docs-screenshot-generation.log
+screenshot-generation.log
+
+# Claude Code local config
+.claude/settings.local.json
+!.claude/audit/
+
+# Agent workflows (local development)
+.agent/
+
+# Validation reports (generated by validation scripts)
+security-report.json
+accessibility-report.json
+bundle-size-report.json
+import-analysis.json
+validation-report.txt
+.ai-session/keep-alive
+.ai-session/keep-alive-action.ps1
+reports/**/*.json
+reports/**/*.html
+
+# Coverage reports (build artifacts)
+coverage/
+.nyc_output/
+
+# Project archive (old backups, logs, workspace)
+.project-archive/
+storybook-static/
+
+# Lock files (pnpm only)
+npm-lock.json
+yarn.lock
+.ai-context.md

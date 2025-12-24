@@ -1,0 +1,2 @@
+# This directory stores visual regression test baselines
+# Run `npm run test:visual:update` to generate snapshots
