@@ -86,7 +86,7 @@ export function PrivacyForm() {
               control={form.control}
               name="profileVisibility"
               render={({ field }) => (
-                <FormItem className="border-border flex flex-row items-center justify-between border p-4">
+                <FormItem className={cn("border-border flex flex-row items-center justify-between border p-4", mode.radius)}>
                   <div className="space-y-0.5">
                     <FormLabel className={cn(mode.font, 'text-xs')}>
                       [PROFILE_VISIBILITY]:
@@ -114,7 +114,7 @@ export function PrivacyForm() {
               control={form.control}
               name="activityTracking"
               render={({ field }) => (
-                <FormItem className="border-border flex flex-row items-center justify-between border p-4">
+                <FormItem className={cn("border-border flex flex-row items-center justify-between border p-4", mode.radius)}>
                   <div className="space-y-0.5">
                     <FormLabel className={cn(mode.font, 'text-xs')}>[ACTIVITY TRACKING]:</FormLabel>
                     <FormDescription className={cn(mode.font, 'text-xs')}>
@@ -140,7 +140,7 @@ export function PrivacyForm() {
               control={form.control}
               name="analyticsSharing"
               render={({ field }) => (
-                <FormItem className="border-border flex flex-row items-center justify-between border p-4">
+                <FormItem className={cn("border-border flex flex-row items-center justify-between border p-4", mode.radius)}>
                   <div className="space-y-0.5">
                     <FormLabel className={cn(mode.font, 'text-xs')}>[ANALYTICS SHARING]:</FormLabel>
                     <FormDescription className={cn(mode.font, 'text-xs')}>
@@ -166,7 +166,7 @@ export function PrivacyForm() {
               control={form.control}
               name="searchIndexing"
               render={({ field }) => (
-                <FormItem className="border-border flex flex-row items-center justify-between border p-4">
+                <FormItem className={cn("border-border flex flex-row items-center justify-between border p-4", mode.radius)}>
                   <div className="space-y-0.5">
                     <FormLabel className={cn(mode.font, 'text-xs')}>[SEARCH INDEXING]:</FormLabel>
                     <FormDescription className={cn(mode.font, 'text-xs')}>
@@ -192,7 +192,7 @@ export function PrivacyForm() {
               control={form.control}
               name="dataRetention"
               render={({ field }) => (
-                <FormItem className="border-border flex flex-row items-center justify-between border p-4">
+                <FormItem className={cn("border-border flex flex-row items-center justify-between border p-4", mode.radius)}>
                   <div className="space-y-0.5">
                     <FormLabel className={cn(mode.font, 'text-xs')}>[DATA RETENTION]:</FormLabel>
                     <FormDescription className={cn(mode.font, 'text-xs')}>

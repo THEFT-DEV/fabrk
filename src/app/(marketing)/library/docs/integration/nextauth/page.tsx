@@ -6,6 +6,8 @@
  */
 import { Lock } from 'lucide-react';
 import { LibraryGuideTemplate, LibraryCodeBlock } from '@/components/library';
+import { mode } from '@/design-system';
+import { cn } from '@/lib/utils';
 
 export default function NextAuthIntegrationPage() {
   return (
@@ -78,7 +80,7 @@ GITHUB_CLIENT_SECRET="your-github-client-secret"`}
                 language="bash"
                 maxHeight="200px"
               />
-              <div className="bg-muted/30 border-border border p-4">
+              <div className={cn("bg-muted/30 border-border border p-4", mode.radius)}>
                 <p className="text-primary mb-2 font-medium">[GENERATE SECRET]:</p>
                 <LibraryCodeBlock
                   code={`# Generate secure random secret

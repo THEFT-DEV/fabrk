@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
 
 export default function WelcomeEmail() {
   return (
-    <div className="mx-auto max-w-[600px] border border-border bg-background p-8">
+    <div className={cn("mx-auto max-w-[600px] border border-border bg-background p-8", mode.radius)}>
       {/* Header */}
       <div className="mb-6 border-b border-border pb-6">
         <h1 className={cn(mode.font, "text-2xl font-semibold")}>
@@ -124,7 +124,7 @@ function EmailTemplatesPreview() {
                       <div className="text-muted-foreground mb-2">[TRIGGER EVENTS]:</div>
                       <div className="flex flex-wrap gap-2">
                         {template.triggers.map((trigger, idx) => (
-                          <span key={idx} className="border-border bg-muted/30 border px-2 py-1">
+                          <span key={idx} className={cn("border-border bg-muted/30 border px-2 py-1", mode.radius)}>
                             &gt; {trigger}
                           </span>
                         ))}
@@ -137,7 +137,7 @@ function EmailTemplatesPreview() {
                         {template.variables.map((variable, idx) => (
                           <span
                             key={idx}
-                            className="border-primary/30 bg-primary/5 text-primary border px-2 py-1"
+                            className={cn("border-primary/30 bg-primary/5 text-primary border px-2 py-1", mode.radius)}
                           >
                             {`{${variable}}`}
                           </span>

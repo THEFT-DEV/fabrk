@@ -23,7 +23,7 @@ export function BillingTab() {
             title="SUBSCRIPTION BILLING"
             description="Manage your subscription plan and payment methods"
           />
-          <div className="border-border mb-4 border p-4">
+          <div className={cn("border-border mb-4 border p-4", mode.radius)}>
             <div className="mb-4 flex items-center justify-between">
               <div>
                 <div className={cn(mode.font, 'text-muted-foreground text-xs')}>

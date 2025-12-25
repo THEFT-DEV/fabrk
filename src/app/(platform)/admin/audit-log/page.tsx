@@ -70,7 +70,7 @@ async function AuditLogTable() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[180px]">Timestamp</TableHead>
+            <TableHead className="w-select-lg">Timestamp</TableHead>
             <TableHead>User</TableHead>
             <TableHead>Action</TableHead>
             <TableHead>Resource</TableHead>
@@ -118,7 +118,7 @@ async function AuditLogTable() {
                     <summary className="text-primary text-sm hover:underline">
                       View metadata
                     </summary>
-                    <pre className="bg-muted mt-2 max-w-md overflow-x-auto rounded p-2 text-left text-xs">
+                    <pre className={cn("bg-muted mt-2 max-w-md overflow-x-auto p-2 text-left text-xs", mode.radius)}>
                       {JSON.stringify(log.metadata, null, 2)}
                     </pre>
                   </details>

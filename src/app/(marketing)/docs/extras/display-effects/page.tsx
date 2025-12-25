@@ -75,7 +75,7 @@ function EffectSwitcher() {
             key={effect.id}
             type="button"
             className={cn(
-              'border-border flex min-h-[80px] flex-col items-start justify-center gap-1 border p-4 text-left transition-colors',
+              'border-border flex min-h-display flex-col items-start justify-center gap-1 border p-4 text-left transition-colors',
               isActive ? 'bg-primary text-primary-foreground' : 'bg-card hover:bg-muted',
               mode.radius,
               mode.font

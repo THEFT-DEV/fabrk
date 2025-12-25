@@ -117,7 +117,7 @@ function ThinkingMessage() {
       </Avatar>
       <div className="flex flex-col gap-1">
          <div className="h-4 w-24 bg-muted/20" />
-         <div className="h-10 w-64 bg-muted/10 border border-dashed border-muted/20" />
+         <div className={cn("h-10 w-64 bg-muted/10 border border-dashed border-muted/20", mode.radius)} />
       </div>
     </div>
   );

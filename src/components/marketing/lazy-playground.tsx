@@ -21,7 +21,7 @@ const HeroPlaygroundFull = dynamic(
 export function LazyPlayground() {
   return (
     <section className="border-border border-t py-16">
-      <div className="container mx-auto max-w-[1800px] px-12 lg:px-24">
+      <div className="container mx-auto max-w-playground px-12 lg:px-24">
         <HeroPlaygroundFull />
       </div>
     </section>

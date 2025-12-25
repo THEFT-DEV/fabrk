@@ -24,7 +24,7 @@ interface ResultCardProps {
 
 export function ResultCard({ result }: ResultCardProps) {
   return (
-    <div className="border-border bg-card hover:bg-muted/30 border transition-colors">
+    <div className={cn("border-border bg-card hover:bg-muted/30 border transition-colors", mode.radius)}>
       <div className="border-border flex items-center border-b px-4 py-2">
         <span className={cn(mode.font, 'text-muted-foreground text-xs')}>
           [ RESULT ] result_{result.id}.tsx

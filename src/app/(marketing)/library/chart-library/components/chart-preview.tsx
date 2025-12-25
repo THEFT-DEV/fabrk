@@ -55,7 +55,7 @@ export function CustomTooltip({
 }) {
   if (active && payload && payload.length) {
     return (
-      <div className={cn(mode.font, 'border-border bg-card border p-4 text-xs')}>
+      <div className={cn(mode.font, mode.radius, 'border-border bg-card border p-4 text-xs')}>
         <p className="mb-1 font-semibold">{label}</p>
         {payload.map((entry: TooltipPayload, index: number) => (
           <p key={index} style={{ color: entry.color }}>
@@ -97,7 +97,7 @@ export function ChartLibraryPreview() {
 
         {/* Stats - Terminal Style */}
         <div className="grid gap-6 md:grid-cols-4">
-          <div className="border-border bg-card border p-4">
+          <div className={cn("border-border bg-card border p-4", mode.radius)}>
             <div className={cn(mode.font, 'text-muted-foreground mb-1 text-xs')}>
               [TOTAL REVENUE]:
             </div>
@@ -107,7 +107,7 @@ export function ChartLibraryPreview() {
               +23.5%
             </div>
           </div>
-          <div className="border-border bg-card border p-4">
+          <div className={cn("border-border bg-card border p-4", mode.radius)}>
             <div className={cn(mode.font, 'text-muted-foreground mb-1 text-xs')}>
               [ACTIVE USERS]:
             </div>
@@ -117,7 +117,7 @@ export function ChartLibraryPreview() {
               +941%
             </div>
           </div>
-          <div className="border-border bg-card border p-4">
+          <div className={cn("border-border bg-card border p-4", mode.radius)}>
             <div className={cn(mode.font, 'text-muted-foreground mb-1 text-xs')}>
               [CONVERSION RATE]:
             </div>
@@ -127,7 +127,7 @@ export function ChartLibraryPreview() {
               +0.8%
             </div>
           </div>
-          <div className="border-border bg-card border p-4">
+          <div className={cn("border-border bg-card border p-4", mode.radius)}>
             <div className={cn(mode.font, 'text-muted-foreground mb-1 text-xs')}>
               [AVG ORDER VALUE]:
             </div>
@@ -303,7 +303,7 @@ export function ChartLibraryPreview() {
                       <div key={idx} className={cn(mode.font, 'flex items-center gap-4 text-sm')}>
                         {}
                         <div
-                          className="border-border h-4 w-4 border"
+                          className={cn("border-border h-4 w-4 border", mode.radius)}
                           style={{ backgroundColor: source.color }}
                         />
                         <span className="w-32">{source.name}</span>

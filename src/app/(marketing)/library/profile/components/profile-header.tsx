@@ -107,6 +107,7 @@ export function ProfileHeader({ user }: ProfileHeaderProps) {
               key={key}
               className={cn(
                 'border px-4 py-2 text-center',
+                mode.radius,
                 mode.color.border.default,
                 index > 0 && 'border-l-0'
               )}

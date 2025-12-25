@@ -39,7 +39,7 @@ function TestimonialsDemo() {
         {testimonials.map((t, i) => (
           <div
             key={i}
-            className={cn('border-border bg-card border p-4 transition-all', mode.state.hover.card)}
+            className={cn('border-border bg-card border p-4 transition-all', mode.radius, mode.state.hover.card)}
           >
             <div className="text-muted-foreground mb-2 text-xs">[0x0{i + 1}]</div>
             <p className="text-muted-foreground mb-4 text-xs">&quot;{t.quote}&quot;</p>

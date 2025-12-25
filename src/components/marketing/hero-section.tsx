@@ -80,9 +80,9 @@ export function HeroSection() {
             <div className={cn('inline-block border border-border bg-background px-4 py-1.5 mb-6', mode.radius)}>
               <span className={cn('text-sm', mode.color.text.muted)}>BUILD</span>
             </div>
-            <h1 className="text-6xl sm:text-7xl lg:text-9xl font-black tracking-tighter text-foreground min-h-[1.2em] whitespace-nowrap">
+            <h1 className="text-6xl sm:text-7xl lg:text-9xl font-black tracking-tighter text-foreground min-h-headline whitespace-nowrap">
               {currentWord}
-              <span className="inline-block w-[0.55em] h-[1em] bg-primary animate-blink align-baseline -mb-[0.1em]" />
+              <span className="inline-block w-cursor-lg h-cursor bg-primary animate-blink align-baseline -mb-cursor" />
             </h1>
             <div className={cn('inline-block border border-border bg-background px-4 py-1.5 mt-6', mode.radius)}>
               <span className={cn('text-sm', mode.color.text.muted)}>IN MINUTES, NOT MONTHS</span>

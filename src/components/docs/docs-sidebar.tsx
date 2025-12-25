@@ -315,7 +315,7 @@ export function DocsSidebar({
 
                 {/* Items */}
                 {isExpanded && (
-                  <div className="before:bg-border relative ml-[7px] space-y-0.5 pl-4 before:absolute before:top-0 before:bottom-1 before:left-0 before:w-px">
+                  <div className="before:bg-border relative ml-sidebar-indicator space-y-0.5 pl-4 before:absolute before:top-0 before:bottom-1 before:left-0 before:w-px">
                     {section.items.map((item, itemIndex) => {
                       const Icon = item.icon;
                       const isActive = pathname === item.href;
@@ -397,7 +397,7 @@ export function DocsSidebar({
                           </button>
 
                           {isSubExpanded && (
-                            <div className="before:bg-border/50 relative ml-[5px] space-y-0.5 pl-4 before:absolute before:top-0 before:bottom-1 before:left-0 before:w-px">
+                            <div className="before:bg-border/50 relative ml-sidebar-sm space-y-0.5 pl-4 before:absolute before:top-0 before:bottom-1 before:left-0 before:w-px">
                               {subSection.items.map((item, subItemIndex) => {
                                 const Icon = item.icon;
                                 const isActive = pathname === item.href;

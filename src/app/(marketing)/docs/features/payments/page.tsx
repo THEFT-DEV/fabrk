@@ -2,6 +2,7 @@ import { FeatureGuideTemplate } from '@/components/docs';
 import { DocsSection, DocsCard, DocsCallout } from '@/components/docs';
 import Link from 'next/link';
 import { CreditCard, RefreshCw, Clock, Users, Bell, Shield } from 'lucide-react';
+import { mode } from '@/design-system';
 
 export const metadata = {
   title: 'Stripe Payments - Fabrk Docs',
@@ -368,27 +369,27 @@ export function ManageBillingButton() {
           <p className="mb-4">Before accepting real payments:</p>
           <ul className="space-y-2">
             <li className="flex items-center gap-2">
-              <input type="checkbox" className="rounded" readOnly />
+              <input type="checkbox" className={mode.radius} readOnly />
               <span>Switch to live API keys (sk_live_, pk_live_)</span>
             </li>
             <li className="flex items-center gap-2">
-              <input type="checkbox" className="rounded" readOnly />
+              <input type="checkbox" className={mode.radius} readOnly />
               <span>Create webhook endpoint in Stripe Dashboard (not CLI)</span>
             </li>
             <li className="flex items-center gap-2">
-              <input type="checkbox" className="rounded" readOnly />
+              <input type="checkbox" className={mode.radius} readOnly />
               <span>Add production webhook secret to your hosting provider</span>
             </li>
             <li className="flex items-center gap-2">
-              <input type="checkbox" className="rounded" readOnly />
+              <input type="checkbox" className={mode.radius} readOnly />
               <span>Test a real $1 transaction and refund it</span>
             </li>
             <li className="flex items-center gap-2">
-              <input type="checkbox" className="rounded" readOnly />
+              <input type="checkbox" className={mode.radius} readOnly />
               <span>Enable Stripe Radar for fraud protection</span>
             </li>
             <li className="flex items-center gap-2">
-              <input type="checkbox" className="rounded" readOnly />
+              <input type="checkbox" className={mode.radius} readOnly />
               <span>Set up email receipts in Stripe settings</span>
             </li>
           </ul>

@@ -46,7 +46,7 @@ export function ComplianceTab({
         <CardHeader code="0x04" title="GDPR RIGHTS" icon={<Globe className="h-4 w-4" />} />
         <CardContent padding="md">
           <div className="mb-4 flex items-center gap-4">
-            <div className="border-border bg-primary/10 flex h-10 w-10 items-center justify-center border">
+            <div className={cn("border-border bg-primary/10 flex h-10 w-10 items-center justify-center border", mode.radius)}>
               <Globe className="text-primary h-5 w-5" />
             </div>
             <div>
@@ -98,7 +98,7 @@ export function ComplianceTab({
         <CardHeader code="0x05" title="DANGER ZONE" icon={<UserX className="h-4 w-4" />} />
         <CardContent padding="md">
           <div className="mb-4 flex items-center gap-4">
-            <div className="border-border bg-destructive/10 flex h-10 w-10 items-center justify-center border">
+            <div className={cn("border-border bg-destructive/10 flex h-10 w-10 items-center justify-center border", mode.radius)}>
               <UserX className="text-destructive h-5 w-5" />
             </div>
             <div>

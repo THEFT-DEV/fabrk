@@ -76,7 +76,7 @@ export function HeroLiveRevenue() {
 
           {/* RIGHT: Copy */}
           <div className="space-y-6">
-            <div className={cn('text-xs px-2 py-1 border w-fit', mode.font, mode.color.text.success)}>
+            <div className={cn('text-xs px-2 py-1 border w-fit', mode.font, mode.radius, mode.color.text.success)}>
               <span className="h-1.5 w-1.5 inline-block bg-success animate-pulse mr-2" />
               LIVE DEMO DATA
             </div>

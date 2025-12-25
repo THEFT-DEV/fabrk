@@ -214,6 +214,7 @@ export interface ModeConfig {
     };
     caption: string;
     micro: string; // 10px - for timestamps, codes, terminal headers
+    caps: string; // uppercase with 0.05em letter-spacing
     input: string;
     label: string;
   };
@@ -222,6 +223,17 @@ export interface ModeConfig {
     panel: string; // 600px
     panelSm: string; // 400px
     sidebar: string; // 288px
+    auth: string; // 400px max-width for auth pages
+    dropdown: string; // 8rem min-width for dropdowns
+    select: string; // 5rem min-width for selects
+    dropdownHeight: string; // 300px max-height for dropdowns
+    textareaHeight: string; // 200px max-height for textareas
+    touch: string; // 44px WCAG touch target
+  };
+
+  zIndex: {
+    banner: string; // Cookie consent, floating notices
+    modal: string; // Modals, navigation, toast
   };
 
   state: {
@@ -371,6 +383,8 @@ export const mode: ModeConfig = {
     caption: 'text-xs text-muted-foreground',
     // Micro text for timestamps, codes, terminal headers (10px)
     micro: 'text-2xs',
+    // Uppercase text with proper letter-spacing (0.05em)
+    caps: 'uppercase tracking-caps',
     input: 'text-sm',
     label: 'text-sm font-medium',
   },
@@ -380,6 +394,18 @@ export const mode: ModeConfig = {
     panel: 'h-panel', // 600px
     panelSm: 'h-panel-sm', // 400px
     sidebar: 'w-sidebar', // 288px (w-72)
+    auth: 'max-w-auth', // 400px max-width for auth pages
+    dropdown: 'min-w-dropdown', // 8rem min-width for dropdowns
+    select: 'min-w-select', // 5rem min-width for selects
+    dropdownHeight: 'max-h-dropdown', // 300px max-height
+    textareaHeight: 'max-h-textarea', // 200px max-height
+    touch: 'min-h-touch min-w-touch', // 44px WCAG touch target
+  },
+
+  // Z-index scale
+  zIndex: {
+    banner: 'z-banner', // 60 - cookie consent, floating notices
+    modal: 'z-modal', // 100 - modals, navigation, toast
   },
 
   // State tokens

@@ -106,13 +106,13 @@ const buttonVariants = cva(
         ),
       },
       size: {
-        // WCAG 2.1 AA: min-h-[44px] ensures adequate touch target on mobile
+        // WCAG 2.1 AA: min-h-touch (44px) ensures adequate touch target on mobile
         // Uses mode spacing tokens for consistent sizing
-        default: cn('min-h-[44px] sm:min-h-0 sm:h-8', mode.spacing.button.md),
-        sm: cn('min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 sm:h-8', mode.spacing.button.sm),
-        lg: cn('min-h-[44px] sm:min-h-0 sm:h-10', mode.spacing.button.lg),
-        xl: cn('min-h-[44px] text-sm sm:min-h-0 sm:h-12', 'px-8'),
-        icon: 'min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 sm:h-10 sm:w-10',
+        default: cn('min-h-touch sm:min-h-0 sm:h-8', mode.spacing.button.md),
+        sm: cn('min-h-touch min-w-touch sm:min-h-0 sm:min-w-0 sm:h-8', mode.spacing.button.sm),
+        lg: cn('min-h-touch sm:min-h-0 sm:h-10', mode.spacing.button.lg),
+        xl: cn('min-h-touch text-sm sm:min-h-0 sm:h-12', 'px-8'),
+        icon: 'min-h-touch min-w-touch sm:min-h-0 sm:min-w-0 sm:h-10 sm:w-10',
       },
     },
     defaultVariants: {

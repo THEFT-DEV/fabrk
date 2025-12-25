@@ -25,7 +25,7 @@ export function MetricCards({ metrics }: MetricCardsProps) {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       {metrics.map((metric) => (
-        <div key={metric.id} className="border-border bg-card border p-4">
+        <div key={metric.id} className={cn("border-border bg-card border p-4", mode.radius)}>
           <div className="mb-2 flex items-center justify-between">
             <div className={cn(mode.font, 'text-muted-foreground text-xs')}>[{metric.title}]:</div>
             <metric.icon className="text-muted-foreground h-4 w-4" />

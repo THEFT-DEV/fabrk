@@ -88,7 +88,7 @@ export default function PricingPage() {
   return (
     <div className="container mx-auto max-w-7xl px-6 py-8 space-y-12">
       {/* Header with billing toggle */}
-      <div className="border border-border">
+      <div className={cn(mode.radius, "border border-border")}>
         <div className="border-b border-border px-4 py-2">
           <span className="font-mono text-xs text-muted-foreground">
             [ [0x00] PRICING HEADER ]
@@ -107,9 +107,9 @@ export default function PricingPage() {
             </span>
             <button
               onClick={() => setIsYearly(!isYearly)}
-              className={\`relative h-6 w-11 border border-border \${isYearly ? "bg-primary" : "bg-muted"}\`}
+              className={\`\${mode.radius} relative h-6 w-11 border border-border \${isYearly ? "bg-primary" : "bg-muted"}\`}
             >
-              <span className={\`absolute top-0.5 h-5 w-5 bg-background border border-border transition-transform \${isYearly ? "translate-x-5" : "translate-x-0.5"}\`} />
+              <span className={\`\${mode.radius} absolute top-0.5 h-5 w-5 bg-background border border-border transition-transform \${isYearly ? "translate-x-5" : "translate-x-0.5"}\`} />
             </button>
             <span className={cn(mode.font, "text-xs", isYearly && "text-foreground", !isYearly && "text-muted-foreground")}>
               YEARLY
@@ -122,7 +122,7 @@ export default function PricingPage() {
       {/* Pricing Cards */}
       <div className="grid gap-6 md:grid-cols-3">
         {plans.map((plan) => (
-          <div key={plan.id} className="border border-border">
+          <div key={plan.id} className={cn(mode.radius, "border border-border")}>
             <div className="border-b border-border px-4 py-2">
               <span className="font-mono text-xs text-muted-foreground">
                 [ [0x01] {plan.name} ]
@@ -163,7 +163,7 @@ export default function PricingPage() {
       </div>
 
       {/* Comparison Table */}
-      <div className="border border-border">
+      <div className={cn(mode.radius, "border border-border")}>
         <div className="border-b border-border px-4 py-2">
           <span className="font-mono text-xs text-muted-foreground">
             [ [0x02] FEATURE COMPARISON ]
@@ -193,14 +193,14 @@ export default function PricingPage() {
       </div>
 
       {/* FAQ Section */}
-      <div className="border border-border">
+      <div className={cn(mode.radius, "border border-border")}>
         <div className="border-b border-border px-4 py-2">
           <span className="font-mono text-xs text-muted-foreground">
             [ [0x03] FREQUENTLY ASKED QUESTIONS ]
           </span>
         </div>
         <div className="p-6 space-y-4">
-          <details className="border border-border">
+          <details className={cn(mode.radius, "border border-border")}>
             <summary className="cursor-pointer p-4 font-mono text-sm font-medium">
               Can I change plans later?
             </summary>

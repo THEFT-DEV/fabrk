@@ -81,7 +81,7 @@ export function TypeWriter({
       {displayText}
       {shouldShowCursor && (
         <span
-          className={cn('inline-block w-[0.5em] animate-blink', mode.color.text.accent)}
+          className={cn('inline-block w-cursor animate-blink', mode.color.text.accent)}
         >
           █
         </span>

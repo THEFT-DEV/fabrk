@@ -11,10 +11,10 @@ import { cn } from '@/lib/utils';
 
 export default function LoginPage() {
   return (
-    <div className="border-border bg-background w-full space-y-6 border p-6">
+    <div className={cn("border-border bg-background w-full space-y-6 border p-6", mode.radius)}>
       {/* Header */}
       <div className="flex flex-col space-y-2 text-center">
-        <div className="border-border bg-card mx-auto mb-2 flex h-10 w-10 items-center justify-center border">
+        <div className={cn("border-border bg-card mx-auto mb-2 flex h-10 w-10 items-center justify-center border", mode.radius)}>
           <Lock className="text-primary h-5 w-5" />
         </div>
         <h1 className={cn(mode.font, 'text-2xl font-semibold tracking-tight')}>Welcome back</h1>

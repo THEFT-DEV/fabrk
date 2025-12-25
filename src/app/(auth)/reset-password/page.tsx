@@ -73,7 +73,7 @@ function ResetPasswordForm() {
 
   if (!token) {
     return (
-      <div className="border-border bg-background w-full space-y-6 border p-6">
+      <div className={cn("border-border bg-background w-full space-y-6 border p-6", mode.radius)}>
         <Alert variant="destructive" className={cn(mode.radius, mode.font)}>
           <AlertCircle className="size-4" />
           <AlertDescription className="text-xs">
@@ -89,7 +89,7 @@ function ResetPasswordForm() {
 
   if (success) {
     return (
-      <div className="border-border bg-background w-full space-y-6 border p-6">
+      <div className={cn("border-border bg-background w-full space-y-6 border p-6", mode.radius)}>
         <Alert className={cn('border-success bg-success/10', mode.radius, mode.font)}>
           <CheckCircle2 className="text-success size-4" />
           <AlertDescription className="text-xs">
@@ -101,10 +101,10 @@ function ResetPasswordForm() {
   }
 
   return (
-    <div className="border-border bg-background w-full space-y-6 border p-6">
+    <div className={cn("border-border bg-background w-full space-y-6 border p-6", mode.radius)}>
       {/* Header */}
       <div className="flex flex-col space-y-2 text-center">
-        <div className="border-border bg-card mx-auto mb-2 flex h-10 w-10 items-center justify-center border">
+        <div className={cn("border-border bg-card mx-auto mb-2 flex h-10 w-10 items-center justify-center border", mode.radius)}>
           <KeyRound className="text-primary h-5 w-5" />
         </div>
         <h1 className={cn(mode.font, 'text-2xl font-semibold tracking-tight')}>RESET PASSWORD</h1>
@@ -180,7 +180,7 @@ export default function ResetPasswordPage() {
   return (
     <Suspense
       fallback={
-        <div className="border-border bg-background w-full space-y-6 border p-6">
+        <div className={cn("border-border bg-background w-full space-y-6 border p-6", mode.radius)}>
           <p className="text-muted-foreground text-center text-sm">Loading...</p>
         </div>
       }

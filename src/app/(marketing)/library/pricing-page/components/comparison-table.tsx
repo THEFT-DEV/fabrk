@@ -43,7 +43,7 @@ export function ComparisonTable({ features }: ComparisonTableProps) {
         <div className={cn("border-border overflow-x-auto border", mode.radius)}>
           <table className={cn(mode.font, 'w-full text-xs')}>
             <thead>
-              <tr className={cn('border-border bg-muted/30 border-b', mode.radius)}>
+              <tr className="border-border bg-muted/30 border-b">
                 <th className="text-muted-foreground px-4 py-4 text-left">
                   [FEATURE]
                 </th>

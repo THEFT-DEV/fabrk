@@ -10,6 +10,8 @@
  */
 import { Palette, CheckCircle } from 'lucide-react';
 import { LibraryGuideTemplate, LibraryCodeBlock } from '@/components/library';
+import { mode } from '@/design-system';
+import { cn } from '@/lib/utils';
 
 export default function CustomizationPage() {
   return (
@@ -61,7 +63,7 @@ export default function CustomizationPage() {
                 language="css"
                 maxHeight="350px"
               />
-              <div className="border-border border p-4">
+              <div className={cn("border-border border p-4", mode.radius)}>
                 <p className="text-primary mb-2 font-medium">[COLOR TOOL]:</p>
                 <p className="text-muted-foreground">
                   Use{' '}
@@ -140,7 +142,7 @@ export const mode = {
                 language="typescript"
                 maxHeight="200px"
               />
-              <div className="bg-muted/30 border-border border p-4">
+              <div className={cn("bg-muted/30 border-border border p-4", mode.radius)}>
                 <p className="text-primary mb-2 font-medium">[RADIUS VALUES]:</p>
                 <ul className="text-muted-foreground list-inside list-disc space-y-1 pl-2">
                   <li>
@@ -205,7 +207,7 @@ export const mode = {
           content: (
             <>
               <p>Extend templates with new functionality:</p>
-              <div className="border-border border p-4">
+              <div className={cn("border-border border p-4", mode.radius)}>
                 <p className="text-primary mb-2 font-medium">1. Add Search to Tables:</p>
                 <LibraryCodeBlock
                   code={`const [searchQuery, setSearchQuery] = useState("");
@@ -223,7 +225,7 @@ const filteredData = data.filter(item =>
                   maxHeight="200px"
                 />
               </div>
-              <div className="border-border border p-4">
+              <div className={cn("border-border border p-4", mode.radius)}>
                 <p className="text-primary mb-2 font-medium">2. Add Export Functionality:</p>
                 <LibraryCodeBlock
                   code={`function exportToCSV(data) {

@@ -35,7 +35,7 @@ export function BadgesSection({ badges }: BadgesSectionProps) {
             return (
               <div
                 key={badge.id}
-                className="border-border bg-muted/30 flex items-center gap-2 border px-4 py-2"
+                className={cn("border-border bg-muted/30 flex items-center gap-2 border px-4 py-2", mode.radius)}
               >
                 <Icon className={`h-4 w-4 text-${badge.color}`} />
                 <span className={cn(mode.font, 'text-xs')}>{badge.name}</span>

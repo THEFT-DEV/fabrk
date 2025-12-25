@@ -30,7 +30,7 @@ const techStack = [
 
 export function Footer() {
   return (
-    <footer id="footer" className={cn("border-border bg-background border-t", mode.radius)}>
+    <footer id="footer" className="border-border bg-background border-t">
       {/* Main Content */}
       <div className="px-4 py-12 sm:px-6">
         <div>

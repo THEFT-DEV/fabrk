@@ -86,7 +86,7 @@ export function NotificationsForm() {
               control={form.control}
               name="securityAlerts"
               render={({ field }) => (
-                <FormItem className="border-border flex flex-row items-center justify-between border p-4">
+                <FormItem className={cn("border-border flex flex-row items-center justify-between border p-4", mode.radius)}>
                   <div className="space-y-0.5">
                     <FormLabel className={cn(mode.font, 'text-xs')}>[SECURITY ALERTS]:</FormLabel>
                     <FormDescription className={cn(mode.font, 'text-xs')}>
@@ -112,7 +112,7 @@ export function NotificationsForm() {
               control={form.control}
               name="productUpdates"
               render={({ field }) => (
-                <FormItem className="border-border flex flex-row items-center justify-between border p-4">
+                <FormItem className={cn("border-border flex flex-row items-center justify-between border p-4", mode.radius)}>
                   <div className="space-y-0.5">
                     <FormLabel className={cn(mode.font, 'text-xs')}>[PRODUCT UPDATES]:</FormLabel>
                     <FormDescription className={cn(mode.font, 'text-xs')}>
@@ -138,7 +138,7 @@ export function NotificationsForm() {
               control={form.control}
               name="marketingEmails"
               render={({ field }) => (
-                <FormItem className="border-border flex flex-row items-center justify-between border p-4">
+                <FormItem className={cn("border-border flex flex-row items-center justify-between border p-4", mode.radius)}>
                   <div className="space-y-0.5">
                     <FormLabel className={cn(mode.font, 'text-xs')}>[MARKETING EMAILS]:</FormLabel>
                     <FormDescription className={cn(mode.font, 'text-xs')}>
@@ -164,7 +164,7 @@ export function NotificationsForm() {
               control={form.control}
               name="weeklySummary"
               render={({ field }) => (
-                <FormItem className="border-border flex flex-row items-center justify-between border p-4">
+                <FormItem className={cn("border-border flex flex-row items-center justify-between border p-4", mode.radius)}>
                   <div className="space-y-0.5">
                     <FormLabel className={cn(mode.font, 'text-xs')}>[WEEKLY SUMMARY]:</FormLabel>
                     <FormDescription className={cn(mode.font, 'text-xs')}>

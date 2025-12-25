@@ -140,7 +140,7 @@ export default function AdminPage() {
               <Card key={i} tone="neutral">
                 <CardHeader code={`0x0${i + 1}`} title="LOADING" />
                 <CardContent>
-                  <div className="bg-muted h-8 w-16 animate-pulse rounded" />
+                  <div className={cn("bg-muted h-8 w-16 animate-pulse", mode.radius)} />
                 </CardContent>
               </Card>
             ))}

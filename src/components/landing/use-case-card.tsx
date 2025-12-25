@@ -78,7 +78,7 @@ export function UseCaseCard({
           </p>
           <p
             className={cn(
-              'text-sm leading-relaxed line-clamp-2 min-h-[2.5rem]',
+              'text-sm leading-relaxed line-clamp-2 min-h-line-2',
               mode.font,
               mode.color.text.muted
             )}
@@ -88,10 +88,10 @@ export function UseCaseCard({
         </div>
 
         {/* Solution Band */}
-        <div className="border-y border-border bg-background py-4 px-6 mt-4">
+        <div className={cn('border-y py-4 px-6 mt-4', mode.color.border.default, mode.color.bg.base)}>
           <p
             className={cn(
-              'text-xs uppercase tracking-[0.05em] font-medium mb-1',
+              'text-xs uppercase tracking-caps font-medium mb-1',
               mode.font,
               mode.color.text.muted
             )}
@@ -100,7 +100,7 @@ export function UseCaseCard({
           </p>
           <p
             className={cn(
-              'text-sm font-bold leading-tight text-warning line-clamp-3 min-h-[3.75rem]',
+              'text-sm font-bold leading-tight text-warning line-clamp-3 min-h-line-3',
               mode.font
             )}
           >
@@ -122,7 +122,7 @@ export function UseCaseCard({
           <ul className="flex flex-col gap-2">
             {features.slice(0, 3).map((feature) => (
               <li key={feature} className="flex items-start gap-2 group/item">
-                <span className="font-bold text-sm mt-[1px] text-warning">✓</span>
+                <span className="font-bold text-sm mt-micro text-warning">✓</span>
                 <span
                   className={cn(
                     'text-sm group-hover/item:text-foreground transition-colors line-clamp-1',

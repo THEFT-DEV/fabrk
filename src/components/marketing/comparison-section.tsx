@@ -33,7 +33,7 @@ export function ComparisonSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className={cn('border-border min-w-[700px] border', mode.radius)}
+            className={cn('border-border max-w-table border', mode.radius)}
           >
             {/* Table Header */}
             <div className="border-border bg-muted/50 grid grid-cols-5 border-b">

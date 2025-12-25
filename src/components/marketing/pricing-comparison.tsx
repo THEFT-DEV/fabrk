@@ -139,7 +139,7 @@ export function PricingComparison({
                   <span className="text-foreground text-sm font-semibold">Features</span>
                 </th>
                 {plans.map((plan) => (
-                  <th key={plan.id} className="min-w-[120px] p-4 text-center">
+                  <th key={plan.id} className="min-w-column-md p-4 text-center">
                     <span className="text-foreground text-sm font-semibold">{plan.name}</span>
                   </th>
                 ))}

@@ -74,7 +74,6 @@ const TableHead = React.forwardRef<
     scope={scope}
     className={cn(
       'h-12 px-4 text-left align-middle text-xs font-semibold [&:has([role=checkbox])]:pr-0',
-      mode.radius,
       mode.color.bg.muted,
       mode.color.text.muted,
       mode.font,

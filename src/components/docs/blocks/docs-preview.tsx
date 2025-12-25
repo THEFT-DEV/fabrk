@@ -5,6 +5,7 @@
 
 import { CodeBlock } from '@/components/ui/code-block';
 import { cn } from '@/lib/utils';
+import { mode } from '@/design-system';
 
 interface DocsPreviewProps {
   /** Preview title */
@@ -34,7 +35,7 @@ export function DocsPreview({
   const headerTitle = title.toUpperCase();
 
   return (
-    <div className={cn('border-border bg-card border', className)}>
+    <div className={cn('border-border bg-card border', mode.radius, className)}>
       {/* Header - single line only */}
       <div className="border-border bg-card border-b px-4 py-2">
         <span className="text-muted-foreground font-mono text-xs">

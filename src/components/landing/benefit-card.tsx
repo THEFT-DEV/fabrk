@@ -79,7 +79,7 @@ export function BenefitCard({
           {/* Benefit Statement - max 2 lines */}
           <h3
             className={cn(
-              'text-sm font-bold leading-tight uppercase tracking-wide line-clamp-2 min-h-[2.5rem]',
+              'text-sm font-bold leading-tight uppercase tracking-wide line-clamp-2 min-h-line-2',
               mode.font,
               'text-foreground'
             )}
@@ -88,17 +88,17 @@ export function BenefitCard({
           </h3>
 
           {/* Description - fixed height for consistency */}
-          <p className={cn('text-sm leading-relaxed mt-3 line-clamp-3 min-h-[3.75rem]', mode.font, mode.color.text.muted)}>
+          <p className={cn('text-sm leading-relaxed mt-3 line-clamp-3 min-h-card-desc', mode.font, mode.color.text.muted)}>
             {description}
           </p>
         </div>
 
         {/* Stats Band */}
-        <div className={cn('border-y py-4 px-6 flex gap-4 mt-4', mode.color.border.default, mode.color.bg.base, mode.radius)}>
+        <div className={cn('border-y py-4 px-6 flex gap-4 mt-4', mode.color.border.default, mode.color.bg.base)}>
           <div className="flex-1 flex flex-col gap-1">
             <p
               className={cn(
-                'text-xs uppercase tracking-[0.05em] font-medium',
+                'text-xs uppercase tracking-caps font-medium',
                 mode.font,
                 mode.color.text.muted
               )}
@@ -113,7 +113,7 @@ export function BenefitCard({
           <div className="flex-1 flex flex-col gap-1 pl-2">
             <p
               className={cn(
-                'text-xs uppercase tracking-[0.05em] font-medium',
+                'text-xs uppercase tracking-caps font-medium',
                 mode.font,
                 mode.color.text.muted
               )}
@@ -140,7 +140,7 @@ export function BenefitCard({
           <ul className="flex flex-col gap-2">
             {features.slice(0, 3).map((feature) => (
               <li key={feature} className="flex items-start gap-2 group/item">
-                <span className="font-bold text-sm mt-[1px] text-warning">✓</span>
+                <span className="font-bold text-sm mt-micro text-warning">✓</span>
                 <span
                   className={cn(
                     'text-sm group-hover/item:text-foreground transition-colors line-clamp-1',

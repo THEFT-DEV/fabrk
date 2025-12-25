@@ -35,7 +35,7 @@ export function FAQSection({ faqs }: FAQSectionProps) {
 
         <Accordion type="single" collapsible className="space-y-2">
           {faqs.map((faq, idx) => (
-            <AccordionItem key={idx} value={`faq-${idx}`} className="border-border border">
+            <AccordionItem key={idx} value={`faq-${idx}`} className={cn("border-border border", mode.radius)}>
               <AccordionTrigger className="hover:bg-muted/30 [&>svg]:text-muted-foreground px-4 py-4 font-normal hover:no-underline">
                 <div className="flex items-center gap-2">
                   <HelpCircle className="text-primary h-4 w-4" />

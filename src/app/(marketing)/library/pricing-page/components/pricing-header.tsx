@@ -24,7 +24,7 @@ export function PricingHeader({ isYearly, onToggleBilling }: PricingHeaderProps)
 
       {/* Billing Toggle - Terminal Style */}
       <div className="flex items-center justify-center gap-2 pt-4">
-        <div className={cn(mode.font, 'border-border inline-flex border text-xs')}>
+        <div className={cn(mode.font, mode.radius, 'border-border inline-flex border text-xs')}>
           <button
             onClick={() => onToggleBilling(false)}
             className={`px-4 py-2 transition-colors ${

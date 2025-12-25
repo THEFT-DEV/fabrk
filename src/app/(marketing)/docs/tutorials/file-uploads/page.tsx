@@ -240,7 +240,7 @@ export function FileUploadForm() {
     <div className="space-y-4">
       <div
         {...getRootProps()}
-        className={cn('border-2 border-dashed p-6 text-center cursor-pointer transition-colors', mode.state.hover.card)}
+        className={cn('border-2 border-dashed p-6 text-center cursor-pointer transition-colors', mode.radius, mode.state.hover.card)}
       >
         <input {...getInputProps()} />
         <p className="font-mono text-sm text-muted-foreground">

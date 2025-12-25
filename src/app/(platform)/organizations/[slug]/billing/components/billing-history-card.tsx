@@ -41,7 +41,7 @@ export function BillingHistoryCard({ invoices }: BillingHistoryCardProps) {
               <TableHead>Date</TableHead>
               <TableHead>Amount</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead className="w-[100px]"></TableHead>
+              <TableHead className="w-column-sm"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

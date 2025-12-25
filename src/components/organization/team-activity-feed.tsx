@@ -153,7 +153,7 @@ export function TeamActivityFeed({
               <div className="relative space-y-4">
                 {/* Timeline line */}
                 <div
-                  className={cn('absolute top-0 bottom-0 left-[19px] w-0.5', mode.color.bg.muted)}
+                  className={cn('absolute top-0 bottom-0 left-activity w-0.5', mode.color.bg.muted)}
                 />
 
                 {activities.map((activity, _index) => {

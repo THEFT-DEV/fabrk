@@ -51,7 +51,7 @@ export function ResultsHeader({
                 <SelectItem value="rating">Top Rated</SelectItem>
               </SelectContent>
             </Select>
-            <div className="border-border flex border">
+            <div className={cn("border-border flex border", mode.radius)}>
               <Button
                 variant={viewMode === 'grid' ? 'default' : 'ghost'}
                 size="sm"

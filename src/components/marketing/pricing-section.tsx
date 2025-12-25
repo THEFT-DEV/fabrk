@@ -60,7 +60,7 @@ export function PricingSection() {
               <span className={mode.color.text.muted}>UNLIMITED PROJECTS.</span>
             </h3>
 
-            <div className={cn('mb-6 border-l-2 pl-4', mode.color.border.default, mode.radius)}>
+            <div className={cn('mb-6 border-l-2 pl-4', mode.color.border.default)}>
               <p className={cn('text-sm', mode.color.text.muted, mode.font)}>
                 Upon purchase, use the starter kit for personal and commercial projects—no restrictions on developers or deployments.
               </p>

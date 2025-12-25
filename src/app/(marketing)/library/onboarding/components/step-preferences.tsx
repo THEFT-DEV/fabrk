@@ -33,7 +33,7 @@ export function StepPreferences({
         </div>
 
         <div className="space-y-4">
-          <div className="border-border flex items-center justify-between border p-4">
+          <div className={cn("border-border flex items-center justify-between border p-4", mode.radius)}>
             <div>
               <div className={cn(mode.font, 'text-sm')}>Email Updates</div>
               <div className={cn(mode.font, 'text-muted-foreground text-xs')}>
@@ -46,7 +46,7 @@ export function StepPreferences({
             />
           </div>
 
-          <div className="border-border flex items-center justify-between border p-4">
+          <div className={cn("border-border flex items-center justify-between border p-4", mode.radius)}>
             <div>
               <div className={cn(mode.font, 'text-sm')}>Product Tips</div>
               <div className={cn(mode.font, 'text-muted-foreground text-xs')}>

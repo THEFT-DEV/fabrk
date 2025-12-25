@@ -231,9 +231,9 @@ function SolidProgress({
   const percentage = Math.round(clampedValue);
 
   const sizeClasses = {
-    sm: 'h-1',
-    md: 'h-2',
-    lg: 'h-3',
+    sm: 'h-2',
+    md: 'h-3',
+    lg: 'h-4',
   };
 
   const barColorClass = isComplete && completeColor === 'success' ? 'bg-success' : 'bg-primary';
@@ -270,9 +270,9 @@ function SolidProgress({
         </div>
       )}
       {/* Progress bar */}
-      <div className={cn('bg-muted w-full', sizeClasses[size])}>
+      <div className={cn('bg-muted w-full overflow-hidden', mode.radius, sizeClasses[size])}>
         <div
-          className={cn('h-full transition-all duration-100', barColorClass)}
+          className={cn('h-full transition-all duration-100', mode.radius, barColorClass)}
           style={{ width: `${clampedValue}%` }}
         />
       </div>

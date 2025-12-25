@@ -754,7 +754,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, FeatureCardProps>(
           {/* Headline - max 2 lines */}
           <h3
             className={cn(
-              'text-sm font-bold leading-tight uppercase tracking-wide line-clamp-2 min-h-[2.5rem]',
+              'text-sm font-bold leading-tight uppercase tracking-wide line-clamp-2 min-h-line-2',
               mode.font,
               'text-foreground'
             )}
@@ -765,7 +765,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, FeatureCardProps>(
           {/* Description - fixed height for consistency */}
           <p
             className={cn(
-              'text-sm leading-relaxed mt-3 line-clamp-3 min-h-[3.75rem]',
+              'text-sm leading-relaxed mt-3 line-clamp-3 min-h-line-3',
               mode.font,
               mode.color.text.muted
             )}
@@ -783,7 +783,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, FeatureCardProps>(
                 <div className={cn('flex-1 flex flex-col gap-1', index > 0 && 'pl-2')}>
                   <p
                     className={cn(
-                      'text-xs uppercase tracking-[0.05em] font-medium',
+                      'text-xs uppercase tracking-caps font-medium',
                       mode.font,
                       mode.color.text.muted
                     )}
@@ -819,7 +819,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, FeatureCardProps>(
             <ul className="flex flex-col gap-2">
               {includes.slice(0, 3).map((item) => (
                 <li key={item} className="flex items-start gap-2 group/item">
-                  <span className="font-bold text-sm mt-[1px] text-warning">
+                  <span className="font-bold text-sm mt-micro text-warning">
                     ✓
                   </span>
                   <span

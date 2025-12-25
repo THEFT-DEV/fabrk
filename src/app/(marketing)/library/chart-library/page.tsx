@@ -70,7 +70,7 @@ export default function ChartLibrary() {
 
       {/* Stats - Terminal Style */}
       <div className="grid gap-6 md:grid-cols-4">
-        <div className="border-border bg-card border p-4">
+        <div className={cn(mode.radius, "border-border bg-card border p-4")}>
           <div className={cn(mode.font, "text-muted-foreground mb-1 text-xs")}>
             [TOTAL REVENUE]:
           </div>
@@ -93,7 +93,7 @@ export default function ChartLibrary() {
       >
         {/* Line Chart */}
         <StyledTabsContent value="line">
-          <div className="border-border bg-card border border-t-0 p-4">
+          <div className={cn(mode.radius, "border-border bg-card border border-t-0 p-4")}>
             <ResponsiveContainer width="100%" height={400}>
               <LineChart data={revenueData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="oklch(var(--border))" />

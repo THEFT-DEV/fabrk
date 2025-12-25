@@ -75,9 +75,7 @@ export function MembersTable({ members }: MembersTableProps) {
         <div className={cn('border-border overflow-x-auto border', mode.radius)}>
           <table className="w-full">
             <thead>
-              <tr
-                className={cn(mode.font, mode.radius, 'border-border bg-muted/30 border-b text-xs')}
-              >
+              <tr className={cn(mode.font, 'border-border bg-muted/30 border-b text-xs')}>
                 <th className="text-muted-foreground px-4 py-2 text-left">[MEMBER]</th>
                 <th className="text-muted-foreground px-4 py-2 text-left">[ROLE]</th>
                 <th className="text-muted-foreground px-4 py-2 text-left">

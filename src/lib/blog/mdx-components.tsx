@@ -6,6 +6,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import type { MDXComponents } from 'mdx/types';
+import { mode } from '@/design-system';
+import { cn } from '@/lib/utils';
 
 // Custom callout component for tips, warnings, etc.
 function Callout({
@@ -32,7 +34,7 @@ function Callout({
   };
 
   return (
-    <div className={`my-6 border ${styles[type]} p-4`}>
+    <div className={cn(`my-6 border ${styles[type]} p-4`, mode.radius)}>
       <div className="flex items-start gap-4">
         <span className="font-mono text-sm font-semibold">{icons[type]}</span>
         <div className="flex-1">
@@ -55,7 +57,7 @@ function CodeBlock({
   filename?: string;
 }) {
   return (
-    <div className="border-border my-6 overflow-hidden border">
+    <div className={cn("border-border my-6 overflow-hidden border", mode.radius)}>
       {filename && (
         <div className="border-border bg-muted border-b px-4 py-2">
           <span className="text-muted-foreground font-mono text-xs">{filename}</span>
@@ -84,7 +86,7 @@ function Step({
 }) {
   return (
     <div className="relative">
-      <div className="border-primary bg-background text-primary absolute -left-8 flex h-6 w-6 items-center justify-center border font-mono text-xs">
+      <div className={cn("border-primary bg-background text-primary absolute -left-8 flex h-6 w-6 items-center justify-center border font-mono text-xs", mode.radius)}>
         {number}
       </div>
       <h4 className="mb-2 font-mono text-sm font-semibold uppercase">{title}</h4>
@@ -96,7 +98,7 @@ function Step({
 // Feature comparison table
 function ComparisonTable({ headers, rows }: { headers: string[]; rows: string[][] }) {
   return (
-    <div className="border-border my-6 overflow-x-auto border">
+    <div className={cn("border-border my-6 overflow-x-auto border", mode.radius)}>
       <table className="w-full font-mono text-sm">
         <thead>
           <tr className="border-border bg-muted border-b">
@@ -129,7 +131,7 @@ function ComparisonTable({ headers, rows }: { headers: string[]; rows: string[][
 // YouTube embed component
 function YouTube({ id, title }: { id: string; title?: string }) {
   return (
-    <div className="border-border my-6 aspect-video overflow-hidden border">
+    <div className={cn("border-border my-6 aspect-video overflow-hidden border", mode.radius)}>
       <iframe
         src={`https://www.youtube.com/embed/${id}`}
         title={title || 'YouTube video'}
@@ -144,7 +146,7 @@ function YouTube({ id, title }: { id: string; title?: string }) {
 // Tweet embed placeholder
 function Tweet({ id }: { id: string }) {
   return (
-    <div className="border-border my-6 border p-4">
+    <div className={cn("border-border my-6 border p-4", mode.radius)}>
       <a
         href={`https://twitter.com/i/status/${id}`}
         target="_blank"
@@ -164,7 +166,7 @@ function CardGrid({ children }: { children: React.ReactNode }) {
 
 function Card({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="border-border bg-card border p-4">
+    <div className={cn("border-border bg-card border p-4", mode.radius)}>
       <h4 className="mb-2 font-mono text-sm font-semibold uppercase">{title}</h4>
       <div className="text-muted-foreground font-mono text-xs">{children}</div>
     </div>
@@ -174,7 +176,7 @@ function Card({ title, children }: { title: string; children: React.ReactNode })
 // Keyboard shortcut display
 function Kbd({ children }: { children: React.ReactNode }) {
   return (
-    <kbd className="border-border bg-muted mx-0.5 inline-flex items-center justify-center border px-1.5 py-0.5 font-mono text-xs">
+    <kbd className={cn("border-border bg-muted mx-0.5 inline-flex items-center justify-center border px-1.5 py-0.5 font-mono text-xs", mode.radius)}>
       {children}
     </kbd>
   );
@@ -183,7 +185,7 @@ function Kbd({ children }: { children: React.ReactNode }) {
 // Terminal command display
 function Terminal({ command, output }: { command: string; output?: string }) {
   return (
-    <div className="border-border bg-muted my-6 overflow-hidden border">
+    <div className={cn("border-border bg-muted my-6 overflow-hidden border", mode.radius)}>
       <div className="border-border bg-card border-b px-4 py-2">
         <span className="text-muted-foreground font-mono text-xs">[ TERMINAL ]</span>
       </div>
@@ -272,7 +274,7 @@ export const mdxComponents: MDXComponents = {
     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">{children}</code>
   ),
   pre: ({ children }) => (
-    <pre className="border-border bg-muted my-6 overflow-x-auto border p-4">{children}</pre>
+    <pre className={cn("border-border bg-muted my-6 overflow-x-auto border p-4", mode.radius)}>{children}</pre>
   ),
 
   // Blockquote
@@ -288,7 +290,7 @@ export const mdxComponents: MDXComponents = {
   // Images
   img: ({ src, alt }) => (
     <figure className="my-6">
-      <div className="border-border overflow-hidden border">
+      <div className={cn("border-border overflow-hidden border", mode.radius)}>
         {src && (
           <Image
             src={src}
@@ -309,7 +311,7 @@ export const mdxComponents: MDXComponents = {
 
   // Tables
   table: ({ children }) => (
-    <div className="border-border my-6 overflow-x-auto border">
+    <div className={cn("border-border my-6 overflow-x-auto border", mode.radius)}>
       <table className="w-full font-mono text-sm">{children}</table>
     </div>
   ),

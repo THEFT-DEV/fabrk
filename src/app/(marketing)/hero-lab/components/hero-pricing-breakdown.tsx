@@ -95,7 +95,7 @@ export function HeroPricingBreakdown() {
             </h1>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className={cn('border p-4 text-center', mode.font)}>
+              <div className={cn('border p-4 text-center', mode.font, mode.radius)}>
                 <Clock className={cn('h-5 w-5 mx-auto mb-2', mode.color.text.primary)} />
                 <div className="text-xl font-bold">
                   <AnimatedNumber value={totalHours} />h
@@ -103,7 +103,7 @@ export function HeroPricingBreakdown() {
                 <div className={cn('text-xs', mode.color.text.muted)}>TIME SAVED</div>
               </div>
 
-              <div className={cn('border p-4 text-center', mode.font)}>
+              <div className={cn('border p-4 text-center', mode.font, mode.radius)}>
                 <DollarSign className={cn('h-5 w-5 mx-auto mb-2', mode.color.text.success)} />
                 <div className={cn('text-xl font-bold', mode.color.text.success)}>
                   <AnimatedNumber value={savings} prefix="$" />

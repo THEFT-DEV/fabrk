@@ -66,7 +66,7 @@ export default function BlogPage() {
     <div className="container mx-auto max-w-7xl space-y-6 px-6 py-8">
       {/* Featured Post */}
       {featuredPost && (
-        <div className="border border-border">
+        <div className={cn("border border-border", mode.radius)}>
           <div className="border-b border-border px-4 py-2">
             <span className="font-mono text-xs text-muted-foreground">
               [ [0x00] FEATURED POST ]
@@ -74,7 +74,7 @@ export default function BlogPage() {
           </div>
           <div className="p-6">
             <div className="grid gap-6 md:grid-cols-2">
-              <div className="border border-border bg-muted/30 flex aspect-video items-center justify-center">
+              <div className={cn("border border-border bg-muted/30 flex aspect-video items-center justify-center", mode.radius)}>
                 <span className="font-mono text-xs text-muted-foreground">[FEATURED IMAGE]</span>
               </div>
               <div className="flex flex-col justify-center space-y-4">

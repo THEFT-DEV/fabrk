@@ -22,9 +22,9 @@ function CustomMonthCaption({ calendarMonth }: { calendarMonth: { date: Date } }
   return (
     <div className="mb-4 flex h-8 w-full items-center justify-between">
       <Button
-        variant="outline"
+        variant="ghost"
         size="icon"
-        className={cn('h-8 w-8 p-0', mode.radius)}
+        className="h-8 w-8 p-0"
         disabled={!previousMonth}
         onClick={() => previousMonth && goToMonth(subMonths(calendarMonth.date, 1))}
         aria-label="Previous month"
@@ -35,9 +35,9 @@ function CustomMonthCaption({ calendarMonth }: { calendarMonth: { date: Date } }
         {format(calendarMonth.date, 'MMMM yyyy')}
       </span>
       <Button
-        variant="outline"
+        variant="ghost"
         size="icon"
-        className={cn('h-8 w-8 p-0', mode.radius)}
+        className="h-8 w-8 p-0"
         disabled={!nextMonth}
         onClick={() => nextMonth && goToMonth(addMonths(calendarMonth.date, 1))}
         aria-label="Next month"
@@ -77,7 +77,7 @@ function Calendar({
       <DayPicker
         showOutsideDays={showOutsideDays}
         data-slot="calendar"
-        className={cn('p-4', className)}
+        className={cn('p-4', mode.radius, className)}
         classNames={{
           // Layout
           months: 'flex flex-col sm:flex-row gap-4',
@@ -89,13 +89,13 @@ function Calendar({
           button_next: 'hidden',
 
           // Grid
-          month_grid: 'w-full border-collapse',
-          weekdays: 'flex',
+          month_grid: 'w-full',
+          weekdays: 'grid grid-cols-7 place-items-center',
           weekday: cn('w-9 text-xs font-semibold text-center', mode.color.text.muted, mode.font),
-          week: 'flex w-full mt-2',
+          week: 'grid grid-cols-7 place-items-center mt-2',
 
           // Day cells
-          day: cn('h-9 w-9 text-center text-xs p-0 relative', mode.font),
+          day: cn('w-9 h-9 text-center text-xs p-0 relative flex items-center justify-center', mode.font),
           day_button: cn(
             'h-9 w-9 p-0 text-xs font-normal',
             mode.radius,

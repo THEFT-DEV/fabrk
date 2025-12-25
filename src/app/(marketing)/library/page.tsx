@@ -185,7 +185,7 @@ export default function LibraryIndexPage() {
             <div className="flex items-center gap-2">
               <span className={cn(mode.font, 'text-muted-foreground text-xs')}>CATEGORY:</span>
               <Select value={selectedCategory} onValueChange={handleCategoryChange}>
-                <SelectTrigger className={cn(mode.radius, mode.font, 'w-[180px] text-xs')}>
+                <SelectTrigger className={cn(mode.radius, mode.font, 'w-select-lg text-xs')}>
                   <SelectValue placeholder="Select category" />
                 </SelectTrigger>
                 <SelectContent>
@@ -210,7 +210,7 @@ export default function LibraryIndexPage() {
             <div className="flex items-center gap-2">
               <span className={cn(mode.font, 'text-muted-foreground text-xs')}>SORT:</span>
               <Select value={sortBy} onValueChange={(v) => setSortBy(v as SortOption)}>
-                <SelectTrigger className={cn(mode.radius, mode.font, 'w-[140px] text-xs')}>
+                <SelectTrigger className={cn(mode.radius, mode.font, 'w-select-md text-xs')}>
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>

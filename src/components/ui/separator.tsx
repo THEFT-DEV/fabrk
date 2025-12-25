@@ -23,7 +23,7 @@ export function Separator({
       className={cn(
         'shrink-0',
         mode.color.bg.muted,
-        orientation === 'horizontal' ? 'h-[1px] w-full' : 'h-full w-[1px]',
+        orientation === 'horizontal' ? 'h-hairline w-full' : 'h-full w-hairline',
         className
       )}
       {...props}

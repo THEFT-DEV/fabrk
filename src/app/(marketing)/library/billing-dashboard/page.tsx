@@ -193,7 +193,7 @@ export default function BillingPage() {
           </Card>
 
           {/* Add New Card */}
-          <button className="h-48 border border-dashed border-border flex flex-col items-center justify-center gap-2 hover:bg-muted/50 transition-colors">
+          <button className={cn("h-48 border border-dashed border-border flex flex-col items-center justify-center gap-2 hover:bg-muted/50 transition-colors", mode.radius)}>
             <Plus className="size-6 text-muted-foreground" />
             <span className={cn(mode.font, "text-muted-foreground text-sm")}>Add New Card</span>
           </button>
@@ -394,7 +394,7 @@ function BillingPreview() {
             </Card>
 
             {/* Add New Card */}
-            <button className={cn('border-border flex h-48 flex-col items-center justify-center gap-2 border border-dashed transition-colors', mode.state.hover.card)}>
+            <button className={cn('border-border flex h-48 flex-col items-center justify-center gap-2 border border-dashed transition-colors', mode.radius, mode.state.hover.card)}>
               <Plus className="text-muted-foreground size-6" />
               <span className={cn(mode.font, 'text-muted-foreground text-sm')}>Add New Card</span>
             </button>

@@ -265,7 +265,7 @@ function Component() {
           code: '0x04',
           title: 'PERFORMANCE ISSUES',
           content: (
-            <div className="border-border border p-4">
+            <div className={cn("border-border border p-4", mode.radius)}>
               <p className="text-destructive mb-2 flex items-center gap-2 font-medium">
                 <AlertTriangle className="h-4 w-4" />
                 [ISSUE]: Template loads slowly

@@ -23,10 +23,10 @@ import { cn } from "@/lib/utils";
 export default function TwoFactorPage() {
   return (
     <div className="flex min-h-screen items-center justify-center p-4">
-      <div className="border-border bg-background w-full max-w-[380px] space-y-6 border p-6">
+      <div className={cn("border-border bg-background w-full max-w-[380px] space-y-6 border p-6", mode.radius)}>
         {/* Header */}
         <div className="flex flex-col space-y-2 text-center">
-          <div className="border-border bg-card mx-auto mb-2 flex h-10 w-10 items-center justify-center border">
+          <div className={cn("border-border bg-card mx-auto mb-2 flex h-10 w-10 items-center justify-center border", mode.radius)}>
             <ShieldCheck className="text-primary h-5 w-5" />
           </div>
           <h1 className={cn(mode.font, "text-2xl font-semibold tracking-tight")}>
@@ -86,10 +86,10 @@ function TwoFactorPreview() {
   return (
     <TemplatePreviewWrapper minHeight="500px">
       <div className="flex items-center justify-center">
-        <div className="border-border bg-background w-full max-w-[380px] space-y-6 border p-6">
+        <div className={cn("border-border bg-background w-full max-w-[380px] space-y-6 border p-6", mode.radius)}>
           {/* Header */}
           <div className="flex flex-col space-y-2 text-center">
-            <div className="border-border bg-card mx-auto mb-2 flex h-10 w-10 items-center justify-center border">
+            <div className={cn("border-border bg-card mx-auto mb-2 flex h-10 w-10 items-center justify-center border", mode.radius)}>
               <ShieldCheck className="text-primary h-5 w-5" />
             </div>
             <h1 className={cn(mode.font, 'text-2xl font-semibold tracking-tight')}>

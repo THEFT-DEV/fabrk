@@ -69,10 +69,10 @@ function CookieConsentDemo() {
         </div>
 
         <div className="flex gap-2">
-          <button className={cn('border-border bg-background flex-1 border px-4 py-2 font-mono text-xs transition-colors', mode.state.hover.card)}>
+          <button className={cn('border-border bg-background flex-1 border px-4 py-2 font-mono text-xs transition-colors', mode.radius, mode.state.hover.card)}>
             &gt; REJECT ALL
           </button>
-          <button className="border-primary bg-primary text-primary-foreground flex-1 border px-4 py-2 font-mono text-xs">
+          <button className={cn("border-primary bg-primary text-primary-foreground flex-1 border px-4 py-2 font-mono text-xs", mode.radius)}>
             &gt; ACCEPT ALL
           </button>
         </div>

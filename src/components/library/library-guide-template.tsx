@@ -293,7 +293,7 @@ export function LibraryGuideTemplate({
                   <Link
                     key={index}
                     href={step.href}
-                    className={cn('border-border group border p-4 transition-colors', mode.state.hover.card)}
+                    className={cn('border-border group border p-4 transition-colors', mode.radius, mode.state.hover.card)}
                   >
                     <div className="mb-2 flex items-center justify-between">
                       <span className="text-primary font-medium">{step.title}</span>

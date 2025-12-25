@@ -31,10 +31,10 @@ export function PaymentMethodsCard({ paymentMethods }: PaymentMethodsCardProps) 
           {paymentMethods.map((method) => (
             <div
               key={method.id}
-              className="border-border flex items-center justify-between border p-4"
+              className={cn("border-border flex items-center justify-between border p-4", mode.radius)}
             >
               <div className="flex items-center gap-4">
-                <div className="border-border bg-muted flex size-8 items-center justify-center border">
+                <div className={cn("border-border bg-muted flex size-8 items-center justify-center border", mode.radius)}>
                   <CreditCard className="size-4" />
                 </div>
                 <div className={cn(mode.radius, mode.font, 'text-xs')}>

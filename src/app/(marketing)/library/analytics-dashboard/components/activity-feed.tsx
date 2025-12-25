@@ -30,7 +30,7 @@ export function ActivityFeed({ activities }: ActivityFeedProps) {
         <div className="space-y-4">
           {activities.map((activity, i) => (
             <div key={i} className={cn(mode.font, 'flex items-start gap-4 text-xs')}>
-              <div className="border-border bg-muted flex h-8 w-8 items-center justify-center border">
+              <div className={cn("border-border bg-muted flex h-8 w-8 items-center justify-center border", mode.radius)}>
                 {activity.user
                   .split(' ')
                   .map((n) => n[0])

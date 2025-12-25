@@ -169,7 +169,7 @@ export default function OrganizationMembersPage() {
                 <TableHead>Email</TableHead>
                 <TableHead>Role</TableHead>
                 <TableHead>Joined</TableHead>
-                <TableHead className="w-[70px]"></TableHead>
+                <TableHead className="w-column-xs"></TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

@@ -43,7 +43,7 @@ export function DocsCard({ children, className, code, title, interactive = true 
     : generateHexFromTitle(headerTitle);
 
   return (
-    <div className={cn('border-border bg-card border transition-colors', interactive && mode.state.hover.card, className)}>
+    <div className={cn('border-border bg-card border transition-colors', mode.radius, interactive && mode.state.hover.card, className)}>
       {hasHeader && (
         <div className="border-border border-b px-4 py-2">
           <span className="text-muted-foreground font-mono text-xs">

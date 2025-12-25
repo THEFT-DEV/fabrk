@@ -38,7 +38,7 @@ export function PendingInvitations({ invitations }: PendingInvitationsProps) {
           {invitations.map((invitation) => (
             <div
               key={invitation.id}
-              className="border-border bg-muted/30 flex items-center justify-between border px-4 py-4"
+              className={cn("border-border bg-muted/30 flex items-center justify-between border px-4 py-4", mode.radius)}
             >
               <div className={cn(mode.font, 'text-xs')}>
                 <span className="text-muted-foreground">EMAIL: </span>
@@ -49,7 +49,7 @@ export function PendingInvitations({ invitations }: PendingInvitationsProps) {
                 <span>{new Date(invitation.sentAt).toLocaleDateString()}</span>
               </div>
               <div className="flex items-center gap-4">
-                <span className={cn(mode.font, 'border-border border px-2 py-0.5 text-xs')}>
+                <span className={cn(mode.font, mode.radius, 'border-border border px-2 py-0.5 text-xs')}>
                   ROLE: {invitation.role.toUpperCase()}
                 </span>
                 <Button

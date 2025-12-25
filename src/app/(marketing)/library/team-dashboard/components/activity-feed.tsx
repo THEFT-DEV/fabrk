@@ -29,7 +29,7 @@ export function ActivityFeed({ activities }: ActivityFeedProps) {
         <div className={cn(mode.font, 'text-muted-foreground mb-4 text-xs')}>[ACTIVITY FEED]:</div>
         <div className="space-y-4">
           {activities.map((activity) => (
-            <div key={activity.id} className={cn('border-primary flex gap-4 border-l-2 pl-4', mode.radius)}>
+            <div key={activity.id} className={cn('border-primary flex gap-4 border-l-2 pl-4')}>
               <Clock className="text-muted-foreground mt-0.5 h-3 w-3 shrink-0" />
               <div className={cn(mode.font, 'text-xs')}>
                 <p>

@@ -5,6 +5,7 @@
 import { AlertTriangle, Info, Lightbulb, AlertCircle } from 'lucide-react';
 import { docsTypography } from '../typography';
 import { cn } from '@/lib/utils';
+import { mode } from '@/design-system';
 
 type CalloutVariant = 'info' | 'warning' | 'tip' | 'danger';
 
@@ -69,7 +70,7 @@ export function DocsCallout({ variant = 'info', title, children, className }: Do
   const Icon = config.icon;
 
   return (
-    <div className={cn('border-border bg-card border', className)}>
+    <div className={cn('border-border bg-card border', mode.radius, className)}>
       {/* Terminal Header */}
       <div className={cn('border-border border-b px-4 py-2', config.bgColor)}>
         <span className={cn('font-mono text-xs', config.iconColor)}>

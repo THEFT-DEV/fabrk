@@ -24,13 +24,13 @@ export function HeroVideoCTA() {
           <div className="relative">
             <button
               onClick={() => setShowVideo(true)}
-              className={cn('w-full border aspect-video flex items-center justify-center bg-muted/10 group', mode.state.hover.card)}
+              className={cn('w-full border aspect-video flex items-center justify-center bg-muted/10 group', mode.radius, mode.state.hover.card)}
             >
               {/* Fake Video Preview */}
               <div className="absolute inset-0 p-4">
                 <div className="grid grid-cols-3 gap-2 h-full opacity-30">
-                  <div className="border" />
-                  <div className="col-span-2 border" />
+                  <div className={cn("border", mode.radius)} />
+                  <div className={cn("col-span-2 border", mode.radius)} />
                 </div>
               </div>
 

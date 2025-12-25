@@ -98,7 +98,7 @@ function ModalsPreview() {
           <AlertDialogContent className={cn(mode.radius, 'border-border')}>
             <AlertDialogHeader>
               <div className="mb-2 flex items-center gap-2">
-                <div className="border-destructive bg-destructive/10 border p-2">
+                <div className={cn("border-destructive bg-destructive/10 border p-2", mode.radius)}>
                   <AlertTriangle className="text-destructive h-5 w-5" />
                 </div>
               </div>

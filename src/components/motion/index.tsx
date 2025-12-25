@@ -360,7 +360,7 @@ export function TerminalCursor({ className, blinkSpeed = 530 }: CursorProps) {
   return (
     <span
       className={cn(
-        'inline-block w-[0.6em] h-[1.1em] bg-primary align-text-bottom',
+        'inline-block w-cursor-motion h-cursor-motion bg-primary align-text-bottom',
         visible ? 'opacity-100' : 'opacity-0',
         className
       )}

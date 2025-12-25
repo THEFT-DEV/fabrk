@@ -17,7 +17,7 @@ export function HeroMinimalCTA() {
     <Container size="lg">
       <div className="py-16 max-h-[70vh] flex flex-col items-center justify-center text-center">
         {/* Price Tag */}
-        <div className={cn('text-xs border px-4 py-2 mb-8', mode.font)}>
+        <div className={cn('text-xs border px-4 py-2 mb-8', mode.font, mode.radius)}>
           <span className={mode.color.text.muted}>ONE-TIME PAYMENT:</span>
           <span className="ml-2 font-bold text-primary">$299</span>
         </div>

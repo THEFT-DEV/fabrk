@@ -56,7 +56,7 @@ function DashboardDemo() {
               'New subscription started',
               'Invoice #1234 paid',
             ].map((item, i) => (
-              <div key={i} className={cn('border-primary flex items-center gap-4 border-l-2 pl-3', mode.radius)}>
+              <div key={i} className={cn('border-primary flex items-center gap-4 border-l-2 pl-3')}>
                 <Check className={cn('h-3 w-3', mode.color.text.success)} />
                 <span className={cn('text-xs', mode.font)}>{item}</span>
                 <span className={cn('ml-auto text-xs', mode.color.text.muted, mode.font)}>

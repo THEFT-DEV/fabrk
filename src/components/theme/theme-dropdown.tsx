@@ -99,7 +99,7 @@ export function ThemeDropdown() {
           <span className="hidden sm:inline">{currentThemeName}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className={cn('w-56 max-h-[70vh] overflow-y-auto', mode.radius)}>
+      <DropdownMenuContent align="end" className={cn('w-56 max-h-panel-view overflow-y-auto', mode.radius)}>
         {Object.entries(themeGroups).map(([groupName, groupThemes], index) => (
           <div key={groupName}>
             {index > 0 && <DropdownMenuSeparator />}

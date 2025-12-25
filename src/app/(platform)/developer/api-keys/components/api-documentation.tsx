@@ -20,7 +20,7 @@ export function ApiDocumentation({ organizationId }: ApiDocumentationProps) {
         <CardContent className="text-muted-foreground space-y-2 text-sm">
           <p>Include your API key in the Authorization header:</p>
           <code
-            className={cn('bg-muted border-border block rounded border p-4 text-xs', mode.font)}
+            className={cn('bg-muted border-border block border p-4 text-xs', mode.font, mode.radius)}
           >
             Authorization: Bearer YOUR_API_KEY
           </code>
@@ -28,7 +28,7 @@ export function ApiDocumentation({ organizationId }: ApiDocumentationProps) {
             <p className="mb-2 font-semibold">Example (cURL):</p>
             <code
               className={cn(
-                'bg-muted border-border block rounded border p-4 text-xs whitespace-pre-wrap',
+                'bg-muted border-border block border p-4 text-xs whitespace-pre-wrap', mode.radius,
                 mode.font
               )}
             >

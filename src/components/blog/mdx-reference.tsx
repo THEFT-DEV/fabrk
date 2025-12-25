@@ -121,7 +121,7 @@ export function MdxReference() {
           <span className="font-mono text-xs">MDX REFERENCE</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-h-[80vh] max-w-3xl overflow-y-auto">
+      <DialogContent className="max-h-dialog max-w-3xl overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="font-mono">[ MDX COMPONENTS ]</DialogTitle>
         </DialogHeader>

@@ -180,7 +180,7 @@ export default function AdminSecurityPage() {
             className="border-0 p-0"
           />
           <Select value={severityFilter} onValueChange={setSeverityFilter}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-select-lg">
               <SelectValue placeholder="All Severities" />
             </SelectTrigger>
             <SelectContent>

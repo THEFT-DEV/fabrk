@@ -151,7 +151,7 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <div className="border border-border bg-muted/30 flex aspect-video items-center justify-center">
+          <div className={cn("border border-border bg-muted/30 flex aspect-video items-center justify-center", mode.radius)}>
             <span className={cn(mode.font, "text-xs text-muted-foreground")}>
               [PRODUCT SCREENSHOT]
             </span>
@@ -195,10 +195,10 @@ export default function LandingPage() {
           </div>
 
           <div className={cn(mode.font, "text-muted-foreground flex items-center justify-center gap-6 text-xs")}>
-            <span className="border border-border px-2 py-1">VERCEL</span>
-            <span className="border border-border px-2 py-1">STRIPE</span>
-            <span className="border border-border px-2 py-1">PRISMA</span>
-            <span className="border border-border px-2 py-1">NEXT.JS</span>
+            <span className={cn("border border-border px-2 py-1", mode.radius)}>VERCEL</span>
+            <span className={cn("border border-border px-2 py-1", mode.radius)}>STRIPE</span>
+            <span className={cn("border border-border px-2 py-1", mode.radius)}>PRISMA</span>
+            <span className={cn("border border-border px-2 py-1", mode.radius)}>NEXT.JS</span>
           </div>
         </div>
       </section>
@@ -228,7 +228,7 @@ function LandingVariationsPreview() {
         >
           {/* Centered Hero */}
           <StyledTabsContent value="centered">
-            <div className="border-border bg-card border">
+            <div className={cn("border-border bg-card border", mode.radius)}>
               <div className="border-border border-b px-4 py-2">
                 <span className={cn(mode.font, 'text-muted-foreground text-xs')}>
                   [ [0x01] HERO CENTERED ]
@@ -293,7 +293,7 @@ function LandingVariationsPreview() {
 
           {/* Split Hero */}
           <StyledTabsContent value="split">
-            <div className="border-border bg-card border">
+            <div className={cn("border-border bg-card border", mode.radius)}>
               <div className="border-border border-b px-4 py-2">
                 <span className={cn(mode.font, 'text-muted-foreground text-xs')}>
                   [ [0x02] HERO SPLIT ]
@@ -345,7 +345,7 @@ function LandingVariationsPreview() {
                       </div>
                     </div>
 
-                    <div className="border-border bg-muted/30 flex aspect-video items-center justify-center border">
+                    <div className={cn("border-border bg-muted/30 flex aspect-video items-center justify-center border", mode.radius)}>
                       <span className={cn(mode.font, 'text-muted-foreground text-xs')}>
                         [PRODUCT SCREENSHOT]
                       </span>
@@ -358,7 +358,7 @@ function LandingVariationsPreview() {
 
           {/* Minimal Hero */}
           <StyledTabsContent value="minimal">
-            <div className="border-border bg-card border">
+            <div className={cn("border-border bg-card border", mode.radius)}>
               <div className="border-border border-b px-4 py-2">
                 <span className={cn(mode.font, 'text-muted-foreground text-xs')}>
                   [ [0x03] HERO MINIMAL ]
@@ -410,10 +410,10 @@ function LandingVariationsPreview() {
                         'text-muted-foreground flex items-center justify-center gap-6 text-xs'
                       )}
                     >
-                      <span className="border-border border px-2 py-1">VERCEL</span>
-                      <span className="border-border border px-2 py-1">STRIPE</span>
-                      <span className="border-border border px-2 py-1">PRISMA</span>
-                      <span className="border-border border px-2 py-1">NEXT.JS</span>
+                      <span className={cn("border-border border px-2 py-1", mode.radius)}>VERCEL</span>
+                      <span className={cn("border-border border px-2 py-1", mode.radius)}>STRIPE</span>
+                      <span className={cn("border-border border px-2 py-1", mode.radius)}>PRISMA</span>
+                      <span className={cn("border-border border px-2 py-1", mode.radius)}>NEXT.JS</span>
                     </div>
                   </div>
                 </div>

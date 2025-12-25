@@ -55,7 +55,7 @@ export function MinimalCookieBanner() {
   return (
     <div
       className={cn(
-        'fixed right-6 bottom-6 z-[60]',
+        'fixed left-6 bottom-6 z-banner',
         'animate-in slide-in-from-bottom-5 duration-300'
       )}
       role="dialog"

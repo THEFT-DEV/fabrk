@@ -36,7 +36,7 @@ export function UsageChart({ data, className }: UsageChartProps) {
             <div key={day.date} className="group relative flex flex-1 flex-col items-center">
               <div
                 className={cn(
-                  'min-h-[2px] w-full transition-all',
+                  'min-h-bar w-full transition-all',
                   mode.radius,
                   day.credits > 0 ? mode.color.bg.accent : mode.color.bg.muted
                 )}

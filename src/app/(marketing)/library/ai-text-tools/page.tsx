@@ -145,7 +145,7 @@ export default function AITextToolsPage() {
           {output && (
             <div className="mt-6">
               <p className="text-muted-foreground mb-2 text-xs">[OUTPUT]:</p>
-              <div className="border-border bg-muted/30 border p-4">
+              <div className={cn("border-border bg-muted/30 border p-4", mode.radius)}>
                 {output}
               </div>
             </div>

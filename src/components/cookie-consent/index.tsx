@@ -224,7 +224,7 @@ export function CookieConsent({ variant = 'full', bannerVariant = 'full' }: Cook
           {bannerVariant === 'full' ? (
             // Full banner with cookie icon
             <div
-              className="bg-background text-foreground animate-in slide-in-from-bottom-5 fixed right-6 bottom-6 z-50 flex items-center border transition-all duration-300"
+              className={cn("bg-background text-foreground animate-in slide-in-from-bottom-5 fixed right-6 bottom-6 z-50 flex items-center border transition-all duration-300", mode.radius)}
               style={{ transform: 'translate3d(0, 0, 0)' }}
             >
               <button
@@ -250,7 +250,7 @@ export function CookieConsent({ variant = 'full', bannerVariant = 'full' }: Cook
             // Minimal banner with terminal text
             <div
               className={cn(
-                'fixed right-6 bottom-6 z-[60]',
+                'fixed right-6 bottom-6 z-banner',
                 'animate-in slide-in-from-bottom-5 duration-300'
               )}
               style={{ transform: 'translate3d(0, 0, 0)' }}
@@ -259,7 +259,7 @@ export function CookieConsent({ variant = 'full', bannerVariant = 'full' }: Cook
               aria-label="Cookie consent banner"
             >
               <div
-                className="bg-card border-accent flex items-center gap-2 border-2 px-4 py-2"
+                className={cn("bg-card border-accent flex items-center gap-2 border-2 px-4 py-2", mode.radius)}
               >
                 <button
                   onClick={openModal}
@@ -285,7 +285,7 @@ export function CookieConsent({ variant = 'full', bannerVariant = 'full' }: Cook
 
       {/* Cookie Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-[100] overflow-y-auto">
+        <div className="fixed inset-0 z-modal overflow-y-auto">
           <div
             className="bg-background/80 fixed inset-0 z-0 backdrop-blur-sm"
             onClick={closeModal}
@@ -324,8 +324,8 @@ export function CookieConsent({ variant = 'full', bannerVariant = 'full' }: Cook
               >
                 {/* Content - border outside scroll container so it's always visible */}
                 <StyledTabsContent value="consent" className="mt-0">
-                  <div className="border-border border border-t-0">
-                    <div className="max-h-[60vh] overflow-y-auto p-6">
+                  <div className={cn("border-border border border-t-0", mode.radius)}>
+                    <div className="max-h-modal overflow-y-auto p-6">
                       <ConsentTabContent
                         preferences={preferences}
                         setPreferences={setPreferences}
@@ -337,8 +337,8 @@ export function CookieConsent({ variant = 'full', bannerVariant = 'full' }: Cook
                   </div>
                 </StyledTabsContent>
                 <StyledTabsContent value="details" className="mt-0">
-                  <div className="border-border border border-t-0">
-                    <div className="max-h-[60vh] overflow-y-auto p-6">
+                  <div className={cn("border-border border border-t-0", mode.radius)}>
+                    <div className="max-h-modal overflow-y-auto p-6">
                       <DetailsTabContent
                         preferences={preferences}
                         setPreferences={setPreferences}
@@ -347,8 +347,8 @@ export function CookieConsent({ variant = 'full', bannerVariant = 'full' }: Cook
                   </div>
                 </StyledTabsContent>
                 <StyledTabsContent value="about" className="mt-0">
-                  <div className="border-border border border-t-0">
-                    <div className="max-h-[60vh] overflow-y-auto p-6">
+                  <div className={cn("border-border border border-t-0", mode.radius)}>
+                    <div className="max-h-modal overflow-y-auto p-6">
                       <AboutTabContent />
                     </div>
                   </div>

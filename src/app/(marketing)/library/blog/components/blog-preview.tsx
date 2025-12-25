@@ -139,7 +139,7 @@ export function BlogPreview() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {regularPosts.slice(0, 3).map((post) => (
             <Link key={post.id} href="/templates/blog/post">
-              <div className={cn('border-border group bg-card border transition-colors', mode.state.hover.card)}>
+              <div className={cn('border-border group bg-card border transition-colors', mode.radius, mode.state.hover.card)}>
                 <div className="border-border border-b px-4 py-2">
                   <span className={cn(mode.font, 'text-muted-foreground text-xs')}>
                     [ [0x0{post.id}] POST_{post.id} ]

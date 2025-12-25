@@ -52,7 +52,7 @@ export function SideSheet({ open, onOpenChange }: SideSheetProps) {
               </SheetDescription>
             </SheetHeader>
             <div className="space-y-4 py-6">
-              <div className="border-border border p-4">
+              <div className={cn("border-border border p-4", mode.radius)}>
                 <div className={cn(mode.font, 'text-muted-foreground mb-2 text-xs')}>
                   [GENERAL]:
                 </div>
@@ -79,7 +79,7 @@ export function SideSheet({ open, onOpenChange }: SideSheetProps) {
                   </div>
                 </div>
               </div>
-              <div className="border-border border p-4">
+              <div className={cn("border-border border p-4", mode.radius)}>
                 <div className={cn(mode.font, 'text-muted-foreground mb-2 text-xs')}>
                   [ACCOUNT]:
                 </div>

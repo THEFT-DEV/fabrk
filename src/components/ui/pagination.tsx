@@ -52,6 +52,7 @@ const PaginationLink = ({ className, isActive, size = 'icon', ...props }: Pagina
         variant: isActive ? 'default' : 'outline',
         size,
       }),
+      mode.radius,
       mode.font,
       'cursor-pointer',
       className

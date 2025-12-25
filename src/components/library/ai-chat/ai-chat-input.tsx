@@ -84,7 +84,7 @@ export function AiChatInput({
           onKeyDown={handleKeyDown}
           placeholder="ENTER INSTRUCTION..."
           className={cn(
-            'max-h-[200px] min-h-[44px] w-full resize-none border-0 bg-transparent px-3 py-3 shadow-none focus-visible:ring-0',
+            'max-h-textarea min-h-touch w-full resize-none border-0 bg-transparent px-3 py-3 shadow-none focus-visible:ring-0',
             mode.font,
             'placeholder:text-muted-foreground/50'
           )}

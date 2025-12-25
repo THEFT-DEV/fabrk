@@ -117,7 +117,7 @@ export function Navigation() {
 
       {/* Mobile Menu - Full screen overlay with terminal styling */}
       {isOpen && (
-        <div className="fixed inset-0 z-[100] md:hidden">
+        <div className="fixed inset-0 z-modal md:hidden">
           {/* Backdrop */}
           <div
             role="button"

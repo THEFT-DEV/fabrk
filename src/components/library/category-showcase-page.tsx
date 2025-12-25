@@ -174,7 +174,7 @@ export function CategoryShowcasePage({
         {/* Category Info */}
         <div className="flex items-center gap-4">
           {Icon && <Icon className="text-primary h-6 w-6" />}
-          <span className={cn(mode.font, 'border-border border px-2 py-0.5 text-xs')}>
+          <span className={cn(mode.font, mode.radius, 'border-border border px-2 py-0.5 text-xs')}>
             COUNT: {templates.length}
           </span>
         </div>

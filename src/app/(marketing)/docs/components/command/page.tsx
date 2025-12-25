@@ -125,7 +125,7 @@ export default function CommandPage() {
             <div>
               <p className="text-muted-foreground mb-4 text-sm">
                 Press{' '}
-                <kbd className="bg-muted text-muted-foreground pointer-events-none inline-flex h-5 items-center gap-1 rounded border px-1.5 font-mono text-xs font-medium opacity-100 select-none">
+                <kbd className={cn("bg-muted text-muted-foreground pointer-events-none inline-flex h-5 items-center gap-1 border px-1.5 font-mono text-xs font-medium opacity-100 select-none", mode.radius)}>
                   <span className="text-xs">⌘</span>K
                 </kbd>{' '}
                 or click the button to open

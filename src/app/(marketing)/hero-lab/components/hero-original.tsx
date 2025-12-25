@@ -58,7 +58,7 @@ export function HeroOriginal() {
             </p>
 
             {/* Code snippet - compressed */}
-            <div className={cn('border bg-muted/50 p-4 text-xs', mode.font)}>
+            <div className={cn('border bg-muted/50 p-4 text-xs', mode.font, mode.radius)}>
               <div className={mode.color.text.muted}>import {'{'} Auth, Billing {'}'} from &quot;@fabrk&quot;;</div>
               <div className="mt-1">
                 <span className={mode.color.text.accent}>&lt;Auth&gt;</span>

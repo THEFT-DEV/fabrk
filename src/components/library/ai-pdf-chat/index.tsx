@@ -269,7 +269,7 @@ export function AiPdfChat({ onAskQuestion, className }: PdfChatProps) {
                       )}
                       <div
                         className={cn(
-                          'max-w-[80%] border px-3 py-2',
+                          'max-w-message border px-3 py-2',
                           mode.radius,
                           msg.role === 'user'
                             ? 'bg-primary/10 border-primary'

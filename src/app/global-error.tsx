@@ -84,7 +84,7 @@ export default function GlobalError({
               <Button
                 onClick={() => (window.location.href = '/')}
                 variant="outline"
-                className="h-12 border px-8"
+                className={cn("h-12 border px-8", mode.radius)}
               >
                 <Home className="mr-2 h-4 w-4" />
                 &gt; BACK TO HOME
