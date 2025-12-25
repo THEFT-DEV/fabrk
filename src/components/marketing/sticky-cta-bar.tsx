@@ -82,29 +82,32 @@ export function StickyCTABar({
             {/* Message */}
             <div className="flex flex-col items-center gap-2 sm:flex-row sm:items-center">
               <span className="text-center text-xs font-medium sm:text-left">{message}</span>
-              {showPrice && (
-                <div className="flex items-center gap-2">
-                  <span
-                    className={cn(
-                      mode.radius,
-                      'border-primary bg-primary text-primary-foreground border px-2 py-0.5 text-xs'
-                    )}
-                  >
-                    {config.pricing.fabrk.display.current}
-                  </span>
-                  <span className="text-muted-foreground text-xs line-through">
-                    {config.pricing.fabrk.display.original}
-                  </span>
-                </div>
-              )}
             </div>
 
-            {/* CTA + Dismiss */}
-            <div className="flex items-center gap-2">
+            {/* CTA + Price + Dismiss */}
+            <div className="flex items-center gap-3">
               <PolarCheckoutButton className={cn(mode.radius, mode.font, 'h-9 px-4 text-xs')}>
                 <span>&gt; {ctaText.toUpperCase()}</span>
                 <ArrowRight className="ml-2 h-3 w-3" />
               </PolarCheckoutButton>
+              {showPrice && (
+                <>
+                  <div className="bg-border h-6 w-px" />
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={cn(
+                        mode.radius,
+                        'border-primary bg-primary text-primary-foreground border px-2 py-0.5 text-xs'
+                      )}
+                    >
+                      {config.pricing.fabrk.display.current}
+                    </span>
+                    <span className="text-muted-foreground text-xs line-through">
+                      {config.pricing.fabrk.display.original}
+                    </span>
+                  </div>
+                </>
+              )}
               <Button
                 variant="ghost"
                 size="icon"

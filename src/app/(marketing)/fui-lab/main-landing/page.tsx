@@ -16,7 +16,6 @@ import { PricingSection } from '@/components/marketing/pricing-section';
 import { WhatsIncludedSection } from '@/components/marketing/whats-included-section';
 import { FAQSection } from '@/components/marketing/faq-section';
 import { FinalCTASection } from '@/components/marketing/final-cta-section';
-import { StickyCTABar } from '@/components/marketing/sticky-cta-bar';
 import { FUIMarquee, FUIPane, FUIButton } from '../components/fui-components';
 
 // Font options for FUI
@@ -598,7 +597,6 @@ export default function FUIMainLanding() {
         <WhatsIncludedSection />
         <FAQSection />
         <FinalCTASection />
-        <StickyCTABar message="Launch your SaaS in days, not months" ctaText="Get Fabrk Now" />
       </div>
 
       {/* Bottom line */}

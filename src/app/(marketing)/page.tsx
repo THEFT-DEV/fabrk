@@ -12,7 +12,6 @@ import { PricingSection } from '@/components/marketing/pricing-section';
 import { WhatsIncludedSection } from '@/components/marketing/whats-included-section';
 import { FAQSection } from '@/components/marketing/faq-section';
 import { FinalCTASection } from '@/components/marketing/final-cta-section';
-import { StickyCTABar } from '@/components/marketing/sticky-cta-bar';
 import { Reveal } from '@/components/motion';
 
 export default function HomePage() {
@@ -64,8 +63,6 @@ export default function HomePage() {
         </Reveal>
       </div>
 
-      {/* Overlays */}
-      <StickyCTABar message="Launch your SaaS in days—not months" ctaText="Get Fabrk Now" />
     </>
   );
 }
