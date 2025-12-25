@@ -1,0 +1,802 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "generated": "2025-12-05",
+  "summary": {
+    "totalPages": 206,
+    "templateCandidates": 191,
+    "oneOffPages": 15,
+    "archetypes": 9,
+    "templatesComplete": 4,
+    "templatesPending": 8
+  },
+  "archetypes": [
+    {
+      "id": "marketing",
+      "name": "Marketing/Landing",
+      "description": "Public-facing promotional pages",
+      "template": "MarketingPageTemplate",
+      "status": "pending",
+      "priority": "high",
+      "pageCount": 12,
+      "compliance": 85
+    },
+    {
+      "id": "auth",
+      "name": "Auth",
+      "description": "Authentication flows",
+      "template": "AuthPageTemplate",
+      "status": "pending",
+      "priority": "high",
+      "pageCount": 6,
+      "compliance": 90
+    },
+    {
+      "id": "dashboard",
+      "name": "Dashboard",
+      "description": "Data-heavy overview pages",
+      "template": "DashboardPageTemplate",
+      "status": "pending",
+      "priority": "high",
+      "pageCount": 8,
+      "compliance": 88
+    },
+    {
+      "id": "list",
+      "name": "List/Table",
+      "description": "Tabular data with CRUD",
+      "template": "ListPageTemplate",
+      "status": "pending",
+      "priority": "high",
+      "pageCount": 15,
+      "compliance": 82
+    },
+    {
+      "id": "detail",
+      "name": "Detail/Object",
+      "description": "Single entity view",
+      "template": "DetailPageTemplate",
+      "status": "pending",
+      "priority": "medium",
+      "pageCount": 10,
+      "compliance": 80
+    },
+    {
+      "id": "settings",
+      "name": "Settings",
+      "description": "Configuration forms",
+      "template": "SettingsPageTemplate",
+      "status": "pending",
+      "priority": "medium",
+      "pageCount": 8,
+      "compliance": 75
+    },
+    {
+      "id": "docs",
+      "name": "Docs",
+      "description": "Documentation content",
+      "template": "ComponentShowcaseTemplate|FeatureGuideTemplate|TutorialTemplate|GettingStartedTemplate",
+      "status": "complete",
+      "priority": "complete",
+      "pageCount": 151,
+      "compliance": 100
+    },
+    {
+      "id": "legal",
+      "name": "Legal",
+      "description": "Legal/policy pages",
+      "template": "LegalPageTemplate",
+      "status": "pending",
+      "priority": "low",
+      "pageCount": 4,
+      "compliance": 70
+    },
+    {
+      "id": "utility",
+      "name": "Utility",
+      "description": "Error, loading, maintenance",
+      "template": "UtilityPageTemplate",
+      "status": "pending",
+      "priority": "low",
+      "pageCount": 5,
+      "compliance": 85
+    }
+  ],
+  "pages": {
+    "marketing": [
+      {
+        "path": "/",
+        "name": "Main Landing",
+        "classification": "template-candidate",
+        "currentCompliance": 82,
+        "notes": "Custom hero required"
+      },
+      {
+        "path": "/landing-alt",
+        "name": "Alt Landing",
+        "classification": "template-candidate",
+        "currentCompliance": 85,
+        "notes": "A/B test variant"
+      },
+      {
+        "path": "/features",
+        "name": "Features",
+        "classification": "template-candidate",
+        "currentCompliance": 88,
+        "notes": "Feature grid + details"
+      },
+      {
+        "path": "/pricing",
+        "name": "Pricing",
+        "classification": "template-candidate",
+        "currentCompliance": 90,
+        "notes": "Plan comparison"
+      },
+      {
+        "path": "/about",
+        "name": "About",
+        "classification": "template-candidate",
+        "currentCompliance": 85,
+        "notes": "Team, mission"
+      },
+      {
+        "path": "/contact",
+        "name": "Contact",
+        "classification": "template-candidate",
+        "currentCompliance": 82,
+        "notes": "Form + info"
+      },
+      {
+        "path": "/blog",
+        "name": "Blog List",
+        "classification": "template-candidate",
+        "currentCompliance": 88,
+        "notes": "Post grid"
+      },
+      {
+        "path": "/blog/[slug]",
+        "name": "Blog Post",
+        "classification": "template-candidate",
+        "currentCompliance": 85,
+        "notes": "Article layout"
+      },
+      {
+        "path": "/purchase",
+        "name": "Purchase",
+        "classification": "one-off",
+        "currentCompliance": 75,
+        "notes": "Checkout flow - unique requirements"
+      },
+      {
+        "path": "/success",
+        "name": "Success",
+        "classification": "one-off",
+        "currentCompliance": 80,
+        "notes": "Confirmation page - unique celebrations"
+      },
+      {
+        "path": "/success/stripe",
+        "name": "Stripe Success",
+        "classification": "one-off",
+        "currentCompliance": 80,
+        "notes": "Stripe-specific confirmation"
+      },
+      {
+        "path": "/demo",
+        "name": "Demo",
+        "classification": "one-off",
+        "currentCompliance": 70,
+        "notes": "Experimental, frequently changing"
+      }
+    ],
+    "auth": [
+      {
+        "path": "/auth/signin",
+        "name": "Sign In",
+        "classification": "template-candidate",
+        "currentCompliance": 90,
+        "notes": "Social auth buttons need format fix"
+      },
+      {
+        "path": "/auth/signup",
+        "name": "Sign Up",
+        "classification": "template-candidate",
+        "currentCompliance": 90,
+        "notes": "Social auth buttons need format fix"
+      },
+      {
+        "path": "/auth/forgot-password",
+        "name": "Forgot Password",
+        "classification": "template-candidate",
+        "currentCompliance": 95,
+        "notes": "Excellent terminal compliance"
+      },
+      {
+        "path": "/auth/reset-password",
+        "name": "Reset Password",
+        "classification": "template-candidate",
+        "currentCompliance": 95,
+        "notes": "Matches template pattern"
+      },
+      {
+        "path": "/auth/two-factor",
+        "name": "Two-Factor",
+        "classification": "template-candidate",
+        "currentCompliance": 92,
+        "notes": "OTP input properly styled"
+      },
+      {
+        "path": "/auth/verify-email",
+        "name": "Email Verify",
+        "classification": "template-candidate",
+        "currentCompliance": 88,
+        "notes": "Simple confirmation"
+      }
+    ],
+    "dashboard": [
+      {
+        "path": "/dashboard",
+        "name": "Main Dashboard",
+        "classification": "template-candidate",
+        "currentCompliance": 88,
+        "notes": "Core metrics display"
+      },
+      {
+        "path": "/dashboard/admin",
+        "name": "Admin Overview",
+        "classification": "template-candidate",
+        "currentCompliance": 85,
+        "notes": "System health stats"
+      },
+      {
+        "path": "/dashboard/admin/analytics",
+        "name": "Admin Analytics",
+        "classification": "template-candidate",
+        "currentCompliance": 90,
+        "notes": "Charts + metrics"
+      },
+      {
+        "path": "/dashboard/admin/monitoring",
+        "name": "Admin Monitoring",
+        "classification": "template-candidate",
+        "currentCompliance": 88,
+        "notes": "Error tracking"
+      },
+      {
+        "path": "/dashboard/org/[id]",
+        "name": "Org Dashboard",
+        "classification": "template-candidate",
+        "currentCompliance": 85,
+        "notes": "Org-level metrics"
+      },
+      {
+        "path": "/examples/analytics",
+        "name": "Examples Analytics",
+        "classification": "template-candidate",
+        "currentCompliance": 92,
+        "notes": "Demo dashboard"
+      },
+      {
+        "path": "/examples/admin",
+        "name": "Examples Admin",
+        "classification": "template-candidate",
+        "currentCompliance": 90,
+        "notes": "Demo admin panel"
+      },
+      {
+        "path": "/dashboard/billing",
+        "name": "Billing Overview",
+        "classification": "template-candidate",
+        "currentCompliance": 85,
+        "notes": "Subscription status"
+      }
+    ],
+    "list": [
+      {
+        "path": "/dashboard/admin/users",
+        "name": "Admin Users",
+        "classification": "template-candidate",
+        "currentCompliance": 85,
+        "notes": "DataTable implementation"
+      },
+      {
+        "path": "/dashboard/admin/audit-log",
+        "name": "Admin Audit Log",
+        "classification": "template-candidate",
+        "currentCompliance": 88,
+        "notes": "Event log table with filters"
+      },
+      {
+        "path": "/dashboard/admin/security",
+        "name": "Admin Security",
+        "classification": "template-candidate",
+        "currentCompliance": 85,
+        "notes": "Security events table"
+      },
+      {
+        "path": "/dashboard/admin/feature-flags",
+        "name": "Admin Feature Flags",
+        "classification": "template-candidate",
+        "currentCompliance": 92,
+        "notes": "Flag management with rollout"
+      },
+      {
+        "path": "/dashboard/org/[id]/members",
+        "name": "Org Members",
+        "classification": "template-candidate",
+        "currentCompliance": 80,
+        "notes": "Member table with roles"
+      },
+      {
+        "path": "/dashboard/developer/api-keys",
+        "name": "API Keys",
+        "classification": "template-candidate",
+        "currentCompliance": 78,
+        "notes": "Key management table"
+      },
+      {
+        "path": "/dashboard/billing/invoices",
+        "name": "Invoices",
+        "classification": "template-candidate",
+        "currentCompliance": 85,
+        "notes": "Invoice history with download"
+      },
+      {
+        "path": "/dashboard/billing/payment-methods",
+        "name": "Payment Methods",
+        "classification": "template-candidate",
+        "currentCompliance": 80,
+        "notes": "Card list management"
+      },
+      {
+        "path": "/dashboard/notifications",
+        "name": "Notifications",
+        "classification": "template-candidate",
+        "currentCompliance": 85,
+        "notes": "Notification list with filters"
+      },
+      {
+        "path": "/dashboard/account/sessions",
+        "name": "Sessions",
+        "classification": "template-candidate",
+        "currentCompliance": 82,
+        "notes": "Active sessions list"
+      },
+      {
+        "path": "/dashboard/admin/blog",
+        "name": "Blog Admin",
+        "classification": "template-candidate",
+        "currentCompliance": 80,
+        "notes": "Post management table"
+      },
+      {
+        "path": "/dashboard/files",
+        "name": "Files",
+        "classification": "template-candidate",
+        "currentCompliance": 75,
+        "notes": "File browser"
+      },
+      {
+        "path": "/search",
+        "name": "Search Results",
+        "classification": "template-candidate",
+        "currentCompliance": 88,
+        "notes": "Result list with filters"
+      },
+      {
+        "path": "/dashboard/audit",
+        "name": "Audit History",
+        "classification": "template-candidate",
+        "currentCompliance": 85,
+        "notes": "Change log table"
+      },
+      {
+        "path": "/dashboard/developer/webhooks",
+        "name": "Webhooks",
+        "classification": "template-candidate",
+        "currentCompliance": 78,
+        "notes": "Webhook list"
+      }
+    ],
+    "detail": [
+      {
+        "path": "/dashboard/profile",
+        "name": "User Profile",
+        "classification": "template-candidate",
+        "currentCompliance": 88,
+        "notes": "Avatar, bio, links"
+      },
+      {
+        "path": "/dashboard/account",
+        "name": "Account",
+        "classification": "template-candidate",
+        "currentCompliance": 85,
+        "notes": "Tabbed settings"
+      },
+      {
+        "path": "/dashboard/org/[id]/settings",
+        "name": "Org Settings",
+        "classification": "template-candidate",
+        "currentCompliance": 78,
+        "notes": "Org configuration"
+      },
+      {
+        "path": "/dashboard/developer/api-keys/[id]",
+        "name": "API Key Detail",
+        "classification": "template-candidate",
+        "currentCompliance": 75,
+        "notes": "Key info and permissions"
+      },
+      {
+        "path": "/dashboard/billing/invoices/[id]",
+        "name": "Invoice Detail",
+        "classification": "template-candidate",
+        "currentCompliance": 80,
+        "notes": "Invoice view"
+      },
+      {
+        "path": "/dashboard/admin/users/[id]",
+        "name": "User Detail (Admin)",
+        "classification": "template-candidate",
+        "currentCompliance": 78,
+        "notes": "User management"
+      },
+      {
+        "path": "/dashboard/admin/blog/[slug]",
+        "name": "Blog Post Edit",
+        "classification": "template-candidate",
+        "currentCompliance": 75,
+        "notes": "Post editor"
+      },
+      {
+        "path": "/dashboard/admin/feature-flags/[id]",
+        "name": "Feature Flag Detail",
+        "classification": "template-candidate",
+        "currentCompliance": 85,
+        "notes": "Flag configuration"
+      },
+      {
+        "path": "/dashboard/developer/webhooks/[id]",
+        "name": "Webhook Detail",
+        "classification": "template-candidate",
+        "currentCompliance": 78,
+        "notes": "Webhook configuration"
+      },
+      {
+        "path": "/dashboard/files/[id]",
+        "name": "File Detail",
+        "classification": "template-candidate",
+        "currentCompliance": 75,
+        "notes": "File preview"
+      }
+    ],
+    "settings": [
+      {
+        "path": "/dashboard/settings",
+        "name": "General Settings",
+        "classification": "template-candidate",
+        "currentCompliance": 75,
+        "notes": "Appearance, language"
+      },
+      {
+        "path": "/dashboard/settings/security",
+        "name": "Security Settings",
+        "classification": "template-candidate",
+        "currentCompliance": 78,
+        "notes": "2FA, password"
+      },
+      {
+        "path": "/dashboard/settings/notifications",
+        "name": "Notification Settings",
+        "classification": "template-candidate",
+        "currentCompliance": 72,
+        "notes": "Email preferences"
+      },
+      {
+        "path": "/dashboard/settings/privacy",
+        "name": "Privacy Settings",
+        "classification": "template-candidate",
+        "currentCompliance": 70,
+        "notes": "Data controls"
+      },
+      {
+        "path": "/dashboard/org/[id]/settings",
+        "name": "Org Settings",
+        "classification": "template-candidate",
+        "currentCompliance": 78,
+        "notes": "Org configuration"
+      },
+      {
+        "path": "/dashboard/org/[id]/billing",
+        "name": "Org Billing",
+        "classification": "template-candidate",
+        "currentCompliance": 80,
+        "notes": "Plan management"
+      },
+      {
+        "path": "/dashboard/developer",
+        "name": "Developer Settings",
+        "classification": "template-candidate",
+        "currentCompliance": 75,
+        "notes": "API configuration"
+      },
+      {
+        "path": "/dashboard/admin/settings",
+        "name": "Admin Settings",
+        "classification": "template-candidate",
+        "currentCompliance": 72,
+        "notes": "System configuration"
+      }
+    ],
+    "docs": [
+      {
+        "path": "/docs",
+        "name": "Docs Index",
+        "classification": "template-candidate",
+        "currentCompliance": 100,
+        "notes": "Uses existing template"
+      },
+      {
+        "path": "/docs/components/*",
+        "name": "Component Docs (60+ pages)",
+        "classification": "template-candidate",
+        "currentCompliance": 100,
+        "notes": "Uses ComponentShowcaseTemplate"
+      },
+      {
+        "path": "/docs/features/*",
+        "name": "Feature Docs (40+ pages)",
+        "classification": "template-candidate",
+        "currentCompliance": 100,
+        "notes": "Uses FeatureGuideTemplate"
+      },
+      {
+        "path": "/docs/tutorials/*",
+        "name": "Tutorial Docs (20+ pages)",
+        "classification": "template-candidate",
+        "currentCompliance": 100,
+        "notes": "Uses TutorialTemplate"
+      },
+      {
+        "path": "/docs/getting-started/*",
+        "name": "Getting Started (10+ pages)",
+        "classification": "template-candidate",
+        "currentCompliance": 100,
+        "notes": "Uses GettingStartedTemplate"
+      },
+      {
+        "path": "/docs/security/*",
+        "name": "Security Docs (15+ pages)",
+        "classification": "template-candidate",
+        "currentCompliance": 100,
+        "notes": "Uses FeatureGuideTemplate"
+      }
+    ],
+    "legal": [
+      {
+        "path": "/terms",
+        "name": "Terms of Service",
+        "classification": "template-candidate",
+        "currentCompliance": 70,
+        "notes": "Legal boilerplate"
+      },
+      {
+        "path": "/privacy",
+        "name": "Privacy Policy",
+        "classification": "template-candidate",
+        "currentCompliance": 72,
+        "notes": "Privacy boilerplate"
+      },
+      {
+        "path": "/cookies",
+        "name": "Cookie Policy",
+        "classification": "template-candidate",
+        "currentCompliance": 70,
+        "notes": "Cookie boilerplate"
+      },
+      {
+        "path": "/refund",
+        "name": "Refund Policy",
+        "classification": "template-candidate",
+        "currentCompliance": 68,
+        "notes": "Refund boilerplate"
+      }
+    ],
+    "utility": [
+      {
+        "path": "/not-found",
+        "name": "404 Not Found",
+        "classification": "template-candidate",
+        "currentCompliance": 88,
+        "notes": "Standard error page"
+      },
+      {
+        "path": "/error",
+        "name": "Error",
+        "classification": "template-candidate",
+        "currentCompliance": 85,
+        "notes": "Server error page"
+      },
+      {
+        "path": "/maintenance",
+        "name": "Maintenance",
+        "classification": "template-candidate",
+        "currentCompliance": 82,
+        "notes": "Maintenance mode page"
+      },
+      {
+        "path": "/loading",
+        "name": "Loading",
+        "classification": "template-candidate",
+        "currentCompliance": 80,
+        "notes": "Global loading state"
+      },
+      {
+        "path": "/global-error",
+        "name": "Global Error",
+        "classification": "one-off",
+        "currentCompliance": 75,
+        "notes": "Root error boundary - minimal"
+      }
+    ],
+    "one-off": [
+      {
+        "path": "/component-showcase",
+        "name": "Component Showcase",
+        "classification": "one-off",
+        "currentCompliance": 90,
+        "notes": "Interactive demo, unique layout"
+      },
+      {
+        "path": "/visual-test",
+        "name": "Visual Test",
+        "classification": "one-off",
+        "currentCompliance": 85,
+        "notes": "QA tool, special requirements"
+      },
+      {
+        "path": "/demo/*",
+        "name": "Demo Pages",
+        "classification": "one-off",
+        "currentCompliance": 70,
+        "notes": "Experimental, frequently changing"
+      }
+    ]
+  },
+  "templates": {
+    "complete": [
+      {
+        "id": "component-showcase",
+        "name": "ComponentShowcaseTemplate",
+        "archetype": "docs",
+        "location": "src/components/docs/ComponentShowcaseTemplate.tsx",
+        "pagesUsing": 60
+      },
+      {
+        "id": "feature-guide",
+        "name": "FeatureGuideTemplate",
+        "archetype": "docs",
+        "location": "src/components/docs/FeatureGuideTemplate.tsx",
+        "pagesUsing": 55
+      },
+      {
+        "id": "tutorial",
+        "name": "TutorialTemplate",
+        "archetype": "docs",
+        "location": "src/components/docs/TutorialTemplate.tsx",
+        "pagesUsing": 20
+      },
+      {
+        "id": "getting-started",
+        "name": "GettingStartedTemplate",
+        "archetype": "docs",
+        "location": "src/components/docs/GettingStartedTemplate.tsx",
+        "pagesUsing": 16
+      }
+    ],
+    "pending": [
+      {
+        "id": "marketing-page",
+        "name": "MarketingPageTemplate",
+        "archetype": "marketing",
+        "priority": "high",
+        "estimatedPages": 10
+      },
+      {
+        "id": "auth-page",
+        "name": "AuthPageTemplate",
+        "archetype": "auth",
+        "priority": "high",
+        "estimatedPages": 6
+      },
+      {
+        "id": "dashboard-page",
+        "name": "DashboardPageTemplate",
+        "archetype": "dashboard",
+        "priority": "high",
+        "estimatedPages": 8
+      },
+      {
+        "id": "list-page",
+        "name": "ListPageTemplate",
+        "archetype": "list",
+        "priority": "high",
+        "estimatedPages": 15
+      },
+      {
+        "id": "detail-page",
+        "name": "DetailPageTemplate",
+        "archetype": "detail",
+        "priority": "medium",
+        "estimatedPages": 10
+      },
+      {
+        "id": "settings-page",
+        "name": "SettingsPageTemplate",
+        "archetype": "settings",
+        "priority": "medium",
+        "estimatedPages": 8
+      },
+      {
+        "id": "legal-page",
+        "name": "LegalPageTemplate",
+        "archetype": "legal",
+        "priority": "low",
+        "estimatedPages": 4
+      },
+      {
+        "id": "utility-page",
+        "name": "UtilityPageTemplate",
+        "archetype": "utility",
+        "priority": "low",
+        "estimatedPages": 4
+      }
+    ]
+  },
+  "implementationPriority": [
+    {
+      "phase": 1,
+      "name": "Core User Flows",
+      "templates": [
+        "AuthPageTemplate",
+        "ListPageTemplate",
+        "DashboardPageTemplate",
+        "DetailPageTemplate"
+      ],
+      "totalPages": 39,
+      "priority": "high"
+    },
+    {
+      "phase": 2,
+      "name": "Secondary Flows",
+      "templates": ["SettingsPageTemplate", "MarketingPageTemplate", "LegalPageTemplate"],
+      "totalPages": 22,
+      "priority": "medium"
+    },
+    {
+      "phase": 3,
+      "name": "Edge Cases",
+      "templates": ["UtilityPageTemplate"],
+      "totalPages": 4,
+      "priority": "low"
+    }
+  ],
+  "complianceMetrics": {
+    "overall": {
+      "average": 89,
+      "min": 68,
+      "max": 100
+    },
+    "byArchetype": {
+      "docs": 100,
+      "auth": 90,
+      "dashboard": 88,
+      "list": 82,
+      "detail": 80,
+      "settings": 75,
+      "marketing": 85,
+      "legal": 70,
+      "utility": 85
+    }
+  }
+}

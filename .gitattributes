@@ -1,0 +1,69 @@
+# =============================================================================
+# DISTRIBUTION EXCLUSIONS (for git archive)
+# =============================================================================
+# These files/directories are excluded when creating distribution packages
+# via `git archive`. They remain in the dev repo but won't ship to customers.
+
+# -----------------------------------------------------------------------------
+# Internal Development Files
+# -----------------------------------------------------------------------------
+.archives export-ignore
+.internal export-ignore
+.claude export-ignore
+.codeium export-ignore
+
+# -----------------------------------------------------------------------------
+# AI Assistant Configuration (Development Only)
+# -----------------------------------------------------------------------------
+CLAUDE.md export-ignore
+GEMINI.md export-ignore
+.mcp.json export-ignore
+.cursorrules export-ignore
+.windsurfrules export-ignore
+
+# -----------------------------------------------------------------------------
+# Development Documentation
+# -----------------------------------------------------------------------------
+DEVELOPMENT.md export-ignore
+
+# -----------------------------------------------------------------------------
+# Testing & Quality Assurance
+# -----------------------------------------------------------------------------
+tests export-ignore
+*.test.* export-ignore
+*.spec.* export-ignore
+__tests__ export-ignore
+coverage export-ignore
+test-results export-ignore
+playwright-report export-ignore
+playwright.config.ts export-ignore
+vitest.config.ts export-ignore
+vitest.setup.ts export-ignore
+tests/theme-screenshots export-ignore
+
+# -----------------------------------------------------------------------------
+# Build & CI Configuration (Development Only)
+# -----------------------------------------------------------------------------
+.lighthouseci export-ignore
+.lighthouserc.json export-ignore
+lighthouserc.js export-ignore
+cspell.json export-ignore
+typedoc.json export-ignore
+.github/workflows export-ignore
+
+# -----------------------------------------------------------------------------
+# Demo & Test Pages
+# -----------------------------------------------------------------------------
+.gemini export-ignore
+src/app/test-posthog export-ignore
+src/app/demo-dashboard export-ignore
+
+# -----------------------------------------------------------------------------
+# MCP Servers (Internal Tooling)
+# -----------------------------------------------------------------------------
+mcp-servers export-ignore
+
+# -----------------------------------------------------------------------------
+# Misc
+# -----------------------------------------------------------------------------
+.git-archive-exclude export-ignore

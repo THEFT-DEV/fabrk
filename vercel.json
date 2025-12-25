@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "installCommand": "npm ci --legacy-peer-deps",
+  "buildCommand": "rm -rf 'src/app/(marketing)/fui-lab' && prisma generate && next build",
+  "outputDirectory": ".next"
+}

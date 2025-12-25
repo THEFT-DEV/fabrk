@@ -1,0 +1,251 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "generated": "2025-12-06",
+    "description": "Machine-readable copy normalization map for terminal-themed UI"
+  },
+  "buttons": {
+    "GET_STARTED": {
+      "canonical": "> GET_STARTED",
+      "variants": [
+        "Get Started",
+        "GET STARTED",
+        "get started",
+        "EXECUTE: GET_STARTED",
+        "> Get Started"
+      ],
+      "usage": "Primary CTA for onboarding/signup flows"
+    },
+    "GET_FABRK": {
+      "canonical": "> GET_FABRK",
+      "variants": ["Get Fabrk", "GET FABRK", "EXECUTE: GET_FABRK", "> Get Fabrk"],
+      "usage": "Purchase/checkout CTA"
+    },
+    "SAVE_CHANGES": {
+      "canonical": "> SAVE_CHANGES",
+      "variants": ["Save Changes", "Save", "SAVE", "save changes"],
+      "usage": "Form submission for settings"
+    },
+    "SEND_MESSAGE": {
+      "canonical": "> SEND_MESSAGE",
+      "variants": ["Send Message", "Send", "EXECUTE: SEND_MESSAGE", "Submit"],
+      "usage": "Contact form submission"
+    },
+    "VIEW_DOCUMENTATION": {
+      "canonical": "> VIEW_DOCUMENTATION",
+      "variants": ["View Documentation", "VIEW: DOCUMENTATION", "View Docs", "> VIEW_DOCS"],
+      "usage": "Link to documentation"
+    },
+    "VIEW_LIVE_DEMO": {
+      "canonical": "> VIEW_LIVE_DEMO",
+      "variants": ["View Live Demo", "VIEW: LIVE_DEMO", "View Demo"],
+      "usage": "Link to live demo"
+    },
+    "VIEW_ALL_FEATURES": {
+      "canonical": "> VIEW_ALL_FEATURES",
+      "variants": ["View All Features", "VIEW: ALL_FEATURES", "See All Features"],
+      "usage": "Link to features page"
+    },
+    "VIEW_TEMPLATES": {
+      "canonical": "> VIEW_TEMPLATES",
+      "variants": ["View Templates", "VIEW: TEMPLATES", "See Templates"],
+      "usage": "Link to templates"
+    },
+    "CANCEL": {
+      "canonical": "> CANCEL",
+      "variants": ["Cancel", "CANCEL"],
+      "usage": "Abort action"
+    },
+    "DELETE_ACCOUNT": {
+      "canonical": "> DELETE_ACCOUNT",
+      "variants": ["Delete Account", "DELETE ACCOUNT"],
+      "usage": "Destructive account deletion"
+    },
+    "UPDATE_PASSWORD": {
+      "canonical": "> UPDATE_PASSWORD",
+      "variants": ["Update Password", "Change Password"],
+      "usage": "Password change action"
+    },
+    "MANAGE_BILLING": {
+      "canonical": "> MANAGE_BILLING",
+      "variants": ["Manage Billing", "Billing"],
+      "usage": "Link to billing portal"
+    },
+    "EXPORT": {
+      "canonical": "> EXPORT",
+      "variants": ["Export", "EXPORT"],
+      "usage": "Data export action"
+    },
+    "DOWNLOAD_DATA": {
+      "canonical": "> DOWNLOAD_DATA",
+      "variants": ["Download Data", "Download"],
+      "usage": "Data download action"
+    },
+    "DISCONNECT": {
+      "canonical": "> DISCONNECT",
+      "variants": ["Disconnect", "DISCONNECT"],
+      "usage": "OAuth account disconnect"
+    },
+    "SIGN_OUT_ALL_SESSIONS": {
+      "canonical": "> SIGN_OUT_ALL_SESSIONS",
+      "variants": ["Sign Out All Sessions", "Sign Out All", "Invalidate Sessions"],
+      "usage": "Session invalidation"
+    },
+    "ENABLE_2FA": {
+      "canonical": "> ENABLE_2FA",
+      "variants": ["Enable 2FA", "Enable Two-Factor"],
+      "usage": "2FA setup"
+    },
+    "DISABLE_2FA": {
+      "canonical": "> DISABLE_2FA",
+      "variants": ["Disable 2FA", "Disable Two-Factor"],
+      "usage": "2FA disable"
+    },
+    "VIEW_BACKUP_CODES": {
+      "canonical": "> VIEW_BACKUP_CODES",
+      "variants": ["View Backup Codes", "Backup Codes"],
+      "usage": "2FA backup codes view"
+    },
+    "RESEND_VERIFICATION_EMAIL": {
+      "canonical": "> RESEND_VERIFICATION_EMAIL",
+      "variants": ["Resend Verification Email", "Resend Email"],
+      "usage": "Email verification resend"
+    },
+    "START_IMPERSONATION": {
+      "canonical": "> START_IMPERSONATION",
+      "variants": ["Start Impersonation", "Impersonate"],
+      "usage": "Admin user impersonation"
+    },
+    "REVOKE": {
+      "canonical": "> REVOKE",
+      "variants": ["Revoke", "REVOKE"],
+      "usage": "Session/token revocation"
+    },
+    "DONE": {
+      "canonical": "> DONE",
+      "variants": ["Done", "DONE"],
+      "usage": "Completion/confirmation action"
+    },
+    "CONTINUE": {
+      "canonical": "> CONTINUE",
+      "variants": ["Continue", "CONTINUE"],
+      "usage": "Proceed to next step"
+    },
+    "BACK": {
+      "canonical": "> BACK",
+      "variants": ["Back", "BACK", "Go Back"],
+      "usage": "Return to previous step"
+    },
+    "VERIFY_AND_ENABLE": {
+      "canonical": "> VERIFY_AND_ENABLE",
+      "variants": ["Verify & Enable", "Verify and Enable"],
+      "usage": "2FA verification confirmation"
+    },
+    "INSERT_LINK": {
+      "canonical": "> INSERT_LINK",
+      "variants": ["Insert Link", "Add Link"],
+      "usage": "Link insertion in rich text editor"
+    },
+    "UPLOAD_FILES": {
+      "canonical": "> UPLOAD_FILES",
+      "variants": ["Upload files", "Upload Files"],
+      "usage": "File upload action"
+    },
+    "SEND_INVITATION": {
+      "canonical": "> SEND_INVITATION",
+      "variants": ["Send Invitation", "Send Invite"],
+      "usage": "Team invitation action"
+    }
+  },
+  "loadingStates": {
+    "LOADING": {
+      "canonical": "> LOADING...",
+      "variants": ["Loading...", "LOADING..."]
+    },
+    "SAVING": {
+      "canonical": "> SAVING...",
+      "variants": ["Saving...", "SAVING..."]
+    },
+    "SENDING": {
+      "canonical": "> SENDING...",
+      "variants": ["Sending...", "SENDING..."]
+    },
+    "EXPORTING": {
+      "canonical": "> EXPORTING...",
+      "variants": ["Exporting...", "EXPORTING..."]
+    },
+    "DELETING": {
+      "canonical": "> DELETING...",
+      "variants": ["Deleting...", "DELETING..."]
+    },
+    "UPDATING": {
+      "canonical": "> UPDATING...",
+      "variants": ["Updating...", "UPDATING..."]
+    },
+    "STARTING": {
+      "canonical": "> STARTING...",
+      "variants": ["Starting...", "STARTING..."]
+    },
+    "DISCONNECTING": {
+      "canonical": "> DISCONNECTING...",
+      "variants": ["Disconnecting...", "DISCONNECTING..."]
+    },
+    "INVALIDATING": {
+      "canonical": "> INVALIDATING...",
+      "variants": ["Invalidating...", "INVALIDATING..."]
+    },
+    "REVOKING": {
+      "canonical": "> REVOKING...",
+      "variants": ["Revoking...", "REVOKING..."]
+    },
+    "DISABLING": {
+      "canonical": "> DISABLING...",
+      "variants": ["Disabling...", "DISABLING..."]
+    },
+    "SETTING_UP": {
+      "canonical": "> SETTING_UP...",
+      "variants": ["Setting up...", "SETTING_UP..."]
+    },
+    "UPLOADING": {
+      "canonical": "> UPLOADING...",
+      "variants": ["Uploading...", "UPLOADING..."]
+    },
+    "VERIFYING": {
+      "canonical": "> VERIFYING...",
+      "variants": ["Verifying...", "VERIFYING..."]
+    }
+  },
+  "labels": {
+    "format": "[LABEL]:",
+    "examples": ["[EMAIL]:", "[PASSWORD]:", "[NAME]:", "[USERNAME]:"]
+  },
+  "statusBadges": {
+    "format": "[STATUS]",
+    "examples": ["[ACTIVE]", "[PENDING]", "[ERROR]", "[SUCCESS]", "[WARNING]"]
+  },
+  "cardHeaders": {
+    "format": "[ [0xNN] TITLE ]",
+    "examples": [
+      "[ [0x00] COOKIE_PREFERENCES ]",
+      "[ [0x01] USER_SETTINGS ]",
+      "[ [0x02] BILLING_INFO ]"
+    ],
+    "dangerFormat": "[ [!] TITLE ]"
+  },
+  "tabLabels": {
+    "format": "[TAB_NAME]",
+    "examples": ["[CONSENT]", "[DETAILS]", "[ABOUT]", "[OVERVIEW]", "[ANALYTICS]", "[REPORTS]"]
+  },
+  "deprecated": {
+    "EXECUTE_prefix": {
+      "pattern": "EXECUTE:",
+      "replacement": "Remove entirely, use '> ACTION' format",
+      "reason": "Simplified button format"
+    },
+    "VIEW_colon": {
+      "pattern": "VIEW:",
+      "replacement": "> VIEW_TARGET",
+      "reason": "Underscore delimiter preferred"
+    }
+  }
+}
