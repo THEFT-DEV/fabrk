@@ -107,7 +107,7 @@ These are the canonical styles from the landing page components. **Copy these ex
 
 | Property | Standard | Fabrk Uses |
 |----------|----------|------------|
-| Radius | 0px (sharp) | `rounded-none` ✓ |
+| Radius | Dynamic (theme-controlled) | `mode.radius` ✓ |
 | Width | 1-2px | `border` (1px) ✓ |
 | Circles only | `rounded-full` | Traffic lights ✓ |
 
@@ -242,7 +242,7 @@ Spacing:
 
 Borders:
   border border-border (standard)
-  rounded-none (terminal aesthetic)
+  mode.radius (dynamic, theme-controlled)
   rounded-full (circles only)
 
 Interactive:

@@ -64,10 +64,12 @@ After any design work on Fabrk:
 - Shadows: `shadow-sm` ONLY (1px subtle lift); never md/lg/xl
 - Pre-commit hook blocks `shadow-md/lg/xl` usage
 
-**Sharp Edges (CRITICAL):**
-- `rounded-none` on ALL elements (enforced by pre-commit hooks)
+**Dynamic Border Radius:**
+- Use `mode.radius` on ALL full-bordered elements (enforced by design system)
+- Resolves to `rounded-dynamic` which uses CSS `var(--radius)`
+- Themes control radius value (default: 0px for sharp terminal aesthetic)
 - Terminal headers use bracket syntax: `[ [0xXX] TITLE ]`
-- No curves, no softness—engineered precision
+- Engineered precision through theme consistency
 
 **Color:**
 - 100% OKLCH tokens (perceptually uniform, theme-switchable)
@@ -1075,13 +1077,14 @@ all 18 themes audited:
 <p className={cn(mode.font, 'text-xs')}>Text</p>
 ```
 
-**2. Using Rounded Corners**
+**2. Hardcoding Border Radius**
 ```tsx
-// ❌ WRONG
+// ❌ WRONG - breaks theme consistency
 <div className="rounded-md">...</div>
+<div className="rounded-none">...</div>  // Also wrong - hardcoded!
 
-// ✅ CORRECT
-<div className={mode.radius}>...</div> // Always rounded-none
+// ✅ CORRECT - uses dynamic radius from theme
+<div className={mode.radius}>...</div> // Uses var(--radius)
 ```
 
 **3. Hardcoding Colors**

@@ -112,7 +112,7 @@ Visit **http://localhost:3000** 🎉
 - ⚫ 1 high-contrast B&W theme
 
 **Design principles:**
-- `rounded-none` - Sharp terminal edges
+- `mode.radius` - Dynamic border radius (theme-controlled via `--radius` CSS variable)
 - `font-mono` - Monospace everywhere (JetBrains Mono)
 - 100% OKLCH color tokens - Zero hardcoded colors
 - 8-point spacing grid
@@ -869,9 +869,9 @@ A: Yes. SQLite for local dev (fast, no Docker), PostgreSQL for production (Verce
 
 A: OKLCH is perceptually uniform (consistent lightness across hues), perfect for theming. all 18 themes maintain WCAG 2.2 AA contrast ratios automatically.
 
-**Q: Can I change the terminal aesthetic to rounded corners?**
+**Q: Can I change the border radius style?**
 
-A: Yes, but you'll fight the design system. Update `mode.radius` in `src/design-system/index.ts` from `rounded-none` to `rounded-lg`. Expect 500+ component changes.
+A: Yes! The design system uses dynamic radius via `--radius` CSS variable. Update `--radius` in `globals.css` for your theme (e.g., `--radius: 0px` for sharp corners, `--radius: 8px` for rounded). All components automatically inherit the new value through `mode.radius`.
 
 ### Licensing
 

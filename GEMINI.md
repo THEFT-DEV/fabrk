@@ -16,7 +16,7 @@ Read CLAUDE.md in the project root for comprehensive AI agent instructions.
 - Functional components with hooks
 - Server components by default, "use client" when needed
 - Tailwind CSS with design tokens from globals.css
-- **Terminal aesthetic**: rounded-none, font-mono, no hardcoded colors
+- **Design system**: mode.radius (dynamic), font-mono, no hardcoded colors
 
 ### Naming Conventions
 - kebab-case for files: user-profile.tsx
@@ -68,10 +68,11 @@ const key = env.server.DATABASE_URL;
 const key = process.env.DATABASE_URL;
 ```
 
-### Design System (Terminal Aesthetic)
-- **No rounded corners**: Use `rounded-none` everywhere
+### Design System (Dynamic Radius)
+- **Dynamic border radius**: Use `mode.radius` for elements with full borders
 - **Monospace font**: Use `font-mono` for all UI text
 - **Design tokens only**: NO hardcoded colors (bg-white, text-gray-500, #hex)
+- **No hardcoded radius**: Never use `rounded-none`, `rounded-md`, etc. - always `mode.radius`
 - **8-point grid**: Spacing in multiples of 4px
 - **Mode tokens**: Import from `@/design-system` for consistent styling
 

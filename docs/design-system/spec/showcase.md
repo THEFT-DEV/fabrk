@@ -52,7 +52,7 @@ The Component Showcase is a comprehensive visual reference for the Fabrk design 
 1. **COLORS** - Background, semantic, text, and border color swatches
 2. **TYPOGRAPHY** - Font families, sizes, weights
 3. **SPACING** - 8-point grid visualization
-4. **RADIUS** - Border radius scale (terminal uses `rounded-none`)
+4. **RADIUS** - Border radius scale (uses `mode.radius` → `rounded-dynamic` → `var(--radius)`)
 5. **SHADOWS** - Box shadow scale (terminal uses minimal/none)
 6. **MOTION** - Duration and easing tokens
 7. **Z_INDEX** - Layer scale visualization

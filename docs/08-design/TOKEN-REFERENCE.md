@@ -279,7 +279,14 @@ Used for syntax highlighting in code blocks.
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| `--radius` | `0.5rem` | Default border radius (overridden to `0` in terminal themes) |
+| `--radius` | Theme-dependent (typically `0rem`) | Border radius for all components using `mode.radius` |
+
+**How it works:**
+- Components use `mode.radius` (maps to `rounded-dynamic` class)
+- `rounded-dynamic` uses CSS `var(--radius)`
+- Each theme defines its own `--radius` value
+- Default terminal themes use `0rem` (sharp corners)
+- You can customize per theme by changing the `--radius` CSS variable
 
 ---
 
@@ -409,7 +416,7 @@ function Card({ children }) {
   return (
     <div className={cn(
       "bg-card text-card-foreground border-border border",
-      mode.radius  // Applies rounded-none for terminal
+      mode.radius  // Applies rounded-dynamic (uses var(--radius))
     )}>
       {children}
     </div>

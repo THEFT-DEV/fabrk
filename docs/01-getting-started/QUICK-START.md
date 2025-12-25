@@ -182,7 +182,7 @@ A `FABRK-PROMPTS.md` file is generated with copy-paste prompts for Cursor, Claud
 Update src/app/(marketing)/page.tsx:
 1. Replace placeholder text with my app name and tagline
 2. Update the 3-6 features to match what my product does
-3. Keep the terminal aesthetic (font-mono, rounded-none, uppercase headings)
+3. Keep the design system (font-mono, mode.radius, uppercase headings)
 4. Remove the [SETUP] instruction banner at the top when done
 ```
 

@@ -35,7 +35,7 @@ import { Input } from '@/components/ui/input';
 | ------------- | ------------------------- | ---------------------------------- |
 | Background    | `color.bg.background`     | `bg-background`                    |
 | Border        | `color.border.default`    | `border` (1px)                     |
-| Border Radius | `radius.semantic.input`   | `rounded-none` (via `mode.radius`) |
+| Border Radius | `radius.semantic.input`   | `rounded-dynamic` (via `mode.radius` → `var(--radius)`) |
 | Font Family   | `font.family.mono`        | `font-mono` (via `mode.font`)      |
 | Font Size     | `font.size.xs`            | `text-xs` (12px)                   |
 | Height        | `size.component.input`    | `h-8` (32px)                       |
@@ -101,14 +101,14 @@ The Input component automatically applies:
 ```tsx
 cn(
   'bg-background flex h-8 w-full border px-4 py-2 text-xs font-normal',
-  mode.radius, // rounded-none
+  mode.radius, // rounded-dynamic (uses CSS var(--radius))
   mode.font, // font-mono
   'focus-visible:ring-primary focus-visible:ring-2',
   className
 );
 ```
 
-**NEVER hardcode radius or font - use component defaults.**
+**NEVER hardcode radius or font - use component defaults which apply `mode.radius` and `mode.font` automatically.**
 
 ---
 
@@ -117,10 +117,11 @@ cn(
 ### ❌ Hardcoding radius
 
 ```tsx
-// WRONG - hardcoded rounded-none
+// WRONG - hardcoded radius (any value)
 <Input className="rounded-none" />
+<Input className="rounded-md" />
 
-// CORRECT - let mode.radius apply
+// CORRECT - let mode.radius apply (inherits from theme)
 <Input />
 ```
 

@@ -270,27 +270,35 @@ Based on **Major Third** ratio (1.25) with 16px base.
 
 ### 4.1 Dynamic Radius System
 
-Components use `mode.radius` (`rounded-dynamic`) which resolves to `var(--radius)` at runtime. This allows themes to define their own radius values while maintaining consistency.
+Components use `mode.radius` which maps to `rounded-dynamic` class. This resolves to CSS `var(--radius)` at runtime, allowing themes to define their own radius values while maintaining consistency across all components.
+
+**How It Works:**
+1. Component applies `mode.radius` in className
+2. Tailwind resolves to `rounded-dynamic` utility class
+3. `rounded-dynamic` uses CSS `var(--radius)`
+4. Each theme defines its `--radius` value (typically `0rem` for terminal aesthetic)
+5. Changing themes automatically updates all component radii
 
 **Usage in Components:**
 ```tsx
 import { mode } from "@/design-system";
 
-// ✅ Correct - Dynamic radius
+// ✅ Correct - Dynamic radius (theme-controlled)
 <Button className={mode.radius}>Click</Button>
 
-// ❌ Wrong - Hardcoded radius
+// ❌ Wrong - Hardcoded radius (breaks theme consistency)
 <Button className="rounded-none">Click</Button>
 <Button className="rounded-md">Click</Button>
+<Button className="rounded-lg">Click</Button>
 ```
 
 **When to Apply `mode.radius`:**
 | Element Type | Apply `mode.radius`? | Reason |
 |--------------|---------------------|--------|
-| Full borders (`border`) | YES | Visible corners need rounding |
-| Partial borders (`border-t`) | NO | No visible corners |
-| Table cells (`<th>`, `<td>`) | NO | CSS limitation |
-| Circular elements | Use `rounded-full` | Always pill/circle shape |
+| Full borders (`border`) | YES | Visible corners need theme-consistent rounding |
+| Partial borders (`border-t`) | NO | No visible corners to round |
+| Table cells (`<th>`, `<td>`) | NO | CSS limitation (breaks table layout) |
+| Circular elements | Use `rounded-full` | Always pill/circle shape regardless of theme |
 
 ### 4.2 Radius Scale (Reference)
 

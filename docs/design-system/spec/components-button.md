@@ -6,7 +6,7 @@
 
 ## Overview
 
-**Button** is an atom-level component for user interactions. It follows terminal aesthetic with uppercase text, sharp corners, and mono font.
+**Button** is an atom-level component for user interactions. It follows the design system with uppercase text, dynamic border radius, and mono font.
 
 ---
 
@@ -34,7 +34,7 @@ import { Button } from '@/components/ui/button';
 | -------------- | ------------------------------- | ------------------------------------------- |
 | Background     | `color.bg.primary`              | `bg-primary`                                |
 | Text           | `color.text.primary-foreground` | `text-primary-foreground`                   |
-| Border Radius  | `radius.semantic.button`        | `rounded-none` (via `mode.radius`)          |
+| Border Radius  | `radius.semantic.button`        | `rounded-dynamic` (via `mode.radius` → `var(--radius)`) |
 | Font Family    | `font.family.mono`              | `font-mono` (via `mode.font`)               |
 | Text Transform | `text.transform`                | `uppercase` (via `mode.textTransform`)      |
 | Height         | `size.component.button`         | `h-8` (32px) desktop, `min-h-[44px]` mobile |
@@ -117,14 +117,14 @@ The Button component automatically applies:
 ```tsx
 cn(
   buttonVariants({ variant, size }),
-  mode.radius, // rounded-none
+  mode.radius, // rounded-dynamic (uses CSS var(--radius))
   mode.font, // font-mono
   mode.textTransform === 'uppercase' && 'uppercase',
   className
 );
 ```
 
-**NEVER hardcode `rounded-none` - use `mode.radius` via the component.**
+**NEVER hardcode ANY radius value (`rounded-none`, `rounded-md`, etc.) - `mode.radius` is applied automatically.**
 
 ---
 
@@ -133,10 +133,11 @@ cn(
 ### ❌ Hardcoding radius
 
 ```tsx
-// WRONG - hardcoded rounded-none
+// WRONG - hardcoded radius (any value)
 <Button className="rounded-none text-sm">> SUBMIT</Button>
+<Button className="rounded-md text-sm">> SUBMIT</Button>
 
-// CORRECT - let mode.radius apply
+// CORRECT - let mode.radius apply (inherits from theme)
 <Button className="text-sm">> SUBMIT</Button>
 ```
 

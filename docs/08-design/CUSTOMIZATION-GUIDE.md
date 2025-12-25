@@ -70,7 +70,7 @@ npm run dev
 Fabrk uses a **two-level theme system**:
 
 ### Level 1: Design System Theme (Architectural)
-- **Terminal** - Monospace fonts, sharp corners, structured layout
+- **Terminal** - Monospace fonts, dynamic border radius, structured layout
 - Defined in `/src/design-system/themes/terminal.ts`
 - **This doesn't change.** The terminal aesthetic is core to Fabrk.
 
@@ -159,28 +159,36 @@ Fabrk uses a **two-level theme system**:
 
 ### Border Radius (Corners)
 
-**Current:** Sharp corners (`rounded-none`) for terminal aesthetic.
+**Current:** Dynamic border radius controlled by themes via `mode.radius`.
 
-**To add subtle rounding:**
+**To customize border radius:**
 
-1. Open `/src/design-system/index.ts:54`
-2. Change `mode.radius` from `'rounded-none'` to `'rounded-sm'`
+1. Open `/src/app/globals.css`
+2. Find the theme block you want to customize (e.g., `:root` for default)
+3. Change the `--radius` CSS variable
 
-```typescript
-export const mode = {
-  radius: 'rounded-sm',  // was: 'rounded-none'
-  font: 'font-mono',
-  // ...
-};
+```css
+:root {
+  /* Default: 0px (sharp corners) */
+  --radius: 0rem;
+
+  /* To enable subtle rounding: */
+  --radius: 0.125rem;  /* 2px */
+
+  /* Or moderate rounding: */
+  --radius: 0.375rem;  /* 6px */
+}
 ```
 
-**Effect:** All components will now have 2px rounded corners.
+**Effect:** All components using `mode.radius` will adopt the new radius value.
 
-**Options:**
-- `rounded-none` - Sharp (0px) - Terminal aesthetic ✅
-- `rounded-sm` - Subtle (2px) - Modern minimal
-- `rounded` - Moderate (4px) - Standard UI
-- `rounded-md` - Medium (6px) - Friendly UI
+**Common Values:**
+- `0rem` - Sharp (0px) - Terminal aesthetic (default)
+- `0.125rem` - Subtle (2px) - Modern minimal
+- `0.25rem` - Moderate (4px) - Standard UI
+- `0.375rem` - Medium (6px) - Friendly UI
+
+**Note:** Components inherit this value dynamically via `mode.radius` (which maps to `rounded-dynamic` class using `var(--radius)`). Never hardcode radius values in components.
 
 ---
 

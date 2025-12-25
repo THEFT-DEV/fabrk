@@ -68,12 +68,18 @@ npm run validate:webhooks  # Validate webhook endpoints
 
 ## Critical Rules
 
-### 1. Terminal Style EVERYWHERE
+### 1. Dynamic Design System
 
-All components use terminal aesthetic:
-- `rounded-none` on all elements
+All components use the design system:
+- `mode.radius` for elements with full borders (dynamic via `--radius` CSS variable)
 - `font-mono` for ALL text (body tag uses `className="font-mono"`)
-- Design tokens only (no hardcoded colors)
+- Design tokens only (no hardcoded colors or radius)
+
+**Radius Rules:**
+- Full borders (`border`, `border-2`) → NEED `mode.radius`
+- Partial borders (`border-t`, `border-b`) → NO `mode.radius`
+- Table cells → NO `mode.radius` (breaks layout)
+- Switches → Always `rounded-full`
 
 **IMPORTANT:** The `<body>` tag MUST have `className="font-mono antialiased"` to apply the monospace font globally.
 
@@ -167,7 +173,7 @@ import { cn } from "@/lib/utils";
 ```
 
 The `mode` object provides:
-- `mode.radius` - Border radius (`rounded-none`)
+- `mode.radius` - Dynamic border radius (`rounded-dynamic` → `var(--radius)`)
 - `mode.font` - Font family (`font-mono`)
 - `mode.color.bg.*` - Background tokens
 - `mode.color.text.*` - Text color tokens

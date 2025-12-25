@@ -125,7 +125,7 @@ This boilerplate has **TWO distinct design contexts**:
 - **Purpose**: Provide clean, customizable components for users
 - **Philosophy**: Theme-aware - components adapt to active theme
 - **Borders**: `border border-border` (1px standard) + `mode.radius`
-- **Radius**: `mode.radius` (dynamic via CSS `--radius` variable)
+- **Radius**: `mode.radius` = `rounded-dynamic` = CSS `var(--radius)` (theme-controlled)
 - **Shadows**: `shadow-sm`, `shadow` (subtle)
 - **Font**: `mode.font` for monospace
 - **Colors**: Semantic tokens only (`bg-card`, `bg-muted`, `text-foreground`)
@@ -528,25 +528,36 @@ See [Theme Guide](./THEME-GUIDE.md) for detailed descriptions, use cases, and co
 
 The design system uses `mode.radius` for dynamic, theme-aware border radius:
 
-| Token | Class | Usage |
-|-------|-------|-------|
-| `mode.radius` | `rounded-dynamic` | **Primary** - Uses CSS `var(--radius)` |
-| `rounded-full` | 9999px | Circles only (dots, avatars, switches) |
+| Token | Class | Resolves To | Usage |
+|-------|-------|-------------|-------|
+| `mode.radius` | `rounded-dynamic` | CSS `var(--radius)` | **Primary** - All full-bordered elements |
+| `rounded-full` | `rounded-full` | 9999px | Circles only (dots, avatars, switches) |
+
+**How Dynamic Radius Works:**
+1. Components use `mode.radius` in their className
+2. This maps to `rounded-dynamic` Tailwind class
+3. `rounded-dynamic` uses CSS `var(--radius)`
+4. Each theme defines its own `--radius` value (typically `0rem` for terminal aesthetic)
+5. Changing the theme automatically updates all components' radius
 
 **Radius Rules:**
 - Full borders (`border`, `border-2`) → ADD `mode.radius`
 - Partial borders (`border-t`, `border-b`, `border-l`, `border-r`) → NO `mode.radius`
 - Table cells (`<th>`, `<td>`) → NO `mode.radius` (breaks table layout)
-- Switches → Always `rounded-full` (pill-shaped by design)
+- Circular elements → Always `rounded-full` (dots, avatars, switches)
 
 ```tsx
-// CORRECT: Full border with mode.radius
+// ✅ CORRECT: Full border with dynamic radius
 <div className={cn("border border-border", mode.radius)}>
 
-// CORRECT: Partial border without mode.radius
+// ✅ CORRECT: Partial border without radius
 <div className="border-b border-border">
 
-// WRONG: mode.radius on partial border (creates curved lines)
+// ❌ WRONG: Hardcoded radius (breaks theme consistency)
+<div className="border border-border rounded-none">  // DON'T DO THIS
+<div className="border border-border rounded-md">   // DON'T DO THIS
+
+// ❌ WRONG: mode.radius on partial border (creates curved lines)
 <div className={cn("border-l-2", mode.radius)}>  // DON'T DO THIS
 ```
 
@@ -652,8 +663,7 @@ The design system uses `mode.radius` for dynamic, theme-aware border radius:
 
 | Context | Classes |
 |---------|---------|
-| Terminal style | `border border-border bg-card rounded-none` |
-| Dashboard | `border border-border bg-card rounded-lg` |
+| Standard | `border border-border bg-card` + `mode.radius` |
 | Hover effect | `transition-all hover:border-primary/50` |
 | CardContent | `p-4` or `p-6` |
 
@@ -770,11 +780,10 @@ import {
 
 | Variant | Classes |
 |---------|---------|
-| Primary CTA | `rounded-none h-12 bg-primary px-6 font-mono text-xs font-semibold` |
-| Outline CTA | `rounded-none h-12 border-2 border-foreground px-6 font-mono text-xs` |
-| Standard | `rounded-none font-mono text-xs` |
-| Icon button | `rounded-none h-10 w-10` |
-| Small | `h-7 rounded-md px-2 text-xs` |
+| Primary CTA | `h-12 bg-primary px-6 font-mono text-xs font-semibold` + `mode.radius` |
+| Outline CTA | `h-12 border-2 border-foreground px-6 font-mono text-xs` + `mode.radius` |
+| Standard | `font-mono text-xs` + `mode.radius` |
+| Icon button | `h-10 w-10` + `mode.radius` |
 
 ### Badges
 
@@ -829,8 +838,8 @@ import {
 
 | State | Classes |
 |-------|---------|
-| Base | `h-8 w-full rounded-md border bg-background px-3 py-2 text-sm` |
-| Terminal | `rounded-none font-mono text-xs border border-border` |
+| Base | `h-8 w-full border bg-background px-3 py-2 text-sm` + `mode.radius` |
+| Terminal | `font-mono text-xs border border-border` + `mode.radius` |
 | Focus | `focus-visible:ring-2 focus-visible:ring-primary` |
 | Error | `border-destructive focus-visible:ring-destructive` |
 | Disabled | `disabled:cursor-not-allowed disabled:opacity-50` |
@@ -1100,8 +1109,8 @@ flex-col lg:flex-row-reverse
 
 Rules for `/src/components/ui/*`:
 
-1. **Font**: Sans-serif default, `font-mono` ONLY for code components
-2. **Corners**: `rounded-md` (standard), `rounded-lg` (cards), `rounded-full` (avatars)
+1. **Font**: Use `mode.font` for monospace consistency
+2. **Corners**: Use `mode.radius` (dynamic, theme-controlled), `rounded-full` for circles only
 3. **Borders**: `border border-border` (1px, subtle)
 4. **Shadows**: `shadow-sm`, `shadow` (subtle, not hard)
 5. **Colors**: Semantic tokens only - never raw colors like `bg-black`, `text-white`
@@ -1112,23 +1121,23 @@ Rules for `/src/components/ui/*`:
 
 Rules for `/src/components/landing/*` and `/src/app/docs/*`:
 
-1. **Font**: Use `font-mono` for everything
-2. **Corners**: Use `rounded-none` for terminal aesthetic (except traffic light dots)
+1. **Font**: Use `mode.font` for everything
+2. **Corners**: Use `mode.radius` for theme consistency, `rounded-full` for traffic light dots
 3. **Headings**: UPPER_SNAKE_CASE for terminal style
 4. **Lists**: Tree-style with `├─` and `└─` characters
 5. **Badges**: Include hex prefix in square brackets `[0xHEX]`
-6. **Step indicators**: Square boxes, never circles
+6. **Step indicators**: Square boxes with `mode.radius`, never circles
 7. **Colors**: Muted text for secondary content
 8. **Transitions**: Always add `transition-colors` or `transition-all`
 9. **Spacing**: Use consistent spacing scale (2, 3, 4, 6, 8)
-10. **Code blocks**: Wrap with `[&>div]:rounded-none`
+10. **Code blocks**: Apply `mode.radius` or theme-appropriate styling
 
 ### Component Usage Rules
 
 - Base UI components CAN be modified for naming/token consistency
 - When using base UI in marketing, add terminal styling via `className`
-- Example: `<Card className="rounded-none font-mono">`
-- Use CSS child selectors for nested overrides: `[&>div]:rounded-none`
+- Example: `<Card className={cn(mode.radius, mode.font)}>`
+- Components inherit radius from theme automatically via `mode.radius`
 
 ### Naming Conventions
 
