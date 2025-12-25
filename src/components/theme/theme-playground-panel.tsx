@@ -373,7 +373,7 @@ document.documentElement.setAttribute('data-theme', '${config.accentColor}');`;
           id="theme-playground-panel"
           className={cn(
             'fixed right-6 top-32 z-50',
-            'w-80 max-h-[calc(100vh-10rem)] overflow-y-auto',
+            'w-80 max-h-[calc(100vh-10rem)] flex flex-col',
             'border border-border',
             config.panelBackground === 'translucent'
               ? 'bg-card/80 backdrop-blur-md'
@@ -381,8 +381,8 @@ document.documentElement.setAttribute('data-theme', '${config.accentColor}');`;
             'animate-in slide-in-from-top-5 duration-200'
           )}
         >
-          {/* Header */}
-          <div className="flex items-center justify-between border-b border-border p-4">
+          {/* Header - Fixed */}
+          <div className="flex shrink-0 items-center justify-between border-b border-border p-4">
             <span className="font-mono text-sm font-medium uppercase tracking-wide">
               Theme
             </span>
@@ -395,7 +395,8 @@ document.documentElement.setAttribute('data-theme', '${config.accentColor}');`;
             </button>
           </div>
 
-          <div className="space-y-6 p-4">
+          {/* Scrollable Content */}
+          <div className="space-y-6 p-4 overflow-y-auto flex-1">
             {/* Accent Color */}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
