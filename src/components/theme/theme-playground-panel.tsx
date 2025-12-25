@@ -57,6 +57,7 @@ interface ThemeConfig {
 // CONSTANTS
 // =============================================================================
 
+/* eslint-disable design-system/no-hardcoded-colors -- Theme definition colors (not styling) */
 const ACCENT_COLORS = [
   // Dark themes - CRT effect
   { id: 'amber', color: '#ffb000', name: 'Amber', mode: 'dark', effect: 'crt' },
@@ -79,6 +80,7 @@ const ACCENT_COLORS = [
   { id: 'spectrum', color: '#ff00ff', name: 'Spectrum', mode: 'light', effect: 'crt' },
   { id: 'infrared', color: '#cc3333', name: 'Infrared', mode: 'light', effect: 'none' },
 ] as const;
+/* eslint-enable design-system/no-hardcoded-colors */
 
 const RADIUS_OPTIONS: { value: RadiusOption; label: string; cssValue: string }[] = [
   { value: 'none', label: 'None', cssValue: '0' },
@@ -485,7 +487,7 @@ document.documentElement.setAttribute('data-theme', '${config.accentColor}');`;
                     onClick={() => setConfig((prev) => ({ ...prev, radius: option.value }))}
                     className={cn(
                       'flex flex-col items-center gap-1 border px-2 py-2',
-                      'font-mono text-[10px] transition-all',
+                      'font-mono text-2xs transition-all',
                       config.radius === option.value
                         ? 'border-foreground bg-foreground text-background'
                         : 'border-border hover:border-muted-foreground'

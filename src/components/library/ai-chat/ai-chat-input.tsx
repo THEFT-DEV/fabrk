@@ -118,7 +118,7 @@ export function AiChatInput({
                     <ChevronDown className={cn('size-3', mode.state.muted.opacity)} />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-[200px]">
+                <DropdownMenuContent align="start" className="w-52">
                   {models.map((model) => (
                     <DropdownMenuItem
                       key={model.id}
@@ -159,7 +159,7 @@ export function AiChatInput({
       </div>
 
       <div className="flex justify-center">
-        <span className={cn('text-[10px] uppercase', mode.state.subtle.opacity, mode.font)}>
+        <span className={cn('text-2xs uppercase', mode.state.subtle.opacity, mode.font)}>
           AI can make mistakes. Verify important information.
         </span>
       </div>

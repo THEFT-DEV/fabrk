@@ -43,7 +43,7 @@ export function DocsPreview({
       </div>
 
       {/* Live Preview */}
-      <div className="terminal-preview bg-card flex min-h-[120px] items-center justify-center p-6">
+      <div className="terminal-preview bg-card flex min-h-32 items-center justify-center p-6">
         <div className="flex w-full items-center justify-center">{preview}</div>
       </div>
 

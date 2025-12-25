@@ -48,7 +48,7 @@ export function BrowserFrame({ children }: BrowserFrameProps) {
         </button>
       </div>
       {/* Browser Content */}
-      <div className="flex min-h-[600px]">{children}</div>
+      <div className="flex min-h-panel">{children}</div>
     </div>
   );
 }

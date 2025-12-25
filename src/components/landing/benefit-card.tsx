@@ -66,7 +66,7 @@ export function BenefitCard({
             mode.color.border.default
           )}
         >
-          <span className={cn('text-[11px] tracking-wide', mode.font, mode.color.text.muted)}>
+          <span className={cn('text-xs tracking-wide', mode.font, mode.color.text.muted)}>
             [{code}] {module}
           </span>
           <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 400 }}>
@@ -98,7 +98,7 @@ export function BenefitCard({
           <div className="flex-1 flex flex-col gap-1">
             <p
               className={cn(
-                'text-[11px] uppercase tracking-[0.05em] font-medium',
+                'text-xs uppercase tracking-[0.05em] font-medium',
                 mode.font,
                 mode.color.text.muted
               )}
@@ -113,7 +113,7 @@ export function BenefitCard({
           <div className="flex-1 flex flex-col gap-1 pl-2">
             <p
               className={cn(
-                'text-[11px] uppercase tracking-[0.05em] font-medium',
+                'text-xs uppercase tracking-[0.05em] font-medium',
                 mode.font,
                 mode.color.text.muted
               )}
@@ -130,7 +130,7 @@ export function BenefitCard({
         <div className="p-6 flex flex-col gap-2">
           <p
             className={cn(
-              'text-[11px] font-bold uppercase tracking-wider mb-1',
+              'text-xs font-bold uppercase tracking-wider mb-1',
               mode.font,
               mode.color.text.muted
             )}

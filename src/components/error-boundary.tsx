@@ -69,7 +69,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
       // Default fallback UI
       return (
-        <div className="flex min-h-[400px] flex-col items-center justify-center p-8 text-center">
+        <div className="flex min-h-panel-sm flex-col items-center justify-center p-8 text-center">
           <AlertCircle className="text-destructive mb-4 h-12 w-12" />
           <h2 className={cn('mb-2 text-2xl font-semibold tracking-tight', mode.font)}>Something went wrong</h2>
           <p className="text-muted-foreground mb-6">

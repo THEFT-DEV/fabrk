@@ -50,7 +50,7 @@ export function OrganizationPreview() {
         </div>
 
         {/* Fixed height container to prevent layout shift */}
-        <div className="min-h-[116px] space-y-2">
+        <div className="min-h-28 space-y-2">
           {/* ACME_INC - always visible */}
           <div
             className={cn(

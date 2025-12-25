@@ -634,7 +634,7 @@ const MetricCard = React.forwardRef<HTMLDivElement, MetricCardProps>(
             mode.color.border.default
           )}
         >
-          <span className={cn('text-[11px] tracking-wide', mode.font, mode.color.text.muted)}>
+          <span className={cn('text-xs tracking-wide', mode.font, mode.color.text.muted)}>
             [{hexCode}] {title}
           </span>
           {icon && <span className={mode.color.text.accent}>{icon}</span>}
@@ -743,7 +743,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, FeatureCardProps>(
             mode.color.border.default
           )}
         >
-          <span className={cn('text-[11px] tracking-wide', mode.font, mode.color.text.muted)}>
+          <span className={cn('text-xs tracking-wide', mode.font, mode.color.text.muted)}>
             [{hexCode}] {title}
           </span>
           {icon && <span className={mode.color.text.accent}>{icon}</span>}
@@ -783,7 +783,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, FeatureCardProps>(
                 <div className={cn('flex-1 flex flex-col gap-1', index > 0 && 'pl-2')}>
                   <p
                     className={cn(
-                      'text-[11px] uppercase tracking-[0.05em] font-medium',
+                      'text-xs uppercase tracking-[0.05em] font-medium',
                       mode.font,
                       mode.color.text.muted
                     )}
@@ -809,7 +809,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, FeatureCardProps>(
           <div className="p-6 flex flex-col gap-2">
             <p
               className={cn(
-                'text-[11px] font-bold uppercase tracking-wider mb-1',
+                'text-xs font-bold uppercase tracking-wider mb-1',
                 mode.font,
                 mode.color.text.muted
               )}

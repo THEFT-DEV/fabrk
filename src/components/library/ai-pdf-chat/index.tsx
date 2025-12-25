@@ -154,7 +154,7 @@ export function AiPdfChat({ onAskQuestion, className }: PdfChatProps) {
   };
 
   return (
-    <Card className={cn('flex h-[600px] flex-col', className)}>
+    <Card className={cn('flex h-panel flex-col', className)}>
       <CardHeader
         code="0xPDF"
         title="PDF_CHAT"

@@ -156,7 +156,7 @@ export function AuthPageTemplate({
     >
       <div
         className={cn(
-          'border-border bg-background w-full max-w-[400px] space-y-6 border p-6',
+          'border-border bg-background w-full max-w-sm space-y-6 border p-6',
           mode.radius
         )}
       >

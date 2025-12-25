@@ -148,7 +148,7 @@ export function SiteNavigation() {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className={cn(mode.radius, 'w-[300px] p-6')}>
+            <SheetContent side="right" className={cn(mode.radius, 'w-72 p-6')}>
               <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
               <div className="border-border mb-6 border-b pb-4">
                 <span className={cn(mode.font, 'text-muted-foreground text-xs')}>

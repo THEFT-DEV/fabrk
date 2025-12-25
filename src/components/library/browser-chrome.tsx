@@ -36,7 +36,7 @@ export function BrowserChrome({ children, title, url, className }: BrowserChrome
         )}
 
         {/* Spacer for symmetry */}
-        <div className="w-[52px]" />
+        <div className="w-14" />
       </div>
 
       {/* Content */}

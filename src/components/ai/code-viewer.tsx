@@ -230,7 +230,7 @@ export function CodeViewer({ form, className }: CodeViewerProps) {
 
   return (
     <div
-      className={cn('border-border bg-card flex h-[600px] flex-col border', mode.radius, className)}
+      className={cn('border-border bg-card flex h-panel flex-col border', mode.radius, className)}
     >
       <Tabs defaultValue="schema" className="flex h-full flex-col">
         {/* Terminal Header */}

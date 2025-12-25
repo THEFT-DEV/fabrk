@@ -28,7 +28,7 @@ import { cn } from '@/lib/utils';
 /** Skeleton loader for preview section */
 function PreviewSkeleton() {
   return (
-    <div className="bg-background/50 flex min-h-[400px] items-center justify-center p-8">
+    <div className="bg-background/50 flex min-h-panel-sm items-center justify-center p-8">
       <div className="space-y-4 text-center">
         <div className="bg-muted mx-auto h-8 w-32 animate-pulse" />
         <div className="bg-muted mx-auto h-4 w-48 animate-pulse" />
@@ -49,7 +49,7 @@ function PreviewError({
   resetErrorBoundary: () => void;
 }) {
   return (
-    <div className={cn("bg-destructive/5 border-destructive/20 flex min-h-[200px] flex-col items-center justify-center gap-4 border p-8", mode.radius)}>
+    <div className={cn("bg-destructive/5 border-destructive/20 flex min-h-52 flex-col items-center justify-center gap-4 border p-8", mode.radius)}>
       <div className={cn(mode.font, 'text-destructive text-sm font-semibold')}>
         [ERROR]: Preview failed to load
       </div>

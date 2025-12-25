@@ -69,7 +69,7 @@ export function AuthPreview() {
             <div
               className={cn(
                 mode.radius,
-                'border-border bg-background flex min-h-[36px] items-center border px-4 py-2'
+                'border-border bg-background flex min-h-9 items-center border px-4 py-2'
               )}
             >
               <span className={cn(mode.font, 'text-muted-foreground text-xs')}>
@@ -87,7 +87,7 @@ export function AuthPreview() {
             <div
               className={cn(
                 mode.radius,
-                'border-border bg-background flex min-h-[36px] items-center border px-4 py-2'
+                'border-border bg-background flex min-h-9 items-center border px-4 py-2'
               )}
             >
               <span className={cn(mode.font, 'text-muted-foreground text-xs')}>

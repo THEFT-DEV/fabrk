@@ -181,7 +181,7 @@ export function UserManagementTable({ initialUsers }: UserManagementTableProps) 
           />
         </div>
         <Select value={roleFilter} onValueChange={setRoleFilter}>
-          <SelectTrigger className="w-[180px] font-semibold">
+          <SelectTrigger className="w-44 font-semibold">
             <SelectValue placeholder="Filter by role" />
           </SelectTrigger>
           <SelectContent>

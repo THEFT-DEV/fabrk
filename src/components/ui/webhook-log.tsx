@@ -155,7 +155,7 @@ function WebhookFilters({
           value={statusFilter}
           onValueChange={(value) => onStatusFilterChange(value as WebhookStatus | 'all')}
         >
-          <SelectTrigger className={cn('w-full sm:w-[180px]', mode.radius, mode.font)}>
+          <SelectTrigger className={cn('w-full sm:w-44', mode.radius, mode.font)}>
             <SelectValue placeholder="Filter by status" />
           </SelectTrigger>
           <SelectContent className={cn(mode.radius)}>

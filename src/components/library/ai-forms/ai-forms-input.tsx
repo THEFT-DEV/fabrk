@@ -38,7 +38,7 @@ export function AiFormsInput({ prompt, setPrompt, isLoading, onGenerate, example
               onChange={(e) => setPrompt(e.target.value)}
               placeholder="e.g. Contact form with name, email, phone..."
               className={cn(
-                'min-h-[80px] resize-none border-0 bg-transparent p-0 text-sm shadow-none focus-visible:ring-0',
+                'min-h-20 resize-none border-0 bg-transparent p-0 text-sm shadow-none focus-visible:ring-0',
                 mode.font
               )}
               disabled={isLoading}

@@ -20,7 +20,7 @@ export function AiChatAttachmentPreview({ attachments, onRemove }: AiChatAttachm
           variant="secondary" 
           className="gap-2 pr-1"
         >
-          <span className="truncate max-w-[100px]">{att.name}</span>
+          <span className="truncate max-w-24">{att.name}</span>
           <button 
             onClick={() => onRemove(i)} 
             className="hover:text-destructive transition-colors"

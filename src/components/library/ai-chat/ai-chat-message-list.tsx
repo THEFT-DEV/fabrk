@@ -68,10 +68,10 @@ function MessageItem({ message }: { message: Message }) {
 
       <div className={cn('flex min-w-0 flex-1 flex-col gap-1', isUser ? 'items-end' : 'items-start')}>
         <div className="flex items-center gap-2 px-1">
-          <span className={cn('text-[10px] font-bold uppercase tracking-wider', mode.state.secondary.opacity, mode.font)}>
+          <span className={cn('text-2xs font-bold uppercase tracking-wider', mode.state.secondary.opacity, mode.font)}>
             {isUser ? 'OPERATOR' : 'SYSTEM'}
           </span>
-          <span className={cn('text-[10px]', mode.state.subtle.opacity, mode.font)}>
+          <span className={cn('text-2xs', mode.state.subtle.opacity, mode.font)}>
              {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </span>
         </div>

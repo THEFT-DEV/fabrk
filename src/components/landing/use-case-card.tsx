@@ -56,7 +56,7 @@ export function UseCaseCard({
             mode.color.border.default
           )}
         >
-          <span className={cn('text-[11px] tracking-wide', mode.font, mode.color.text.muted)}>
+          <span className={cn('text-xs tracking-wide', mode.font, mode.color.text.muted)}>
             [0x{(40 + index).toString(16).toUpperCase()}] {persona}
           </span>
           <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 400 }}>
@@ -69,7 +69,7 @@ export function UseCaseCard({
           {/* Pain Point - max 2 lines */}
           <p
             className={cn(
-              'text-[11px] font-bold uppercase tracking-wider mb-1',
+              'text-xs font-bold uppercase tracking-wider mb-1',
               mode.font,
               mode.color.text.muted
             )}
@@ -91,7 +91,7 @@ export function UseCaseCard({
         <div className="border-y border-border bg-background py-4 px-6 mt-4">
           <p
             className={cn(
-              'text-[11px] uppercase tracking-[0.05em] font-medium mb-1',
+              'text-xs uppercase tracking-[0.05em] font-medium mb-1',
               mode.font,
               mode.color.text.muted
             )}
@@ -112,7 +112,7 @@ export function UseCaseCard({
         <div className="p-6 flex flex-col gap-2">
           <p
             className={cn(
-              'text-[11px] font-bold uppercase tracking-wider mb-1',
+              'text-xs font-bold uppercase tracking-wider mb-1',
               mode.font,
               mode.color.text.muted
             )}

@@ -66,7 +66,7 @@ export function UserTableToolbar({
             Columns <ChevronDown className="ml-2 h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-[160px]">
+        <DropdownMenuContent align="end" className="w-40">
           {table
             .getAllColumns()
             .filter((column) => column.getCanHide())

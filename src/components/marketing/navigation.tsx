@@ -135,7 +135,7 @@ export function Navigation() {
             exit={{ x: '-100%' }}
             transition={{ type: 'tween', duration: 0.3 }}
             className={cn(
-              'absolute inset-y-0 left-0 w-[300px] border-r',
+              'absolute inset-y-0 left-0 w-72 border-r',
               mode.color.bg.base,
               mode.color.border.default
             )}

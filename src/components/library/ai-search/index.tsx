@@ -330,7 +330,7 @@ export function AiSearch({
                           </p>
                           <Badge
                             variant="outline"
-                            className={cn('text-[10px] uppercase', mode.radius)}
+                            className={cn('text-2xs uppercase', mode.radius)}
                           >
                             {result.relevance}%
                           </Badge>

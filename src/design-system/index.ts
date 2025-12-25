@@ -213,8 +213,15 @@ export interface ModeConfig {
       h3: string;
     };
     caption: string;
+    micro: string; // 10px - for timestamps, codes, terminal headers
     input: string;
     label: string;
+  };
+
+  sizing: {
+    panel: string; // 600px
+    panelSm: string; // 400px
+    sidebar: string; // 288px
   };
 
   state: {
@@ -362,8 +369,17 @@ export const mode: ModeConfig = {
       h3: 'text-2xl font-semibold',
     },
     caption: 'text-xs text-muted-foreground',
+    // Micro text for timestamps, codes, terminal headers (10px)
+    micro: 'text-2xs',
     input: 'text-sm',
     label: 'text-sm font-medium',
+  },
+
+  // Sizing tokens - 8-point grid compliant
+  sizing: {
+    panel: 'h-panel', // 600px
+    panelSm: 'h-panel-sm', // 400px
+    sidebar: 'w-sidebar', // 288px (w-72)
   },
 
   // State tokens

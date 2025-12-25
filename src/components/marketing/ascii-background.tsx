@@ -599,7 +599,7 @@ export function AsciiBackground({
         className={cn(
           'whitespace-pre leading-tight select-none',
           isFillScreen
-            ? 'text-[8px] sm:text-[10px] md:text-xs'
+            ? 'text-3xs sm:text-2xs md:text-xs'
             : 'text-sm sm:text-base md:text-lg lg:text-xl',
           mode.font,
           mode.color.text.primary

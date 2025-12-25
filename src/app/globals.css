@@ -18,6 +18,45 @@
   border-radius: var(--radius);
 }
 
+/* ===========================================
+   DESIGN SYSTEM TOKENS
+   8-point grid compliant sizing utilities
+   =========================================== */
+
+/* Typography: Extra small text (10px = 0.625rem) */
+@utility text-2xs {
+  font-size: 0.625rem;
+  line-height: 1rem;
+}
+
+/* Typography: Micro text (8px = 0.5rem) - for decorative/ASCII art */
+@utility text-3xs {
+  font-size: 0.5rem;
+  line-height: 0.75rem;
+}
+
+/* Sizing: Panel heights (600px = 37.5rem, 400px = 25rem) */
+@utility h-panel {
+  height: 37.5rem;
+}
+
+@utility min-h-panel {
+  min-height: 37.5rem;
+}
+
+@utility h-panel-sm {
+  height: 25rem;
+}
+
+@utility min-h-panel-sm {
+  min-height: 25rem;
+}
+
+/* Sizing: Sidebar widths (288px = 18rem = w-72) */
+@utility w-sidebar {
+  width: 18rem;
+}
+
 /* ============================================
    ANIMATIONS
    ============================================ */
