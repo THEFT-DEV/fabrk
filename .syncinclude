@@ -1,0 +1,320 @@
+# ============================================
+# FABRK CUSTOMER DISTRIBUTION WHITELIST
+# ============================================
+# This file controls what customers receive.
+# ONLY files listed here are synced to THEFT-DEV/fabrk
+# ============================================
+
+# ============================================
+# ROOT CONFIGURATION
+# ============================================
+.cursorrules
+.dockerignore
+.editorconfig
+.env.example
+.env.production.example
+.gitattributes
+.gitignore
+.husky/
+.lighthouserc.json
+.npmrc
+.nvmrc
+.prettierrc
+.vercelignore
+.windsurfrules
+
+# ============================================
+# GITHUB WORKFLOWS & TEMPLATES
+# ============================================
+.github/workflows/ci.yml
+.github/workflows/deploy.yml
+.github/workflows/pr-checks.yml
+.github/workflows/release.yml
+.github/ISSUE_TEMPLATE/
+.github/dependabot.yml
+.github/SECURITY.md
+
+# ============================================
+# ROOT DOCUMENTATION
+# ============================================
+CHANGELOG.md
+CLAUDE.md
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+GEMINI.md
+LICENSE.md
+PRIVACY.md
+README.md
+TERMS.md
+THIRD_PARTY_LICENSES.md
+
+# ============================================
+# BUILD CONFIGURATION
+# ============================================
+config/
+eslint.config.mjs
+lighthouserc.js
+next.config.ts
+package.json
+package-lock.json
+playwright.config.ts
+postcss.config.mjs
+prisma.config.ts
+stylelint.config.mjs
+tsconfig.json
+typedoc.json
+vercel.json
+vitest.config.ts
+vitest.setup.ts
+cspell.json
+
+# ============================================
+# APPLICATION SOURCE CODE
+# ============================================
+# Customers get the SaaS boilerplate ONLY
+# NO Fabrk marketing website, components, or content
+
+# App Routes
+src/app/(platform)/
+src/app/(auth)/
+src/app/api/
+
+# Marketing Routes - minimal starter pages only
+# Customers get blank templates to customize
+src/app/(marketing)/layout.tsx
+src/app/(marketing)/page.tsx
+src/app/(marketing)/error.tsx
+src/app/(marketing)/(legal)/
+# EXCLUDED: fabrk.dev marketing pages (about, pricing, features, etc.)
+# Customers build their own marketing pages
+
+# EXCLUDED - fabrk.dev website content:
+# src/app/(marketing)/library/  - fabrk.dev template showcase
+# src/app/(marketing)/docs/     - 269 files (interactive docs)
+# src/app/(marketing)/fui-lab/  - experimental
+# src/app/(marketing)/hero-lab/ - experimental
+src/app/globals.css
+src/app/typography.css
+src/app/layout.tsx
+src/app/not-found.tsx
+src/app/error.tsx
+src/app/global-error.tsx
+src/app/loading.tsx
+src/app/robots.ts
+src/app/sitemap.ts
+src/app/maintenance/
+
+# Components (exclude docs/ and library/ - website only)
+src/components/account/
+src/components/admin/
+src/components/ai/
+src/components/analytics/
+src/components/auth/
+src/components/billing/
+src/components/blog/
+src/components/changelog/
+src/components/cookie-consent/
+src/components/credits/
+src/components/dashboard/
+src/components/developer/
+src/components/error-boundary.tsx
+src/components/error-boundary.test.tsx
+src/components/feedback/
+src/components/i18n/
+src/components/landing/
+# EXCLUDED: src/components/marketing/ - fabrk.dev website components
+src/components/motion/
+src/components/navigation/
+src/components/organization/
+src/components/polar/
+src/components/pricing/
+src/components/providers/
+src/components/security/
+src/components/seo/
+src/components/settings/
+src/components/shared/
+src/components/templates/
+src/components/theme/
+src/components/ui/
+
+# EXCLUDED - fabrk.dev website components:
+# src/components/docs/     - interactive docs components
+# src/components/library/  - library showcase components
+
+# Core Libraries
+# Core Libraries (excluding fabrk.dev-specific files)
+src/lib/
+# Note: Sync script should exclude:
+# - src/lib/search.ts (imports from library/)
+# - src/lib/template-inventory.ts (imports from library/)
+src/design-system/
+src/config/
+src/styles/
+src/types/
+src/hooks/
+src/emails/
+src/i18n/
+src/instrumentation.ts
+src/proxy.ts
+src/test/
+src/generated/
+
+# Data (All data files for boilerplate)
+src/data/changelog.ts
+src/data/component-counts.json
+src/data/themes.ts
+src/data/examples/
+src/data/landing/
+src/data/counts.ts
+src/data/dynamic-counts.json
+
+# Database & Assets
+prisma/
+public/
+
+# ============================================
+# NOTE - Customers get BLANK boilerplate
+# ============================================
+# Customers get starter templates, NOT the fabrk.dev website:
+# - src/app/(marketing)/ - Basic pages (pricing, about, blog, etc.)
+# - Homepage is replaced with starter template during sync
+# - CLAUDE.md is replaced with customer-facing version during sync
+
+# ============================================
+# CUSTOMER SCRIPTS
+# ============================================
+scripts/setup.mjs
+scripts/templates/
+scripts/page-templates/
+scripts/generate-theme.mjs
+scripts/validate-themes.mjs
+scripts/validate-themes.ts
+scripts/validate-webhooks.mjs
+scripts/utilities/
+scripts/utils/
+
+# ============================================
+# MCP SERVER (AI-assisted development)
+# ============================================
+mcp-servers/fabrk/README.md
+mcp-servers/fabrk/package.json
+mcp-servers/fabrk/tsconfig.json
+mcp-servers/fabrk/src/
+
+# ============================================
+# TESTS
+# ============================================
+tests/
+
+# ============================================
+# DOCS: ROOT (navigation hub)
+# ============================================
+docs/README.md
+
+# ============================================
+# DOCS: GETTING STARTED
+# ============================================
+docs/01-getting-started/
+
+# ============================================
+# DOCS: COMPONENTS
+# ============================================
+docs/02-components/
+
+# ============================================
+# DOCS: GUIDES
+# ============================================
+docs/03-guides/
+
+# ============================================
+# DOCS: DEVELOPMENT (filtered)
+# ============================================
+docs/04-development/AGENT-TOOLS-INTEGRATION.md
+docs/04-development/AI_CREDITS_IMPLEMENTATION.md
+docs/04-development/API-REFERENCE.md
+docs/04-development/API_DOCUMENTATION.md
+docs/04-development/API_DOCUMENTATION_SUMMARY.md
+docs/04-development/BROWSER-AUTOMATION-TESTING.md
+docs/04-development/COMPONENT-SHOWCASE.md
+docs/04-development/GIT-ROLLBACK-GUIDE.md
+docs/04-development/LIGHTHOUSE-CI.md
+docs/04-development/README.md
+docs/04-development/STYLING-SIMPLIFICATION.md
+docs/04-development/TESTING-GUIDE.md
+
+# ============================================
+# DOCS: FEATURES
+# ============================================
+docs/06-features/
+
+# ============================================
+# DOCS: ADVANCED (filtered)
+# ============================================
+docs/07-advanced/BACKUP-RECOVERY.md
+docs/07-advanced/PERFORMANCE-OPTIMIZATION.md
+docs/07-advanced/PERFORMANCE.md
+docs/07-advanced/README.md
+docs/07-advanced/SECURITY-BEST-PRACTICES.md
+docs/07-advanced/SECURITY-IMPLEMENTATION.md
+docs/07-advanced/SECURITY-IMPROVEMENTS.md
+
+# ============================================
+# DOCS: DESIGN SYSTEM
+# ============================================
+docs/08-design/
+
+# ============================================
+# DOCS: LAUNCH CHECKLIST (filtered)
+# ============================================
+docs/09-launch/LAUNCH-CHECKLIST.md
+docs/09-launch/LAUNCH_CHECKLIST.md
+docs/09-launch/LAUNCH_READY.md
+docs/09-launch/README.md
+docs/09-launch/RELEASE-NOTES-v1.1.md
+
+# ============================================
+# DOCS: DEPLOYMENT (filtered)
+# ============================================
+docs/10-deployment/ALTERNATIVE-DEPLOYMENTS.md
+docs/10-deployment/ANALYTICS-SETUP.md
+docs/10-deployment/DEMO-VIDEO-GUIDE.md
+docs/10-deployment/DEPLOYMENT.md
+docs/10-deployment/NPM-PACKAGE-GUIDE.md
+docs/10-deployment/POST-LAUNCH-MONITORING.md
+docs/10-deployment/PRODUCTION-DEPLOYMENT.md
+docs/10-deployment/README.md
+
+# ============================================
+# DOCS: DESIGN SYSTEM SPECS
+# ============================================
+docs/design-system/spec/
+
+# ============================================
+# EXCLUDED FROM CUSTOMER PACKAGE:
+# ============================================
+# Internal Development:
+#   - *-COMPLETE.md (internal completion reports)
+#   - LIGHTHOUSE-SETUP-SUMMARY.md (internal CI setup)
+#   - DEMO-PAGES-COMPLETE.md (internal progress)
+#
+# Internal Launch:
+#   - PRODUCT-HUNT*.md (internal campaign copy)
+#   - LAUNCH-DAY-RUNBOOK.md (internal coordination)
+#   - LAUNCH-TIMELINE.md (internal timeline)
+#   - LAUNCH-CHECKLIST-*.md (internal checklists)
+#   - V1-BLOCKER-FIXES.md (internal bugs)
+#   - WEEK-2-COMPLETION-REPORT.md (internal report)
+#   - READY-FOR-LAUNCH.md (internal status)
+#
+# Internal Business:
+#   - docs/09-launch/DISTRIBUTION*.md (pricing strategy)
+#   - docs/09-launch/COMMUNITY-BUILDING-STRATEGY.md
+#   - docs/11-marketing/ (entire directory)
+#
+# Internal QA:
+#   - docs/design-system/violations/ (internal audits)
+#
+# Internal Scripts:
+#   - scripts/sync-*.mjs (repo sync tools)
+#   - scripts/update-*.mjs (internal tools)
+# ============================================

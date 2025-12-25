@@ -1,0 +1,215 @@
+/* stylelint-disable -- FUI Lab is an experimental playground with custom styling */
+/**
+ * FUI Styles - Minimal Technical Design
+ * Small fonts, thin borders, precise grid layouts
+ */
+
+/* =============================================================================
+   ANIMATIONS
+   ============================================================================= */
+@keyframes fui-flicker {
+  0%, 19.9%, 22%, 62.9%, 64%, 64.9%, 70%, 100% { opacity: 1; }
+  20%, 21.9%, 63%, 63.9%, 65%, 69.9% { opacity: 0.5; }
+}
+
+/* =============================================================================
+   1. INTERSTELLAR - NASA Technical (Light)
+   ============================================================================= */
+[data-theme="interstellar"] {
+  --background: oklch(0.96 0 0);
+  --foreground: oklch(0.15 0 0);
+  --primary: oklch(0.2 0 0);
+  --primary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.92 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --border: oklch(0.8 0 0);
+  --card: oklch(0.98 0 0);
+  --card-foreground: oklch(0.15 0 0);
+  --accent: oklch(0.35 0 0);
+}
+
+[data-theme="interstellar"] * {
+  font-family: 'IBM Plex Mono', monospace !important;
+}
+
+[data-theme="interstellar"] body {
+  background: oklch(0.96 0 0);
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 16px 16px;
+  font-size: 12px;
+}
+
+[data-theme="interstellar"] h1 { font-size: 1.5rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.2em; }
+[data-theme="interstellar"] h2 { font-size: 1.1rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.15em; }
+[data-theme="interstellar"] h3 { font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; }
+
+/* =============================================================================
+   2. BLADE RUNNER - Neon Minimal
+   ============================================================================= */
+[data-theme="blade-runner"] {
+  --background: oklch(0.06 0.02 330);
+  --foreground: oklch(0.85 0.08 330);
+  --primary: oklch(0.55 0.25 330);
+  --primary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.12 0.02 330);
+  --muted-foreground: oklch(0.55 0.08 330);
+  --border: oklch(0.25 0.1 330);
+  --card: oklch(0.08 0.02 330);
+  --card-foreground: oklch(0.85 0.08 330);
+  --accent: oklch(0.6 0.22 330);
+}
+
+[data-theme="blade-runner"] * {
+  font-family: 'Orbitron', monospace !important;
+}
+
+[data-theme="blade-runner"] body {
+  background: oklch(0.06 0.02 330);
+  background-image:
+    linear-gradient(rgba(255, 0, 80, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 80, 0.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+  font-size: 11px;
+}
+
+[data-theme="blade-runner"] h1 { font-size: 1.4rem; font-weight: 500; letter-spacing: 0.15em; text-shadow: 0 0 15px rgba(255, 0, 80, 0.6); }
+[data-theme="blade-runner"] h2 { font-size: 1rem; font-weight: 500; letter-spacing: 0.1em; text-shadow: 0 0 10px rgba(255, 0, 80, 0.5); }
+[data-theme="blade-runner"] h3 { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; }
+
+/* Subtle scanlines */
+[data-theme="blade-runner"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 0, 80, 0.008) 2px, rgba(255, 0, 80, 0.008) 4px);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* =============================================================================
+   3. COLLECTOR - Amber Technical (Milano)
+   ============================================================================= */
+[data-theme="collector"] {
+  --background: oklch(0.05 0.01 50);
+  --foreground: oklch(0.8 0.12 50);
+  --primary: oklch(0.65 0.18 50);
+  --primary-foreground: oklch(0.05 0 0);
+  --muted: oklch(0.1 0.01 50);
+  --muted-foreground: oklch(0.5 0.08 50);
+  --border: oklch(0.3 0.08 50);
+  --card: oklch(0.07 0.01 50);
+  --card-foreground: oklch(0.8 0.12 50);
+  --accent: oklch(0.7 0.15 50);
+}
+
+[data-theme="collector"] * {
+  font-family: 'Major Mono Display', 'JetBrains Mono', monospace !important;
+}
+
+[data-theme="collector"] body {
+  background: oklch(0.05 0.01 50);
+  background-image:
+    linear-gradient(rgba(255, 140, 0, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 140, 0, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(255, 140, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 140, 0, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+  font-size: 11px;
+}
+
+[data-theme="collector"] h1 { font-size: 1.3rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.12em; text-shadow: 0 0 10px rgba(255, 140, 0, 0.4); }
+[data-theme="collector"] h2 { font-size: 1rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.1em; }
+[data-theme="collector"] h3 { font-size: 0.8rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* =============================================================================
+   4. ALIEN - CRT Terminal (Nostromo)
+   ============================================================================= */
+[data-theme="alien"] {
+  --background: oklch(0.03 0.015 140);
+  --foreground: oklch(0.75 0.2 140);
+  --primary: oklch(0.6 0.2 140);
+  --primary-foreground: oklch(0.03 0 0);
+  --muted: oklch(0.08 0.02 140);
+  --muted-foreground: oklch(0.4 0.1 140);
+  --border: oklch(0.25 0.1 140);
+  --card: oklch(0.05 0.015 140);
+  --card-foreground: oklch(0.75 0.2 140);
+  --accent: oklch(0.65 0.18 140);
+}
+
+[data-theme="alien"] * {
+  font-family: 'VT323', 'Courier New', monospace !important;
+}
+
+[data-theme="alien"] body {
+  background: oklch(0.03 0.015 140);
+  background-image:
+    linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+  background-size: 12px 12px;
+  font-size: 13px;
+}
+
+[data-theme="alien"] h1 { font-size: 1.6rem; text-shadow: 0 0 8px rgba(0, 255, 65, 0.7); }
+[data-theme="alien"] h2 { font-size: 1.2rem; text-shadow: 0 0 6px rgba(0, 255, 65, 0.6); }
+[data-theme="alien"] h3 { font-size: 1rem; text-shadow: 0 0 4px rgba(0, 255, 65, 0.5); }
+[data-theme="alien"] p, [data-theme="alien"] span, [data-theme="alien"] td, [data-theme="alien"] th {
+  text-shadow: 0 0 3px rgba(0, 255, 65, 0.5);
+}
+
+/* CRT Scanlines */
+[data-theme="alien"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 2px);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Subtle flicker */
+[data-theme="alien"] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 255, 65, 0.008);
+  pointer-events: none;
+  z-index: 9998;
+  animation: fui-flicker 0.12s infinite;
+}
+
+/* =============================================================================
+   5. OBLIVION - Holographic Minimal
+   ============================================================================= */
+[data-theme="oblivion"] {
+  --background: oklch(0.08 0.015 210);
+  --foreground: oklch(0.92 0.04 210);
+  --primary: oklch(0.7 0.12 195);
+  --primary-foreground: oklch(0.08 0 0);
+  --muted: oklch(0.14 0.015 210);
+  --muted-foreground: oklch(0.55 0.04 210);
+  --border: oklch(0.35 0.06 195);
+  --card: oklch(0.1 0.015 210);
+  --card-foreground: oklch(0.92 0.04 210);
+  --accent: oklch(0.75 0.1 195);
+}
+
+[data-theme="oblivion"] * {
+  font-family: 'Nova Mono', 'JetBrains Mono', monospace !important;
+}
+
+[data-theme="oblivion"] body {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(0, 255, 255, 0.06) 0%, transparent 40%),
+    linear-gradient(rgba(0, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.02) 1px, transparent 1px),
+    oklch(0.08 0.015 210);
+  background-size: 100% 100%, 32px 32px, 32px 32px, 100% 100%;
+  font-size: 11px;
+}
+
+[data-theme="oblivion"] h1 { font-size: 1.4rem; font-weight: 400; letter-spacing: 0.12em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.35); }
+[data-theme="oblivion"] h2 { font-size: 1rem; font-weight: 400; letter-spacing: 0.1em; text-shadow: 0 0 10px rgba(0, 255, 255, 0.3); }
+[data-theme="oblivion"] h3 { font-size: 0.85rem; font-weight: 400; letter-spacing: 0.08em; }

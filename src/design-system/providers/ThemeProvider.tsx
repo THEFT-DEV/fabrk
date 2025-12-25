@@ -21,36 +21,62 @@ export type ColorThemeName =
   | 'vic20'
   | 'atari'
   | 'spectrum'
-  | 'bw';
+  | 'bw'
+  // Futuristic themes
+  | 'cyberpunk'
+  | 'phosphor'
+  | 'holographic'
+  | 'navigator'
+  | 'blueprint'
+  | 'infrared';
 
 const ALL_THEMES = [
+  // Standard CRT
   'amber',
   'green',
   'blue',
   'red',
   'purple',
+  // Retro Computer
   'gameboy',
   'c64',
   'gbpocket',
   'vic20',
   'atari',
   'spectrum',
+  // Futuristic
+  'cyberpunk',
+  'phosphor',
+  'holographic',
+  'navigator',
+  'blueprint',
+  'infrared',
+  // Light
   'bw',
 ] as const;
 
 // Dark themes for system dark mode (all terminal themes are dark)
 const DARK_THEMES: ColorThemeName[] = [
+  // Standard CRT
   'amber',
   'green',
   'blue',
   'red',
   'purple',
+  // Retro Computer
   'gameboy',
   'c64',
   'gbpocket',
   'vic20',
   'atari',
   'spectrum',
+  // Futuristic
+  'cyberpunk',
+  'phosphor',
+  'holographic',
+  'navigator',
+  'blueprint',
+  'infrared',
 ];
 
 // Light theme for system light mode
@@ -210,20 +236,16 @@ export function ThemeScript({
       try {
         var colorTheme = localStorage.getItem('${colorKey}') || localStorage.getItem('${legacyColorKey}');
         var validThemes = [
-          'amber',
-          'green',
-          'blue',
-          'red',
-          'purple',
-          'gameboy',
-          'c64',
-          'gbpocket',
-          'vic20',
-          'atari',
-          'spectrum',
-          'bw',
+          'amber', 'green', 'blue', 'red', 'purple',
+          'gameboy', 'c64', 'gbpocket', 'vic20', 'atari', 'spectrum',
+          'cyberpunk', 'phosphor', 'holographic', 'navigator', 'blueprint', 'infrared',
+          'bw'
         ];
-        var darkThemes = ['amber', 'green', 'blue', 'red', 'purple', 'gameboy', 'c64', 'gbpocket', 'vic20', 'atari', 'spectrum'];
+        var darkThemes = [
+          'amber', 'green', 'blue', 'red', 'purple',
+          'gameboy', 'c64', 'gbpocket', 'vic20', 'atari', 'spectrum',
+          'cyberpunk', 'phosphor', 'holographic', 'navigator', 'blueprint', 'infrared'
+        ];
 
         if (colorTheme && validThemes.includes(colorTheme)) {
           document.documentElement.setAttribute('data-theme', colorTheme);
