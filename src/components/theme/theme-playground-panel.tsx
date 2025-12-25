@@ -14,11 +14,8 @@ import { cn } from '@/lib/utils';
 type RadiusOption = 'none' | 'sm' | 'md' | 'lg' | 'full';
 type ScaleOption = '90' | '95' | '100' | '105' | '110';
 type PanelBackground = 'solid' | 'translucent';
-type GrayOption = 'gray' | 'slate' | 'zinc' | 'neutral' | 'stone';
-
 interface ThemeConfig {
   accentColor: string;
-  grayColor: GrayOption;
   appearance: 'light' | 'dark';
   radius: RadiusOption;
   scale: ScaleOption;
@@ -54,14 +51,6 @@ const ACCENT_COLORS = [
   { id: 'bw', color: '#ffffff', name: 'B&W' },
 ] as const;
 
-const GRAY_COLORS: { id: GrayOption; color: string; name: string }[] = [
-  { id: 'gray', color: '#71717a', name: 'Gray' },
-  { id: 'slate', color: '#64748b', name: 'Slate' },
-  { id: 'zinc', color: '#71717a', name: 'Zinc' },
-  { id: 'neutral', color: '#737373', name: 'Neutral' },
-  { id: 'stone', color: '#78716c', name: 'Stone' },
-];
-
 const RADIUS_OPTIONS: { value: RadiusOption; label: string; cssValue: string }[] = [
   { value: 'none', label: 'None', cssValue: '0' },
   { value: 'sm', label: 'Small', cssValue: '0.25rem' },
@@ -88,7 +77,6 @@ export function ThemePlaygroundPanel() {
   // Playground-specific settings (stored locally, not affecting global theme)
   const [config, setConfig] = useState<ThemeConfig>({
     accentColor: colorTheme,
-    grayColor: 'gray',
     appearance: colorTheme === 'bw' ? 'light' : 'dark',
     radius: 'none', // Terminal default
     scale: '100',
@@ -120,11 +108,56 @@ export function ThemePlaygroundPanel() {
     }
   }, [colorTheme, mounted]);
 
-  // Apply radius to document
+  // Apply radius to document - inject CSS to override rounded-none
   useEffect(() => {
     if (!mounted) return;
     const radiusValue = RADIUS_OPTIONS.find((r) => r.value === config.radius)?.cssValue || '0';
     document.documentElement.style.setProperty('--radius', radiusValue);
+
+    // Inject/update style tag to override Tailwind's rounded-none when radius is not 'none'
+    let styleTag = document.getElementById('theme-playground-radius');
+    if (!styleTag) {
+      styleTag = document.createElement('style');
+      styleTag.id = 'theme-playground-radius';
+      document.head.appendChild(styleTag);
+    }
+
+    if (config.radius === 'none') {
+      // Remove overrides when radius is none (terminal default)
+      styleTag.textContent = '';
+    } else {
+      // Override rounded-none and apply radius to key elements
+      styleTag.textContent = `
+        /* Theme Playground: Override radius */
+        [data-slot="card"],
+        [data-slot="button"],
+        [data-slot="badge"],
+        [data-slot="metric-card"],
+        [data-slot="feature-card"],
+        .rounded-none {
+          border-radius: ${radiusValue} !important;
+        }
+
+        /* Inputs and form elements */
+        input:not([type="checkbox"]):not([type="radio"]),
+        textarea,
+        select,
+        [data-slot="select-trigger"],
+        [data-slot="input"] {
+          border-radius: ${radiusValue} !important;
+        }
+
+        /* Popovers and dropdowns */
+        [data-slot="popover-content"],
+        [data-slot="select-content"],
+        [data-slot="dropdown-menu-content"],
+        [data-slot="dialog-content"],
+        [data-slot="sheet-content"] {
+          border-radius: ${radiusValue} !important;
+        }
+      `;
+    }
+
     localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
   }, [config, mounted]);
 
@@ -174,7 +207,6 @@ export function ThemePlaygroundPanel() {
     const themeCode = `// Theme Configuration
 const themeConfig = {
   accentColor: '${config.accentColor}',
-  grayColor: '${config.grayColor}',
   appearance: '${config.appearance}',
   radius: '${config.radius}', // CSS: ${RADIUS_OPTIONS.find((r) => r.value === config.radius)?.cssValue}
   scale: '${config.scale}%',
@@ -212,12 +244,12 @@ document.documentElement.setAttribute('data-theme', '${config.accentColor}');`;
 
   return (
     <>
-      {/* Toggle Button */}
+      {/* Toggle Button - Top right, below nav */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          'fixed right-6 bottom-6 z-50',
-          'flex h-12 w-12 items-center justify-center',
+          'fixed right-6 top-20 z-50',
+          'flex h-10 w-10 items-center justify-center',
           'border border-border bg-card',
           'transition-all duration-200',
           'hover:bg-muted hover:border-primary',
@@ -226,20 +258,20 @@ document.documentElement.setAttribute('data-theme', '${config.accentColor}');`;
         )}
         aria-label="Toggle theme playground"
       >
-        <Palette className="h-5 w-5" />
+        <Palette className="h-4 w-4" />
       </button>
 
-      {/* Panel */}
+      {/* Panel - Anchored to top right */}
       {isOpen && (
         <div
           className={cn(
-            'fixed right-6 bottom-20 z-50',
-            'w-80 max-h-[calc(100vh-8rem)] overflow-y-auto',
+            'fixed right-6 top-32 z-50',
+            'w-72 max-h-[calc(100vh-10rem)] overflow-y-auto',
             'border border-border',
             config.panelBackground === 'translucent'
               ? 'bg-card/80 backdrop-blur-md'
               : 'bg-card',
-            'animate-in slide-in-from-bottom-5 duration-200'
+            'animate-in slide-in-from-top-5 duration-200'
           )}
         >
           {/* Header */}
@@ -294,30 +326,6 @@ document.documentElement.setAttribute('data-theme', '${config.accentColor}');`;
               {hoveredColor && (
                 <p className="font-mono text-xs text-muted-foreground">{hoveredColor}</p>
               )}
-            </div>
-
-            {/* Gray Color */}
-            <div className="space-y-3">
-              <label className="font-mono text-xs text-muted-foreground uppercase tracking-wide">
-                Gray color
-              </label>
-              <div className="flex gap-2">
-                {GRAY_COLORS.map((gray) => (
-                  <button
-                    key={gray.id}
-                    onClick={() => setConfig((prev) => ({ ...prev, grayColor: gray.id }))}
-                    className={cn(
-                      'h-8 w-8 transition-all duration-150',
-                      'hover:scale-110',
-                      'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1',
-                      config.grayColor === gray.id && 'ring-2 ring-foreground ring-offset-2 ring-offset-background'
-                    )}
-                    style={{ backgroundColor: gray.color }}
-                    title={gray.name}
-                    aria-label={`Select ${gray.name} gray`}
-                  />
-                ))}
-              </div>
             </div>
 
             {/* Appearance */}
