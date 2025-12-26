@@ -119,7 +119,7 @@ export function ThemePlaygroundTrigger({ className }: { className?: string }) {
       type="button"
       onClick={toggle}
       className={cn(
-        'flex h-10 items-center gap-2 px-3',
+        'flex h-10 items-center gap-2 px-3 rounded-dynamic',
         'font-mono text-xs uppercase tracking-wide',
         'text-muted-foreground transition-colors',
         'hover:text-foreground hover:bg-muted',
