@@ -463,9 +463,11 @@ ${displayEffect !== 'none' ? `document.documentElement.classList.add('effect-${d
           )}
           // eslint-disable-next-line design-system/no-inline-styles -- Dynamic position for dragging
           style={position ? {
-            left: position.x,
-            top: position.y,
+            left: 0,
+            top: 0,
             right: 'auto',
+            transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
+            willChange: isDragging ? 'transform' : 'auto',
           } : {
             right: '1.5rem',
             top: '8rem',
