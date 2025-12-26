@@ -451,7 +451,8 @@ document.documentElement.setAttribute('data-theme', '${config.accentColor}');`;
           {/* Header - Draggable */}
           <div
             className={cn(
-              'flex shrink-0 items-center justify-between border-b border-border p-3',
+              'flex shrink-0 items-center justify-between p-3',
+              !isMinimized && 'border-b border-border',
               'cursor-grab select-none',
               isDragging && 'cursor-grabbing'
             )}
