@@ -100,16 +100,15 @@ export function ProfileHeader({ user }: ProfileHeaderProps) {
           </div>
         </div>
 
-        {/* Stats - bottom row in boxes */}
-        <div className={cn('mt-6 flex border-t pt-6', mode.color.border.default)}>
-          {Object.entries(user.stats).map(([key, value], index) => (
+        {/* Stats - bottom row in separate boxes */}
+        <div className={cn('mt-6 grid grid-cols-2 gap-3 border-t pt-6 sm:grid-cols-4', mode.color.border.default)}>
+          {Object.entries(user.stats).map(([key, value]) => (
             <div
               key={key}
               className={cn(
-                'border px-4 py-2 text-center',
+                'border px-4 py-3 text-center',
                 mode.radius,
-                mode.color.border.default,
-                index > 0 && 'border-l-0'
+                mode.color.border.default
               )}
             >
               <div className={cn('text-xl font-semibold', mode.color.text.primary)}>{value}</div>

@@ -415,9 +415,9 @@ ${displayEffect !== 'none' ? `document.documentElement.classList.add('effect-${d
       const deltaX = e.clientX - dragRef.current.startX;
       const deltaY = e.clientY - dragRef.current.startY;
 
-      // Calculate new position with bounds checking
-      const newX = Math.max(0, Math.min(window.innerWidth - 320, dragRef.current.startPosX + deltaX));
-      const newY = Math.max(0, Math.min(window.innerHeight - 100, dragRef.current.startPosY + deltaY));
+      // Calculate new position with bounds checking (just keep header visible)
+      const newX = Math.max(-280, Math.min(window.innerWidth - 40, dragRef.current.startPosX + deltaX));
+      const newY = Math.max(0, Math.min(window.innerHeight - 48, dragRef.current.startPosY + deltaY));
 
       setPosition({ x: newX, y: newY });
     };
