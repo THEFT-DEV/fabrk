@@ -158,7 +158,7 @@ export function ThemePlaygroundPanel({ showTrigger = false }: ThemePlaygroundPan
   const [hoveredColor, setHoveredColor] = useState<string | null>(null);
   const [displayEffect, setDisplayEffect] = useState<DisplayEffect>('none');
   const [isMinimized, setIsMinimized] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState<{ x: number; y: number } | null>(null); // null = default position
   const [isDragging, setIsDragging] = useState(false);
   const dragRef = useRef<{ startX: number; startY: number; startPosX: number; startPosY: number } | null>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -369,12 +369,22 @@ document.documentElement.setAttribute('data-theme', '${config.accentColor}');`;
   // Drag handlers
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     if ((e.target as HTMLElement).closest('button')) return; // Don't drag when clicking buttons
+    e.preventDefault(); // Prevent text selection while dragging
+
+    // Get current position from element if not already set
+    const panel = panelRef.current;
+    if (!panel) return;
+
+    const rect = panel.getBoundingClientRect();
+    const currentX = position?.x ?? rect.left;
+    const currentY = position?.y ?? rect.top;
+
     setIsDragging(true);
     dragRef.current = {
       startX: e.clientX,
       startY: e.clientY,
-      startPosX: position.x,
-      startPosY: position.y,
+      startPosX: currentX,
+      startPosY: currentY,
     };
   }, [position]);
 
@@ -385,10 +395,12 @@ document.documentElement.setAttribute('data-theme', '${config.accentColor}');`;
       if (!dragRef.current) return;
       const deltaX = e.clientX - dragRef.current.startX;
       const deltaY = e.clientY - dragRef.current.startY;
-      setPosition({
-        x: dragRef.current.startPosX + deltaX,
-        y: dragRef.current.startPosY + deltaY,
-      });
+
+      // Calculate new position with bounds checking
+      const newX = Math.max(0, Math.min(window.innerWidth - 320, dragRef.current.startPosX + deltaX));
+      const newY = Math.max(0, Math.min(window.innerHeight - 100, dragRef.current.startPosY + deltaY));
+
+      setPosition({ x: newX, y: newY });
     };
 
     const handleMouseUp = () => {
@@ -427,11 +439,13 @@ document.documentElement.setAttribute('data-theme', '${config.accentColor}');`;
             isDragging && 'cursor-grabbing'
           )}
           // eslint-disable-next-line design-system/no-inline-styles -- Dynamic position for dragging
-          style={{
-            right: position.x === 0 && position.y === 0 ? '1.5rem' : 'auto',
-            top: position.x === 0 && position.y === 0 ? '8rem' : 'auto',
-            left: position.x !== 0 || position.y !== 0 ? `calc(100% - 1.5rem - 20rem + ${position.x}px)` : 'auto',
-            transform: position.x !== 0 || position.y !== 0 ? `translateY(calc(8rem + ${position.y}px))` : 'none',
+          style={position ? {
+            left: position.x,
+            top: position.y,
+            right: 'auto',
+          } : {
+            right: '1.5rem',
+            top: '8rem',
           }}
         >
           {/* Header - Draggable */}
