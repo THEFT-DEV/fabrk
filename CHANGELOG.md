@@ -5,6 +5,32 @@ All notable changes to Fabrk will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-12-27
+
+### Added
+- **Bidirectional Font Pairings** - 34 display/body font combinations for headlines and content
+- **6 FUI (Futuristic UI) Themes** - Blueprint, Cyberpunk, Navigator, Phosphor, Holographic, Infrared
+- **Code Syntax Highlighting** - Complete `--code-*` variables for all 18 themes
+- **Extended Chart Colors** - `chart-6` through `chart-9` added to all themes
+- **Style Guide Template** - Comprehensive design system reference in `/library`
+
+### Changed
+- All 18 themes now pass WCAG AA accessibility audit
+- FUI theme border contrast improved (3:1 minimum for UI components)
+- Code comment contrast fixed for readability in dark themes
+- Chart color duplicates removed from `:root` theme
+
+### Fixed
+- Blueprint theme border: 45% → 55% for WCAG 3:1
+- Cyberpunk theme border: 25% → 38% for WCAG 3:1
+- Navigator theme border: 30% → 36% for WCAG 3:1
+- Phosphor theme border: 25% → 35% for WCAG 3:1
+- Holographic theme border: 35% → 40% for WCAG 3:1
+- Red theme code comments: 40% → 50% for readability
+- Infrared theme code comments: 35% → 28% for contrast
+
+---
+
 ## [1.0.1] - 2025-12-25
 
 ### Changed

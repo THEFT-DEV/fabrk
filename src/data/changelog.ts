@@ -22,6 +22,61 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "1.1.0",
+    date: "2025-12-27",
+    title: "FONT_PAIRINGS_AND_ACCESSIBILITY",
+    changes: [
+      {
+        type: 'added',
+        description: "**Bidirectional Font Pairings** - 34 display/body font combinations for headlines and content"
+      },
+      {
+        type: 'added',
+        description: "**6 FUI Themes** - Blueprint, Cyberpunk, Navigator, Phosphor, Holographic, Infrared"
+      },
+      {
+        type: 'added',
+        description: "**Code Syntax Highlighting** - Complete `--code-*` variables for all 18 themes"
+      },
+      {
+        type: 'added',
+        description: "**Extended Chart Colors** - `chart-6` through `chart-9` added to all themes"
+      },
+      {
+        type: 'added',
+        description: "**Style Guide Template** - Comprehensive design system reference in `/library`"
+      },
+      {
+        type: 'changed',
+        description: "All 18 themes now pass WCAG AA accessibility audit"
+      },
+      {
+        type: 'changed',
+        description: "FUI theme border contrast improved (3:1 minimum for UI components)"
+      },
+      {
+        type: 'fixed',
+        description: "Blueprint theme border contrast (45% → 55%) for WCAG 3:1"
+      },
+      {
+        type: 'fixed',
+        description: "Cyberpunk theme border contrast (25% → 38%) for WCAG 3:1"
+      },
+      {
+        type: 'fixed',
+        description: "Navigator theme border contrast (30% → 36%) for WCAG 3:1"
+      },
+      {
+        type: 'fixed',
+        description: "Phosphor theme border contrast (25% → 35%) for WCAG 3:1"
+      },
+      {
+        type: 'fixed',
+        description: "Red/Infrared theme code comment contrast for readability"
+      }
+    ]
+  },
+  {
     version: "1.0.1",
     date: "2025-12-25",
     title: "DYNAMIC_RADIUS_SYSTEM",
