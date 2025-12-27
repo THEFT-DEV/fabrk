@@ -406,7 +406,7 @@ export const templates: Template[] = [
     category: 'design',
     icon: SwatchBook,
     badge: 'Essential',
-    href: '/style-guide',
+    href: '/library/style-guide',
     features: ['Typography', 'Colors', 'Spacing', 'Forms', 'Buttons', 'Cards', 'Navigation', 'Feedback', 'Overlays', 'Data Display', 'Effects'],
     complexity: 'Beginner',
     tags: ['design-system', 'reference', 'components', 'tokens'],

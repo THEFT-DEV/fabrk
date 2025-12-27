@@ -281,12 +281,12 @@ export const templatesNavigation: TemplateNavSection[] = [
   {
     title: 'Design System',
     id: 'design-system',
-    href: '/style-guide',
+    href: '/library/style-guide',
     icon: SwatchBook,
     items: [
       {
         title: 'Style Guide',
-        href: '/style-guide',
+        href: '/library/style-guide',
         icon: SwatchBook,
       },
     ],
