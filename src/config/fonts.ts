@@ -82,7 +82,7 @@ export const FONT_OPTIONS: FontOption[] = [
   // ═══════════════════════════════════════════════════════════════
   {
     value: 'jetbrains',
-    label: 'JetBrains Mono',
+    label: 'JetBrains Mono (Default)',
     googleFamily: 'JetBrains Mono',
     cssValue: "'JetBrains Mono', ui-monospace, monospace",
     category: 'mono',
@@ -207,6 +207,93 @@ export const FONT_OPTIONS: FontOption[] = [
     weights: [400, 700],
   },
 ];
+
+/**
+ * FONT PAIRINGS
+ *
+ * When a body font is selected, the headline font auto-updates to its pair.
+ * Users can still override by manually selecting a different headline font.
+ *
+ * Format: { bodyFont: headlineFont }
+ */
+export const FONT_PAIRINGS: Record<string, string> = {
+  // Monospace body → Same mono (terminal consistency) or display headline
+  'jetbrains': 'jetbrains',
+  'fira-code': 'fira-code',
+  'source-code': 'source-code',
+  'ibm-plex': 'ibm-plex',
+  'roboto-mono': 'roboto-mono',
+  'space-mono': 'space-mono',
+
+  // Sans-serif body → Display or contrasting headline
+  'inter': 'bebas-neue',
+  'roboto': 'oswald',
+  'open-sans': 'anton',
+  'lato': 'archivo-black',
+  'poppins': 'russo-one',
+  'montserrat': 'bebas-neue',
+
+  // Serif body → Display headline for contrast
+  'playfair': 'bebas-neue',
+  'merriweather': 'oswald',
+  'lora': 'anton',
+  'crimson': 'archivo-black',
+
+  // Display body → Same display or mono headline
+  'bebas-neue': 'bebas-neue',
+  'oswald': 'oswald',
+  'anton': 'anton',
+  'archivo-black': 'archivo-black',
+  'russo-one': 'russo-one',
+};
+
+/**
+ * Get the recommended headline font for a body font.
+ * Returns the body font itself if no pairing is defined.
+ */
+export function getPairedHeadlineFont(bodyFont: string): string {
+  return FONT_PAIRINGS[bodyFont] || bodyFont;
+}
+
+/**
+ * Get the recommended body font for a headline font.
+ * Truly bidirectional: if A ↔ B, selecting either gives you the other.
+ */
+export function getPairedBodyFont(headlineFont: string): string {
+  // Mirror of FONT_PAIRINGS - each pair works both directions
+  const reversePairings: Record<string, string> = {
+    // Display ↔ Sans-serif (primary pairings)
+    'bebas-neue': 'inter',
+    'oswald': 'roboto',
+    'anton': 'open-sans',
+    'archivo-black': 'lato',
+    'russo-one': 'poppins',
+
+    // Sans-serif ↔ Display (same pairs, other direction)
+    'inter': 'bebas-neue',
+    'roboto': 'oswald',
+    'open-sans': 'anton',
+    'lato': 'archivo-black',
+    'poppins': 'russo-one',
+    'montserrat': 'bebas-neue',
+
+    // Monospace ↔ Monospace (self-paired)
+    'jetbrains': 'jetbrains',
+    'fira-code': 'fira-code',
+    'source-code': 'source-code',
+    'ibm-plex': 'ibm-plex',
+    'roboto-mono': 'roboto-mono',
+    'space-mono': 'space-mono',
+
+    // Serif ↔ Display (contrast pairings)
+    'playfair': 'bebas-neue',
+    'merriweather': 'oswald',
+    'lora': 'anton',
+    'crimson': 'archivo-black',
+  };
+
+  return reversePairings[headlineFont] || headlineFont;
+}
 
 /**
  * Default fonts (used when no saved config exists)

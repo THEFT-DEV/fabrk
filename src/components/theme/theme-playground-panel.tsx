@@ -6,7 +6,7 @@ import { createContext, useCallback, useContext, useEffect, useRef, useState } f
 import { Button } from '@/components/ui/button';
 import { useThemeContext } from '@/design-system/providers/ThemeProvider';
 import { cn } from '@/lib/utils';
-import { FONT_OPTIONS, DEFAULT_BODY_FONT, DEFAULT_HEADLINE_FONT, getFontCssValue } from '@/config/fonts';
+import { FONT_OPTIONS, DEFAULT_BODY_FONT, DEFAULT_HEADLINE_FONT, getFontCssValue, getPairedHeadlineFont, getPairedBodyFont } from '@/config/fonts';
 
 // =============================================================================
 // CONTEXT - For external control of the panel
@@ -817,7 +817,15 @@ export function ThemePlaygroundPanel({ showTrigger = false }: ThemePlaygroundPan
                 </label>
                 <select
                   value={config.bodyFont}
-                  onChange={(e) => setConfig((prev) => ({ ...prev, bodyFont: e.target.value }))}
+                  onChange={(e) => {
+                    const newBodyFont = e.target.value;
+                    const pairedHeadline = getPairedHeadlineFont(newBodyFont);
+                    setConfig((prev) => ({
+                      ...prev,
+                      bodyFont: newBodyFont,
+                      headlineFont: pairedHeadline,
+                    }));
+                  }}
                   className={cn(
                     'w-full border border-border bg-background px-3 py-2',
                     'font-body text-xs text-foreground',
@@ -854,7 +862,15 @@ export function ThemePlaygroundPanel({ showTrigger = false }: ThemePlaygroundPan
                 </label>
                 <select
                   value={config.headlineFont}
-                  onChange={(e) => setConfig((prev) => ({ ...prev, headlineFont: e.target.value }))}
+                  onChange={(e) => {
+                    const newHeadlineFont = e.target.value;
+                    const pairedBody = getPairedBodyFont(newHeadlineFont);
+                    setConfig((prev) => ({
+                      ...prev,
+                      headlineFont: newHeadlineFont,
+                      bodyFont: pairedBody,
+                    }));
+                  }}
                   className={cn(
                     'w-full border border-border bg-background px-3 py-2',
                     'font-body text-xs text-foreground',
