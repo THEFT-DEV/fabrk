@@ -414,7 +414,6 @@ export const templates: Template[] = [
 ];
 
 export const categories = [
-  { id: 'design', name: 'Design System', icon: SwatchBook },
   { id: 'ai', name: 'AI Tools', icon: Bot },
   { id: 'dashboard', name: 'Dashboards', icon: LayoutDashboard },
   { id: 'auth', name: 'Authentication', icon: Lock },
@@ -423,6 +422,7 @@ export const categories = [
   { id: 'marketing', name: 'Marketing', icon: FileText },
   { id: 'ux', name: 'User Experience', icon: User },
   { id: 'patterns', name: 'Patterns', icon: Layers },
+  { id: 'design', name: 'Design System', icon: SwatchBook },
   { id: 'components', name: 'Components', icon: Palette, href: '/components' },
 ];
 

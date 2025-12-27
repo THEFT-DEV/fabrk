@@ -48,19 +48,6 @@ export interface TemplateNavSection {
 
 export const templatesNavigation: TemplateNavSection[] = [
   {
-    title: 'Design System',
-    id: 'design-system',
-    href: '/style-guide',
-    icon: SwatchBook,
-    items: [
-      {
-        title: 'Style Guide',
-        href: '/style-guide',
-        icon: SwatchBook,
-      },
-    ],
-  },
-  {
     title: 'Getting Started',
     id: 'getting-started',
     href: '/library/docs',
@@ -289,6 +276,19 @@ export const templatesNavigation: TemplateNavSection[] = [
       },
       { title: 'Empty States', href: '/library/empty-states', icon: Inbox },
       { title: 'Modal Patterns', href: '/library/modals', icon: Layers },
+    ],
+  },
+  {
+    title: 'Design System',
+    id: 'design-system',
+    href: '/style-guide',
+    icon: SwatchBook,
+    items: [
+      {
+        title: 'Style Guide',
+        href: '/style-guide',
+        icon: SwatchBook,
+      },
     ],
   },
 ];
