@@ -29,6 +29,7 @@ import {
   Image,
   Volume2,
   History,
+  SwatchBook,
 } from 'lucide-react';
 
 export interface TemplateNavItem {
@@ -46,6 +47,19 @@ export interface TemplateNavSection {
 }
 
 export const templatesNavigation: TemplateNavSection[] = [
+  {
+    title: 'Design System',
+    id: 'design-system',
+    href: '/style-guide',
+    icon: SwatchBook,
+    items: [
+      {
+        title: 'Style Guide',
+        href: '/style-guide',
+        icon: SwatchBook,
+      },
+    ],
+  },
   {
     title: 'Getting Started',
     id: 'getting-started',

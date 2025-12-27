@@ -28,13 +28,14 @@ import {
   QrCode,
   History,
   Bot,
+  SwatchBook,
 } from 'lucide-react';
 
 export interface Template {
   id: string;
   name: string;
   description: string;
-  category: 'dashboard' | 'admin' | 'account' | 'marketing' | 'auth' | 'ux' | 'patterns' | 'ai';
+  category: 'dashboard' | 'admin' | 'account' | 'marketing' | 'auth' | 'ux' | 'patterns' | 'ai' | 'design';
   icon: React.ElementType;
   badge?: string;
   href: string;
@@ -397,9 +398,23 @@ export const templates: Template[] = [
     href: '/library/changelog',
     features: ['Version tags', 'Date stamps', 'Categories', 'Badges'],
   },
+  // Design System
+  {
+    id: 'style-guide',
+    name: 'Style Guide',
+    description: 'Complete design system reference with all components, typography, colors, and effects',
+    category: 'design',
+    icon: SwatchBook,
+    badge: 'Essential',
+    href: '/style-guide',
+    features: ['Typography', 'Colors', 'Spacing', 'Forms', 'Buttons', 'Cards', 'Navigation', 'Feedback', 'Overlays', 'Data Display', 'Effects'],
+    complexity: 'Beginner',
+    tags: ['design-system', 'reference', 'components', 'tokens'],
+  },
 ];
 
 export const categories = [
+  { id: 'design', name: 'Design System', icon: SwatchBook },
   { id: 'ai', name: 'AI Tools', icon: Bot },
   { id: 'dashboard', name: 'Dashboards', icon: LayoutDashboard },
   { id: 'auth', name: 'Authentication', icon: Lock },
