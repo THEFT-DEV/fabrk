@@ -1,0 +1,11 @@
+# Pre-commit hook: Type check + lint-staged (ESLint, Prettier, Design Audit)
+
+echo "🔍 Running pre-commit checks..."
+
+# Type check (fast, catches TS errors)
+npm run type-check || exit 1
+
+# Lint-staged (runs on staged files only)
+npx lint-staged || exit 1
+
+echo "✓ Pre-commit checks passed"

@@ -1,0 +1,424 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: '22.x'
+  NPM_REGISTRY: 'https://registry.npmjs.org'
+
+jobs:
+  setup:
+    name: Setup & Cache
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      cache-key: ${{ steps.cache-key.outputs.key }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          registry-url: ${{ env.NPM_REGISTRY }}
+
+      - name: Generate cache key
+        id: cache-key
+        run: echo "key=${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}" >> $GITHUB_OUTPUT
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+  env-validation:
+    name: Environment Validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: setup
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check required CI environment variables
+        run: |
+          echo "## Environment Validation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          MISSING_VARS=""
+
+          # Check critical secrets exist (without exposing values)
+          if [ -z "${{ secrets.NEXTAUTH_SECRET || '' }}" ]; then
+            echo "⚠️ NEXTAUTH_SECRET not configured (using test value)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ NEXTAUTH_SECRET configured" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ -z "${{ secrets.DATABASE_URL || '' }}" ]; then
+            echo "⚠️ DATABASE_URL not configured (using test database)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ DATABASE_URL configured" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Check optional but recommended secrets
+          if [ -z "${{ secrets.LHCI_GITHUB_APP_TOKEN || '' }}" ]; then
+            echo "ℹ️ LHCI_GITHUB_APP_TOKEN not configured (Lighthouse comments disabled)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ LHCI_GITHUB_APP_TOKEN configured" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Environment validation complete." >> $GITHUB_STEP_SUMMARY
+
+      - name: Validate .env.example completeness
+        run: |
+          if [ -f ".env.example" ]; then
+            echo "Checking .env.example..."
+
+            # Count environment variables
+            VAR_COUNT=$(grep -c "^[A-Z]" .env.example || echo "0")
+            echo "Found $VAR_COUNT environment variables in .env.example"
+
+            # Check for common required variables
+            REQUIRED_VARS="DATABASE_URL AUTH_SECRET NEXTAUTH_URL"
+            for var in $REQUIRED_VARS; do
+              if grep -q "^$var" .env.example; then
+                echo "✓ $var documented"
+              else
+                echo "⚠ $var missing from .env.example"
+              fi
+            done
+          else
+            echo "Warning: .env.example not found"
+          fi
+
+  lint:
+    name: Lint & Format Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: setup
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Run ESLint
+        id: eslint
+        run: npm run lint
+        continue-on-error: true
+
+      - name: Run TypeScript type check
+        id: typecheck
+        run: npm run type-check
+        continue-on-error: true
+
+      - name: Check code formatting
+        id: format
+        run: npm run format:check
+        continue-on-error: true
+
+      - name: Fail if any check failed
+        if: steps.eslint.outcome == 'failure' || steps.typecheck.outcome == 'failure' || steps.format.outcome == 'failure'
+        run: exit 1
+
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: setup
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+        env:
+          DATABASE_URL: 'postgresql://test:test@localhost:5432/test'
+
+      - name: Run database migrations
+        run: npx prisma db push --skip-generate
+        env:
+          DATABASE_URL: 'postgresql://test:test@localhost:5432/test'
+
+      - name: Run unit tests
+        id: test
+        run: npm run test:coverage
+        env:
+          DATABASE_URL: 'postgresql://test:test@localhost:5432/test'
+          NEXTAUTH_SECRET: 'test-secret-for-ci-only'
+          NEXTAUTH_URL: 'http://localhost:3000'
+          VITEST_COVERAGE_PROVIDER: 'v8'
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 7
+
+      - name: Comment coverage on PR
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const coverage = require('./coverage/coverage-final.json');
+
+            let totalLines = 0, coveredLines = 0;
+
+            Object.values(coverage).forEach(file => {
+              if (file.lines) {
+                Object.values(file.lines).forEach(line => {
+                  totalLines++;
+                  if (line > 0) coveredLines++;
+                });
+              }
+            });
+
+            const percentage = totalLines > 0 ? Math.round((coveredLines / totalLines) * 100) : 0;
+            const status = percentage >= 50 ? '✅' : '⚠️';
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `${status} **Coverage:** ${percentage}%`
+            });
+        continue-on-error: true
+
+      - name: Fail if coverage < 50%
+        run: |
+          COVERAGE=$(find coverage -name 'coverage-final.json' | head -1)
+          if [ -f "$COVERAGE" ]; then
+            PERCENT=$(node -e "const c = require('./coverage/coverage-final.json'); let t=0,cv=0; Object.values(c).forEach(f=>{if(f.lines)Object.values(f.lines).forEach(l=>{t++;if(l>0)cv++;})}); console.log(Math.round((cv/t)*100))")
+            echo "Coverage: ${PERCENT}%"
+            if [ "$PERCENT" -lt 50 ]; then
+              echo "Coverage below 50% threshold"
+              exit 1
+            fi
+          fi
+
+  build:
+    name: Build & Bundle
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: lint
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+        env:
+          DATABASE_URL: 'postgresql://test:test@localhost:5432/test'
+
+      - name: Build application
+        run: npm run build
+        env:
+          DATABASE_URL: 'postgresql://test:test@localhost:5432/test'
+          NEXTAUTH_SECRET: 'test-secret-for-ci-build-only'
+          NEXTAUTH_URL: 'http://localhost:3000'
+          SKIP_ENV_VALIDATION: 'true'
+
+      - name: Analyze bundle size
+        run: |
+          echo "## Bundle Analysis" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -d ".next/static" ]; then
+            echo "### Static Assets" >> $GITHUB_STEP_SUMMARY
+            find .next/static -type f -exec ls -lh {} \; | awk '{print "- " $9 ": " $5}' >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact
+          path: .next/
+          retention-days: 7
+          if-no-files-found: ignore
+
+  lighthouse:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: build
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+        env:
+          DATABASE_URL: 'postgresql://test:test@localhost:5432/test'
+
+      - name: Run database migrations
+        run: npx prisma db push --skip-generate
+        env:
+          DATABASE_URL: 'postgresql://test:test@localhost:5432/test'
+
+      - name: Build application
+        run: npm run build
+        env:
+          DATABASE_URL: 'postgresql://test:test@localhost:5432/test'
+          NEXTAUTH_SECRET: 'test-secret-for-ci-lighthouse-only'
+          NEXTAUTH_URL: 'http://localhost:3000'
+          SKIP_ENV_VALIDATION: 'true'
+
+      - name: Run Lighthouse CI
+        run: npm run lighthouse:ci
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          DATABASE_URL: 'postgresql://test:test@localhost:5432/test'
+          NEXTAUTH_SECRET: 'test-secret-for-ci-lighthouse-only'
+          NEXTAUTH_URL: 'http://localhost:3000'
+
+  security:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: setup
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Run npm audit
+        id: audit
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+
+      - name: Check for outdated dependencies
+        id: outdated
+        run: npm outdated
+        continue-on-error: true
+
+      - name: Comment security findings on PR
+        if: github.event_name == 'pull_request' && (steps.audit.outcome == 'failure' || steps.outdated.outcome == 'failure')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `⚠️ **Security Warning:** Run 
+`npm audit` and 
+`npm outdated` locally to review findings.`
+            });
+        continue-on-error: true
+
+  summary:
+    name: CI Summary
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: always()
+    needs: [lint, unit-tests, build, security, lighthouse]
+
+    steps:
+      - name: Check overall status
+        run: |
+          echo "## CI Pipeline Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Job | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Lint & Format | ${{ needs.lint.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Unit Tests | ${{ needs.unit-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Build | ${{ needs.build.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Security | ${{ needs.security.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Lighthouse | ${{ needs.lighthouse.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+      - name: Fail if critical jobs failed
+        if: needs.lint.result == 'failure' || needs.build.result == 'failure'
+        run: exit 1

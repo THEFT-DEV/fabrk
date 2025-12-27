@@ -1,0 +1,45 @@
+# Fabrk - Next.js 15 SaaS Boilerplate
+> 100+ production-ready components, auth, payments, multi-tenancy
+
+## Documentation
+- /CLAUDE.md - AI agent guidance
+- /.agent-workspace/CLAUDE.md - Detailed patterns and architecture
+
+## Quick Start
+npm install && npm run dev
+
+## Tech Stack
+Next.js 15, TypeScript, Prisma, NextAuth v5, Stripe/Polar
+
+## Project Structure
+- src/app/ - Next.js App Router pages and API routes
+- src/components/ - React components (ui/, landing/, settings/, etc.)
+- src/lib/ - Utilities, auth, database, email, payments
+- prisma/ - Database schema and migrations
+
+## Key Features
+- Authentication (OAuth, Magic Link, Credentials)
+- Multi-tenancy with organizations
+- Stripe/Polar payments integration
+- File uploads (S3-compatible)
+- Email system with templates
+- Rate limiting and security
+- Audit logging
+- Feature flags
+
+## Component Categories
+- UI primitives (Button, Input, Card, etc.)
+- Data display (Tables, Charts, Lists)
+- Forms and validation
+- Navigation and layout
+- Marketing and landing pages
+- Admin dashboards
+- Settings and preferences
+
+## For AI Agents
+Read CLAUDE.md first for complete instructions on:
+- Code conventions and patterns
+- Component structure
+- API design
+- Testing approaches
+- Common tasks

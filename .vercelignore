@@ -1,0 +1,147 @@
+# ============================================
+# VERCEL IGNORE - Matches .syncinclude inverse
+# ============================================
+# Only exclude what customers DON'T get
+# This ensures Vercel deployment = customer package
+# ============================================
+
+# ============================================
+# INTERNAL DEVELOPMENT DIRECTORIES
+# ============================================
+.archives/
+.internal/
+.agent/
+.agent-workspace/
+.dev-plans/
+.project-archive/
+.test-backups/
+.cleargen/
+.ai-context.md
+.ai-session/
+
+# ============================================
+# INTERNAL REFERENCE MATERIALS
+# ============================================
+Boilerplate/
+claude_prompts/
+sample_landing/
+agent-tools/
+ai-chatbot-main/
+
+# ============================================
+# MCP SERVERS (except fabrk/)
+# ============================================
+mcp-servers/intellect-content-library/
+mcp-servers/.internal/
+.mcp.json
+
+# ============================================
+# INTERNAL SCRIPTS
+# ============================================
+scripts/sync-*.mjs
+scripts/mcp-setup.mjs
+scripts/generate-*-metadata.mjs
+scripts/refactor-*.mjs
+scripts/add-library-navigation.mjs
+scripts/hex-to-oklch-converter.mjs
+scripts/count-ui-components.mjs
+scripts/update-markdown-dynamic-data.mjs
+scripts/update-markdown-counts.mjs
+scripts/check-aria-labels.mjs
+
+# ============================================
+# INTERNAL DOCUMENTATION
+# ============================================
+docs/prompts/
+docs/11-marketing/
+docs/.internal/
+docs/design-system/violations/
+docs/archive/
+
+# Internal completion reports
+docs/04-development/TESTING-COMPLETE.md
+docs/04-development/COMPLETED-THEME-RESTORATION.md
+docs/04-development/LIGHTHOUSE-SETUP-SUMMARY.md
+docs/07-advanced/DEMO-PAGES-COMPLETE.md
+docs/02-components/CHAT-MESSAGE-DELIVERY-REPORT.md
+
+# Internal launch docs
+docs/09-launch/PRODUCT-HUNT*.md
+docs/09-launch/LAUNCH-PREPARATION-SUMMARY.md
+docs/09-launch/RELEASE-READINESS.md
+docs/09-launch/DISTRIBUTION*.md
+docs/09-launch/COMMUNITY-BUILDING-STRATEGY.md
+docs/09-launch/GITHUB-DISTRIBUTION-SETUP.md
+
+# Internal deployment docs
+docs/10-deployment/WEEK-2-COMPLETION-REPORT.md
+docs/10-deployment/V1-BLOCKER-FIXES.md
+docs/10-deployment/READY-FOR-LAUNCH.md
+docs/10-deployment/LAUNCH-DAY-RUNBOOK.md
+docs/10-deployment/LAUNCH-TIMELINE.md
+docs/10-deployment/LAUNCH-CHECKLIST-*.md
+docs/10-deployment/PRODUCT-HUNT*.md
+
+# ============================================
+# INTERNAL GITHUB FILES
+# ============================================
+.github/CI-CD-*.md
+.github/WORKFLOWS-CREATED.txt
+.github/copilot-instructions.md
+.github/workflows/README.md
+.github/RELEASE_TEMPLATE.md
+.github/pull_request_template.md
+
+# ============================================
+# LOCAL DEV FILES (never deployed)
+# ============================================
+# Database
+prisma/*.db
+prisma/*.db-journal
+*.sql
+*.sql.gz
+
+# Logs and reports
+logs/
+*.log
+npm-debug.log*
+lighthouse*.report.html
+lighthouse*.report.json
+.lighthouseci/
+
+# Backup and temp
+*.backup
+*.bak
+*.tmp
+tmp/
+temp/
+backups/
+
+# Editor configs
+.idea/
+.vscode/settings.json
+.vscode/keybindings.json
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test outputs (not test files themselves)
+coverage/
+.test-cache/
+.vitest-cache/
+playwright-report/
+test-results/
+
+# ============================================
+# MISPLACED DEV FILES
+# ============================================
+src/app/cards-audit/
+
+# ============================================
+# EXPERIMENTAL / LAB PAGES
+# ============================================
+src/app/(marketing)/fui-lab/

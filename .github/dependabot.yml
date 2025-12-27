@@ -1,0 +1,66 @@
+version: 2
+updates:
+  # NPM package updates
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    # reviewers:
+    #   - "your-github-username"
+    labels:
+      - "dependencies"
+      - "automated"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+
+    # Group updates to reduce PR noise
+    groups:
+      dev-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+      prod-patches:
+        dependency-type: "production"
+        update-types:
+          - "patch"
+      prod-minor:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+
+    # High-priority security updates
+    allow:
+      - dependency-type: "production"
+        update-types:
+          - "security"
+
+    # Ignore major version updates (manual review needed)
+    ignore:
+      - dependency-name: "next"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+
+  # GitHub Actions updates
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "10:00"
+    labels:
+      - "ci"
+      - "automated"
+    commit-message:
+      prefix: "ci(actions)"
+      include: "scope"
+    open-pull-requests-limit: 3
