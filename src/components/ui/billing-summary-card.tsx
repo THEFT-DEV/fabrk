@@ -188,7 +188,7 @@ function UsageSection({ usage }: UsageSectionProps) {
 
   return (
     <div className="border-border border-b p-4">
-      <p className={cn('text-muted-foreground mb-4 text-xs', mode.font)}>[USAGE_THIS_PERIOD]:</p>
+      <p className={cn('text-muted-foreground mb-4 text-xs', mode.font)}>[USAGE THIS PERIOD]:</p>
       <div className="space-y-4">
         {usage.map((item, index) => {
           const percentage = getUsagePercentage(item.used, item.limit);

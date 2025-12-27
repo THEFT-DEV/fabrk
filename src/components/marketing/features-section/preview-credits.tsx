@@ -66,7 +66,7 @@ export function CreditsPreview() {
           animate={isInView ? { opacity: 1 } : {}}
           className={cn(mode.font, 'text-muted-foreground mb-4 text-xs')}
         >
-          [AI_CREDITS]:
+          [AI CREDITS]:
         </motion.div>
 
         {/* Balance Display */}

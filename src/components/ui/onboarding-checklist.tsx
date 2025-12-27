@@ -222,12 +222,12 @@ export function OnboardingChecklist({
                       {expandedTaskId === task.id ? (
                         <>
                           <ChevronUp className="mr-1 h-3 w-3" />
-                          [HIDE_DETAILS]
+                          [HIDE DETAILS]
                         </>
                       ) : (
                         <>
                           <ChevronDown className="mr-1 h-3 w-3" />
-                          [SHOW_DETAILS]
+                          [SHOW DETAILS]
                         </>
                       )}
                     </Button>
@@ -274,7 +274,7 @@ export function OnboardingChecklist({
       {isComplete && (
         <div className={cn(mode.color.bg.successMuted, mode.color.border.success, 'border-t p-4')}>
           <p className={cn(mode.color.text.success, 'text-sm', mode.font)}>
-            [SETUP_COMPLETE]: You're all set! Start building amazing things.
+            [SETUP COMPLETE]: You're all set! Start building amazing things.
           </p>
         </div>
       )}

@@ -208,7 +208,7 @@ export function PricingTable({ plans = defaultPlans }: PricingTableProps) {
                               'border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground inline-block border px-2 py-0.5 text-xs'
                             )}
                           >
-                            [BEST_VALUE]
+                            [BEST VALUE]
                           </span>
                         )}
                       </div>

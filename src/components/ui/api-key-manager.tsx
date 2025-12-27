@@ -239,8 +239,8 @@ export function ApiKeyManager({
           <Card className={cn('border-dashed p-8 text-center', mode.radius)}>
             <p className={cn('text-muted-foreground text-sm', mode.font)}>
               {searchQuery
-                ? `[NO_KEYS_FOUND]: "${searchQuery}"`
-                : '[NO_API KEYS]: Generate your first key to get started.'}
+                ? `[NO KEYS FOUND]: "${searchQuery}"`
+                : '[NO API KEYS]: Generate your first key to get started.'}
             </p>
           </Card>
         ) : (
@@ -280,7 +280,7 @@ export function ApiKeyManager({
                   {key.lastUsed && (
                     <>
                       {' • '}
-                      [LAST_USED]: {new Date(key.lastUsed).toLocaleDateString()}
+                      [LAST USED]: {new Date(key.lastUsed).toLocaleDateString()}
                     </>
                   )}
                 </p>

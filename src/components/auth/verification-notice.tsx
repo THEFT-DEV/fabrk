@@ -50,7 +50,7 @@ export function VerificationNotice({ email }: VerificationNoticeProps) {
     >
       <AlertTriangle className="size-4" />
       <AlertTitle className={cn('font-semibold', mode.font)}>
-        [WARNING] EMAIL_NOT_VERIFIED
+        [WARNING] EMAIL NOT VERIFIED
       </AlertTitle>
       <AlertDescription className={cn('mt-2 space-y-4', mode.font)}>
         <p className="text-xs">
@@ -65,7 +65,7 @@ export function VerificationNotice({ email }: VerificationNoticeProps) {
             variant="outline"
             className={cn('text-xs', mode.radius, mode.font)}
           >
-            {loading ? '> SENDING...' : '> RESEND_VERIFICATION'}
+            {loading ? '> SENDING...' : '> RESEND VERIFICATION'}
           </Button>
           {message && (
             <span

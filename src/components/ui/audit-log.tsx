@@ -180,37 +180,37 @@ function LogFilters({
           </SelectTrigger>
           <SelectContent className={cn(mode.radius)}>
             <SelectItem value="all" className={cn(mode.font)}>
-              [ALL_ACTIONS]
+              [ALL ACTIONS]
             </SelectItem>
             <SelectItem value="user.login" className={cn(mode.font)}>
-              [USER_LOGIN]
+              [USER LOGIN]
             </SelectItem>
             <SelectItem value="user.logout" className={cn(mode.font)}>
-              [USER_LOGOUT]
+              [USER LOGOUT]
             </SelectItem>
             <SelectItem value="user.created" className={cn(mode.font)}>
-              [USER_CREATED]
+              [USER CREATED]
             </SelectItem>
             <SelectItem value="user.deleted" className={cn(mode.font)}>
-              [USER_DELETED]
+              [USER DELETED]
             </SelectItem>
             <SelectItem value="settings.updated" className={cn(mode.font)}>
-              [SETTINGS_UPDATED]
+              [SETTINGS UPDATED]
             </SelectItem>
             <SelectItem value="api key.created" className={cn(mode.font)}>
-              [API_KEY_CREATED]
+              [API KEY CREATED]
             </SelectItem>
             <SelectItem value="api key.revoked" className={cn(mode.font)}>
-              [API_KEY_REVOKED]
+              [API KEY REVOKED]
             </SelectItem>
             <SelectItem value="data.exported" className={cn(mode.font)}>
               [DATA EXPORTED]
             </SelectItem>
             <SelectItem value="data.deleted" className={cn(mode.font)}>
-              [DATA_DELETED]
+              [DATA DELETED]
             </SelectItem>
             <SelectItem value="security.breach" className={cn(mode.font)}>
-              [SECURITY_BREACH]
+              [SECURITY BREACH]
             </SelectItem>
           </SelectContent>
         </Select>
@@ -449,8 +449,8 @@ export function AuditLog({
           <div className="p-8 text-center">
             <p className={cn('text-muted-foreground text-sm', mode.font)}>
               {searchQuery || actionFilter !== 'all'
-                ? '[NO_LOGS_FOUND]: Try adjusting filters'
-                : '[NO_AUDIT LOGS]: User actions will appear here'}
+                ? '[NO LOGS FOUND]: Try adjusting filters'
+                : '[NO AUDIT LOGS]: User actions will appear here'}
             </p>
           </div>
         ) : (

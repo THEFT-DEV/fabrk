@@ -42,7 +42,7 @@ export function AccessCard({
       <CardContent padding="md" className="space-y-4">
         <div>
           <Badge variant="secondary" className="mb-2">
-            COMPLETE_PACKAGE
+            COMPLETE PACKAGE
           </Badge>
           <p className="text-muted-foreground text-sm">
             [STATUS]: Lifetime access to all Fabrk components, templates, and updates

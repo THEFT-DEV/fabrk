@@ -160,7 +160,7 @@ function WebhookFilters({
           </SelectTrigger>
           <SelectContent className={cn(mode.radius)}>
             <SelectItem value="all" className={cn(mode.font)}>
-              [ALL_STATUS]
+              [ALL STATUS]
             </SelectItem>
             <SelectItem value="success" className={cn(mode.font)}>
               [SUCCESS]
@@ -450,8 +450,8 @@ export function WebhookLog({
           <div className="p-8 text-center">
             <p className={cn('text-muted-foreground text-sm', mode.font)}>
               {searchQuery || statusFilter !== 'all'
-                ? '[NO_LOGS_FOUND]: Try adjusting filters'
-                : '[NO_WEBHOOK_LOGS]: Webhook events will appear here'}
+                ? '[NO LOGS FOUND]: Try adjusting filters'
+                : '[NO WEBHOOK LOGS]: Webhook events will appear here'}
             </p>
           </div>
         ) : (

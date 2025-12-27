@@ -24,7 +24,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     version: "1.1.0",
     date: "2025-12-27",
-    title: "FONT_PAIRINGS_AND_ACCESSIBILITY",
+    title: "FONT PAIRINGS AND ACCESSIBILITY",
     changes: [
       {
         type: 'added',
@@ -79,7 +79,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     version: "1.0.1",
     date: "2025-12-25",
-    title: "DYNAMIC_RADIUS_SYSTEM",
+    title: "DYNAMIC RADIUS SYSTEM",
     changes: [
       {
         type: 'changed',
@@ -122,7 +122,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     version: "1.0.0",
     date: "2025-12-24",
-    title: "INITIAL_RELEASE",
+    title: "INITIAL RELEASE",
     changes: [
       {
         type: 'added',

@@ -170,7 +170,7 @@ export function AiAutofill({ onAutofill, className }: AiAutofillProps) {
         {/* Company Name + Autofill Button */}
         <div className="space-y-2">
           <Label className={cn('text-xs uppercase', mode.font)}>
-            [COMPANY_NAME]: <span className="text-destructive">*</span>
+            [COMPANY NAME]: <span className="text-destructive">*</span>
           </Label>
           <div className="flex gap-2">
             <Input
@@ -248,7 +248,7 @@ export function AiAutofill({ onAutofill, className }: AiAutofillProps) {
               isFieldAutofilled('companySize') && 'text-success'
             )}
           >
-            [COMPANY_SIZE]:
+            [COMPANY SIZE]:
             {isFieldAutofilled('companySize') && <Check className="size-3" />}
           </Label>
           <Select
@@ -335,7 +335,7 @@ export function AiAutofill({ onAutofill, className }: AiAutofillProps) {
               isFieldAutofilled('targetAudience') && 'text-success'
             )}
           >
-            [TARGET_AUDIENCE]:
+            [TARGET AUDIENCE]:
             {isFieldAutofilled('targetAudience') && <Check className="size-3" />}
           </Label>
           <Textarea

@@ -173,7 +173,7 @@ export function HeroSplit({
                   'border-foreground bg-primary absolute -right-4 -bottom-4 border-2 px-6 py-4'
                 )}
               >
-                <p className="text-primary-foreground text-xs font-semibold">[TERMINAL_UI]</p>
+                <p className="text-primary-foreground text-xs font-semibold">[TERMINAL UI]</p>
               </div>
             </div>
 

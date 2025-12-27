@@ -127,7 +127,7 @@ export function LegalPageTemplate({
 
           {/* Last Updated */}
           <p className={cn('text-muted-foreground text-sm', mode.font)}>
-            [LAST_UPDATED]: {lastUpdated}
+            [LAST UPDATED]: {lastUpdated}
           </p>
         </div>
 

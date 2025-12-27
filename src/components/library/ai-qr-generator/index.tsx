@@ -134,7 +134,7 @@ export function AiQrGenerator({
           {/* Error Correction */}
           <div className="space-y-2">
             <Label className={cn('text-xs uppercase', mode.font)}>
-              [ERROR_CORRECTION]:
+              [ERROR CORRECTION]:
             </Label>
             <Select value={errorLevel} onValueChange={(v) => setErrorLevel(v as 'L' | 'M' | 'Q' | 'H')}>
               <SelectTrigger className={cn('text-sm', mode.radius, mode.font)}>

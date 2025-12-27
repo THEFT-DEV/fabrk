@@ -89,7 +89,7 @@ export function PrivacyForm() {
                 <FormItem className={cn("border-border flex flex-row items-center justify-between border p-4", mode.radius)}>
                   <div className="space-y-0.5">
                     <FormLabel className={cn(mode.font, 'text-xs')}>
-                      [PROFILE_VISIBILITY]:
+                      [PROFILE VISIBILITY]:
                     </FormLabel>
                     <FormDescription className={cn(mode.font, 'text-xs')}>
                       Allow your profile to be visible to other users.
