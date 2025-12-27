@@ -210,15 +210,40 @@ export const FONT_OPTIONS: FontOption[] = [
 
 /**
  * Default fonts (used when no saved config exists)
+ * IMPORTANT: These must match a 'value' in FONT_OPTIONS above
  */
 export const DEFAULT_BODY_FONT = 'jetbrains';
 export const DEFAULT_HEADLINE_FONT = 'jetbrains';
+
+// ═══════════════════════════════════════════════════════════════
+// VALIDATION - Catches config errors at build time
+// ═══════════════════════════════════════════════════════════════
+
+// Check for duplicate values
+const fontValues = FONT_OPTIONS.map((f) => f.value);
+const duplicates = fontValues.filter((v, i) => fontValues.indexOf(v) !== i);
+if (duplicates.length > 0) {
+  throw new Error(`[fonts.ts] Duplicate font values found: ${duplicates.join(', ')}`);
+}
+
+// Check that defaults exist in options
+if (!FONT_OPTIONS.find((f) => f.value === DEFAULT_BODY_FONT)) {
+  throw new Error(`[fonts.ts] DEFAULT_BODY_FONT "${DEFAULT_BODY_FONT}" not found in FONT_OPTIONS`);
+}
+if (!FONT_OPTIONS.find((f) => f.value === DEFAULT_HEADLINE_FONT)) {
+  throw new Error(`[fonts.ts] DEFAULT_HEADLINE_FONT "${DEFAULT_HEADLINE_FONT}" not found in FONT_OPTIONS`);
+}
 
 /**
  * Generates the Google Fonts URL from FONT_OPTIONS.
  * This is called at build time, so adding fonts above automatically updates the URL.
  */
 export function generateGoogleFontsUrl(): string {
+  if (FONT_OPTIONS.length === 0) {
+    console.warn('[fonts.ts] No fonts configured - using empty Google Fonts URL');
+    return '';
+  }
+
   const families = FONT_OPTIONS.map((font) => {
     const weights = font.weights || [400, 500, 700];
     const weightStr = weights.join(';');
@@ -235,3 +260,24 @@ export function generateGoogleFontsUrl(): string {
  * This avoids calling generateGoogleFontsUrl() at runtime
  */
 export const GOOGLE_FONTS_URL = generateGoogleFontsUrl();
+
+/**
+ * Get a font's CSS value by its value key.
+ * Returns a safe fallback if font not found.
+ */
+export function getFontCssValue(fontValue: string): string {
+  const font = FONT_OPTIONS.find((f) => f.value === fontValue);
+  if (font) {
+    return font.cssValue;
+  }
+  // Fallback to system monospace (safe default for terminal theme)
+  console.warn(`[fonts.ts] Font "${fontValue}" not found, using system fallback`);
+  return 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace';
+}
+
+/**
+ * Get fonts by category for building dropdown menus
+ */
+export function getFontsByCategory(category: FontCategory): FontOption[] {
+  return FONT_OPTIONS.filter((f) => f.category === category);
+}

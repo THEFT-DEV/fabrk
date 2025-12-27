@@ -6,7 +6,7 @@ import { createContext, useCallback, useContext, useEffect, useRef, useState } f
 import { Button } from '@/components/ui/button';
 import { useThemeContext } from '@/design-system/providers/ThemeProvider';
 import { cn } from '@/lib/utils';
-import { FONT_OPTIONS, DEFAULT_BODY_FONT, DEFAULT_HEADLINE_FONT } from '@/config/fonts';
+import { FONT_OPTIONS, DEFAULT_BODY_FONT, DEFAULT_HEADLINE_FONT, getFontCssValue } from '@/config/fonts';
 
 // =============================================================================
 // CONTEXT - For external control of the panel
@@ -440,13 +440,12 @@ export function ThemePlaygroundPanel({ showTrigger = false }: ThemePlaygroundPan
   // Apply fonts and typography to document
   useEffect(() => {
     if (!mounted) return;
-    const bodyFontOption = FONT_OPTIONS.find((f) => f.value === config.bodyFont);
-    const headlineFontOption = FONT_OPTIONS.find((f) => f.value === config.headlineFont);
     const bodySpacingOption = LETTER_SPACING_OPTIONS.find((l) => l.value === config.bodyLetterSpacing);
     const headlineSpacingOption = LETTER_SPACING_OPTIONS.find((l) => l.value === config.headlineLetterSpacing);
 
-    const bodyFont = bodyFontOption?.cssValue || "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace";
-    const headlineFont = headlineFontOption?.cssValue || "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace";
+    // Use helper for safe font lookup with fallback
+    const bodyFont = getFontCssValue(config.bodyFont);
+    const headlineFont = getFontCssValue(config.headlineFont);
     const bodySpacing = bodySpacingOption?.cssValue || '0';
     const headlineSpacing = headlineSpacingOption?.cssValue || '-0.025em';
     const uiTextTransform = config.uiTextCase === 'uppercase' ? 'uppercase' : 'none';
