@@ -542,42 +542,41 @@ export function ThemePlaygroundPanel({ showTrigger = false }: ThemePlaygroundPan
     const radiusValue = RADIUS_OPTIONS.find((r) => r.value === config.radius)?.cssValue || '0';
     const bodyFontOption = FONT_OPTIONS.find((f) => f.value === config.bodyFont);
     const headlineFontOption = FONT_OPTIONS.find((f) => f.value === config.headlineFont);
+    const bodySpacingOption = LETTER_SPACING_OPTIONS.find((l) => l.value === config.bodyLetterSpacing);
+    const headlineSpacingOption = LETTER_SPACING_OPTIONS.find((l) => l.value === config.headlineLetterSpacing);
+    const uiTextTransform = config.uiTextCase === 'uppercase' ? 'uppercase' : 'none';
 
-    const themeCode = `/* ═══════════════════════════════════════════════════════════════
-   FABRK THEME: ${themeInfo?.name?.toUpperCase() || config.accentColor.toUpperCase()}
-   Mode: ${config.appearance} | Radius: ${config.radius} | Effect: ${displayEffect}
-   ═══════════════════════════════════════════════════════════════ */
+    const themeCode = `/* FABRK THEME: ${themeInfo?.name?.toUpperCase() || config.accentColor.toUpperCase()} */
 
-// 1. Set variables in globals.css:
+/* ════════════════════════════════════════════════════════════════
+   PASTE THIS INTO src/app/globals.css (replace :root block)
+   ════════════════════════════════════════════════════════════════ */
+
 :root {
   --radius: ${radiusValue};
   --font-body: ${bodyFontOption?.cssValue || 'ui-monospace, monospace'};
   --font-headline: ${headlineFontOption?.cssValue || 'ui-monospace, monospace'};
+  --letter-spacing-body: ${bodySpacingOption?.cssValue || '0'};
+  --letter-spacing-headline: ${headlineSpacingOption?.cssValue || '-0.025em'};
 }
 
-// 2. Add to your root layout.tsx <html> tag:
+/* ════════════════════════════════════════════════════════════════
+   SET THEME IN src/app/layout.tsx
+   ════════════════════════════════════════════════════════════════ */
+
 <html data-theme="${config.accentColor}" className="${config.appearance}">
 
-// 3. Or set theme dynamically with ThemeProvider:
-import { useThemeContext } from '@/design-system/providers/ThemeProvider';
-const { setColorTheme } = useThemeContext();
-setColorTheme('${config.accentColor}');
+/* ════════════════════════════════════════════════════════════════
+   THAT'S IT! Your theme is configured.
 
-// 4. Display effect (add to <html> element):
-${displayEffect !== 'none' ? `document.documentElement.classList.add('effect-${displayEffect}');` : '// Clean mode - no effect'}
+   Theme: ${themeInfo?.name || config.accentColor} (${config.appearance})
+   Radius: ${radiusValue}
+   Body: ${bodyFontOption?.label || config.bodyFont}
+   Headlines: ${headlineFontOption?.label || config.headlineFont}${displayEffect !== 'none' ? `
+   Effect: ${displayEffect}` : ''}
 
-/* ───────────────────────────────────────────────────────────────
-   THEME SUMMARY
-   ───────────────────────────────────────────────────────────────
-   Theme ID:        ${config.accentColor}
-   Theme Name:      ${themeInfo?.name || 'Unknown'}
-   Appearance:      ${config.appearance}
-   Border Radius:   ${radiusValue}
-   Display Effect:  ${displayEffect}
-   Body Font:       ${bodyFontOption?.label || config.bodyFont}
-   Headline Font:   ${headlineFontOption?.label || config.headlineFont}
-   UI Text Case:    ${config.uiTextCase}
-   ─────────────────────────────────────────────────────────────── */`;
+   To change fonts: Edit src/config/fonts.ts
+   ════════════════════════════════════════════════════════════════ */`;
 
     try {
       await navigator.clipboard.writeText(themeCode);
