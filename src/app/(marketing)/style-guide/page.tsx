@@ -68,7 +68,7 @@ export default function StyleGuidePage() {
     <TooltipProvider>
       <div className="min-h-screen bg-background">
         {/* Header */}
-        <header className="border-b border-border">
+        <header>
           <div className="max-w-7xl mx-auto px-4 py-6">
             <div className="flex items-center justify-between">
               <div>
@@ -84,8 +84,7 @@ export default function StyleGuidePage() {
         </header>
 
         <Tabs defaultValue="typography" className="w-full">
-          <div className="border-b border-border">
-            <div className="max-w-7xl mx-auto px-4">
+          <div className="max-w-7xl mx-auto px-4">
               <TabsList className="h-auto p-0 bg-transparent gap-0">
                 {['Typography', 'Colors', 'Spacing', 'Forms', 'Buttons', 'Cards', 'Navigation', 'Feedback', 'Overlays', 'Data', 'Effects'].map((section) => (
                   <TabsTrigger
@@ -97,7 +96,6 @@ export default function StyleGuidePage() {
                   </TabsTrigger>
                 ))}
               </TabsList>
-            </div>
           </div>
 
           <div className="max-w-7xl mx-auto px-4 py-8">
