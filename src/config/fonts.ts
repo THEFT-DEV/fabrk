@@ -217,34 +217,34 @@ export const FONT_OPTIONS: FontOption[] = [
  * Format: { bodyFont: headlineFont }
  */
 export const FONT_PAIRINGS: Record<string, string> = {
-  // Monospace body → Display headline for contrast
-  'jetbrains': 'bebas-neue',
-  'fira-code': 'oswald',
-  'source-code': 'anton',
-  'ibm-plex': 'archivo-black',
-  'roboto-mono': 'russo-one',
-  'space-mono': 'bebas-neue',
+  // Monospace body → same mono headline (terminal consistency)
+  'jetbrains': 'jetbrains',
+  'fira-code': 'fira-code',
+  'source-code': 'source-code',
+  'ibm-plex': 'ibm-plex',
+  'roboto-mono': 'roboto-mono',
+  'space-mono': 'space-mono',
 
-  // Sans-serif body → Display headline for contrast
-  'inter': 'bebas-neue',
-  'roboto': 'oswald',
-  'open-sans': 'anton',
-  'lato': 'archivo-black',
-  'poppins': 'russo-one',
-  'montserrat': 'bebas-neue',
+  // Sans-serif body → Display headline (popular Google Fonts pairings)
+  'inter': 'bebas-neue',       // Clean modern pairing
+  'roboto': 'oswald',          // Google's most popular pairing
+  'open-sans': 'oswald',       // Classic web pairing
+  'lato': 'bebas-neue',        // Elegant contrast
+  'poppins': 'playfair',       // Geometric + elegant serif
+  'montserrat': 'playfair',    // Both have similar geometry
 
-  // Serif body → Display headline for contrast
-  'playfair': 'bebas-neue',
-  'merriweather': 'oswald',
-  'lora': 'anton',
-  'crimson': 'archivo-black',
+  // Serif body → Sans headline (traditional contrast)
+  'playfair': 'lato',          // Elegant serif + clean sans
+  'merriweather': 'montserrat', // Readable serif + geometric sans
+  'lora': 'open-sans',         // Book-style + neutral sans
+  'crimson': 'roboto',         // Classic serif + modern sans
 
-  // Display body → Monospace headline for terminal feel
-  'bebas-neue': 'jetbrains',
-  'oswald': 'fira-code',
-  'anton': 'source-code',
-  'archivo-black': 'ibm-plex',
-  'russo-one': 'roboto-mono',
+  // Display headline fonts → pair with readable sans body
+  'bebas-neue': 'open-sans',
+  'oswald': 'roboto',
+  'anton': 'roboto',
+  'archivo-black': 'open-sans',
+  'russo-one': 'roboto',
 };
 
 /**
@@ -262,34 +262,34 @@ export function getPairedHeadlineFont(bodyFont: string): string {
 export function getPairedBodyFont(headlineFont: string): string {
   // Reverse of FONT_PAIRINGS - headline → body
   const reversePairings: Record<string, string> = {
-    // Display headline → Sans-serif body
+    // Monospace headline → same mono body (terminal consistency)
+    'jetbrains': 'jetbrains',
+    'fira-code': 'fira-code',
+    'source-code': 'source-code',
+    'ibm-plex': 'ibm-plex',
+    'roboto-mono': 'roboto-mono',
+    'space-mono': 'space-mono',
+
+    // Display headline → readable sans body
     'bebas-neue': 'inter',
     'oswald': 'roboto',
-    'anton': 'open-sans',
-    'archivo-black': 'lato',
-    'russo-one': 'poppins',
+    'anton': 'roboto',
+    'archivo-black': 'open-sans',
+    'russo-one': 'roboto',
 
-    // Monospace headline → Display body
-    'jetbrains': 'bebas-neue',
-    'fira-code': 'oswald',
-    'source-code': 'anton',
-    'ibm-plex': 'archivo-black',
-    'roboto-mono': 'russo-one',
-    'space-mono': 'bebas-neue',
-
-    // Sans-serif headline → Monospace body (terminal feel)
-    'inter': 'jetbrains',
-    'roboto': 'jetbrains',
-    'open-sans': 'jetbrains',
-    'lato': 'jetbrains',
+    // Sans headline → serif or mono body for contrast
+    'inter': 'merriweather',
+    'roboto': 'lora',
+    'open-sans': 'playfair',
+    'lato': 'crimson',
     'poppins': 'jetbrains',
     'montserrat': 'jetbrains',
 
-    // Serif headline → Monospace body
-    'playfair': 'jetbrains',
-    'merriweather': 'jetbrains',
-    'lora': 'jetbrains',
-    'crimson': 'jetbrains',
+    // Serif headline → sans body (traditional contrast)
+    'playfair': 'poppins',
+    'merriweather': 'inter',
+    'lora': 'roboto',
+    'crimson': 'open-sans',
   };
 
   return reversePairings[headlineFont] || headlineFont;
