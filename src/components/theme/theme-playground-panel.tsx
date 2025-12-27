@@ -1,6 +1,6 @@
 'use client';
 
-import { Check, Copy, GripVertical, Minus, Moon, Palette, Sun, X } from 'lucide-react';
+import { Check, Copy, GripVertical, Minus, Moon, Palette, RotateCcw, Sun, X } from 'lucide-react';
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -594,6 +594,35 @@ export function ThemePlaygroundPanel({ showTrigger = false }: ThemePlaygroundPan
     }
   }, [config, displayEffect]);
 
+  const handleReset = useCallback(() => {
+    const defaultConfig: ThemeConfig = {
+      accentColor: 'green',
+      appearance: 'dark',
+      radius: 'none',
+      scale: '100',
+      panelBackground: 'solid',
+      bodyFont: DEFAULT_BODY_FONT,
+      headlineFont: DEFAULT_HEADLINE_FONT,
+      bodyLetterSpacing: 'normal',
+      headlineLetterSpacing: 'tight',
+      uiTextCase: 'uppercase',
+    };
+    setConfig(defaultConfig);
+    setColorTheme('green');
+    setDisplayEffect('none');
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(PANEL_POSITION_KEY);
+    setPanelPosition(DEFAULT_PANEL_POSITION);
+    // Reset CSS variables
+    document.documentElement.style.removeProperty('--font-body');
+    document.documentElement.style.removeProperty('--font-headline');
+    document.documentElement.style.removeProperty('--letter-spacing-body');
+    document.documentElement.style.removeProperty('--letter-spacing-headline');
+    document.documentElement.style.removeProperty('--radius');
+    // Remove effect classes
+    document.documentElement.classList.remove('effect-crt', 'effect-lcd', 'effect-vhs');
+  }, [setColorTheme]);
+
   if (!mounted) {
     return null;
   }
@@ -1020,24 +1049,34 @@ export function ThemePlaygroundPanel({ showTrigger = false }: ThemePlaygroundPan
                 </div>
               </div>
 
-              {/* Copy Theme Button */}
-              <Button
-                onClick={handleCopyTheme}
-                className="w-full"
-                variant="default"
-              >
-                {copied ? (
-                  <>
-                    <Check className="mr-2 h-4 w-4" />
-                    COPIED!
-                  </>
-                ) : (
-                  <>
-                    <Copy className="mr-2 h-4 w-4" />
-                    COPY THEME
-                  </>
-                )}
-              </Button>
+              {/* Action Buttons */}
+              <div className="flex gap-2">
+                <Button
+                  onClick={handleReset}
+                  className="flex-1"
+                  variant="outline"
+                >
+                  <RotateCcw className="mr-2 h-4 w-4" />
+                  RESET
+                </Button>
+                <Button
+                  onClick={handleCopyTheme}
+                  className="flex-1"
+                  variant="default"
+                >
+                  {copied ? (
+                    <>
+                      <Check className="mr-2 h-4 w-4" />
+                      COPIED!
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="mr-2 h-4 w-4" />
+                      COPY
+                    </>
+                  )}
+                </Button>
+              </div>
             </div>
           )}
 
