@@ -13,9 +13,9 @@ import {
 } from './mock-data';
 
 // Profile components
-import { ProfileHeader } from '@/app/(marketing)/library/profile/components/profile-header';
-import { BadgesSection } from '@/app/(marketing)/library/profile/components/badges-section';
-import { ProfileTabs } from '@/app/(marketing)/library/profile/components/profile-tabs';
+import { ProfileHeader } from '@/app/(public)/library/profile/components/profile-header';
+import { BadgesSection } from '@/app/(public)/library/profile/components/badges-section';
+import { ProfileTabs } from '@/app/(public)/library/profile/components/profile-tabs';
 
 export function ProfilePreview() {
   return (

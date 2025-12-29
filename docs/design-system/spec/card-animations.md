@@ -263,7 +263,7 @@ import { cn } from '@/lib/utils';
 
 ### Real-World Examples
 
-**1. Documentation Pages** (`/src/app/(marketing)/docs/`)
+**1. Documentation Pages** (`/src/app/(public)/docs/`)
 
 Used throughout docs site for component examples, feature guides, tutorials:
 

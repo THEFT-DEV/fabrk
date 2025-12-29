@@ -41,7 +41,7 @@ After any design work on Fabrk:
 - **Design System**: `src/design-system/` (themes, tokens, mode utilities)
 - **Global Styles**: `src/app/globals.css` (CSS variables, OKLCH tokens)
 - **Documentation**: `docs/08-design/` (design system spec, component authoring)
-- **Marketing Pages**: `src/app/(marketing)/` (landing, library, docs)
+- **Marketing Pages**: `src/app/(public)/` (landing, library, docs)
 - **Platform App**: `src/app/(platform)/` (dashboard, settings, security)
 
 **Key Files:**
@@ -922,7 +922,7 @@ const easing = {
 
 ### Pages Reviewed (100%)
 
-**Marketing (`src/app/(marketing)/`):**
+**Marketing (`src/app/(public)/`):**
 - ✅ `/` - Landing page
 - ✅ `/library/*` - Template showcase pages
 - ✅ `/docs/*` - Documentation pages

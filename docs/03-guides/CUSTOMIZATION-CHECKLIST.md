@@ -162,7 +162,7 @@ export const metadata: Metadata = {
 
 **Action:** Replace with your product's value proposition.
 
-**Location:** `/src/app/(marketing)/page.tsx`
+**Location:** `/src/app/(public)/page.tsx`
 
 **Sections to update:**
 ```tsx
@@ -435,10 +435,10 @@ NEXT_PUBLIC_POSTHOG_HOST=https://app.posthog.com
 
 **Locations:**
 ```
-/src/app/(marketing)/legal/privacy/page.tsx    # Privacy Policy
-/src/app/(marketing)/legal/terms/page.tsx      # Terms of Service
-/src/app/(marketing)/legal/refund/page.tsx     # Refund Policy
-/src/app/(marketing)/legal/cookies/page.tsx    # Cookie Policy
+/src/app/(public)/legal/privacy/page.tsx    # Privacy Policy
+/src/app/(public)/legal/terms/page.tsx      # Terms of Service
+/src/app/(public)/legal/refund/page.tsx     # Refund Policy
+/src/app/(public)/legal/cookies/page.tsx    # Cookie Policy
 ```
 
 **Requirements:**

@@ -169,7 +169,7 @@ export default function CustomizationChecklistPage() {
 
         <DocsCard title="5. CUSTOMIZE LANDING PAGE COPY (10 MIN)">
           <p>
-            <strong>Location:</strong> src/app/(marketing)/page.tsx
+            <strong>Location:</strong> src/app/(public)/page.tsx
           </p>
           <p className="mt-2">
             <strong>Action:</strong> Replace with your product&apos;s value proposition.

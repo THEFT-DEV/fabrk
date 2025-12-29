@@ -75,7 +75,7 @@ interface ChatInputProps {
 - Browser support matrix
 
 ### 4. Example Page
-**Location:** `src/app/(marketing)/examples/chat-input/page.tsx` (448 lines)
+**Location:** `src/app/(public)/examples/chat-input/page.tsx` (448 lines)
 
 **Interactive Demo Page:**
 - Live component showcase

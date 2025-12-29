@@ -81,18 +81,18 @@ src/app/api/
 
 # Marketing Routes - minimal starter pages only
 # Customers get blank templates to customize
-src/app/(marketing)/layout.tsx
-src/app/(marketing)/page.tsx
-src/app/(marketing)/error.tsx
-src/app/(marketing)/(legal)/
+src/app/(public)/layout.tsx
+src/app/(public)/page.tsx
+src/app/(public)/error.tsx
+src/app/(public)/(legal)/
 # EXCLUDED: fabrk.dev marketing pages (about, pricing, features, etc.)
 # Customers build their own marketing pages
 
 # EXCLUDED - fabrk.dev website content:
-# src/app/(marketing)/library/  - fabrk.dev template showcase
-# src/app/(marketing)/docs/     - 269 files (interactive docs)
-# src/app/(marketing)/fui-lab/  - experimental
-# src/app/(marketing)/hero-lab/ - experimental
+# src/app/(public)/library/  - fabrk.dev template showcase
+# src/app/(public)/docs/     - 269 files (interactive docs)
+# src/app/(public)/fui-lab/  - experimental
+# src/app/(public)/hero-lab/ - experimental
 src/app/globals.css
 src/app/typography.css
 src/app/layout.tsx
@@ -176,7 +176,7 @@ public/
 # NOTE - Customers get BLANK boilerplate
 # ============================================
 # Customers get starter templates, NOT the fabrk.dev website:
-# - src/app/(marketing)/ - Basic pages (pricing, about, blog, etc.)
+# - src/app/(public)/ - Basic pages (pricing, about, blog, etc.)
 # - Homepage is replaced with starter template during sync
 # - CLAUDE.md is replaced with customer-facing version during sync
 

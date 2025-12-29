@@ -9,7 +9,7 @@
 | Goal | Start Here |
 |------|------------|
 | Get running in 1 hour | [QUICK-START.md](01-getting-started/QUICK-START.md) |
-| Explore components | [/components](../src/app/(marketing)/components) |
+| Explore components | [/components](../src/app/(public)/components) |
 | Deploy to production | [DEPLOYMENT.md](10-deployment/DEPLOYMENT.md) |
 | Customize themes | [THEME-GUIDE.md](08-design/THEME-GUIDE.md) |
 

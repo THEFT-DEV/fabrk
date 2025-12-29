@@ -258,7 +258,7 @@ const eslintConfig = [{
 {
   // Pages with dynamic images that need raw <img> tags (external URLs, data URLs)
   files: [
-    "src/app/(marketing)/library/ai-image/page.tsx", // Demo shows dynamically generated images
+    "src/app/(public)/library/ai-image/page.tsx", // Demo shows dynamically generated images
   ],
   rules: {
     '@next/next/no-img-element': 'off',

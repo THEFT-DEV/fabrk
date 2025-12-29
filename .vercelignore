@@ -144,4 +144,4 @@ src/app/cards-audit/
 # ============================================
 # EXPERIMENTAL / LAB PAGES
 # ============================================
-src/app/(marketing)/fui-lab/
+src/app/(public)/fui-lab/

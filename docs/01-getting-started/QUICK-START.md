@@ -159,7 +159,7 @@ Visit [http://localhost:3000](http://localhost:3000)
 
 ## Customizing Your Landing Page
 
-After setup, your landing page is at `src/app/(marketing)/page.tsx`.
+After setup, your landing page is at `src/app/(public)/page.tsx`.
 
 Each template includes:
 - **[SETUP] banner** at the top with instructions
@@ -168,7 +168,7 @@ Each template includes:
 
 ### Quick Customization
 
-1. Open `src/app/(marketing)/page.tsx`
+1. Open `src/app/(public)/page.tsx`
 2. Replace placeholder text with your app name and features
 3. Remove the [SETUP] instruction banner
 4. Done!
@@ -179,7 +179,7 @@ A `FABRK-PROMPTS.md` file is generated with copy-paste prompts for Cursor, Claud
 
 ```markdown
 ## QUICK START - Update Your Landing Page
-Update src/app/(marketing)/page.tsx:
+Update src/app/(public)/page.tsx:
 1. Replace placeholder text with my app name and tagline
 2. Update the 3-6 features to match what my product does
 3. Keep the design system (font-mono, mode.radius, uppercase headings)
@@ -243,7 +243,7 @@ npm run build
 
 ## Next Steps
 
-1. **Customize your landing page** - Update `src/app/(marketing)/page.tsx`
+1. **Customize your landing page** - Update `src/app/(public)/page.tsx`
 2. **Configure payments** - Set up Stripe/Polar/Lemonsqueezy webhooks
 3. **Add your features** - Build on top of 78 UI components
 4. **Deploy** - Push to Vercel and set environment variables

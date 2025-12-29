@@ -9,7 +9,7 @@
  * COUNTS TRACKED:
  * - UI Components (src/components/ui)
  * - Themes (src/data/themes.ts)
- * - Templates (src/app/(marketing)/library)
+ * - Templates (src/app/(public)/library)
  * - API Routes (src/app/api)
  * - Test Files (src test files)
  * - i18n Languages (src/config/i18n.ts)
@@ -59,7 +59,7 @@ function getThemeCount() {
 async function getTemplateCount() {
   try {
     // Count actual template pages in library
-    const files = await glob('src/app/(marketing)/library/**/page.tsx', { cwd: ROOT });
+    const files = await glob('src/app/(public)/library/**/page.tsx', { cwd: ROOT });
     // Subtract 1 for the main library index page
     return Math.max(files.length - 1, 0);
   } catch (error) {
@@ -118,7 +118,7 @@ async function getDocsPageCount() {
 
 async function getLiveDocsPageCount() {
   try {
-    const files = await glob('src/app/(marketing)/docs/**/page.tsx', { cwd: ROOT });
+    const files = await glob('src/app/(public)/docs/**/page.tsx', { cwd: ROOT });
     return files.length;
   } catch (error) {
     console.error('❌ Could not count live docs pages:', error.message);

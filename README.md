@@ -732,7 +732,7 @@ fabrk/
 │   │   └── DESIGN_SYSTEM.md          # Complete design system docs
 │   └── ENV-VALIDATION.md             # Environment variable guide
 │
-├── src/app/(marketing)/
+├── src/app/(public)/
 │   ├── docs/                         # Live documentation site (Next.js pages)
 │   │   ├── components/               # 78 UI component docs with live previews
 │   │   ├── features/                 # Feature guides (payments, auth, etc.)
@@ -778,13 +778,13 @@ fabrk/
 - Read with any text editor or GitHub
 - Perfect for version control diffs
 
-**2. Next.js Pages (`src/app/(marketing)/docs/`)**
+**2. Next.js Pages (`src/app/(public)/docs/`)**
 - Interactive documentation with live previews
 - Component demos you can interact with
 - Searchable via site search
 - Visit http://localhost:3000/docs after `npm run dev`
 
-**3. Library Templates (`src/app/(marketing)/library/`)**
+**3. Library Templates (`src/app/(public)/library/`)**
 - Production-ready page templates
 - Copy entire pages to jumpstart development
 - Preview + Code tabs for easy copying

@@ -12,10 +12,10 @@ import { BrowserFrame } from './browser-frame';
 import { LeftNavigation } from './left-navigation';
 
 // Analytics Dashboard components
-import { MetricCards } from '@/app/(marketing)/library/analytics-dashboard/components/metric-cards';
-import { RevenueChart } from '@/app/(marketing)/library/analytics-dashboard/components/revenue-chart';
-import { ActivityFeed } from '@/app/(marketing)/library/analytics-dashboard/components/activity-feed';
-import { AnalyticsTabs } from '@/app/(marketing)/library/analytics-dashboard/components/analytics-tabs';
+import { MetricCards } from '@/app/(public)/library/analytics-dashboard/components/metric-cards';
+import { RevenueChart } from '@/app/(public)/library/analytics-dashboard/components/revenue-chart';
+import { ActivityFeed } from '@/app/(public)/library/analytics-dashboard/components/activity-feed';
+import { AnalyticsTabs } from '@/app/(public)/library/analytics-dashboard/components/analytics-tabs';
 import {
   metrics,
   revenueData,
@@ -23,7 +23,7 @@ import {
   pageData,
   trafficSources,
   deviceBreakdown,
-} from '@/app/(marketing)/library/analytics-dashboard/components/mock-data';
+} from '@/app/(public)/library/analytics-dashboard/components/mock-data';
 
 export function DashboardPreview() {
   const [activeTab, setActiveTab] = useState('overview');

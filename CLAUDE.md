@@ -175,7 +175,7 @@ Service Layer (src/lib/)
 ```
 src/
 ├── app/
-│   ├── (marketing)/       # Public pages (landing, pricing, etc.)
+│   ├── (public)/          # Public pages (landing, pricing, etc.)
 │   ├── (platform)/        # Authenticated app pages
 │   ├── (auth)/            # Auth pages (login, register)
 │   └── api/               # API routes

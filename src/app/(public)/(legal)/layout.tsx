@@ -1,6 +1,6 @@
 /**
  * Legal Pages Layout
- * Nested inside (marketing) layout which already provides SiteNavigation and Footer
+ * Nested inside (public) layout which already provides SiteNavigation and Footer
  * This layout only adds structure for legal content
  */
 

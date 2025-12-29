@@ -23,12 +23,12 @@ import { BrowserFrame } from './browser-frame';
 import { LeftNavigation } from './left-navigation';
 
 // User Management components
-import { columns } from '@/app/(marketing)/library/user-management/components/user-table-columns';
-import { mockUsers } from '@/app/(marketing)/library/user-management/components/types';
-import { DataTable as UserDataTable } from '@/app/(marketing)/library/user-management/components/data-table';
-import { PaginationControls } from '@/app/(marketing)/library/user-management/components/pagination-controls';
-import { StatsCards } from '@/app/(marketing)/library/user-management/components/stats-cards';
-import { TableToolbar } from '@/app/(marketing)/library/user-management/components/table-toolbar';
+import { columns } from '@/app/(public)/library/user-management/components/user-table-columns';
+import { mockUsers } from '@/app/(public)/library/user-management/components/types';
+import { DataTable as UserDataTable } from '@/app/(public)/library/user-management/components/data-table';
+import { PaginationControls } from '@/app/(public)/library/user-management/components/pagination-controls';
+import { StatsCards } from '@/app/(public)/library/user-management/components/stats-cards';
+import { TableToolbar } from '@/app/(public)/library/user-management/components/table-toolbar';
 
 export function TablePreview() {
   const [sorting, setSorting] = useState<SortingState>(() => []);

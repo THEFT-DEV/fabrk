@@ -8,7 +8,7 @@
 import { mode } from '@/design-system';
 import { cn } from '@/lib/utils';
 import { Card, CardHeader } from '@/components/ui/card';
-import { templates } from '@/app/(marketing)/library/library-data';
+import { templates } from '@/app/(public)/library/library-data';
 import { getRelatedTemplates } from '@/lib/search';
 import { TemplateCard } from './template-card';
 

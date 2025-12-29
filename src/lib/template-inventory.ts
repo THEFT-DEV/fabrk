@@ -11,7 +11,7 @@ import { glob } from 'glob';
 let templates: Array<{ id: string; [key: string]: unknown }> = [];
 try {
   // This will fail in customer repos (library folder doesn't exist)
-  templates = require('@/app/(marketing)/library/library-data').templates || [];
+  templates = require('@/app/(public)/library/library-data').templates || [];
 } catch {
   // Customer repos: no library, no templates to validate
   templates = [];
@@ -29,14 +29,14 @@ interface ValidationResult {
 
 /**
  * Extract template ID from file path
- * Example: "src/app/(marketing)/library/analytics-dashboard/page.tsx" → "analytics-dashboard"
- * Example: "src/app/(marketing)/library/authentication/sign-in/page.tsx" → "sign-in"
- * Example: "src/app/(marketing)/library/page.tsx" → "" (main index)
+ * Example: "src/app/(public)/library/analytics-dashboard/page.tsx" → "analytics-dashboard"
+ * Example: "src/app/(public)/library/authentication/sign-in/page.tsx" → "sign-in"
+ * Example: "src/app/(public)/library/page.tsx" → "" (main index)
  */
 function extractIdFromPath(filePath: string): string {
   // Remove the base path and page.tsx
   const relativePath = filePath
-    .replace('src/app/(marketing)/library/', '')
+    .replace('src/app/(public)/library/', '')
     .replace('/page.tsx', '')
     .replace('page.tsx', ''); // Handle root library/page.tsx
 
@@ -74,7 +74,7 @@ const CATEGORY_PAGES = [
  */
 export async function validateTemplateRegistry(): Promise<ValidationResult> {
   // Find all page.tsx files in library directory
-  const filesystemPages = await glob('src/app/(marketing)/library/**/page.tsx');
+  const filesystemPages = await glob('src/app/(public)/library/**/page.tsx');
 
   // Extract template IDs from paths
   const filesystemIds = filesystemPages
@@ -128,7 +128,7 @@ if (require.main === module) {
         console.error('❌ ORPHANED TEMPLATES (in filesystem but not registered):');
         result.orphans.forEach((id) => console.error(`   - ${id}`));
         console.error(
-          '\n   Fix: Add these templates to src/app/(marketing)/library/library-data.ts\n'
+          '\n   Fix: Add these templates to src/app/(public)/library/library-data.ts\n'
         );
       }
 
