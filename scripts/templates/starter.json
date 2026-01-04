@@ -1,0 +1,26 @@
+{
+  "name": "Starter",
+  "description": "PostgreSQL + Auth only. Perfect for demos and prototypes.",
+  "setup_time": "1-2 minutes",
+  "api_keys_needed": 1,
+  "dependencies": [],
+  "env": {
+    "DATABASE_URL": "{{PROMPT:PostgreSQL connection string (neon.tech or supabase.com free tier)}}",
+    "NEXTAUTH_SECRET": "{{AUTO_GENERATE}}",
+    "NEXTAUTH_URL": "http://localhost:3000",
+    "NEXT_PUBLIC_APP_URL": "http://localhost:3000",
+    "NODE_ENV": "development"
+  },
+  "features": {
+    "database": "postgresql",
+    "auth": true,
+    "payments": null,
+    "email": null,
+    "analytics": null,
+    "ai": null
+  },
+  "post_setup": [
+    "npm run db:push",
+    "npm run dev"
+  ]
+}

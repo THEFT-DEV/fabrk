@@ -1,0 +1,184 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [main, develop]
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: '22.x'
+
+jobs:
+  lint-and-type:
+    name: Lint & Type Checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Run ESLint
+        run: npm run lint
+        continue-on-error: false
+
+      - name: Run TypeScript check
+        run: npm run type-check
+        continue-on-error: false
+
+      - name: Check formatting
+        run: npm run format:check
+        continue-on-error: false
+
+  test-changes:
+    name: Test Changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+        env:
+          DATABASE_URL: 'postgresql://test:test@localhost:5432/test'
+
+      - name: Run database migrations
+        run: npx prisma db push --skip-generate
+        env:
+          DATABASE_URL: 'postgresql://test:test@localhost:5432/test'
+
+      - name: Run tests with coverage
+        id: tests
+        run: npm run test:coverage
+        env:
+          DATABASE_URL: 'postgresql://test:test@localhost:5432/test'
+          NEXTAUTH_SECRET: 'test-secret'
+          NEXTAUTH_URL: 'http://localhost:3000'
+
+      - name: Upload coverage artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-${{ github.event.pull_request.number }}
+          path: coverage/
+          retention-days: 7
+
+  build-check:
+    name: Build Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+        env:
+          DATABASE_URL: 'postgresql://test:test@localhost:5432/test'
+
+      - name: Build application
+        run: npm run build
+        env:
+          DATABASE_URL: 'postgresql://test:test@localhost:5432/test'
+          NEXTAUTH_SECRET: 'test-secret'
+          NEXTAUTH_URL: 'http://localhost:3000'
+          SKIP_ENV_VALIDATION: 'true'
+
+  pr-summary:
+    name: PR Summary
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: always()
+    needs: [lint-and-type, test-changes, build-check]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Generate PR summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const lintStatus = '${{ needs.lint-and-type.result }}';
+            const testStatus = '${{ needs.test-changes.result }}';
+            const buildStatus = '${{ needs.build-check.result }}';
+
+            const allPassed = lintStatus === 'success' && testStatus === 'success' && buildStatus === 'success';
+            const statusIcon = allPassed ? '✅' : '⚠️';
+
+            const body = `## ${statusIcon} PR Checks Summary
+
+            | Check | Status |
+            |-------|--------|
+            | Lint & Type | ${lintStatus === 'success' ? '✅' : '❌'} |
+            | Tests | ${testStatus === 'success' ? '✅' : '❌'} |
+            | Build | ${buildStatus === 'success' ? '✅' : '❌'} |
+
+            ${!allPassed ? '\n**Action Required:** Please fix the failing checks above before merging.' : '\n**All checks passed!** You can merge this PR.'}`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+
+      - name: Fail if critical checks failed
+        if: needs.lint-and-type.result == 'failure' || needs.build-check.result == 'failure'
+        run: |
+          echo "Critical checks failed. PR cannot be merged."
+          exit 1
