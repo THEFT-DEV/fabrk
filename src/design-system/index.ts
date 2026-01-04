@@ -200,23 +200,54 @@ export interface ModeConfig {
     };
   };
 
+  /**
+   * Typography tokens following M3 type scale
+   * @see https://m3.material.io/styles/typography/type-scale-tokens
+   */
   typography: {
-    button: string;
+    // Display - Hero/marketing (88px → 36px)
+    display: {
+      xl: string; // 88px/96px
+      l: string; // 57px/64px
+      m: string; // 45px/52px
+      s: string; // 36px/44px
+    };
+    // Headline - Page titles (32px → 24px)
+    headline: {
+      l: string; // 32px/40px
+      m: string; // 28px/36px
+      s: string; // 24px/32px
+    };
+    // Title - Section headers (22px → 14px)
+    title: {
+      l: string; // 22px/30px
+      m: string; // 16px/24px
+      s: string; // 14px/20px
+    };
+    // Body - Running text (16px → 12px)
     body: {
-      xs: string;
-      sm: string;
-      md: string;
+      l: string; // 16px/24px
+      m: string; // 14px/20px
+      s: string; // 12px/16px
     };
-    heading: {
-      h1: string;
-      h2: string;
-      h3: string;
+    // Label - UI components (14px → 11px)
+    label: {
+      l: string; // 14px/20px
+      m: string; // 12px/16px
+      s: string; // 11px/16px
     };
+    // Code - Terminal output (16px → 12px)
+    code: {
+      l: string; // 16px/24px
+      m: string; // 14px/20px
+      s: string; // 12px/16px
+    };
+    // Legacy aliases (backwards compatibility)
+    button: string;
     caption: string;
-    micro: string; // 10px - for timestamps, codes, terminal headers
-    caps: string; // uppercase with 0.05em letter-spacing
+    micro: string;
+    caps: string;
     input: string;
-    label: string;
   };
 
   sizing: {
@@ -367,26 +398,52 @@ export const mode: ModeConfig = {
     },
   },
 
-  // Typography tokens
+  // Typography tokens - M3 type scale
+  // @see https://m3.material.io/styles/typography/type-scale-tokens
   typography: {
-    button: 'text-xs font-medium',
+    // Display - Hero/marketing
+    display: {
+      xl: 'text-display-xl', // 88px/96px
+      l: 'text-display-l', // 57px/64px
+      m: 'text-display-m', // 45px/52px
+      s: 'text-display-s', // 36px/44px
+    },
+    // Headline - Page titles
+    headline: {
+      l: 'text-headline-l', // 32px/40px
+      m: 'text-headline-m', // 28px/36px
+      s: 'text-headline-s', // 24px/32px
+    },
+    // Title - Section headers
+    title: {
+      l: 'text-title-l', // 22px/30px
+      m: 'text-title-m', // 16px/24px
+      s: 'text-title-s', // 14px/20px
+    },
+    // Body - Running text
     body: {
-      xs: 'text-xs',
-      sm: 'text-sm',
-      md: 'text-sm', // Terminal design: all body text uses text-sm (no text-base)
+      l: 'text-body-l', // 16px/24px
+      m: 'text-body-m', // 14px/20px
+      s: 'text-body-s', // 12px/16px
     },
-    heading: {
-      h1: 'text-4xl font-bold',
-      h2: 'text-3xl font-bold',
-      h3: 'text-2xl font-semibold',
+    // Label - UI components
+    label: {
+      l: 'text-label-l', // 14px/20px
+      m: 'text-label-m', // 12px/16px
+      s: 'text-label-s', // 11px/16px
     },
-    caption: 'text-xs text-muted-foreground',
-    // Micro text for timestamps, codes, terminal headers (10px)
-    micro: 'text-2xs',
-    // Uppercase text with proper letter-spacing (0.05em)
+    // Code - Terminal output
+    code: {
+      l: 'text-code-l', // 16px/24px
+      m: 'text-code-m', // 14px/20px
+      s: 'text-code-s', // 12px/16px
+    },
+    // Legacy aliases (backwards compatibility)
+    button: 'text-label-m font-medium', // 12px/16px
+    caption: 'text-caption text-muted-foreground', // 11px/16px
+    micro: 'text-2xs', // 10px
     caps: 'uppercase tracking-caps',
-    input: 'text-sm',
-    label: 'text-sm font-medium',
+    input: 'text-body-m', // 14px/20px
   },
 
   // Sizing tokens - 8-point grid compliant

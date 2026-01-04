@@ -515,7 +515,7 @@ const TemplatePageHeader = React.forwardRef<HTMLDivElement, TemplatePageHeaderPr
       <PageBadge prefix={badgePrefix}>{badge}</PageBadge>
       <h1 className={cn('text-4xl font-semibold tracking-tight', mode.font)}>{title}</h1>
       {description && (
-        <p className={cn(mode.color.text.muted, mode.typography.body.sm, mode.font)}>
+        <p className={cn(mode.color.text.muted, mode.typography.body.m, mode.font)}>
           {description}
         </p>
       )}

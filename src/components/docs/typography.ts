@@ -1,35 +1,44 @@
 /**
  * Docs Typography System
- * Consistent text styles across all documentation pages
+ * M3-aligned type tokens for documentation pages
+ *
+ * Token naming follows M3 conventions:
+ * - display-{size}: Hero content
+ * - headline-{size}: Page/section titles
+ * - title-{size}: Subsection headers
+ * - body-{size}: Running text
+ * - label-{size}: UI components
+ *
+ * @see https://m3.material.io/styles/typography/type-scale-tokens
  */
 
 export const docsTypography = {
-  // h1 - Page title
-  h1: 'font-mono text-4xl font-semibold tracking-tight',
+  // h1 - Page title (headline-l: 32px/40px)
+  h1: 'text-headline-l',
 
-  // h2 - Section title (PRIMARY colored)
-  h2: 'font-mono text-2xl font-semibold tracking-tight text-primary',
+  // h2 - Section title (headline-s: 24px/32px)
+  h2: 'text-headline-s text-primary',
 
-  // h3 - Subsection title
-  h3: 'font-mono text-xl font-semibold tracking-tight',
+  // h3 - Subsection title (title-l: 22px/30px)
+  h3: 'text-title-l',
 
-  // h4 - Card/item title
-  h4: 'font-mono text-sm font-semibold tracking-tight',
+  // h4 - Card/item title (title-s: 14px/20px)
+  h4: 'text-title-s',
 
-  // Body text (matches DocsCard content styling)
-  body: 'font-mono text-xs text-muted-foreground leading-relaxed',
+  // Body text (body-s: 12px/16px)
+  body: 'text-body-s text-muted-foreground',
 
-  // Caption/small text
-  caption: 'font-mono text-xs text-muted-foreground',
+  // Caption/small text (label-s: 11px/16px)
+  caption: 'text-caption text-muted-foreground',
 
-  // Code inline
-  code: 'font-mono text-xs bg-muted px-1.5 py-0.5',
+  // Code inline (code-s: 12px/16px)
+  code: 'text-code-s bg-muted px-1.5 py-0.5',
 
-  // Label (terminal style badge)
-  label: 'font-mono text-xs text-muted-foreground',
+  // Label (label-m: 12px/16px)
+  label: 'text-label-m text-muted-foreground',
 
-  // Terminal badge text
-  badge: 'font-mono text-sm text-muted-foreground',
+  // Terminal badge text (label-l: 14px/20px)
+  badge: 'text-label-l text-muted-foreground',
 } as const;
 
 export type DocsTypographyKey = keyof typeof docsTypography;

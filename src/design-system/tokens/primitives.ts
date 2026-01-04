@@ -133,20 +133,33 @@ export const fontFamily = {
   display: '"Inter", system-ui, sans-serif',
 } as const;
 
+/**
+ * Font Size Scale
+ * Based on M3 Type Scale with terminal-friendly sizes
+ * @see https://m3.material.io/styles/typography/type-scale-tokens
+ */
 export const fontSize = {
+  // M3 Label/Caption sizes
   '2xs': '0.625rem', // 10px
-  xs: '0.75rem', // 12px
-  sm: '0.875rem', // 14px
-  base: '1rem', // 16px
+  xs: '0.75rem', // 12px - body-s, label-m
+  sm: '0.875rem', // 14px - body-m, label-l, title-s
+  base: '1rem', // 16px - body-l, title-m
+
+  // M3 Title sizes
   lg: '1.125rem', // 18px
   xl: '1.25rem', // 20px
-  '2xl': '1.5rem', // 24px
-  '3xl': '1.875rem', // 30px
-  '4xl': '2.25rem', // 36px
-  '5xl': '3rem', // 48px
-  '6xl': '3.75rem', // 60px
-  '7xl': '4.5rem', // 72px
-  '8xl': '6rem', // 96px
+  '2xl': '1.375rem', // 22px - title-l
+  '3xl': '1.5rem', // 24px - headline-s
+
+  // M3 Headline sizes
+  '4xl': '1.75rem', // 28px - headline-m
+  '5xl': '2rem', // 32px - headline-l
+  '6xl': '2.25rem', // 36px - display-s
+
+  // M3 Display sizes
+  '7xl': '2.8125rem', // 45px - display-m
+  '8xl': '3.5625rem', // 57px - display-l
+  '9xl': '5.5rem', // 88px - display-xl
 } as const;
 
 export const fontWeight = {
@@ -156,13 +169,34 @@ export const fontWeight = {
   bold: '700',
 } as const;
 
+/**
+ * Line Height Scale
+ * M3 uses fixed pixel values for predictable vertical rhythm
+ * Ratios kept for backwards compatibility; fixed values preferred
+ * @see https://m3.material.io/styles/typography/type-scale-tokens
+ */
 export const lineHeight = {
+  // Ratio-based (backwards compatibility)
   none: '1',
   tight: '1.25',
   snug: '1.375',
   normal: '1.5',
   relaxed: '1.625',
   loose: '2',
+
+  // M3 fixed line-heights (preferred)
+  '16': '1rem', // 16px - body-s, label-m, label-s, code-s
+  '20': '1.25rem', // 20px - body-m, label-l, title-s, code-m
+  '24': '1.5rem', // 24px - body-l, title-m, code-l
+  '28': '1.75rem', // 28px - headline-s (responsive)
+  '30': '1.875rem', // 30px - title-l
+  '32': '2rem', // 32px - headline-s
+  '36': '2.25rem', // 36px - headline-m
+  '40': '2.5rem', // 40px - headline-l, display-s (responsive)
+  '44': '2.75rem', // 44px - display-s
+  '52': '3.25rem', // 52px - display-m
+  '64': '4rem', // 64px - display-l
+  '96': '6rem', // 96px - display-xl
 } as const;
 
 export const letterSpacing = {
