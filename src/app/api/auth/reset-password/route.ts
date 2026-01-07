@@ -29,47 +29,36 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Find user with valid reset token
-    const user = await prisma.user.findFirst({
+    // Hash new password first (before transaction)
+    const hashedPassword = await hash(password, 12);
+
+    // SECURITY: Atomic token consumption to prevent race conditions
+    // Find and clear token in a single operation
+    const result = await prisma.user.updateMany({
       where: {
         resetToken: token,
         resetExpires: {
           gt: new Date(), // Token must not be expired
         },
       },
-      select: {
-        id: true,
-        email: true,
-        sessionVersion: true,
+      data: {
+        password: hashedPassword,
+        resetToken: null, // Clear the token atomically
+        resetExpires: null,
+        sessionVersion: { increment: 1 }, // Invalidate all sessions
       },
     });
 
-    if (!user) {
+    // If no rows updated, token was invalid or already used
+    if (result.count === 0) {
       return NextResponse.json(
         { error: 'Invalid or expired reset token. Please request a new password reset.' },
         { status: 400 }
       );
     }
 
-    // Hash new password
-    const hashedPassword = await hash(password, 12);
-
-    // Update password, clear reset token, and increment session version
-    // Incrementing sessionVersion invalidates all existing sessions
-    await prisma.user.update({
-      where: { id: user.id },
-      data: {
-        password: hashedPassword,
-        resetToken: null, // Clear the token after use
-        resetExpires: null,
-        sessionVersion: user.sessionVersion + 1, // Invalidate all sessions
-      },
-    });
-
-    // Delete all active sessions for this user (force re-login)
-    await prisma.session.deleteMany({
-      where: { userId: user.id },
-    });
+    // Note: Sessions are automatically invalidated via sessionVersion increment
+    // The session version check in auth.ts will invalidate all existing JWT tokens
 
     return NextResponse.json({
       success: true,

@@ -61,15 +61,12 @@ export const POST = withCsrfProtection(async (req: NextRequest) => {
       },
     });
 
-    if (!invite) {
-      return NextResponse.json({ error: 'Invitation not found' }, { status: 404 });
-    }
-
-    // Verify email matches
-    if (invite.email !== session.user.email) {
+    // SECURITY: Use generic error message to prevent token enumeration
+    // Don't reveal whether token exists or email doesn't match
+    if (!invite || invite.email !== session.user.email) {
       return NextResponse.json(
-        { error: 'This invitation was sent to a different email address' },
-        { status: 403 }
+        { error: 'Invalid or expired invitation' },
+        { status: 400 }
       );
     }
 

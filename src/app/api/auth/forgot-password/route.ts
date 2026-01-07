@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { randomBytes } from 'crypto';
 import { env } from '@/lib/env';
 import { checkAuthRateLimit } from '@/lib/rate-limit';
+import { escapeHtml } from '@/lib/utils';
 
 /**
  * Forgot Password
@@ -84,7 +85,7 @@ export async function POST(request: NextRequest) {
             <h1 style="font-size: 18px; font-weight: bold; margin-bottom: 20px; color: #33ff66;">RESET YOUR PASSWORD</h1>
 
             <p style="font-size: 14px; margin-bottom: 20px; line-height: 1.6;">
-              ${user.name ? `Hi ${user.name},` : 'Hello,'}<br><br>
+              ${user.name ? `Hi ${escapeHtml(user.name)},` : 'Hello,'}<br><br>
               We received a request to reset the password for your account.
             </p>
 

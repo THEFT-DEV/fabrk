@@ -64,11 +64,35 @@ const ROUTE_PATTERNS = {
 const BAD_BOT_PATTERNS = [/curl/i, /wget/i, /python-requests/i, /scrapy/i, /httpclient/i, /java\//i, /libwww/i, /lwp-/i, /^$/];
 const GOOD_BOT_PATTERNS = [/googlebot/i, /bingbot/i, /slurp/i, /duckduckbot/i, /facebookexternalhit/i, /twitterbot/i, /linkedinbot/i, /whatsapp/i, /telegrambot/i, /discordbot/i, /gptbot/i, /claude-web/i, /anthropic/i];
 
+/**
+ * Validate IP address format (IPv4 or IPv6)
+ */
+function isValidIp(ip: string): boolean {
+  const ipv4 = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+  const ipv6 = /^(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$|^::(?:[0-9a-fA-F]{1,4}:){0,6}[0-9a-fA-F]{1,4}$|^(?:[0-9a-fA-F]{1,4}:){1,7}:$/;
+  return ipv4.test(ip) || ipv6.test(ip);
+}
+
+/**
+ * Extract and validate client IP from request headers
+ * SECURITY: Validates IP format to prevent header injection bypass
+ */
 function getClientId(request: NextRequest): string {
-  const forwarded = request.headers.get('x-forwarded-for');
-  const realIp = request.headers.get('x-real-ip');
+  // Priority: Cloudflare > X-Forwarded-For > X-Real-IP > unknown
   const cfIp = request.headers.get('cf-connecting-ip');
-  return cfIp || forwarded?.split(',')[0].trim() || realIp || 'unknown';
+  if (cfIp && isValidIp(cfIp.trim())) return cfIp.trim();
+
+  const forwarded = request.headers.get('x-forwarded-for');
+  if (forwarded) {
+    // Take first IP in chain and validate format
+    const ips = forwarded.split(',').map(ip => ip.trim()).filter(isValidIp);
+    if (ips.length > 0) return ips[0];
+  }
+
+  const realIp = request.headers.get('x-real-ip');
+  if (realIp && isValidIp(realIp.trim())) return realIp.trim();
+
+  return 'unknown';
 }
 
 function checkRateLimit(clientId: string, tier: keyof typeof RATE_LIMITS): { allowed: boolean; remaining: number; resetIn: number } {
@@ -203,9 +227,10 @@ export default async function proxy(req: NextRequest) {
   }
 
   // Build CSP with nonce
+  // SECURITY: Removed 'strict-dynamic' to prevent third-party script injection
   const csp = [
     "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://js.stripe.com https://va.vercel-scripts.com https://us-assets.i.posthog.com https://www.googletagmanager.com https://www.google-analytics.com`,
+    `script-src 'self' 'nonce-${nonce}' https://js.stripe.com https://va.vercel-scripts.com https://us-assets.i.posthog.com https://www.googletagmanager.com https://www.google-analytics.com`,
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "img-src 'self' data: https: blob:",
     "font-src 'self' data: https://fonts.gstatic.com",

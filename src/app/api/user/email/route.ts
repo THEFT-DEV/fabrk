@@ -63,18 +63,19 @@ export const PATCH = withCsrfProtection(async (req: NextRequest) => {
     // Hash token before storing (security: tokens are hashed in DB)
     const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
 
-    // Update email and create verification token
+    // SECURITY: Do NOT change email until verification is complete
+    // Store pending email in verification token metadata, update email only after verification
     await prisma.$transaction([
-      prisma.user.update({
-        where: { id: session.user.id },
-        data: {
-          email: validatedData.newEmail,
-          emailVerified: null, // Reset verification
+      // Delete any existing pending email change tokens for this user
+      prisma.verificationToken.deleteMany({
+        where: {
+          identifier: { startsWith: `email-change:${session.user.id}:` },
         },
       }),
+      // Create verification token with user ID and new email encoded
       prisma.verificationToken.create({
         data: {
-          identifier: validatedData.newEmail,
+          identifier: `email-change:${session.user.id}:${validatedData.newEmail}`,
           token: hashedToken,
           expires: expiresAt,
         },
@@ -86,7 +87,7 @@ export const PATCH = withCsrfProtection(async (req: NextRequest) => {
 
     return NextResponse.json({
       success: true,
-      message: 'Email updated successfully. Please verify your new email address.',
+      message: 'Verification email sent. Your email will be updated after you verify the new address.',
     });
   } catch (error: unknown) {
     if (error instanceof z.ZodError) {

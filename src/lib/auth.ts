@@ -18,7 +18,7 @@ import Google from 'next-auth/providers/google';
 
 // Session version cache to avoid N+1 queries
 const sessionVersionCache = new Map<string, { version: number; timestamp: number }>();
-const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+const CACHE_TTL = 30 * 1000; // 30 seconds (reduced for security - faster session invalidation)
 const MAX_CACHE_SIZE = 1000;
 
 function getCachedSessionVersion(userId: string): number | null {

@@ -22,6 +22,65 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "1.3.0",
+    date: "2026-01-07",
+    title: "INFRASTRUCTURE IMPROVEMENTS",
+    changes: [
+      {
+        type: 'security',
+        description: "**HMAC-Signed Impersonation** - Admin impersonation cookies now cryptographically signed to prevent tampering"
+      },
+      {
+        type: 'security',
+        description: "**Email Change Verification** - Email updates now require verification before taking effect (prevents account takeover)"
+      },
+      {
+        type: 'security',
+        description: "**XSS Prevention** - HTML escaping added to all email templates with user data"
+      },
+      {
+        type: 'security',
+        description: "**Atomic Password Reset** - Token consumption now atomic to prevent race conditions"
+      },
+      {
+        type: 'security',
+        description: "**IP Validation** - Rate limiting now validates IP format to prevent header injection bypass"
+      },
+      {
+        type: 'security',
+        description: "**Token Enumeration Prevention** - Generic error messages prevent invite token enumeration"
+      },
+      {
+        type: 'security',
+        description: "**DOMPurify Integration** - HTML sanitization now uses DOMPurify (isomorphic-dompurify)"
+      },
+      {
+        type: 'security',
+        description: "**Timing-Safe CSRF** - CSRF comparison now uses crypto.timingSafeEqual"
+      },
+      {
+        type: 'security',
+        description: "**ReDoS Prevention** - SQL injection regex patterns refactored to prevent ReDoS attacks"
+      },
+      {
+        type: 'changed',
+        description: "Session cache TTL reduced from 5 minutes to 30 seconds for faster security event propagation"
+      },
+      {
+        type: 'changed',
+        description: "Bot detection threshold raised from 50% to 70% to reduce false positives"
+      },
+      {
+        type: 'changed',
+        description: "CSP `strict-dynamic` removed to prevent third-party script injection"
+      },
+      {
+        type: 'fixed',
+        description: "CORS no longer falls back to localhost origins in production"
+      }
+    ]
+  },
+  {
     version: "1.2.0",
     date: "2026-01-04",
     title: "M3 TYPOGRAPHY SYSTEM",

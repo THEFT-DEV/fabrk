@@ -12,7 +12,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { randomBytes } from 'crypto';
+import { randomBytes, timingSafeEqual } from 'crypto';
 
 const CSRF_TOKEN_LENGTH = 32;
 const CSRF_COOKIE_NAME = 'csrf_token';
@@ -101,7 +101,19 @@ export function validateCsrfMiddleware(req: NextRequest): {
   }
 
   // Tokens must match (Double Submit Cookie pattern)
-  if (cookieToken !== headerToken) {
+  // SECURITY: Use timing-safe comparison to prevent timing attacks
+  try {
+    const cookieBuffer = Buffer.from(cookieToken, 'utf8');
+    const headerBuffer = Buffer.from(headerToken, 'utf8');
+
+    if (cookieBuffer.length !== headerBuffer.length) {
+      return { valid: false, error: 'CSRF tokens do not match' };
+    }
+
+    if (!timingSafeEqual(cookieBuffer, headerBuffer)) {
+      return { valid: false, error: 'CSRF tokens do not match' };
+    }
+  } catch {
     return { valid: false, error: 'CSRF tokens do not match' };
   }
 

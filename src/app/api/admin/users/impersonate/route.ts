@@ -4,8 +4,50 @@ import { prisma } from '@/lib/prisma';
 import { withCsrfProtection } from '@/lib/security/csrf';
 import { logger } from '@/lib/logger';
 import { cookies } from 'next/headers';
+import crypto from 'crypto';
 
 const IMPERSONATION_COOKIE = 'fabrk_impersonation';
+const IMPERSONATION_SECRET = process.env.NEXTAUTH_SECRET || 'fallback-secret-do-not-use-in-production';
+
+/**
+ * Sign impersonation data with HMAC to prevent tampering
+ * Security: Cookie data is signed to ensure integrity
+ */
+function signImpersonationData(data: object): string {
+  const payload = JSON.stringify(data);
+  const signature = crypto
+    .createHmac('sha256', IMPERSONATION_SECRET)
+    .update(payload)
+    .digest('hex');
+  return `${Buffer.from(payload).toString('base64')}.${signature}`;
+}
+
+/**
+ * Verify and parse signed impersonation data
+ * Returns null if signature is invalid (tampered)
+ */
+function verifyImpersonationData(signedData: string): object | null {
+  try {
+    const [encodedPayload, signature] = signedData.split('.');
+    if (!encodedPayload || !signature) return null;
+
+    const payload = Buffer.from(encodedPayload, 'base64').toString('utf-8');
+    const expectedSignature = crypto
+      .createHmac('sha256', IMPERSONATION_SECRET)
+      .update(payload)
+      .digest('hex');
+
+    // Timing-safe comparison to prevent timing attacks
+    if (!crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expectedSignature))) {
+      logger.warn('[SECURITY] Invalid impersonation cookie signature detected');
+      return null;
+    }
+
+    return JSON.parse(payload);
+  } catch {
+    return null;
+  }
+}
 
 /**
  * POST /api/admin/users/impersonate
@@ -65,7 +107,7 @@ export const POST = withCsrfProtection(async (req: NextRequest) => {
       },
     });
 
-    // Store original admin info in a secure cookie
+    // Store original admin info in a secure HMAC-signed cookie
     const impersonationData = {
       originalUserId: session.user.id,
       originalUserName: session.user.name,
@@ -74,11 +116,14 @@ export const POST = withCsrfProtection(async (req: NextRequest) => {
       startedAt: new Date().toISOString(),
     };
 
+    // Sign the cookie data to prevent tampering
+    const signedData = signImpersonationData(impersonationData);
+
     const cookieStore = await cookies();
-    cookieStore.set(IMPERSONATION_COOKIE, JSON.stringify(impersonationData), {
+    cookieStore.set(IMPERSONATION_COOKIE, signedData, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      sameSite: 'strict', // Stricter than lax for security
       maxAge: 60 * 60, // 1 hour max impersonation
       path: '/',
     });
@@ -118,7 +163,19 @@ export async function DELETE() {
       return NextResponse.json({ error: 'Not currently impersonating' }, { status: 400 });
     }
 
-    const impersonationData = JSON.parse(impersonationCookie.value);
+    // Verify cookie signature before trusting data
+    const impersonationData = verifyImpersonationData(impersonationCookie.value) as {
+      originalUserId: string;
+      targetUserId: string;
+      startedAt: string;
+    } | null;
+
+    if (!impersonationData) {
+      // Invalid signature - clear the cookie and reject
+      cookieStore.delete(IMPERSONATION_COOKIE);
+      logger.warn('[SECURITY] Tampered impersonation cookie rejected');
+      return NextResponse.json({ error: 'Invalid impersonation session' }, { status: 403 });
+    }
 
     // Log the end of impersonation
     await prisma.auditLog.create({
@@ -165,7 +222,20 @@ export async function GET() {
       return NextResponse.json({ isImpersonating: false });
     }
 
-    const impersonationData = JSON.parse(impersonationCookie.value);
+    // Verify cookie signature before trusting data
+    const impersonationData = verifyImpersonationData(impersonationCookie.value) as {
+      originalUserId: string;
+      originalUserName: string;
+      originalUserEmail: string;
+      targetUserId: string;
+      startedAt: string;
+    } | null;
+
+    if (!impersonationData) {
+      // Invalid signature - clear the tampered cookie
+      cookieStore.delete(IMPERSONATION_COOKIE);
+      return NextResponse.json({ isImpersonating: false });
+    }
 
     // Fetch target user info
     const targetUser = await prisma.user.findUnique({

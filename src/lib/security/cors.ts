@@ -9,10 +9,8 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 // Allowed origins for CORS (customize based on your needs)
-const ALLOWED_ORIGINS = process.env.CORS_ALLOWED_ORIGINS?.split(',') ?? [
-  'http://localhost:3000',
-  'http://localhost:3001',
-];
+// SECURITY: No hardcoded localhost fallback - use env var only
+const ALLOWED_ORIGINS = process.env.CORS_ALLOWED_ORIGINS?.split(',').filter(Boolean) ?? [];
 
 // Allowed HTTP methods
 const ALLOWED_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'];

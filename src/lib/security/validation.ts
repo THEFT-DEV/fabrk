@@ -6,6 +6,7 @@
  */
 
 import { z } from 'zod';
+import DOMPurify from 'isomorphic-dompurify';
 
 /**
  * Common validation schemas
@@ -115,20 +116,13 @@ export function sanitizeString(input: string): string {
 
 /**
  * Sanitize HTML
- * Allow only safe tags and attributes
+ * Uses DOMPurify for robust sanitization
  */
 export function sanitizeHTML(html: string): string {
-  // For production, use a library like DOMPurify
-  // This is a basic implementation
-  const allowedTags = ['p', 'br', 'strong', 'em', 'u', 'a', 'ul', 'ol', 'li'];
-  const _allowedAttributes = { a: ['href', 'title'] };
-
-  // Simple tag whitelist (use DOMPurify in production)
-  return html.replace(/<(\w+)([^>]*)>/g, (match, tag, _attrs) => {
-    if (!allowedTags.includes(tag.toLowerCase())) {
-      return '';
-    }
-    return match;
+  return DOMPurify.sanitize(html, {
+    ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'u', 'a', 'ul', 'ol', 'li'],
+    ALLOWED_ATTR: ['href', 'title'],
+    ALLOW_DATA_ATTR: false,
   });
 }
 
@@ -180,19 +174,23 @@ export function validatePagination(params: { page?: number; limit?: number }): {
 
 /**
  * Detect SQL injection attempts
+ * SECURITY: Uses non-greedy patterns to prevent ReDoS
  */
 export function detectSQLInjection(input: string): boolean {
+  // Limit input length to prevent ReDoS
+  if (input.length > 10000) return true;
+
   const sqlPatterns = [
-    /(\bUNION\b.*\bSELECT\b)/i,
-    /(\bSELECT\b.*\bFROM\b)/i,
-    /(\bINSERT\b.*\bINTO\b)/i,
-    /(\bUPDATE\b.*\bSET\b)/i,
-    /(\bDELETE\b.*\bFROM\b)/i,
-    /(\bDROP\b.*\bTABLE\b)/i,
-    /(\bEXEC\b|\bEXECUTE\b)/i,
-    /(--|\#|\/\*)/,
-    /(\bOR\b.*=.*)/i,
-    /(\bAND\b.*=.*)/i,
+    /\bUNION\b[\s\S]{0,100}\bSELECT\b/i,
+    /\bSELECT\b[\s\S]{0,100}\bFROM\b/i,
+    /\bINSERT\b[\s\S]{0,100}\bINTO\b/i,
+    /\bUPDATE\b[\s\S]{0,100}\bSET\b/i,
+    /\bDELETE\b[\s\S]{0,100}\bFROM\b/i,
+    /\bDROP\b[\s\S]{0,100}\bTABLE\b/i,
+    /\b(?:EXEC|EXECUTE)\b/i,
+    /--|#|\/\*/,
+    /\bOR\b\s*\S{0,50}=/i,
+    /\bAND\b\s*\S{0,50}=/i,
   ];
 
   return sqlPatterns.some((pattern) => pattern.test(input));
