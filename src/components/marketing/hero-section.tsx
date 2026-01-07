@@ -80,7 +80,7 @@ export function HeroSection() {
           <Link
             href="/changelog"
             className={cn(
-              'group inline-flex items-center gap-2 border border-primary/40 bg-primary/5 px-4 py-1.5 mb-6 text-xs transition-all hover:border-primary hover:bg-primary/10',
+              'group inline-flex items-center gap-2 border border-primary/40 bg-primary/5 px-4 py-1.5 mb-10 text-xs transition-all hover:border-primary hover:bg-primary/10',
               mode.radius,
               mode.font
             )}
