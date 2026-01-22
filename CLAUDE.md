@@ -13,23 +13,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## RULE #1: USE THE EXISTING COMPONENTS
 
-**This boilerplate has 78+ pre-built UI components in `src/components/ui/`. You MUST use them.**
+**This boilerplate has 78+ pre-built components. You MUST use them.**
 
 ```tsx
-// ALWAYS import from @/components/ui/
+// UI Primitives (57 components)
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import { Table, TableHeader, TableBody, TableRow, TableCell } from '@/components/ui/table';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { Select, SelectTrigger, SelectContent, SelectItem } from '@/components/ui/select';
+
+// Charts (8 components)
+import { BarChart } from '@/components/charts/bar-chart';
+import { LineChart } from '@/components/charts/line-chart';
+import { DonutChart } from '@/components/charts/donut-chart';
 ```
 
-**NEVER build UI from scratch.** Before creating any element, check `src/components/ui/` first.
+**NEVER build UI from scratch.** Before creating any element, check `src/components/` first.
 
 ### Component Quick Reference
+
+**UI Primitives** (`src/components/ui/`)
 
 | Need | Component | Import Path |
 |------|-----------|-------------|
@@ -53,7 +57,20 @@ import { Select, SelectTrigger, SelectContent, SelectItem } from '@/components/u
 | Separator | `<Separator>` | `@/components/ui/separator` |
 | Icons | `lucide-react` | `import { Icon } from 'lucide-react'` |
 
-**List all components:** `ls src/components/ui/`
+**Charts** (`src/components/charts/`)
+
+| Chart Type | Component | Import Path |
+|------------|-----------|-------------|
+| Bar chart | `<BarChart>` | `@/components/charts/bar-chart` |
+| Line chart | `<LineChart>` | `@/components/charts/line-chart` |
+| Area chart | `<AreaChart>` | `@/components/charts/area-chart` |
+| Pie chart | `<PieChart>` | `@/components/charts/pie-chart` |
+| Donut chart | `<DonutChart>` | `@/components/charts/donut-chart` |
+| Funnel | `<FunnelChart>` | `@/components/charts/funnel-chart` |
+| Gauge | `<Gauge>` | `@/components/charts/gauge` |
+| Sparkline | `<Sparkline>` | `@/components/charts/sparkline` |
+
+**List all components:** `ls src/components/ui/` and `ls src/components/charts/`
 
 ---
 
@@ -61,7 +78,9 @@ import { Select, SelectTrigger, SelectContent, SelectItem } from '@/components/u
 
 | Need | Do This |
 |------|---------|
-| Find a component | Check `src/components/ui/` first |
+| Find UI primitive | Check `src/components/ui/` |
+| Find chart | Check `src/components/charts/` |
+| Find feature component | Check `src/components/{feature}/` |
 | Design system rules | See `docs/08-design/DESIGN_SYSTEM.md` |
 | Config files | `src/config/index.ts` |
 | Environment setup | Copy `.env.example` → `.env.local` |
@@ -180,14 +199,26 @@ src/
 │   ├── (auth)/            # Auth pages (login, register)
 │   └── api/               # API routes
 ├── components/
-│   ├── ui/                # UI primitives (78+ components)
-│   ├── landing/           # Landing page sections
-│   ├── dashboard/         # Dashboard components
-│   └── shared/            # Shared components
+│   ├── ui/                # UI primitives ONLY (57 files) - no business logic
+│   ├── charts/            # Chart components (8 files)
+│   ├── auth/              # Authentication components
+│   ├── billing/           # Billing/subscription components
+│   ├── admin/             # Admin panel components
+│   ├── developer/         # API keys, webhooks
+│   ├── organization/      # Team/org management
+│   ├── notifications/     # Notification center
+│   ├── onboarding/        # Onboarding flows
+│   ├── marketing/         # Landing page sections
+│   └── dashboard/         # Dashboard components
 ├── config/                # App configuration
 ├── lib/                   # Business logic (auth, payments, email)
 └── design-system/         # Theme tokens and mode config
 ```
+
+**Component Architecture:**
+- **`/ui/`** - Stateless primitives only (Button, Card, Input, etc.)
+- **`/charts/`** - Data visualization components
+- **Feature directories** - Components with business logic live in their domain
 
 ### Critical Files
 
