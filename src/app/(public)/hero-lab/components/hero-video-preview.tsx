@@ -52,7 +52,7 @@ export function HeroVideoPreview() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </PolarCheckoutButton>
               <div className={cn('flex gap-4 text-xs', mode.font, mode.color.text.muted)}>
-                <span>78 COMPONENTS</span>
+                <span>62 COMPONENTS</span>
                 <span>•</span>
                 <span>12 THEMES</span>
               </div>

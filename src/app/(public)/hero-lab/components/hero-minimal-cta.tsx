@@ -31,7 +31,7 @@ export function HeroMinimalCTA() {
 
         {/* Single Line Value Prop */}
         <p className={cn('text-sm sm:text-base mb-8 max-w-xl', mode.font, mode.color.text.muted)}>
-          Auth. Payments. 78 Components. 12 Themes. Production-ready.
+          Auth. Payments. 62 Components. 12 Themes. Production-ready.
         </p>
 
         {/* Primary CTA - Large */}

@@ -72,7 +72,7 @@ export function HeroSplitScreen() {
             CODE IT. <span className="text-primary">SEE IT.</span>
           </h1>
           <p className={cn('text-sm max-w-md mx-auto', mode.font, mode.color.text.muted)}>
-            78 components that look exactly like they should.
+            62 components that look exactly like they should.
             Terminal aesthetic. Production-ready.
           </p>
 

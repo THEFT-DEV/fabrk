@@ -17,7 +17,7 @@ import { ArrowRight } from 'lucide-react';
 const BOOT_SEQUENCE = [
   { text: '> INITIALIZING FABRK v1.0.0...', delay: 0, type: 'command' },
   { text: '[OK] Auth, Payments, Database loaded', delay: 400, type: 'success' },
-  { text: '[OK] 78 components + 12 themes ready', delay: 800, type: 'success' },
+  { text: '[OK] 62 components + 12 themes ready', delay: 800, type: 'success' },
   { text: '[READY] All systems operational', delay: 1200, type: 'success' },
   { text: '', delay: 1400, type: 'blank' },
   { text: '  FABRK PREMIUM - $299 ONE-TIME', delay: 1600, type: 'highlight' },

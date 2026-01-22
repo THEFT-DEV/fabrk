@@ -91,7 +91,7 @@ export function HeroTypewriter() {
 
         <p className={cn('text-sm max-w-md mb-8', mode.font, mode.color.text.muted)}>
           Stop writing boilerplate. Start shipping features.
-          78 components. 12 themes. One purchase.
+          62 components. 12 themes. One purchase.
         </p>
 
         {/* CTA */}

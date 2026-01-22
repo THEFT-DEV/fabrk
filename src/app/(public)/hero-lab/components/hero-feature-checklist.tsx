@@ -16,7 +16,7 @@ import { ArrowRight, Check, Square } from 'lucide-react';
 const FEATURES = [
   { name: 'AUTH', items: ['NextAuth v5', 'OAuth providers', 'Magic links'] },
   { name: 'PAYMENTS', items: ['Stripe', 'Polar.sh', 'Webhooks'] },
-  { name: 'UI', items: ['78 components', '12 themes', 'OKLCH colors'] },
+  { name: 'UI', items: ['62 components', '12 themes', 'OKLCH colors'] },
 ];
 
 function FeatureItem({ text, delay }: { text: string; delay: number }) {

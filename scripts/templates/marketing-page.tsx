@@ -6,7 +6,7 @@
  *
  * Available components:
  * - src/components/landing/ - Hero, features, pricing sections
- * - src/components/ui/ - 78+ UI primitives
+ * - src/components/ui/ - 62+ UI primitives
  * - src/components/shared/ - Logo, footer, etc.
  */
 

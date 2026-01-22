@@ -84,7 +84,7 @@ export function HeroComponentGallery() {
             {/* Price Comparison */}
             <div className={cn('border p-3 space-y-2', mode.font, mode.radius)}>
               <div className="flex items-center justify-between text-xs">
-                <span className={mode.color.text.muted}>78 COMPONENTS @ $50/EA</span>
+                <span className={mode.color.text.muted}>62 COMPONENTS @ $50/EA</span>
                 <span className="line-through opacity-50">$3,900</span>
               </div>
               <div className="border-t pt-2 flex items-center justify-between">
@@ -97,7 +97,7 @@ export function HeroComponentGallery() {
           {/* RIGHT: Copy */}
           <div className="space-y-6">
             <h1 className={cn('text-3xl sm:text-4xl font-bold tracking-tight leading-tight', mode.font)}>
-              78 COMPONENTS
+              62 COMPONENTS
               <br />
               <span className="text-primary">$299</span>
               <br />
@@ -118,7 +118,7 @@ export function HeroComponentGallery() {
                   mode.font
                 )}
               >
-                &gt; GET ALL 78 COMPONENTS
+                &gt; GET ALL 62 COMPONENTS
                 <ArrowRight className="ml-2 h-4 w-4" />
               </PolarCheckoutButton>
               <Button

@@ -42,7 +42,7 @@ export function HeroCommandLine() {
       <div className="flex flex-col items-center text-center space-y-6 py-8 max-h-[70vh]">
         {/* Badge */}
         <div className={cn('text-xs border px-3 py-1', mode.font, mode.color.text.muted, mode.radius)}>
-          78 COMPONENTS • 12 THEMES • $299 ONE-TIME
+          62 COMPONENTS • 12 THEMES • $299 ONE-TIME
         </div>
 
         {/* Headline */}
@@ -80,7 +80,7 @@ export function HeroCommandLine() {
 
         {/* Subtext */}
         <p className={cn('text-sm max-w-md', mode.font, mode.color.text.muted)}>
-          Auth, payments, dashboard, 78 components—production-ready in 4 minutes.
+          Auth, payments, dashboard, 62 components—production-ready in 4 minutes.
         </p>
 
         {/* CTAs */}

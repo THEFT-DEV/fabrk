@@ -133,7 +133,7 @@ export default async function Image() {
                 marginTop: '24px',
               }}
             >
-              Next.js 16 • TypeScript Strict • 78+ Components • Multi-Provider
+              Next.js 16 • TypeScript Strict • 62+ Components • Multi-Provider
               Payments
             </span>
           </div>

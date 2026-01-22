@@ -32,7 +32,7 @@ export function HeroSplitCompact() {
             </h1>
 
             <p className={cn('text-sm', mode.font, mode.color.text.muted)}>
-              Auth, payments, and 78 UI components. Pre-built, tested, ready to customize.
+              Auth, payments, and 62 UI components. Pre-built, tested, ready to customize.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">

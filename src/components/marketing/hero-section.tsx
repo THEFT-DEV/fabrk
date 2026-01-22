@@ -14,6 +14,7 @@ import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { FuiBackground } from './fui-background';
 import { DemoVideoModal } from './demo-video-modal';
+import dynamicCounts from '@/data/dynamic-counts.json';
 
 const ROTATING_WORDS = [
   'AUTH',
@@ -107,7 +108,7 @@ export function HeroSection() {
 
           {/* Description */}
           <p className={cn('text-sm max-w-lg mb-10 leading-relaxed', mode.font, mode.color.text.muted)}>
-            Production-ready SaaS boilerplate with auth, payments, and 78 components.
+            Production-ready SaaS boilerplate with auth, payments, and {dynamicCounts.counts.uiComponents} components.
             Stop writing infrastructure. Ship faster.
           </p>
 
@@ -129,9 +130,9 @@ export function HeroSection() {
 
           {/* Stats Bar */}
           <div className={cn('flex items-center gap-4 sm:gap-6 text-xs', mode.font, mode.color.text.muted)}>
-            <span>78 COMPONENTS</span>
+            <span>{dynamicCounts.counts.uiComponents} COMPONENTS</span>
             <span className="text-border">|</span>
-            <span>12 THEMES</span>
+            <span>{dynamicCounts.counts.themes} THEMES</span>
             <span className="text-border">|</span>
             <span>LIFETIME UPDATES</span>
           </div>

@@ -82,7 +82,7 @@ export function HeroCountdown() {
         </h1>
 
         <p className={cn('text-sm max-w-md mb-6', mode.font, mode.color.text.muted)}>
-          Full SaaS boilerplate with auth, payments, 78 components, and 12 themes.
+          Full SaaS boilerplate with auth, payments, 62 components, and 12 themes.
         </p>
 
         {/* CTA */}
