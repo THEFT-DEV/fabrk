@@ -624,7 +624,7 @@ EVERY COMPONENT MUST HAVE:
 │  [VERIFIED] Powers 100+ production apps    [12px, green badge]   │
 │                                                                    │
 │  [ METRICS CARD ]                                                 │
-│  78+ components | < 5 min Setup | 400+ hrs Saved                 │
+│  62+ components | < 5 min Setup | 400+ hrs Saved                 │
 └───────────────────────────────────────────────────────────────────┘
 ```
 
@@ -635,9 +635,9 @@ EVERY COMPONENT MUST HAVE:
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden py-42 lg:py-40"> {/* INCREASED from py-78/78 */}
+    <section className="relative overflow-hidden py-42 lg:py-40"> {/* INCREASED from py-62/62 */}
       <Container size="2xl">
-        <div className="grid gap-16 lg:grid-cols-2 lg:gap-20"> {/* INCREASED from gap-78/78 */}
+        <div className="grid gap-16 lg:grid-cols-2 lg:gap-20"> {/* INCREASED from gap-62/62 */}
 
           {/* LEFT COLUMN - Content */}
           <div className="flex flex-col justify-center">
@@ -866,7 +866,7 @@ export function HeroSection() {
 
 | Element             | Before                 | After                        | Why                               |
 | ------------------- | ---------------------- | ---------------------------- | --------------------------------- |
-| **Section Padding** | py-78/78 (80-96px)     | py-78/78 (128-160px)         | Hero needs maximum presence       |
+| **Section Padding** | py-62/62 (80-96px)     | py-62/62 (128-160px)         | Hero needs maximum presence       |
 | **H1 Size**         | text-6xl/7xl (60-72px) | text-7xl/8xl (72-96px)       | Command attention immediately     |
 | **H1 Weight**       | font-bold (700)        | font-extrabold (800)         | Extra visual weight in monospace  |
 | **H2 Size**         | text-6xl/7xl (60-72px) | text-6xl/7xl (60-72px)       | Keep large, but purple for accent |
@@ -874,7 +874,7 @@ export function HeroSection() {
 | **CTA Button BG**   | Outline only           | bg-accent (PURPLE)           | Maximum conversion impact         |
 | **CTA Size**        | text-xs/sm, px-6 py-4  | text-base/lg, px-8/10 py-4/5 | Dominant, hard to miss            |
 | **Price Size**      | text-3xl (30px)        | text-5xl/6xl (48-60px)       | Anchor pricing moment             |
-| **Card Gaps**       | gap-78/78 (48-64px)    | gap-78/78 (64-80px)          | More breathing room               |
+| **Card Gaps**       | gap-62/62 (48-64px)    | gap-62/62 (64-80px)          | More breathing room               |
 
 ---
 
@@ -1163,9 +1163,9 @@ export function FeaturesShowcase() {
 
 | Element          | Before               | After                  | Why                           |
 | ---------------- | -------------------- | ---------------------- | ----------------------------- |
-| **Card Gap**     | gap-8 (32px)         | gap-78/78 (48-64px)    | Less cramped, easier to focus |
+| **Card Gap**     | gap-8 (32px)         | gap-62/62 (48-64px)    | Less cramped, easier to focus |
 | **Card Padding** | p-6 (24px)           | p-8/10 (32-40px)       | More generous, premium feel   |
-| **Icon Size**    | size-5 (20px)        | size-78/78 (48-56px)   | Proper visual weight          |
+| **Icon Size**    | size-5 (20px)        | size-62/62 (48-56px)   | Proper visual weight          |
 | **Icon Color**   | text-accent (purple) | text-accent (purple)   | Consistent brand accent       |
 | **H3 Size**      | text-sm (14px)       | text-2xl/3xl (24-30px) | Proper hierarchy              |
 | **H4 (NEW)**     | N/A                  | text-xl/2xl (20-24px)  | Benefit statement prominence  |
@@ -1460,7 +1460,7 @@ export function PricingSection() {
 | **CTA Width**       | Auto                 | w-full (100%)                       | Can't be missed    |
 | **Feature List**    | text-xs (12px)       | text-base (16px)                    | Readable           |
 | **Checklist Icons** | Small                | text-xl (20px) green                | Clear completion   |
-| **Card Padding**    | p-6 (24px)           | p-78/78 (40-48px)                   | Premium feel       |
+| **Card Padding**    | p-6 (24px)           | p-62/62 (40-48px)                   | Premium feel       |
 
 ---
 
@@ -1629,7 +1629,7 @@ export function PricingSection() {
 ```
 - H1: 60-72px (text-6xl/7xl)
 - CTA: Outline only, 12-14px text
-- Spacing: py-78/78 (80-96px)
+- Spacing: py-62/62 (80-96px)
 - Description: 14-16px
 - Visual Impact: 5/10 (forgettable)
 ```
@@ -1639,7 +1639,7 @@ export function PricingSection() {
 ```
 - H1: 72-96px (text-7xl/8xl) [+33% size]
 - CTA: PURPLE BACKGROUND, 16-18px text [BOLD]
-- Spacing: py-78/78 (128-160px) [+60% space]
+- Spacing: py-62/62 (128-160px) [+60% space]
 - Description: 18-20px [+40% size]
 - Visual Impact: 9/10 (commanding)
 ```
@@ -1686,7 +1686,7 @@ export function PricingSection() {
 - Price: 96-128px PURPLE [+320% size]
 - CTA: Full-width, HUGE, purple bg
 - Border: 2px PURPLE with glow
-- Visual Impact: 78/78 (impossible to miss)
+- Visual Impact: 62/62 (impossible to miss)
 ```
 
 ---

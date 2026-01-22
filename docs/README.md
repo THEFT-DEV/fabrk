@@ -21,7 +21,7 @@
 Setup, installation, environment configuration, and troubleshooting.
 
 - [QUICK-START.md](01-getting-started/QUICK-START.md) - Get up and running
-- [COMPONENT-SHOWCASE.md](01-getting-started/COMPONENT-SHOWCASE.md) - Explore all 78+ components
+- [COMPONENT-SHOWCASE.md](01-getting-started/COMPONENT-SHOWCASE.md) - Explore all 62+ components
 - [DOCUMENTATION_INDEX.md](01-getting-started/DOCUMENTATION_INDEX.md) - Full documentation index
 
 ### [02 - Components](02-components/)

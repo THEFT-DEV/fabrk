@@ -19,7 +19,7 @@ Comprehensive TypeScript API documentation has been generated for all 13 new UI 
 
 ### Coverage Statistics
 
-#### Components Documented (78/78)
+#### Components Documented (62/62)
 
 **Navigation & Structure (4)**
 1. Tooltip - Contextual help with positioning
@@ -55,7 +55,7 @@ Comprehensive TypeScript API documentation has been generated for all 13 new UI 
 ### Configuration Files
 
 1. **typedoc.json** - TypeDoc configuration
-   - Entry points for 78+ components
+   - Entry points for 62+ components
    - Exclusion patterns (tests, stories)
    - Output settings and navigation
    - Source link templates
@@ -431,7 +431,7 @@ npm run docs:api
 
 ### Documentation Completeness
 
-- ✓ All 78+ components documented
+- ✓ All 62+ components documented
 - ✓ All exports included
 - ✓ Prop interfaces defined
 - ✓ Helper functions documented

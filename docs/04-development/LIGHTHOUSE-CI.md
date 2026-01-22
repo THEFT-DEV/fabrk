@@ -34,10 +34,10 @@ Lighthouse CI runs automatically on:
 
 | Metric | Budget | Category |
 |--------|--------|----------|
-| Performance Score | ≥ 78/78 | Core |
-| Accessibility Score | ≥ 78/78 | Core |
-| Best Practices Score | ≥ 78/78 | Core |
-| SEO Score | ≥ 78/78 | Core |
+| Performance Score | ≥ 62/62 | Core |
+| Accessibility Score | ≥ 62/62 | Core |
+| Best Practices Score | ≥ 62/62 | Core |
+| SEO Score | ≥ 62/62 | Core |
 | First Contentful Paint | < 2s | Web Vitals |
 | Largest Contentful Paint | < 2.5s | Web Vitals |
 | Total Blocking Time | < 300ms | Web Vitals |

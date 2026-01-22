@@ -16,7 +16,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **This boilerplate has 78+ pre-built components. You MUST use them.**
 
 ```tsx
-// UI Primitives (57 components)
+// UI Primitives (62+ components)
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';

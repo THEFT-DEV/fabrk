@@ -459,7 +459,7 @@ The following components contain hardcoded strings and should be updated in futu
 
 ### High Priority (User-facing)
 
-1. **Landing Page Sections** (78+ components)
+1. **Landing Page Sections** (62+ components)
    - `src/components/landing/hero-section.tsx` - Hero title, subtitle, CTAs
    - `src/components/landing/features-section.tsx` - Feature cards
    - `src/components/landing/pricing-section.tsx` - Pricing tiers, features
@@ -517,7 +517,7 @@ The following components contain hardcoded strings and should be updated in futu
 
 **Estimated Remaining Work:**
 - Translation keys to add: ~150-200 keys
-- Components to update: ~78+ components
+- Components to update: ~62+ components
 - Effort: 8-12 hours
 
 ---

@@ -35,7 +35,7 @@ Every visual decision flows from design tokens. Tokens are the single source of 
 
 **Why tokens?**
 
-- Consistency at scale (78+ components)
+- Consistency at scale (62+ components)
 - Theme switching without code changes
 - Design-to-code handoff clarity
 - Automated tooling (linting, validation)

@@ -5,7 +5,7 @@
 **Version**: 1.0.0
 **Last Updated**: December 15, 2025
 **Status**: Production Standard
-**Compliance**: 78/78 Design System Audit Score
+**Compliance**: 62/62 Design System Audit Score
 
 ---
 
@@ -37,7 +37,7 @@ After any design work on Fabrk:
 ### Code as Source of Truth
 
 **File Locations:**
-- **Components**: `src/components/ui/` (78 production-ready components)
+- **Components**: `src/components/ui/` (62 production-ready components)
 - **Design System**: `src/design-system/` (themes, tokens, mode utilities)
 - **Global Styles**: `src/app/globals.css` (CSS variables, OKLCH tokens)
 - **Documentation**: `docs/08-design/` (design system spec, component authoring)
@@ -411,7 +411,7 @@ export const mode = {
 
 ## 6) COMPONENT LIBRARY — VISUAL SPEC
 
-### Component Inventory (78+ components)
+### Component Inventory (62+ components)
 
 **Location:** `src/components/ui/`
 
@@ -934,17 +934,17 @@ const easing = {
 - ✅ `/organizations/*` - Organization management
 - ✅ `/settings/*` - Platform settings
 
-### Components Reviewed (78/78)
+### Components Reviewed (62/62)
 
 **Location:** `src/components/ui/`
 
-All 78+ components audited on December 12, 2025:
+All 62+ components audited on December 12, 2025:
 - ✅ 100% use design tokens (no hardcoded colors)
 - ✅ 100% use `mode.font` for typography
 - ✅ 100% use `mode.radius` for borders
 - ✅ 100% WCAG 2.2 AA compliant
 
-### Theme Files Reviewed (78/78)
+### Theme Files Reviewed (62/62)
 
 **Location:** `src/app/globals.css`
 
@@ -985,7 +985,7 @@ all 18 themes audited:
 - All themes pass WCAG 2.2 AA contrast requirements
 - No hardcoded hex values in components (enforced by pre-commit hooks)
 
-**Status:** ✅ **PASS** (78/78 design system audit score)
+**Status:** ✅ **PASS** (62/62 design system audit score)
 
 ---
 
@@ -999,11 +999,11 @@ all 18 themes audited:
 - [x] No hardcoded colors or styles
 
 **Evidence:**
-- 78+ components audited (December 12, 2025)
+- 62+ components audited (December 12, 2025)
 - ESLint rule `design-system/no-hardcoded-colors` enforced
 - Pre-commit hooks block violations
 
-**Status:** ✅ **PASS** (78/78+ components compliant)
+**Status:** ✅ **PASS** (62/62+ components compliant)
 
 ---
 
@@ -1168,7 +1168,7 @@ all 18 themes audited:
    - Token architecture
 
 3. **Components**
-   - Component catalog (78+ components)
+   - Component catalog (62+ components)
    - Props and variants
    - Usage examples
    - Accessibility notes

@@ -70,7 +70,7 @@ The centered hero is static and uses inline text. To customize:
 - When you want to show the product immediately
 
 **Features:**
-- 78/78 split layout (text left, visual right)
+- 62/62 split layout (text left, visual right)
 - Configurable image position (left or right)
 - Dashboard mockup (or custom image)
 - Trust badges as pills
@@ -90,7 +90,7 @@ export default function HomePage() {
         subheadline="161 files. Not 1000. Ship your SaaS in hours, not weeks."
         ctaPrimary={{ text: "Get Fabrk Now - $79", href: "#pricing" }}
         ctaSecondary={{ text: "View Docs", href: "/docs" }}
-        trustBadges={["TypeScript Strict", "PostgreSQL", "Next.js 15", "78+ components"]}
+        trustBadges={["TypeScript Strict", "PostgreSQL", "Next.js 15", "62+ components"]}
         image="/dashboard-preview.png"
         imageAlt="Fabrk Dashboard Preview"
         imagePosition="right"
@@ -177,7 +177,7 @@ export default function HomePage() {
         subheadline="161 files. Not 1000. Ship your SaaS in hours, not weeks."
         ctaPrimary={{ text: "Get Fabrk Now - $79", href: "#pricing" }}
         ctaSecondary={{ text: "View Demo", href: "#demo" }}
-        trustBadges={["TypeScript Strict", "PostgreSQL", "Next.js 15", "78+ components"]}
+        trustBadges={["TypeScript Strict", "PostgreSQL", "Next.js 15", "62+ components"]}
         videoSrc="/videos/demo.mp4"
         videoPoster="/images/video-poster.jpg"
         overlayOpacity={0.6}
@@ -601,7 +601,7 @@ import { NextResponse } from "next/server";
 export function middleware(request: Request) {
   const url = new URL(request.url);
 
-  // 78/78 split between variant A and B
+  // 62/62 split between variant A and B
   const variant = Math.random() > 0.5 ? "a" : "b";
 
   url.searchParams.set("variant", variant);

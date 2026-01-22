@@ -40,7 +40,7 @@ From `CLAUDE.md` and `docs/08-design/DESIGN_SYSTEM.md`:
 ### 1. UI Components (`src/components/ui/`)
 
 **Files Audited:** 77
-**Compliance:** 94% (78/78 fully compliant)
+**Compliance:** 94% (62/62 fully compliant)
 
 #### Compliant Components (72 files)
 
@@ -148,7 +148,7 @@ All core components properly implement design tokens:
 - `forgot-password/page.tsx`
 - `reset-password/page.tsx`
 
-**Marketing (78/78):**
+**Marketing (62/62):**
 - `page.tsx` (home)
 - `features/page.tsx`
 - `about/page.tsx`
@@ -194,7 +194,7 @@ Contains inline HTML email templates (not React components):
 ### 4. Shared/Docs/Dashboard/Navigation Components
 
 **Files Audited:** 32
-**Compliance:** 97.8% (78/78 fully compliant)
+**Compliance:** 97.8% (62/62 fully compliant)
 
 #### Fully Compliant (25 files)
 
@@ -206,7 +206,7 @@ Contains inline HTML email templates (not React components):
 **Navigation (1/1):**
 - `site-navigation.tsx` - Full mode token compliance
 
-**Docs (78/78):**
+**Docs (62/62):**
 - All template files compliant
 - All block components compliant
 - Proper terminal header format: `[ [0xHH] TITLE ]`
@@ -259,19 +259,19 @@ all 18 themes pass WCAG 2.1 AA compliance:
 
 | Theme | Status | Checks |
 |-------|--------|--------|
-| amber | PASS | 78/78 |
-| blue | PASS | 78/78 |
-| green | PASS | 78/78 |
-| purple | PASS | 78/78 |
-| red | PASS | 78/78 |
-| infrared | PASS | 78/78 |
-| atari | PASS | 78/78 |
-| c64 | PASS | 78/78 |
-| spectrum | PASS | 78/78 |
-| vic20 | PASS | 78/78 |
-| gameboy | PASS | 78/78 |
-| gbpocket | PASS | 78/78 |
-| bw | PASS | 78/78 |
+| amber | PASS | 62/62 |
+| blue | PASS | 62/62 |
+| green | PASS | 62/62 |
+| purple | PASS | 62/62 |
+| red | PASS | 62/62 |
+| infrared | PASS | 62/62 |
+| atari | PASS | 62/62 |
+| c64 | PASS | 62/62 |
+| spectrum | PASS | 62/62 |
+| vic20 | PASS | 62/62 |
+| gameboy | PASS | 62/62 |
+| gbpocket | PASS | 62/62 |
+| bw | PASS | 62/62 |
 
 **Total:** 130 checks, 0 failures
 

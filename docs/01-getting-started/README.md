@@ -2,7 +2,7 @@
 
 Complete guide to all Fabrk documentation. Start here to find what you need.
 
-**Fabrk Premium:** $299 | 78+ components | 49 Templates | 18 Themes | 17,822 Test Lines | Full Documentation
+**Fabrk Premium:** $299 | 62+ components | 49 Templates | 18 Themes | 17,822 Test Lines | Full Documentation
 
 ---
 
@@ -11,7 +11,7 @@ Complete guide to all Fabrk documentation. Start here to find what you need.
 **New to Fabrk?** Start with these three guides:
 
 1. [**QUICK-START.md**](./QUICK-START.md) - Get up and running in 1 hour (setup, database, dev server)
-2. [**COMPONENT-SHOWCASE.md**](./COMPONENT-SHOWCASE.md) - Explore all 78+ components with live examples
+2. [**COMPONENT-SHOWCASE.md**](./COMPONENT-SHOWCASE.md) - Explore all 62+ components with live examples
 3. [**DEPLOYMENT.md**](./DEPLOYMENT.md) - Deploy to production on Vercel in 10 minutes
 
 **Total time to launch:** ~2 hours from zero to production.
@@ -269,7 +269,7 @@ Complete guide to all Fabrk documentation. Start here to find what you need.
 **Estimated reading time (essentials only):** ~5 hours
 
 **Product Stats:**
-- **78+ components** (more than Makerkit's 60)
+- **62+ components** (more than Makerkit's 60)
 - **49 Templates** (Analytics, Team, Charts, User Management, Settings, Billing, Security, Emails)
 - **18 Themes** (Green, Amber, Blue, Red, Purple + Retro: Game Boy, C64, GB Pocket, VIC-20, Atari, Spectrum, B&W)
 - **17,822 Test Lines** (Vitest + Playwright)

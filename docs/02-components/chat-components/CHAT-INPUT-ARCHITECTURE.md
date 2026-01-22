@@ -34,7 +34,7 @@
 │  ┌────────────────────────────────────────────────────────┐    │
 │  │ Hints Row                                               │    │
 │  │ • Press Enter to send, Shift+Enter for new line         │    │
-│  │ • Character counter: 78/78 (conditional)              │    │
+│  │ • Character counter: 62/62 (conditional)              │    │
 │  └────────────────────────────────────────────────────────┘    │
 │                                                                   │
 └─────────────────────────────────────────────────────────────────┘
@@ -354,7 +354,7 @@ setAttachedFiles([]) → Clear all files
 │       └── <Send /> or <Loader2 aria-busy="true" />
 │
 └── <div> Hints
-    └── <span id="char-count">78/78</span>
+    └── <span id="char-count">62/62</span>
 ```
 
 ## Testing Strategy

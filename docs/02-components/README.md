@@ -4,7 +4,7 @@ This folder contains documentation for the Fabrk component library.
 
 ## Contents
 
-- **COMPONENTS-INVENTORY.md** - Complete list of all 78 UI components with descriptions
+- **COMPONENTS-INVENTORY.md** - Complete list of all 62 UI components with descriptions
 - **COMPONENT-BEST-PRACTICES.md** - Design patterns and usage guidelines
 - **CHARTS-GUIDE.md** - Recharts integration and chart components
 - **LANDING-PAGE-VARIATIONS.md** - 4 landing page variations (Modern, SaaS, Startup, Legacy)

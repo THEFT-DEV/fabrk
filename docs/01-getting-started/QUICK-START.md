@@ -245,7 +245,7 @@ npm run build
 
 1. **Customize your landing page** - Update `src/app/(public)/page.tsx`
 2. **Configure payments** - Set up Stripe/Polar/Lemonsqueezy webhooks
-3. **Add your features** - Build on top of 78 UI components
+3. **Add your features** - Build on top of 62 UI components
 4. **Deploy** - Push to Vercel and set environment variables
 
 ---

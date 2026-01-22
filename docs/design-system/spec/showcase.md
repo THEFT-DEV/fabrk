@@ -20,7 +20,7 @@ The Component Showcase is a comprehensive visual reference for the Fabrk design 
 
 | Route                             | Purpose           | Contents                                             |
 | --------------------------------- | ----------------- | ---------------------------------------------------- |
-| `/component-showcase`             | Main showcase     | all 78 UI components organized by category           |
+| `/component-showcase`             | Main showcase     | all 62 UI components organized by category           |
 | `/component-showcase/foundations` | Design tokens     | Colors, typography, spacing, radius, shadows, motion |
 | `/component-showcase/templates`   | Template snippets | Hero, features, stats, pricing, testimonials, CTAs   |
 | `/component-showcase/cards`       | Card deep-dive    | Card variants, tones, composition patterns           |
@@ -182,7 +182,7 @@ When design tokens change:
 
 | File                                              | Purpose                          |
 | ------------------------------------------------- | -------------------------------- |
-| `src/app/component-showcase/page.tsx`             | Main showcase with 78+ components |
+| `src/app/component-showcase/page.tsx`             | Main showcase with 62+ components |
 | `src/app/component-showcase/foundations/page.tsx` | Design token visualization       |
 | `src/app/component-showcase/templates/page.tsx`   | Template snippet library         |
 | `src/app/component-showcase/cards/page.tsx`       | Card deep-dive showcase          |

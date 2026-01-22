@@ -58,10 +58,10 @@ Added `.lighthouseci/` to ignore generated reports (kept out of version control)
 
 | Category | Minimum Score |
 |----------|--------------|
-| Performance | 78/78 |
-| Accessibility | 78/78 |
-| Best Practices | 78/78 |
-| SEO | 78/78 |
+| Performance | 62/62 |
+| Accessibility | 62/62 |
+| Best Practices | 62/62 |
+| SEO | 62/62 |
 
 ### Core Web Vitals (Error if exceeded)
 

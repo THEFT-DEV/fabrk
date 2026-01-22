@@ -20,7 +20,7 @@ This guide provides a comprehensive script and production checklist for creating
 
 **On-screen text**:
 - "Fabrk Component Library"
-- "78+ components • 17,822 Test Lines • 100% Coverage"
+- "62+ components • 17,822 Test Lines • 100% Coverage"
 
 ---
 
@@ -276,7 +276,7 @@ export function MyComponent() {
 ### Shot 1: Landing Page Hero (5 seconds)
 - Start with page fully loaded
 - Slow zoom in on hero section
-- Show "78+ components" badge
+- Show "62+ components" badge
 - Show theme switcher
 
 ### Shot 2: Component Grid (10 seconds)
@@ -383,7 +383,7 @@ export function MyComponent() {
 Fabrk is a production-ready React component library with 46 fully-tested components for modern SaaS applications.
 
 ⭐ Features:
-• 78+ components with 100% test coverage
+• 62+ components with 100% test coverage
 • 6 beautiful themes with OKLCH color space
 • 8 production-ready page templates
 • Built on Radix UI for accessibility
@@ -443,7 +443,7 @@ Fabrk is a production-ready React component library with 46 fully-tested compone
 **Text**: Large, bold, high contrast
 **Elements**:
 - Fabrk logo
-- "78+ components"
+- "62+ components"
 - "100% Test Coverage"
 - Component screenshots in background
 - Bright, eye-catching colors

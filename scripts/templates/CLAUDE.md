@@ -180,7 +180,7 @@ src/
 │   ├── (auth)/            # Auth pages (login, register)
 │   └── api/               # API routes
 ├── components/
-│   ├── ui/                # UI primitives (78+ components)
+│   ├── ui/                # UI primitives (62+ components)
 │   ├── landing/           # Landing page sections
 │   ├── dashboard/         # Dashboard components
 │   └── shared/            # Shared components

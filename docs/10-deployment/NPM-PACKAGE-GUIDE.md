@@ -21,7 +21,7 @@
 
 **Fabrk UI** is a production-ready React component library with:
 
-- **78+ components** - Comprehensive UI component set
+- **62+ components** - Comprehensive UI component set
 - **TypeScript** - Full type safety with exported type definitions
 - **Radix UI** - Accessible primitives for complex components
 - **Tailwind CSS** - Utility-first styling with OKLCH colors
@@ -827,7 +827,7 @@ Production-ready React component library with 83 accessible components, Radix UI
 
 ## Features
 
-- 🎨 **78+ components** - Comprehensive UI component library
+- 🎨 **62+ components** - Comprehensive UI component library
 - ♿ **Accessible** - WCAG 2.1 AA compliant with Radix UI
 - 🎭 **18 Themes** - Green, Amber, Blue, Red, Purple, Game Boy, C64, GB Pocket, VIC-20, Atari, Spectrum, B&W
 - 🎯 **TypeScript** - Full type safety with exported definitions
@@ -1008,7 +1008,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Initial release of @fabrk/ui
-- 78 production-ready components
+- 62 production-ready components
 - 6 OKLCH color themes
 - Full TypeScript support
 - Tree-shakeable ESM/CJS builds

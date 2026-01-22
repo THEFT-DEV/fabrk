@@ -102,8 +102,8 @@ npx playwright test tests/visual/full-site.visual.spec.ts --grep "homepage" --de
 - All marketing pages
 - All legal pages
 - All documentation pages
-- All component pages (78 Total)
-- All template pages (78 Total)
+- All component pages (62 Total)
+- All template pages (62 Total)
 - Responsive layouts (mobile, tablet, desktop)
 
 ### Terminal Aesthetic

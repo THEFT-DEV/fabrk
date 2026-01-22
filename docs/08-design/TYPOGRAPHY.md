@@ -751,7 +751,7 @@ All docs pages consistently use:
 
 | Section Type | Docs | Marketing | Legal |
 |--------------|------|-----------|-------|
-| Major sections | `space-y-16` | `space-y-78/78` | `space-y-6` |
+| Major sections | `space-y-16` | `space-y-62/62` | `space-y-6` |
 | Inner sections | `space-y-4` | `space-y-4/6/8` | `space-y-4` |
 | Lists | `space-y-1` | `space-y-2` | `space-y-1` |
 

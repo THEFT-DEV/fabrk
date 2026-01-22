@@ -8,7 +8,7 @@ Complete style guide documenting ALL design tokens, styles, and inconsistencies 
 - **[Theme Guide](./THEME-GUIDE.md)** - Explore all 12 retro terminal themes
 - **[Component Authoring](./COMPONENT-AUTHORING.md)** - Extend the design system safely
 - **[Customization Checklist](../CUSTOMIZATION-CHECKLIST.md)** - Pre-launch customization steps
-- **[Audit Reports](../../.archives/design-system/2025-12-12-final/)** - 78/78 design system audit (Dec 12, 2025)
+- **[Audit Reports](../../.archives/design-system/2025-12-12-final/)** - 62/62 design system audit (Dec 12, 2025)
 - **[Token Reference](./TOKEN-REFERENCE.md)** - Complete CSS token documentation (98 tokens)
 
 ---
@@ -1070,10 +1070,10 @@ flex-col lg:flex-row-reverse
 | # | Issue | Location | Current State | Recommendation |
 |---|-------|----------|---------------|----------------|
 | 1 | **Typography scale** | Docs vs Landing | Docs missing `text-base`, `text-xl`, `text-4xl` | Add missing sizes to docs OR intentional (docs = dense) |
-| 2 | **Section spacing** | Docs vs Landing | Docs: `py-8`. Landing: `py-78/78` | Intentional (docs = dense, landing = spacious) |
+| 2 | **Section spacing** | Docs vs Landing | Docs: `py-8`. Landing: `py-62/62` | Intentional (docs = dense, landing = spacious) |
 | 3 | **Animations** | Docs vs Landing | Docs: none. Landing: heavy framer-motion | Add subtle animations to docs headers |
 | 4 | **Max-width** | Docs vs Landing | Docs: `max-w-3xl`. Landing: `max-w-7xl` | Intentional (docs = readable, landing = wide) |
-| 5 | **Gap patterns** | Docs vs Landing | Docs: `gap-6` max. Landing: `gap-78/78` | Intentional (different contexts) |
+| 5 | **Gap patterns** | Docs vs Landing | Docs: `gap-6` max. Landing: `gap-62/62` | Intentional (different contexts) |
 
 ### Minor Issues
 

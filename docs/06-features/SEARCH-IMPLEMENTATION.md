@@ -51,7 +51,7 @@ export function isAlgoliaConfigured(): boolean {
 
 **60+ indexed records:**
 - **10 Pages:** Home, Features, Components, Templates, Dashboard, Settings, Billing, About, Contact, Variations
-- **78+ components:** Button, Input, Card, Dialog, Table, Tabs, etc.
+- **62+ components:** Button, Input, Card, Dialog, Table, Tabs, etc.
 - **9 Templates:** Analytics Dashboard, Team Dashboard, Chart Library, User Management, Settings, Billing, Security, Email, Docs
 
 **Record Structure:**

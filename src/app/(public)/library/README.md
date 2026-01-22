@@ -143,7 +143,7 @@ Complete user administration panel with TanStack Table v8.
 - User table with 10 sample users
 - Sorting (name, email, role, status, created date)
 - Filtering (search by name, filter by role/status/plan)
-- Pagination (78/78/78/78 rows per page)
+- Pagination (62/62/62/62 rows per page)
 - Bulk actions (select multiple users)
 - Action menu per user (Edit, Reset Password, Suspend, Delete)
 - Status badges (Active, Inactive, Suspended)

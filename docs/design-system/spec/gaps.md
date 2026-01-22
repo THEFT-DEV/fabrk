@@ -12,7 +12,7 @@ This document tracks gaps, missing features, and areas for improvement in the de
 
 **Status:** Gap  
 **Priority:** Low  
-**Description:** Only 78/78+ components (14.1%) use `mode.textTransform`
+**Description:** Only 62/62+ components (14.1%) use `mode.textTransform`
 
 Most components don't apply uppercase text transform even when the Terminal theme expects it. This is partially by design (not everything should be uppercase), but some components that display labels/titles should support it.
 

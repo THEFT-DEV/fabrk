@@ -383,7 +383,7 @@ const pathWithoutLocale = pathname.replace(/^\/(en|es|fr|de|pt|ja)/, '');
 - Successful build
 
 ⏳ **Component Migration: 0% Complete**
-- Need to update ~78+ components to use translations
+- Need to update ~62+ components to use translations
 - Need to create LocaleSwitcher component
 - Need to test all pages in all locales
 

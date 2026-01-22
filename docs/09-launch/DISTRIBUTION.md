@@ -80,7 +80,7 @@ Fabrk uses a **private GitHub repository** model:
 
 ✅ **Code Examples:**
 - 28 copy-paste templates (marketing, dashboards, auth, settings)
-- Storybook stories for all 78+ components
+- Storybook stories for all 62+ components
 - Example Stripe setup
 - Example email templates
 

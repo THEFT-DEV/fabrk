@@ -303,7 +303,7 @@ Navigate to **Components → ChatInput** to see all 12 examples.
 
 The Chat Input component is **production-ready** with:
 - ✅ All requested features implemented
-- ✅ 8+ component documentation examples (78 Total)
+- ✅ 8+ component documentation examples (62 Total)
 - ✅ Comprehensive documentation
 - ✅ Full design system compliance
 - ✅ Theme-responsive styling

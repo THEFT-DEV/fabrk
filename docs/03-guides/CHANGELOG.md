@@ -80,7 +80,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Initial Release
 
-Fabrk v1.0.0 is a production-ready Next.js 15 SaaS boilerplate with authentication, payments, database, and email built-in. **78+ components** in **161 essential files**.
+Fabrk v1.0.0 is a production-ready Next.js 15 SaaS boilerplate with authentication, payments, database, and email built-in. **62+ components** in **161 essential files**.
 
 ---
 
@@ -98,7 +98,7 @@ Fabrk v1.0.0 is a production-ready Next.js 15 SaaS boilerplate with authenticati
 - **Tailwind CSS** + next-themes
 
 #### Components (87+)
-- 78 UI components (Button, Card, Input, Dialog, etc.)
+- 62 UI components (Button, Card, Input, Dialog, etc.)
 - 11 Landing page components (3 hero variations, 2 pricing variations)
 - 10 Dashboard components (admin, analytics, user profile)
 - 9 Auth & Account components
@@ -136,7 +136,7 @@ Fabrk v1.0.0 is a production-ready Next.js 15 SaaS boilerplate with authenticati
 - **Data Table Component** (TanStack Table v8)
   - Sortable columns (asc/desc/none)
   - Filterable rows (global search)
-  - Paginated (78/78/78/78 rows per page)
+  - Paginated (62/62/62/62 rows per page)
   - Row selection (checkboxes)
   - Empty & loading states
   - Mobile responsive (horizontal scroll)
@@ -272,7 +272,7 @@ npm run stripe:listen    # Listen to Stripe webhooks locally
 - Standard Next.js patterns
 
 #### Latest Stack
-- Next.js 15 (competitors on 78/78)
+- Next.js 15 (competitors on 62/62)
 - NextAuth v5 (competitors on v4)
 - React 19 ready
 - Turbopack in dev mode
@@ -321,7 +321,7 @@ These are intentional design decisions to keep the boilerplate minimal and essen
 
 ### 📊 Statistics
 
-- **78+ components** (exceeds 80+ target)
+- **62+ components** (exceeds 80+ target)
 - **161 files** (essential-only)
 - **50KB documentation** (8 comprehensive guides)
 - **5 email templates** (transactional)
@@ -348,7 +348,7 @@ These are intentional design decisions to keep the boilerplate minimal and essen
 **vs ShipFast ($199):**
 - ✅ TypeScript (they have JavaScript only)
 - ✅ PostgreSQL (they have MongoDB only)
-- ✅ Next.js 15 (they have 78/78)
+- ✅ Next.js 15 (they have 62/62)
 - ✅ 60% cheaper ($79 vs $199)
 - ✅ Open source code
 
