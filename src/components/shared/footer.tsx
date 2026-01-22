@@ -86,7 +86,7 @@ export function Footer() {
                     </div>
                     <nav aria-label="Product links" className="flex flex-col gap-2">
                       <Link
-                        href="#features"
+                        href="/features"
                         className={cn(
                           'text-muted-foreground hover:text-foreground text-xs transition-colors',
                           mode.font
@@ -95,7 +95,7 @@ export function Footer() {
                         &gt; FEATURES
                       </Link>
                       <Link
-                        href="#pricing"
+                        href="/pricing"
                         className={cn(
                           'text-muted-foreground hover:text-foreground text-xs transition-colors',
                           mode.font

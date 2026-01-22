@@ -28,23 +28,23 @@ export const CHANGELOG: ChangelogEntry[] = [
     changes: [
       {
         type: 'changed',
-        description: "**Clean /ui/ Directory** - Moved 10 business logic components out of /ui/ to feature directories (billing/, auth/, admin/, etc.)"
+        description: "**Clean /ui/ Directory** - Moved 10 business logic components out of /ui/ to feature directories (billing/, auth/, admin/, etc.). WHY: /ui/ should only contain stateless primitives that customers can safely import without side effects."
       },
       {
         type: 'changed',
-        description: "**New /charts/ Directory** - Consolidated 8 chart components (bar, line, area, pie, funnel, gauge, sparkline, donut) into dedicated directory"
+        description: "**New /charts/ Directory** - Consolidated 8 chart components (bar, line, area, pie, funnel, gauge, sparkline, donut) into dedicated directory. WHY: Charts are data visualization components, not UI primitives - separating them makes the architecture clearer."
       },
       {
         type: 'changed',
-        description: "**card.tsx Split** - Reduced from 890 lines to 250 lines; marketing components moved to terminal-card.tsx"
+        description: "**card.tsx Split** - Reduced from 890 lines to 250 lines; marketing components moved to terminal-card.tsx. WHY: Large files are harder to maintain and understand. Card primitives should be separate from marketing-specific components."
       },
       {
         type: 'removed',
-        description: "**Duplicate cookie-consent** - Removed /ui/cookie-consent.tsx in favor of /components/cookie-consent/ directory"
+        description: "**Duplicate cookie-consent** - Removed /ui/cookie-consent.tsx in favor of /components/cookie-consent/ directory. WHY: The directory version was more robust with better GDPR compliance features."
       },
       {
         type: 'fixed',
-        description: "/ui/ now contains ONLY primitives (57 files, 7,746 lines) - no business logic"
+        description: "/ui/ now contains ONLY primitives (62 files) - no business logic. WHY: Clear separation makes it easier for customers to understand what they can safely import and customize."
       }
     ]
   },
