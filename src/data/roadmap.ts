@@ -5,7 +5,7 @@
  * Last updated: 2026-01-22
  */
 
-export type RoadmapStatus = 'shipped' | 'building' | 'planned' | 'exploring';
+export type RoadmapStatus = 'shipped' | 'in_progress' | 'building' | 'planned' | 'exploring';
 
 export interface RoadmapItem {
   status: RoadmapStatus;

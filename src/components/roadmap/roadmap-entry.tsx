@@ -7,7 +7,7 @@
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { mode } from '@/design-system';
-import { CheckCircle2, Clock, Circle, Sparkles } from 'lucide-react';
+import { CheckCircle2, Loader2, Clock, Circle, Sparkles } from 'lucide-react';
 import { type RoadmapSection, type RoadmapStatus } from '@/data/roadmap';
 
 const STATUS_CONFIG: Record<
@@ -15,6 +15,7 @@ const STATUS_CONFIG: Record<
   { label: string; icon: typeof CheckCircle2; className: string }
 > = {
   shipped: { label: 'SHIPPED', icon: CheckCircle2, className: 'text-success' },
+  in_progress: { label: 'IN PROGRESS', icon: Loader2, className: 'text-primary' },
   building: { label: 'BUILDING', icon: Clock, className: 'text-warning' },
   planned: { label: 'PLANNED', icon: Circle, className: 'text-info' },
   exploring: { label: 'EXPLORING', icon: Sparkles, className: 'text-muted-foreground' },
@@ -38,7 +39,7 @@ export function RoadmapEntry({ section, index = 0, className }: RoadmapEntryProp
       <CardContent>
         <div className="space-y-4">
           {/* Group items by status */}
-          {(['shipped', 'building', 'planned', 'exploring'] as RoadmapStatus[]).map((status) => {
+          {(['shipped', 'in_progress', 'building', 'planned', 'exploring'] as RoadmapStatus[]).map((status) => {
             const items = section.items.filter((item) => item.status === status);
             if (items.length === 0) return null;
 
