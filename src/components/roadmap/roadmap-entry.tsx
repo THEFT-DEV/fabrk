@@ -7,18 +7,14 @@
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { mode } from '@/design-system';
-import { CheckCircle2, Loader2, Clock, Circle, Sparkles } from 'lucide-react';
 import { type RoadmapSection, type RoadmapStatus } from '@/data/roadmap';
 
-const STATUS_CONFIG: Record<
-  RoadmapStatus,
-  { label: string; icon: typeof CheckCircle2; className: string }
-> = {
-  shipped: { label: 'SHIPPED', icon: CheckCircle2, className: 'text-success' },
-  in_progress: { label: 'IN PROGRESS', icon: Loader2, className: 'text-primary' },
-  building: { label: 'BUILDING', icon: Clock, className: 'text-warning' },
-  planned: { label: 'PLANNED', icon: Circle, className: 'text-info' },
-  exploring: { label: 'EXPLORING', icon: Sparkles, className: 'text-muted-foreground' },
+const STATUS_CONFIG: Record<RoadmapStatus, { label: string; className: string }> = {
+  shipped: { label: 'SHIPPED', className: 'text-success' },
+  in_progress: { label: 'IN PROGRESS', className: 'text-primary' },
+  building: { label: 'BUILDING', className: 'text-warning' },
+  planned: { label: 'PLANNED', className: 'text-info' },
+  exploring: { label: 'EXPLORING', className: 'text-muted-foreground' },
 };
 
 interface RoadmapEntryProps {
@@ -44,12 +40,10 @@ export function RoadmapEntry({ section, index = 0, className }: RoadmapEntryProp
             if (items.length === 0) return null;
 
             const config = STATUS_CONFIG[status];
-            const Icon = config.icon;
 
             return (
               <div key={status}>
-                <div className={cn('mb-2 flex items-center gap-2', config.className)}>
-                  <Icon className="h-3 w-3" />
+                <div className={cn('mb-2', config.className)}>
                   <span className={cn('text-xs font-medium', mode.font)}>[{config.label}]</span>
                 </div>
                 <ul className="space-y-1 pl-5">
