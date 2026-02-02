@@ -57,8 +57,8 @@ const ROUTE_PATTERNS = {
   payment: ['/api/stripe/checkout', '/api/polar/checkout', '/api/lemonsqueezy/checkout'],
   admin: ['/api/admin'],
   webhook: ['/api/stripe/webhook', '/api/polar/webhook', '/api/lemonsqueezy/webhook'],
-  // AI routes need stricter rate limiting to prevent cost abuse
-  ai: ['/api/ai/chat', '/api/ai/generate'],
+  // AI routes - disabled on marketing site (no auth system)
+  ai: ['/api/ai'],
 };
 
 const BAD_BOT_PATTERNS = [/curl/i, /wget/i, /python-requests/i, /scrapy/i, /httpclient/i, /java\//i, /libwww/i, /lwp-/i, /^$/];
@@ -197,6 +197,14 @@ export default async function proxy(req: NextRequest) {
         }
       );
     }
+  }
+
+  // AI routes disabled on marketing site (no auth system to protect them)
+  if (ROUTE_PATTERNS.ai.some((p) => pathname.startsWith(p))) {
+    return NextResponse.json(
+      { error: 'Service not available', message: 'AI features are not enabled on this site.' },
+      { status: 503 }
+    );
   }
 
   // Admin route protection - require admin role
