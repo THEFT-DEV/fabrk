@@ -1,0 +1,37 @@
+{
+  "name": "SaaS",
+  "description": "Full SaaS stack with Stripe, Email, and Analytics.",
+  "setup_time": "4-5 minutes",
+  "api_keys_needed": 3,
+  "dependencies": [
+    "stripe",
+    "@stripe/stripe-js",
+    "resend",
+    "posthog-js"
+  ],
+  "env": {
+    "DATABASE_URL": "{{PROMPT:PostgreSQL connection string}}",
+    "NEXTAUTH_SECRET": "{{AUTO_GENERATE}}",
+    "NEXTAUTH_URL": "http://localhost:3000",
+    "NEXT_PUBLIC_APP_URL": "http://localhost:3000",
+    "NODE_ENV": "development",
+    "STRIPE_SECRET_KEY": "{{PROMPT:Stripe secret key (sk_test_...)}}",
+    "STRIPE_WEBHOOK_SECRET": "{{PROMPT:Stripe webhook secret (whsec_...)}}",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "{{PROMPT:Stripe publishable key (pk_test_...)}}",
+    "RESEND_API_KEY": "{{PROMPT:Resend API key (re_...)}}",
+    "NEXT_PUBLIC_POSTHOG_KEY": "{{PROMPT:PostHog project API key (phc_...)}}",
+    "NEXT_PUBLIC_POSTHOG_HOST": "https://us.i.posthog.com"
+  },
+  "features": {
+    "database": "postgresql",
+    "auth": true,
+    "payments": "stripe",
+    "email": "resend",
+    "analytics": "posthog",
+    "ai": null
+  },
+  "post_setup": [
+    "npm run db:push",
+    "npm run dev"
+  ]
+}

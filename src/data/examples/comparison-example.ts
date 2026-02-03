@@ -1,0 +1,136 @@
+/**
+ * Generic Comparison Example
+ *
+ * Replace with your actual competitive comparison.
+ * These are format examples showing the expected structure.
+ */
+
+export const COMPARISON_EXAMPLE = {
+  columns: [
+    {
+      id: 'your-product',
+      name: 'Your Product',
+      highlighted: true,
+      description: 'Complete solution with everything you need',
+    },
+    {
+      id: 'competitor-a',
+      name: 'Competitor A',
+      highlighted: false,
+      description: 'Basic starter template',
+    },
+    {
+      id: 'competitor-b',
+      name: 'Competitor B',
+      highlighted: false,
+      description: 'Enterprise-only solution',
+    },
+    {
+      id: 'build-yourself',
+      name: 'Build Yourself',
+      highlighted: false,
+      description: 'Start from scratch',
+    },
+  ],
+  features: [
+    {
+      id: 'auth',
+      category: 'Core Features',
+      name: 'Authentication',
+      yourProduct: true,
+      competitorA: true,
+      competitorB: true,
+      buildYourself: false,
+    },
+    {
+      id: 'payments',
+      category: 'Core Features',
+      name: 'Payment Processing',
+      yourProduct: true,
+      competitorA: false,
+      competitorB: true,
+      buildYourself: false,
+    },
+    {
+      id: 'multi-tenant',
+      category: 'Core Features',
+      name: 'Multi-Tenancy',
+      yourProduct: true,
+      competitorA: false,
+      competitorB: true,
+      buildYourself: false,
+    },
+    {
+      id: 'admin',
+      category: 'Core Features',
+      name: 'Admin Dashboard',
+      yourProduct: true,
+      competitorA: false,
+      competitorB: false,
+      buildYourself: false,
+    },
+    {
+      id: 'email',
+      category: 'Infrastructure',
+      name: 'Email Service',
+      yourProduct: true,
+      competitorA: true,
+      competitorB: true,
+      buildYourself: false,
+    },
+    {
+      id: 'database',
+      category: 'Infrastructure',
+      name: 'Database Setup',
+      yourProduct: true,
+      competitorA: true,
+      competitorB: true,
+      buildYourself: false,
+    },
+    {
+      id: 'ci-cd',
+      category: 'Infrastructure',
+      name: 'CI/CD Workflows',
+      yourProduct: true,
+      competitorA: false,
+      competitorB: true,
+      buildYourself: false,
+    },
+    {
+      id: 'tests',
+      category: 'Developer Experience',
+      name: 'Test Suite',
+      yourProduct: true,
+      competitorA: false,
+      competitorB: false,
+      buildYourself: false,
+    },
+    {
+      id: 'docs',
+      category: 'Developer Experience',
+      name: 'Documentation',
+      yourProduct: true,
+      competitorA: true,
+      competitorB: true,
+      buildYourself: false,
+    },
+    {
+      id: 'updates',
+      category: 'Support',
+      name: 'Lifetime Updates',
+      yourProduct: true,
+      competitorA: false,
+      competitorB: false,
+      buildYourself: false,
+    },
+    {
+      id: 'support',
+      category: 'Support',
+      name: 'Email Support',
+      yourProduct: true,
+      competitorA: false,
+      competitorB: true,
+      buildYourself: false,
+    },
+  ],
+} as const;

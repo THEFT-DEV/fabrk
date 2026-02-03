@@ -1,0 +1,96 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": [
+    "src/components/ui/tooltip.tsx",
+    "src/components/ui/command.tsx",
+    "src/components/ui/hover-card.tsx",
+    "src/components/ui/context-menu.tsx",
+    "src/components/ui/skeleton.tsx",
+    "src/components/ui/collapsible.tsx",
+    "src/components/ui/aspect-ratio.tsx",
+    "src/components/ui/scroll-area.tsx",
+    "src/components/ui/menubar.tsx",
+    "src/components/ui/calendar.tsx",
+    "src/components/ui/combobox.tsx",
+    "src/components/ui/breadcrumb.tsx",
+    "src/components/ui/navigation-menu.tsx"
+  ],
+  "out": "docs/api",
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.stories.tsx",
+    "**/__tests__/**",
+    "**/node_modules/**",
+    "**/dist/**"
+  ],
+  "excludeNotDocumented": false,
+  "skipErrorChecking": true,
+  "excludePrivate": true,
+  "excludeProtected": false,
+  "excludeExternals": true,
+  "includeVersion": true,
+  "categorizeByGroup": true,
+  "defaultCategory": "Components",
+  "categoryOrder": [
+    "Components",
+    "Interfaces",
+    "Types",
+    "Functions",
+    "*"
+  ],
+  "sort": ["source-order"],
+  "kindSortOrder": [
+    "Reference",
+    "Project",
+    "Module",
+    "Namespace",
+    "Enum",
+    "EnumMember",
+    "Class",
+    "Interface",
+    "TypeAlias",
+    "Constructor",
+    "Property",
+    "Variable",
+    "Function",
+    "Accessor",
+    "Method",
+    "Parameter",
+    "TypeParameter",
+    "TypeLiteral",
+    "CallSignature",
+    "ConstructorSignature",
+    "IndexSignature",
+    "GetSignature",
+    "SetSignature"
+  ],
+  "navigation": {
+    "includeCategories": true,
+    "includeGroups": true,
+    "includeFolders": true
+  },
+  "searchInComments": true,
+  "searchInDocuments": true,
+  "cleanOutputDir": true,
+  "titleLink": "/",
+  "navigationLinks": {
+    "GitHub": "https://github.com/yourusername/fabrk-boilerplate"
+  },
+  "sidebarLinks": {
+    "Documentation": "https://github.com/yourusername/fabrk-boilerplate/tree/main/docs",
+    "Examples": "https://github.com/yourusername/fabrk-boilerplate/tree/main/examples"
+  },
+  "readme": "none",
+  "githubPages": false,
+  "disableSources": false,
+  "sourceLinkTemplate": "https://github.com/yourusername/fabrk-boilerplate/blob/main/{path}#L{line}",
+  "visibilityFilters": {
+    "protected": false,
+    "private": false,
+    "inherited": true,
+    "external": false
+  }
+}

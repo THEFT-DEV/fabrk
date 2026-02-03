@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Terminal screen background (black) -->
+  <rect width="32" height="32" fill="#0a0a0a"/>
+
+  <!-- Terminal prompt "> _" in phosphor green -->
+  <!-- Greater than symbol ">" -->
+  <path d="M8 10 L14 16 L8 22" stroke="#00ff41" stroke-width="2" stroke-linecap="square" fill="none"/>
+
+  <!-- Underscore "_" cursor -->
+  <rect x="17" y="20" width="6" height="2" fill="#00ff41"/>
+</svg>

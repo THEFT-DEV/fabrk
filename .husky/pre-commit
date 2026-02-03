@@ -1,0 +1,22 @@
+# Pre-commit hook: Type check + Design System + lint-staged
+
+echo "🔍 Running pre-commit checks..."
+
+# Type check (fast, catches TS errors)
+npm run type-check || exit 1
+
+# Design system lint (catches hardcoded colors, arbitrary values, etc.)
+echo "🎨 Checking design system compliance..."
+npm run design:lint || {
+  echo ""
+  echo "❌ Design system violations found!"
+  echo "   Run 'npm run design:lint' to see details"
+  echo "   See .ai/CONTEXT.md for design system rules"
+  echo ""
+  exit 1
+}
+
+# Lint-staged (runs on staged files only)
+npx lint-staged || exit 1
+
+echo "✓ Pre-commit checks passed"
