@@ -574,3 +574,317 @@ import { cn } from "@/lib/utils"
   </Button>
 </div>
 ```
+
+---
+
+## Pattern 16: AI Cost Dashboard
+
+```tsx
+import { CostWidget, CostBadge, BudgetAlert } from "@/components/ai"
+import { useCostTracking } from "@/hooks/use-cost-tracking"
+import { Card, CardHeader, CardContent } from "@/components/ui/card"
+import { AreaChart } from "@/components/charts/area-chart"
+import { mode } from "@/design-system"
+import { cn } from "@/lib/utils"
+
+// Full AI costs dashboard
+<div className="space-y-6">
+  {/* Budget alert (only shows when threshold exceeded) */}
+  <BudgetAlert threshold={70} />
+
+  {/* Main cost widget */}
+  <CostWidget showFeatures />
+
+  {/* Custom cost chart */}
+  <Card className={cn("border border-border", mode.radius)}>
+    <CardHeader code="0x01" title="COST_TREND" />
+    <CardContent padding="md">
+      <AreaChart
+        data={chartData}
+        xAxisKey="date"
+        series={[{ dataKey: "cost", name: "Cost ($)" }]}
+        height={200}
+      />
+    </CardContent>
+  </Card>
+</div>
+
+// Header with cost badge
+<header className="flex items-center justify-between">
+  <h1>DASHBOARD</h1>
+  <CostBadge />
+</header>
+```
+
+---
+
+## Pattern 17: AI API Route Handler
+
+```tsx
+import { NextResponse } from "next/server"
+import { auth } from "@/lib/auth"
+import { getCostTracker } from "@/lib/ai/cost"
+import { AppError, successResponse, errorResponse } from "@/types/ai"
+
+export async function POST(request: Request) {
+  try {
+    // Authentication
+    const session = await auth()
+    if (!session?.user) {
+      return NextResponse.json(
+        errorResponse("UNAUTHORIZED", "Authentication required"),
+        { status: 401 }
+      )
+    }
+
+    // Parse request
+    const { prompt } = await request.json()
+    if (!prompt) {
+      return NextResponse.json(
+        errorResponse("INVALID_INPUT", "Prompt is required"),
+        { status: 400 }
+      )
+    }
+
+    // Check budget before expensive operation
+    const tracker = getCostTracker()
+    const budget = await tracker.checkBudget(session.user.id)
+    if (!budget.withinBudget) {
+      return NextResponse.json(
+        errorResponse("BUDGET_EXCEEDED", "Daily AI budget exceeded"),
+        { status: 429 }
+      )
+    }
+
+    // Track the AI call
+    const result = await tracker.trackClaudeCall({
+      model: "claude-sonnet-4-20250514",
+      feature: "my-feature",
+      prompt,
+      userId: session.user.id,
+      fn: async () => {
+        // Your AI API call here
+        return await anthropic.messages.create({
+          model: "claude-sonnet-4-20250514",
+          messages: [{ role: "user", content: prompt }],
+          max_tokens: 1024,
+        })
+      },
+    })
+
+    return NextResponse.json(successResponse(result))
+  } catch (error) {
+    console.error("AI API error:", error)
+
+    if (error instanceof AppError) {
+      return NextResponse.json(
+        errorResponse(error.code, error.message),
+        { status: error.statusCode }
+      )
+    }
+
+    return NextResponse.json(
+      errorResponse("INTERNAL_ERROR", "An unexpected error occurred"),
+      { status: 500 }
+    )
+  }
+}
+```
+
+---
+
+## Pattern 18: AI Feature Card with Cost
+
+```tsx
+import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { useFeatureCost } from "@/hooks/use-cost-tracking"
+import { SparklesIcon } from "lucide-react"
+import { mode } from "@/design-system"
+import { cn } from "@/lib/utils"
+
+function AIFeatureCard({ feature, onGenerate }: Props) {
+  const { cost, requests, avgCost, isLoading } = useFeatureCost(feature)
+
+  return (
+    <Card className={cn("border border-border", mode.radius)}>
+      <CardHeader
+        code="AI"
+        title={feature.toUpperCase()}
+        icon={<SparklesIcon className="size-4" />}
+      />
+      <CardContent padding="md" className="space-y-4">
+        <p className={cn(mode.typography.body.m, mode.color.text.muted)}>
+          Generate content using AI.
+        </p>
+
+        {/* Feature cost stats */}
+        <div className="flex gap-4 text-sm">
+          <div>
+            <span className={mode.color.text.muted}>Total:</span>{" "}
+            <span className="font-medium">${cost.toFixed(2)}</span>
+          </div>
+          <div>
+            <span className={mode.color.text.muted}>Requests:</span>{" "}
+            <span className="font-medium">{requests}</span>
+          </div>
+          <div>
+            <span className={mode.color.text.muted}>Avg:</span>{" "}
+            <span className="font-medium">${avgCost.toFixed(4)}</span>
+          </div>
+        </div>
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <Badge variant="secondary">
+          ~$0.01 PER REQUEST
+        </Badge>
+        <Button onClick={onGenerate}>
+          <SparklesIcon className="mr-2 size-4" />
+          &gt; GENERATE
+        </Button>
+      </CardFooter>
+    </Card>
+  )
+}
+```
+
+---
+
+## Pattern 19: AI Validation Feedback
+
+```tsx
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Badge } from "@/components/ui/badge"
+import { validateCode, type ValidationIssue } from "@/lib/ai/validation"
+import { AlertCircleIcon, CheckCircleIcon, AlertTriangleIcon } from "lucide-react"
+import { mode } from "@/design-system"
+import { cn } from "@/lib/utils"
+
+function ValidationFeedback({ code }: { code: string }) {
+  const result = validateCode(code)
+
+  if (result.valid) {
+    return (
+      <Alert variant="success">
+        <CheckCircleIcon className="size-4" />
+        <AlertTitle>VALIDATION PASSED</AlertTitle>
+        <AlertDescription>
+          Code passed all security and design checks.
+        </AlertDescription>
+      </Alert>
+    )
+  }
+
+  const severityIcon = {
+    error: <AlertCircleIcon className="size-4" />,
+    warning: <AlertTriangleIcon className="size-4" />,
+    info: <AlertCircleIcon className="size-4" />,
+  }
+
+  return (
+    <div className="space-y-2">
+      {result.issues.map((issue, i) => (
+        <Alert
+          key={i}
+          variant={issue.severity === "error" ? "destructive" : "default"}
+        >
+          {severityIcon[issue.severity]}
+          <AlertTitle className="flex items-center gap-2">
+            {issue.rule}
+            <Badge variant="outline" className="text-xs">
+              {issue.category.toUpperCase()}
+            </Badge>
+          </AlertTitle>
+          <AlertDescription>
+            {issue.message}
+            {issue.line && (
+              <span className={mode.color.text.muted}> (line {issue.line})</span>
+            )}
+          </AlertDescription>
+        </Alert>
+      ))}
+    </div>
+  )
+}
+```
+
+---
+
+## Pattern 20: AI Test Results Display
+
+```tsx
+import { Card, CardHeader, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
+import type { AITestResults } from "@/lib/ai/testing"
+import { CheckIcon, XIcon } from "lucide-react"
+import { mode } from "@/design-system"
+import { cn } from "@/lib/utils"
+
+function TestResultsCard({ results }: { results: AITestResults }) {
+  const passRate = (results.passedCount / results.total) * 100
+
+  return (
+    <Card className={cn("border border-border", mode.radius)}>
+      <CardHeader
+        code="TEST"
+        title="AI_TEST_RESULTS"
+        meta={`${results.duration}ms`}
+      />
+      <CardContent padding="md" className="space-y-4">
+        {/* Summary */}
+        <div className="flex items-center justify-between">
+          <div className="text-2xl font-bold">
+            {results.passedCount}/{results.total} PASSED
+          </div>
+          <Badge variant={results.passed ? "success" : "destructive"}>
+            {results.passed ? "PASS" : "FAIL"}
+          </Badge>
+        </div>
+
+        <Progress value={passRate} className="h-2" />
+
+        {/* Individual results */}
+        <div className="space-y-2">
+          {results.results.map((test, i) => (
+            <div
+              key={i}
+              className={cn(
+                "flex items-center justify-between p-2 border",
+                mode.radius,
+                test.passed ? "border-green-500/20" : "border-destructive/20"
+              )}
+            >
+              <div className="flex items-center gap-2">
+                {test.passed ? (
+                  <CheckIcon className="size-4 text-green-500" />
+                ) : (
+                  <XIcon className="size-4 text-destructive" />
+                )}
+                <span className={cn(mode.font, "text-sm")}>{test.name}</span>
+              </div>
+              <span className={cn(mode.color.text.muted, "text-xs")}>
+                {test.duration}ms
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Errors */}
+        {results.results.some((r) => r.error) && (
+          <div className="space-y-1 text-sm text-destructive">
+            {results.results
+              .filter((r) => r.error)
+              .map((r, i) => (
+                <p key={i}>
+                  <strong>{r.name}:</strong> {r.error}
+                </p>
+              ))}
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  )
+}
+```

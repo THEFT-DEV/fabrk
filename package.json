@@ -27,6 +27,8 @@
     "validate:webhooks": "node scripts/validate-webhooks.mjs",
     "design:lint": "node scripts/design-lint.js src/",
     "design:lint:ci": "node scripts/design-lint.js src/ --json",
+    "ai:validate": "tsx scripts/ai-validate.ts",
+    "ai:lint": "tsx scripts/ai-lint.ts",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",

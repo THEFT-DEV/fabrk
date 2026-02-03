@@ -484,7 +484,7 @@ Full design system documentation: `docs/08-design/DESIGN_SYSTEM.md`
 │                     NEXT.JS SERVER (Edge/Node)                   │
 │  ┌───────────────┐  ┌───────────────┐  ┌────────────────┐      │
 │  │  Page Routes  │  │  API Routes   │  │  Middleware    │      │
-│  │  (RSC/SSR)    │  │  (70+ endpoints)│  │  Auth/CSRF    │      │
+│  │  (RSC/SSR)    │  │  (71+ endpoints)│  │  Auth/CSRF    │      │
 │  └───────┬───────┘  └───────┬───────┘  └────────┬───────┘      │
 │          │                  │                     │              │
 │          ▼                  ▼                     ▼              │
@@ -539,7 +539,7 @@ fabrk/
 │   ├── app/
 │   │   ├── (platform)/      # Dashboard and app pages
 │   │   ├── (auth)/          # Auth pages (login, register, etc.)
-│   │   ├── api/             # API routes (70+ endpoints)
+│   │   ├── api/             # API routes (71+ endpoints)
 │   │   ├── docs/            # Documentation site
 │   │   └── library/         # Template showcase
 │   ├── components/
