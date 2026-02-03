@@ -203,25 +203,26 @@ function Terminal({ command, output }: { command: string; output?: string }) {
 // Base MDX component overrides
 export const mdxComponents: MDXComponents = {
   // Headings
+  // Note: h1 in MDX renders as h2 since the page template already has the post title as h1
   h1: ({ children }) => (
-    <h1 className="text-foreground mt-8 mb-6 font-mono text-4xl font-semibold uppercase first:mt-0">
-      {children}
-    </h1>
-  ),
-  h2: ({ children }) => (
-    <h2 className="border-border text-foreground mt-8 mb-4 border-b pb-2 font-mono text-2xl font-semibold tracking-tight uppercase">
+    <h2 className="border-border text-foreground mt-8 mb-4 border-b pb-2 font-mono text-3xl font-semibold tracking-tight uppercase first:mt-0">
       {children}
     </h2>
   ),
-  h3: ({ children }) => (
-    <h3 className="text-foreground mt-6 mb-4 font-mono text-xl font-semibold uppercase">
+  h2: ({ children }) => (
+    <h3 className="text-foreground mt-8 mb-4 font-mono text-2xl font-semibold tracking-tight uppercase">
       {children}
     </h3>
   ),
-  h4: ({ children }) => (
-    <h4 className="text-foreground mt-4 mb-2 font-mono text-sm font-semibold uppercase">
+  h3: ({ children }) => (
+    <h4 className="text-foreground mt-6 mb-4 font-mono text-xl font-semibold uppercase">
       {children}
     </h4>
+  ),
+  h4: ({ children }) => (
+    <h5 className="text-foreground mt-4 mb-2 font-mono text-base font-semibold uppercase">
+      {children}
+    </h5>
   ),
 
   // Paragraphs and text
