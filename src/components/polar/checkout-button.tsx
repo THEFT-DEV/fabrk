@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { trackCheckoutStarted, trackCheckoutFailed, trackCTAClicked, captureException } from '@/lib/analytics/events';
 
 // Extend Window interface for dataLayer
 declare global {
@@ -37,6 +38,21 @@ export function PolarCheckoutButton({
 
   const handleCheckout = async () => {
     setIsLoading(true);
+
+    // Track CTA click
+    trackCTAClicked({
+      ctaText: 'GET FABRK',
+      ctaLocation: 'hero',
+      page: window.location.pathname,
+    });
+
+    // Track checkout started in PostHog
+    trackCheckoutStarted({
+      plan: 'fabrk-boilerplate',
+      priceId: 'polar-fabrk',
+      price: 199,
+      currency: 'USD',
+    });
 
     // Track begin_checkout event in GTM
     window.dataLayer = window.dataLayer || [];
@@ -80,6 +96,19 @@ export function PolarCheckoutButton({
       window.location.href = data.checkoutUrl;
     } catch (error) {
       console.error('Checkout error:', error);
+
+      // Capture exception in PostHog (for debugging)
+      captureException(error, {
+        context: 'polar_checkout',
+        plan: 'fabrk-boilerplate',
+      });
+
+      // Track checkout failure
+      trackCheckoutFailed({
+        plan: 'fabrk-boilerplate',
+        errorMessage: error instanceof Error ? error.message : 'Unknown error',
+      });
+
       toast.error(error instanceof Error ? error.message : 'Failed to start checkout');
       setIsLoading(false);
     }

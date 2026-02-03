@@ -6,6 +6,7 @@ import { Toaster } from 'sonner';
 import { ThemeProvider, type ColorThemeName } from '@/design-system/providers';
 import { mode } from '@/design-system';
 import { cn } from '@/lib/utils';
+import { PostHogPageview } from '@/lib/analytics/posthog-provider';
 
 /**
  * Client-side providers
@@ -13,11 +14,16 @@ import { cn } from '@/lib/utils';
  * Provider hierarchy:
  * 1. SessionProvider - NextAuth session management (when auth works)
  * 2. ThemeProvider - Design system color theme management
+ * 3. PostHogPageview - Analytics pageview tracking
  *
  * Theme System:
  * - Color themes: Light and Dark
  * - Terminal aesthetic (sharp edges, monospace font) is enforced globally
  * - Persisted to localStorage with SSR flash prevention
+ *
+ * Analytics:
+ * - PostHog initialized in instrumentation-client.ts
+ * - Pageviews tracked on route changes via PostHogPageview
  */
 
 interface ProvidersProps {
@@ -50,6 +56,8 @@ export function Providers({ children, defaultColorTheme = 'green' }: ProvidersPr
   return (
     <AuthWrapper>
       <ThemeProvider defaultColorTheme={defaultColorTheme} storageKeyPrefix="fabrk-theme">
+        {/* PostHog pageview tracking - initialized in instrumentation-client.ts */}
+        <PostHogPageview />
         {children}
         <Toaster
           position="top-right"

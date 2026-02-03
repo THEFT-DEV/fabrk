@@ -5,6 +5,7 @@
  */
 'use client';
 
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { mode } from '@/design-system';
@@ -12,8 +13,16 @@ import { Container } from '@/components/ui/container';
 import { Card, CardContent, InfoNote, Badge } from '@/components/ui/card';
 import { PricingCard } from '@/components/landing/pricing-card';
 import { PromoBanner } from '@/components/polar/promo-banner';
+import { trackPricingViewed } from '@/lib/analytics/events';
 
 export function PricingSection() {
+  // Track pricing section view
+  useEffect(() => {
+    trackPricingViewed({
+      plans: ['starter'],
+      source: window.location.pathname,
+    });
+  }, []);
   return (
     <section
       id="pricing"

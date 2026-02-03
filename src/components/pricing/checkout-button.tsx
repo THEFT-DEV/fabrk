@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { logger } from '@/lib/logger';
+import { trackCheckoutStarted, trackCheckoutFailed, captureException } from '@/lib/analytics/events';
 
 interface CheckoutButtonProps {
   priceId: string;
@@ -16,7 +17,7 @@ interface CheckoutButtonProps {
 
 export function CheckoutButton({
   priceId,
-  planName: _planName,
+  planName,
   className,
   children = '> GET STARTED',
 }: CheckoutButtonProps) {
@@ -32,6 +33,12 @@ export function CheckoutButton({
     }
 
     setLoading(true);
+
+    // Track checkout started
+    trackCheckoutStarted({
+      plan: planName,
+      priceId: priceId,
+    });
 
     try {
       const response = await fetch('/api/stripe/checkout', {
@@ -54,6 +61,20 @@ export function CheckoutButton({
       }
     } catch (error: unknown) {
       logger.error('Checkout error', error);
+
+      // Capture exception in PostHog (for debugging)
+      captureException(error, {
+        context: 'stripe_checkout',
+        plan: planName,
+        priceId: priceId,
+      });
+
+      // Track checkout failure
+      trackCheckoutFailed({
+        plan: planName,
+        errorMessage: error instanceof Error ? error.message : 'Unknown error',
+      });
+
       toast.error('Failed to start checkout. Please try again.');
       setLoading(false);
     }

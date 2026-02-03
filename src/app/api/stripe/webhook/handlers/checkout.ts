@@ -11,6 +11,7 @@ import { sendWelcomeEmail } from '@/lib/email';
 import { generateSecureToken, getTokenExpiration } from '@/lib/tokens';
 import { createHash } from 'crypto';
 import Stripe from 'stripe';
+import { trackPaymentSucceeded, trackUserSignup } from '@/lib/analytics/events.server';
 
 const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder';
 const _stripe = new Stripe(STRIPE_KEY, {
@@ -99,6 +100,20 @@ export async function handleCheckoutCompleted(event: Stripe.Event) {
 
     // Send welcome email with license key and magic link for instant access
     await sendWelcomeEmail(customerEmail, user.name || 'Customer', licenseKey, magicLinkUrl);
+
+    // Track purchase in PostHog
+    await trackPaymentSucceeded(user.id, session.amount_total || 0, {
+      tier: tier || 'professional',
+      email: customerEmail,
+      sessionId: session.id,
+    });
+
+    // Identify user with purchase info
+    await trackUserSignup(user.id, customerEmail, {
+      tier: tier || 'professional',
+      amount: session.amount_total || 0,
+      purchaseDate: new Date().toISOString(),
+    });
 
     logger.info('Purchase processed successfully', {
       userId: user.id,
