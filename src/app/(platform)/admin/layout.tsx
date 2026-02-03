@@ -13,6 +13,7 @@ const adminNavItems = [
   { href: '/admin', label: 'Overview' },
   { href: '/admin/users', label: 'Users' },
   { href: '/admin/analytics', label: 'Analytics' },
+  { href: '/admin/ai-costs', label: 'AI Costs' },
   { href: '/admin/feature-flags', label: 'Feature Flags' },
   { href: '/admin/security', label: 'Security Logs' },
   { href: '/admin/monitoring', label: 'Monitoring' },
