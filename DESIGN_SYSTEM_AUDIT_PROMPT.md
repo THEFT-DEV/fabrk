@@ -56,7 +56,6 @@ src/lib/**/*.tsx
 
 ### Files to EXCLUDE
 ```
-src/app/(public)/fui-lab/**     # Experimental lab (intentionally different)
 src/emails/**                       # Email templates (require inline styles)
 **/examples/**                      # Documentation examples
 **/*.stories.tsx                    # Storybook files

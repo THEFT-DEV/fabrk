@@ -98,7 +98,6 @@ src/app/(public)/(legal)/
 # EXCLUDED - fabrk.dev website content:
 # src/app/(public)/library/  - fabrk.dev template showcase
 # src/app/(public)/docs/     - 269 files (interactive docs)
-# src/app/(public)/fui-lab/  - experimental
 # src/app/(public)/hero-lab/ - experimental
 src/app/globals.css
 src/app/typography.css

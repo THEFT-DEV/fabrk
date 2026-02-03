@@ -3,6 +3,6 @@
   "framework": "nextjs",
   "regions": ["iad1"],
   "installCommand": "npm ci --legacy-peer-deps",
-  "buildCommand": "rm -rf 'src/app/(public)/fui-lab' && prisma generate && next build",
+  "buildCommand": "prisma generate && next build",
   "outputDirectory": ".next"
 }

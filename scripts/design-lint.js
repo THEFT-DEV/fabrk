@@ -32,7 +32,6 @@ const CONFIG = {
     'generated',
     '__tests__',
     'tests',
-    'fui-lab',
     'hero-lab',
     'showcase',
     'examples',

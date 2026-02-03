@@ -166,19 +166,6 @@ All core components properly implement design tokens:
 - `billing/page.tsx`
 - `organizations/new/page.tsx`
 
-#### Exempted Files (FUI Lab)
-
-**7 files with `eslint-disable` comments:**
-- `fui-lab/demo/page.tsx`
-- `fui-lab/main-landing/page.tsx`
-- `fui-lab/showcase/page.tsx`
-- `fui-lab/landing/page.tsx`
-- `fui-lab/components/fui-components.tsx`
-- `fui-lab/components/holographic-card.tsx`
-- `fui-lab/styles/fui-styles.css`
-
-**Reason:** Experimental playground with intentional sci-fi themes (Architect, Matrix, etc.)
-
 #### Email Template Documentation
 
 **File:** `docs/features/emails/page.tsx`
@@ -282,7 +269,6 @@ all 18 themes pass WCAG 2.1 AA compliance:
 ### Grep: `bg-white|text-gray|text-black`
 
 **Found in:**
-- `fui-lab/` files (exempt - playground)
 - Email template documentation (acceptable)
 - No production component violations
 

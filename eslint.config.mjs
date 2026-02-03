@@ -80,7 +80,6 @@ const eslintConfig = [{
     "*.generated.js",
     "**/generated-sources.ts", // Auto-generated component sources
     // Experimental lab directories - intentionally use non-standard patterns
-    "**/fui-lab/**",
     "**/hero-lab/**",
   ],
 }, ...nextFlatConfigs, {
