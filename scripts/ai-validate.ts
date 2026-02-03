@@ -268,6 +268,9 @@ ${colors.gray('Categories checked:')}
         'src/**/*.spec.ts',
         'src/**/*.spec.tsx',
         'src/**/*.d.ts',
+        // Exclude validation tools that define patterns (contain eval/innerHTML patterns by design)
+        'src/lib/ai/validation.ts',
+        'src/lib/eslint/**',
       ],
     });
   }
