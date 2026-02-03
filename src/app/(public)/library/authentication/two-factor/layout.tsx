@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Two-Factor Authentication Template | Fabrk',
   description: '2FA verification page with code input, backup codes, and recovery options.',
@@ -11,6 +13,9 @@ export const metadata: Metadata = {
     title: 'Two-Factor Authentication Template | Fabrk',
     description: '2FA verification page with code input, backup codes, and recovery options.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/authentication/two-factor`,
   },
   twitter: {
     card: 'summary_large_image',

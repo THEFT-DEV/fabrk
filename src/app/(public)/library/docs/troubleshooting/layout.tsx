@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Troubleshooting Guide | Fabrk',
   description: 'Common issues and solutions for template setup and deployment.',
@@ -11,6 +13,9 @@ export const metadata: Metadata = {
     title: 'Troubleshooting Guide | Fabrk',
     description: 'Common issues and solutions for template setup and deployment.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/docs/troubleshooting`,
   },
   twitter: {
     card: 'summary_large_image',

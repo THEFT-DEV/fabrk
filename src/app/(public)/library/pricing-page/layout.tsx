@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Pricing Page Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Conversion-optimized pricing page templates with tier comparisons, feature lists, and CTAs. Ready for Stripe integration.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/pricing-page`,
   },
   twitter: {
     card: 'summary_large_image',

@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Related Templates Component | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Template suggestion component showing related templates with previews and navigation. Improves template discoverability.',
     type: 'article',
+  },
+  alternates: {
+    canonical: `${baseUrl}/docs/library/related-templates`,
   },
   twitter: {
     card: 'summary_large_image',

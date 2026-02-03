@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Input Otp | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Input Otp component documentation with examples, props, and usage guidelines. Terminal-styled UI component for modern SaaS applications.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/docs/components/input-otp`,
   },
   twitter: {
     card: 'summary_large_image',

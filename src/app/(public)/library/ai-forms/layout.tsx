@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'AI Form Generator Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'AI-powered form generation templates with validation, multi-step flows, and dynamic fields.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/ai-forms`,
   },
   twitter: {
     card: 'summary_large_image',

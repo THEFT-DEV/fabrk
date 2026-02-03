@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Settings Page Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Comprehensive settings interfaces with tabs, form validation, and save states. User preferences and app configuration.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/settings-page`,
   },
   twitter: {
     card: 'summary_large_image',

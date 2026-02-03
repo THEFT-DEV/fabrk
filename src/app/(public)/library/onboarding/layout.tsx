@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Onboarding Flow Templates | Fabrk',
   description: 'Multi-step onboarding sequences with progress tracking and skip options.',
@@ -11,6 +13,9 @@ export const metadata: Metadata = {
     title: 'Onboarding Flow Templates | Fabrk',
     description: 'Multi-step onboarding sequences with progress tracking and skip options.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/onboarding`,
   },
   twitter: {
     card: 'summary_large_image',

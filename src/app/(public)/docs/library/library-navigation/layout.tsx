@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Library Navigation Component | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Sidebar navigation component for template libraries with category grouping and active state management.',
     type: 'article',
+  },
+  alternates: {
+    canonical: `${baseUrl}/docs/library/library-navigation`,
   },
   twitter: {
     card: 'summary_large_image',

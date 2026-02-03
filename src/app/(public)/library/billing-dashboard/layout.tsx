@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Billing Dashboard Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Complete billing management interfaces with invoice history, payment methods, and subscription control.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/billing-dashboard`,
   },
   twitter: {
     card: 'summary_large_image',

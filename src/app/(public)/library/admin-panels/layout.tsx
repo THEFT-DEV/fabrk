@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Admin Panel Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Production-ready admin panel templates with stats, user management, and system monitoring. Terminal-styled components for SaaS dashboards.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/admin-panels`,
   },
   twitter: {
     card: 'summary_large_image',

@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Account Management Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'User account settings pages with profile editing, security settings, and preferences. Complete CRUD interfaces.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/account-pages`,
   },
   twitter: {
     card: 'summary_large_image',

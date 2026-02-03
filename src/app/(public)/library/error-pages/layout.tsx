@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Error Page Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       '404, 500, and maintenance page templates with helpful navigation and terminal-style error messages.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/error-pages`,
   },
   twitter: {
     card: 'summary_large_image',

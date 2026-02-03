@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'User Management Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Admin user management interfaces with role assignment, permissions, and user search.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/user-management`,
   },
   twitter: {
     card: 'summary_large_image',

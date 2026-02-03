@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Sign In Form | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Sign In Form component documentation with examples, props, and usage guidelines. Terminal-styled UI component for modern SaaS applications.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/docs/components/sign-in-form`,
   },
   twitter: {
     card: 'summary_large_image',

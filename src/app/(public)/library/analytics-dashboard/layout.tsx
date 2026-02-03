@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Analytics Dashboard Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Advanced analytics dashboards with KPIs, trends, and data breakdowns. Ideal for metrics tracking.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/analytics-dashboard`,
   },
   twitter: {
     card: 'summary_large_image',

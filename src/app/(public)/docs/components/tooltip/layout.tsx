@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Tooltip | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Tooltip component documentation with examples, props, and usage guidelines. Terminal-styled UI component for modern SaaS applications.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/docs/components/tooltip`,
   },
   twitter: {
     card: 'summary_large_image',

@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Authentication Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Complete authentication flow templates including sign in, sign up, password reset, and 2FA.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/authentication`,
   },
   twitter: {
     card: 'summary_large_image',

@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Empty State Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Engaging empty state designs for zero data scenarios. Onboarding prompts and helpful CTAs.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/empty-states`,
   },
   twitter: {
     card: 'summary_large_image',

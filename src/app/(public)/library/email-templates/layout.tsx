@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Email Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Responsive HTML email templates for transactional emails. Welcome, reset password, billing notifications, and more.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/email-templates`,
   },
   twitter: {
     card: 'summary_large_image',

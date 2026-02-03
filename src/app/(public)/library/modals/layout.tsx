@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Modal Dialog Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Accessible modal dialog templates for confirmations, forms, and alerts. Keyboard navigation and focus management included.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/modals`,
   },
   twitter: {
     card: 'summary_large_image',

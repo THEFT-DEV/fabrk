@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Security & Privacy Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'GDPR-compliant security and privacy page templates. Includes privacy policy, terms of service, and cookie consent pages.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/security-privacy`,
   },
   twitter: {
     card: 'summary_large_image',

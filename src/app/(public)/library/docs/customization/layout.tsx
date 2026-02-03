@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Customization Guide Template | Fabrk',
   description: 'Template customization documentation with code examples and configuration options.',
@@ -12,6 +14,9 @@ export const metadata: Metadata = {
     description:
       'Template customization documentation with code examples and configuration options.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/docs/customization`,
   },
   twitter: {
     card: 'summary_large_image',

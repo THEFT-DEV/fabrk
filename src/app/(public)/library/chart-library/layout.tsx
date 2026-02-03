@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Chart & Data Visualization Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Interactive charts and data visualization components. Line charts, bar charts, pie charts with terminal aesthetic.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/chart-library`,
   },
   twitter: {
     card: 'summary_large_image',

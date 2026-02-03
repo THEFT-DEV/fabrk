@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Team Dashboard Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Team collaboration dashboards with member lists, activity feeds, and project overviews.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/team-dashboard`,
   },
   twitter: {
     card: 'summary_large_image',

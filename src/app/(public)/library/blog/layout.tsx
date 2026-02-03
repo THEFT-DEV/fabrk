@@ -4,6 +4,8 @@
  */
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fabrk.dev';
+
 export const metadata: Metadata = {
   title: 'Blog Templates | Fabrk',
   description:
@@ -13,6 +15,9 @@ export const metadata: Metadata = {
     description:
       'Modern blog templates with post listings, individual post pages, and author profiles. SEO-optimized for content marketing.',
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/library/blog`,
   },
   twitter: {
     card: 'summary_large_image',
