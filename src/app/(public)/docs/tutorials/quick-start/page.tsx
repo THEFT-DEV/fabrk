@@ -3,6 +3,7 @@ import { DocsSection, DocsCard, DocsLinkCard } from '@/components/docs';
 import { Rocket, Layout, Settings, Upload } from 'lucide-react';
 import { mode } from '@/design-system';
 import { cn } from '@/lib/utils';
+import { generateBreadcrumbSchema } from '@/lib/metadata';
 
 export const metadata = {
   title: 'Quick Start Guide - Fabrk Docs',
@@ -46,6 +47,14 @@ const howToSchema = {
   ],
 };
 
+// AEO: Breadcrumb schema for navigation
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Docs', url: '/docs' },
+  { name: 'Tutorials', url: '/docs/tutorials' },
+  { name: 'Quick Start', url: '/docs/tutorials/quick-start' },
+]);
+
 export default function QuickStartPage() {
   return (
     <>
@@ -53,6 +62,11 @@ export default function QuickStartPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+      {/* AEO: Breadcrumb schema for navigation */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <FeatureGuideTemplate
       code="[0x00]"

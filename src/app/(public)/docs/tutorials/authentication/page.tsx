@@ -3,6 +3,7 @@ import { DocsSection, DocsCard, DocsLinkCard } from '@/components/docs';
 import { Mail, Shield, Lock, User } from 'lucide-react';
 import { mode } from '@/design-system';
 import { cn } from '@/lib/utils';
+import { generateFAQSchema, generateBreadcrumbSchema } from '@/lib/metadata';
 
 export const metadata = {
   title: 'Authentication Guide - Fabrk Docs',
@@ -52,6 +53,35 @@ const howToSchema = {
   ],
 };
 
+// AEO: FAQ schema for authentication questions
+const faqSchema = generateFAQSchema([
+  {
+    question: 'What is the default session duration?',
+    answer: '30 days by default. You can change this in src/lib/auth.ts',
+  },
+  {
+    question: 'How do I force logout a user?',
+    answer: "Increment the user's sessionVersion field in the database to invalidate their session",
+  },
+  {
+    question: 'How secure is the password hashing?',
+    answer: 'Passwords are hashed using bcrypt with 12 rounds, which is industry standard',
+  },
+  {
+    question: 'Does NextAuth support other authentication providers?',
+    answer:
+      'Yes, NextAuth supports 50+ authentication providers including Google, GitHub, Facebook, Twitter, and more',
+  },
+]);
+
+// AEO: Breadcrumb schema for navigation
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Docs', url: '/docs' },
+  { name: 'Tutorials', url: '/docs/tutorials' },
+  { name: 'Authentication', url: '/docs/tutorials/authentication' },
+]);
+
 export default function AuthenticationTutorialPage() {
   return (
     <>
@@ -59,6 +89,16 @@ export default function AuthenticationTutorialPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+      {/* AEO: FAQ schema for featured snippets */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      {/* AEO: Breadcrumb schema for navigation */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <FeatureGuideTemplate
       code="[0x20]"

@@ -1018,7 +1018,7 @@ export default function StyleGuidePage() {
                   <CardContent>
                     <div className="flex items-center gap-4">
                       <Avatar>
-                        <AvatarImage src="https://github.com/shadcn.png" />
+                        <AvatarImage src="https://github.com/shadcn.png" alt="User avatar" />
                         <AvatarFallback>CN</AvatarFallback>
                       </Avatar>
                       <Avatar>

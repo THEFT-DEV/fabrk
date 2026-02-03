@@ -164,7 +164,7 @@ export default function NotificationBadgePage() {
             <div className="flex items-center gap-6">
               <NotificationBadge dot variant="primary">
                 <Avatar className="h-10 w-10">
-                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarImage src="https://github.com/shadcn.png" alt="User avatar" />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
               </NotificationBadge>

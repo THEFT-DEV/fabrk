@@ -3,6 +3,7 @@ import { DocsSection, DocsCard, DocsLinkCard } from '@/components/docs';
 import { CreditCard, Webhook, Gift, TestTube } from 'lucide-react';
 import { mode } from '@/design-system';
 import { cn } from '@/lib/utils';
+import { generateFAQSchema, generateBreadcrumbSchema } from '@/lib/metadata';
 
 export const metadata = {
   title: 'Subscription Guide - Fabrk Docs',
@@ -10,9 +11,52 @@ export const metadata = {
     'Build a complete subscription system with Stripe. Checkout, billing portal, plan upgrades, and webhook handling.',
 };
 
+// AEO: FAQ schema for Stripe troubleshooting
+const faqSchema = generateFAQSchema([
+  {
+    question: 'How do I fix "No such price or lookup key" error in Stripe?',
+    answer:
+      'Verify the lookup key exists in your Stripe Dashboard. Go to Products, click your product, scroll to Pricing section, click Advanced pricing options, add lookup key (e.g., fabrk_purchase), and save.',
+  },
+  {
+    question: 'Why is my Stripe webhook signature verification failing?',
+    answer:
+      'Ensure your STRIPE_WEBHOOK_SECRET in .env.local matches the output from stripe listen command. Run stripe listen --forward-to localhost:3000/api/webhooks/stripe and copy the webhook secret exactly.',
+  },
+  {
+    question: 'Payment succeeded but webhook not triggered - what should I do?',
+    answer:
+      'Make sure stripe listen is running in a separate terminal. Run stripe listen --forward-to localhost:3000/api/webhooks/stripe and leave it open while testing.',
+  },
+  {
+    question: 'Why does Stripe checkout redirect to 404?',
+    answer:
+      'Check your success_url and cancel_url configuration in the checkout API route, and verify NEXT_PUBLIC_APP_URL is set correctly in .env.local',
+  },
+]);
+
+// AEO: Breadcrumb schema for navigation
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Docs', url: '/docs' },
+  { name: 'Tutorials', url: '/docs/tutorials' },
+  { name: 'Stripe Payments', url: '/docs/tutorials/stripe-payments' },
+]);
+
 export default function StripePaymentsTutorialPage() {
   return (
-    <FeatureGuideTemplate
+    <>
+      {/* AEO: FAQ schema for featured snippets */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      {/* AEO: Breadcrumb schema for navigation */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <FeatureGuideTemplate
       code="[0x30]"
       category="Tutorials"
       title="Stripe Payments"
@@ -330,5 +374,6 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"`}
         </div>
       </DocsSection>
     </FeatureGuideTemplate>
+    </>
   );
 }

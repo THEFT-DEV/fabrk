@@ -199,7 +199,7 @@ export default async function AnalyticsPage() {
                 <p className="font-medium">User Avatar Display:</p>
                 <LibraryCodeBlock
                   code={`<Avatar>
-  <AvatarImage src={session.user.image ?? undefined} />
+  <AvatarImage src={session.user.image ?? undefined} alt={session.user.name ?? "User"} />
   <AvatarFallback>
     {session.user.name?.charAt(0).toUpperCase()}
   </AvatarFallback>

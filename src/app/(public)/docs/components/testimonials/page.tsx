@@ -150,7 +150,7 @@ export default function LandingPage() {
   <div className="flex -space-x-2">
     {users.map((user) => (
       <Avatar key={user.id} className="border-2 border-background">
-        <AvatarImage src={user.avatar} />
+        <AvatarImage src={user.avatar} alt={user.name} />
         <AvatarFallback>{user.initials}</AvatarFallback>
       </Avatar>
     ))}
