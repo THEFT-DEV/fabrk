@@ -147,3 +147,8 @@ export type CreditBalance = Prisma.CreditBalanceModel
  * 
  */
 export type CreditTransaction = Prisma.CreditTransactionModel
+/**
+ * Model AICostEvent
+ * 
+ */
+export type AICostEvent = Prisma.AICostEventModel

@@ -66,6 +66,7 @@ model User {
   consents            Consent[]
   blogPosts           BlogPost[]
   creditBalance       CreditBalance?
+  aiCostEvents        AICostEvent[]
 
   @@index([email])
   @@index([deletedAt]) // For filtering active users
@@ -645,4 +646,37 @@ enum CreditTransactionType {
   USAGE
   REFUND
   BONUS
+}
+
+// ===========================
+// AI COST TRACKING
+// ===========================
+
+model AICostEvent {
+  id               String   @id @default(cuid())
+  timestamp        DateTime @default(now())
+  model            String // claude-sonnet-4-20250514, gpt-4o, etc.
+  provider         String // anthropic, openai, other
+  promptTokens     Int
+  completionTokens Int
+  totalTokens      Int
+  costUSD          Float // Cost in USD
+  feature          String // Feature name for grouping
+  prompt           String?  @db.Text // Truncated prompt for debugging
+  success          Boolean
+  errorMessage     String?  @db.Text
+  durationMs       Int // Request duration in milliseconds
+  userId           String?
+  metadata         Json? // Additional context
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([timestamp])
+  @@index([feature])
+  @@index([userId])
+  @@index([model])
+  @@index([provider])
+  @@index([success])
+  @@index([feature, timestamp]) // For feature cost analysis
+  @@index([userId, timestamp]) // For user cost history
 }

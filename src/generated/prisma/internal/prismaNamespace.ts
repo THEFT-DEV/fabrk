@@ -409,7 +409,8 @@ export const ModelName = {
   BlogPost: 'BlogPost',
   BlogCategory: 'BlogCategory',
   CreditBalance: 'CreditBalance',
-  CreditTransaction: 'CreditTransaction'
+  CreditTransaction: 'CreditTransaction',
+  AICostEvent: 'AICostEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -425,7 +426,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "account" | "session" | "verificationToken" | "payment" | "checkoutSession" | "webhookEvent" | "mFADevice" | "backupCode" | "organization" | "organizationMember" | "organizationInvite" | "upload" | "job" | "emailQueue" | "auditLog" | "featureFlag" | "notification" | "apiKey" | "webhook" | "webhookDelivery" | "consent" | "blogPost" | "blogCategory" | "creditBalance" | "creditTransaction"
+    modelProps: "user" | "account" | "session" | "verificationToken" | "payment" | "checkoutSession" | "webhookEvent" | "mFADevice" | "backupCode" | "organization" | "organizationMember" | "organizationInvite" | "upload" | "job" | "emailQueue" | "auditLog" | "featureFlag" | "notification" | "apiKey" | "webhook" | "webhookDelivery" | "consent" | "blogPost" | "blogCategory" | "creditBalance" | "creditTransaction" | "aICostEvent"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2353,6 +2354,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AICostEvent: {
+      payload: Prisma.$AICostEventPayload<ExtArgs>
+      fields: Prisma.AICostEventFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AICostEventFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AICostEventPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AICostEventFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AICostEventPayload>
+        }
+        findFirst: {
+          args: Prisma.AICostEventFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AICostEventPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AICostEventFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AICostEventPayload>
+        }
+        findMany: {
+          args: Prisma.AICostEventFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AICostEventPayload>[]
+        }
+        create: {
+          args: Prisma.AICostEventCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AICostEventPayload>
+        }
+        createMany: {
+          args: Prisma.AICostEventCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AICostEventCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AICostEventPayload>[]
+        }
+        delete: {
+          args: Prisma.AICostEventDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AICostEventPayload>
+        }
+        update: {
+          args: Prisma.AICostEventUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AICostEventPayload>
+        }
+        deleteMany: {
+          args: Prisma.AICostEventDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AICostEventUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AICostEventUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AICostEventPayload>[]
+        }
+        upsert: {
+          args: Prisma.AICostEventUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AICostEventPayload>
+        }
+        aggregate: {
+          args: Prisma.AICostEventAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAICostEvent>
+        }
+        groupBy: {
+          args: Prisma.AICostEventGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AICostEventGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AICostEventCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AICostEventCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2794,6 +2869,27 @@ export const CreditTransactionScalarFieldEnum = {
 export type CreditTransactionScalarFieldEnum = (typeof CreditTransactionScalarFieldEnum)[keyof typeof CreditTransactionScalarFieldEnum]
 
 
+export const AICostEventScalarFieldEnum = {
+  id: 'id',
+  timestamp: 'timestamp',
+  model: 'model',
+  provider: 'provider',
+  promptTokens: 'promptTokens',
+  completionTokens: 'completionTokens',
+  totalTokens: 'totalTokens',
+  costUSD: 'costUSD',
+  feature: 'feature',
+  prompt: 'prompt',
+  success: 'success',
+  errorMessage: 'errorMessage',
+  durationMs: 'durationMs',
+  userId: 'userId',
+  metadata: 'metadata'
+} as const
+
+export type AICostEventScalarFieldEnum = (typeof AICostEventScalarFieldEnum)[keyof typeof AICostEventScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -3157,6 +3253,7 @@ export type GlobalOmitConfig = {
   blogCategory?: Prisma.BlogCategoryOmit
   creditBalance?: Prisma.CreditBalanceOmit
   creditTransaction?: Prisma.CreditTransactionOmit
+  aICostEvent?: Prisma.AICostEventOmit
 }
 
 /* Types for Logging */

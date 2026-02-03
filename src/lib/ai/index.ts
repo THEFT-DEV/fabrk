@@ -455,3 +455,41 @@ export {
   getCurrentProviderName,
   getConfiguredProvider,
 } from './provider';
+
+// ===========================
+// AI DEVELOPMENT TOOLS
+// ===========================
+
+// Cost tracking
+export {
+  // Types
+  type AICostEvent,
+  type CostSummary,
+  type FeatureCost,
+  type CostBudgetStatus,
+  type CostStore,
+  // Classes
+  AICostTracker,
+  InMemoryCostStore,
+  // Functions
+  calculateCost as calculateModelCost,
+  getCostTracker,
+  setCostStore,
+  // Constants
+  MODEL_PRICING,
+} from './cost';
+
+// Validation
+export {
+  // Types
+  type ValidationIssue,
+  type ValidationResult,
+  // Classes
+  CodeValidator,
+  // Functions
+  getValidator,
+  validateCode,
+  isCodeSafe,
+  getSecurityIssues,
+  getDesignViolations,
+} from './validation';

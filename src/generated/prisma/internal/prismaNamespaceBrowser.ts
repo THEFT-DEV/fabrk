@@ -76,7 +76,8 @@ export const ModelName = {
   BlogPost: 'BlogPost',
   BlogCategory: 'BlogCategory',
   CreditBalance: 'CreditBalance',
-  CreditTransaction: 'CreditTransaction'
+  CreditTransaction: 'CreditTransaction',
+  AICostEvent: 'AICostEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -495,6 +496,27 @@ export const CreditTransactionScalarFieldEnum = {
 } as const
 
 export type CreditTransactionScalarFieldEnum = (typeof CreditTransactionScalarFieldEnum)[keyof typeof CreditTransactionScalarFieldEnum]
+
+
+export const AICostEventScalarFieldEnum = {
+  id: 'id',
+  timestamp: 'timestamp',
+  model: 'model',
+  provider: 'provider',
+  promptTokens: 'promptTokens',
+  completionTokens: 'completionTokens',
+  totalTokens: 'totalTokens',
+  costUSD: 'costUSD',
+  feature: 'feature',
+  prompt: 'prompt',
+  success: 'success',
+  errorMessage: 'errorMessage',
+  durationMs: 'durationMs',
+  userId: 'userId',
+  metadata: 'metadata'
+} as const
+
+export type AICostEventScalarFieldEnum = (typeof AICostEventScalarFieldEnum)[keyof typeof AICostEventScalarFieldEnum]
 
 
 export const SortOrder = {

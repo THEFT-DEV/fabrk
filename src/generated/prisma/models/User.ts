@@ -378,6 +378,7 @@ export type UserWhereInput = {
   consents?: Prisma.ConsentListRelationFilter
   blogPosts?: Prisma.BlogPostListRelationFilter
   creditBalance?: Prisma.XOR<Prisma.CreditBalanceNullableScalarRelationFilter, Prisma.CreditBalanceWhereInput> | null
+  aiCostEvents?: Prisma.AICostEventListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -419,6 +420,7 @@ export type UserOrderByWithRelationInput = {
   consents?: Prisma.ConsentOrderByRelationAggregateInput
   blogPosts?: Prisma.BlogPostOrderByRelationAggregateInput
   creditBalance?: Prisma.CreditBalanceOrderByWithRelationInput
+  aiCostEvents?: Prisma.AICostEventOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -463,6 +465,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   consents?: Prisma.ConsentListRelationFilter
   blogPosts?: Prisma.BlogPostListRelationFilter
   creditBalance?: Prisma.XOR<Prisma.CreditBalanceNullableScalarRelationFilter, Prisma.CreditBalanceWhereInput> | null
+  aiCostEvents?: Prisma.AICostEventListRelationFilter
 }, "id" | "email" | "customerId" | "licenseKey" | "resetToken" | "verifyToken">
 
 export type UserOrderByWithAggregationInput = {
@@ -566,6 +569,7 @@ export type UserCreateInput = {
   consents?: Prisma.ConsentCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -607,6 +611,7 @@ export type UserUncheckedCreateInput = {
   consents?: Prisma.ConsentUncheckedCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceUncheckedCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -648,6 +653,7 @@ export type UserUpdateInput = {
   consents?: Prisma.ConsentUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -689,6 +695,7 @@ export type UserUncheckedUpdateInput = {
   consents?: Prisma.ConsentUncheckedUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUncheckedUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -862,6 +869,11 @@ export type UserSumOrderByAggregateInput = {
 export type UserScalarRelationFilter = {
   is?: Prisma.UserWhereInput
   isNot?: Prisma.UserWhereInput
+}
+
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -1088,6 +1100,22 @@ export type UserUpdateOneRequiredWithoutCreditBalanceNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreditBalanceInput, Prisma.UserUpdateWithoutCreditBalanceInput>, Prisma.UserUncheckedUpdateWithoutCreditBalanceInput>
 }
 
+export type UserCreateNestedOneWithoutAiCostEventsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAiCostEventsInput, Prisma.UserUncheckedCreateWithoutAiCostEventsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiCostEventsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutAiCostEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAiCostEventsInput, Prisma.UserUncheckedCreateWithoutAiCostEventsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiCostEventsInput
+  upsert?: Prisma.UserUpsertWithoutAiCostEventsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAiCostEventsInput, Prisma.UserUpdateWithoutAiCostEventsInput>, Prisma.UserUncheckedUpdateWithoutAiCostEventsInput>
+}
+
 export type UserCreateWithoutAccountsInput = {
   id?: string
   email: string
@@ -1126,6 +1154,7 @@ export type UserCreateWithoutAccountsInput = {
   consents?: Prisma.ConsentCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -1166,6 +1195,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   consents?: Prisma.ConsentUncheckedCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceUncheckedCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -1222,6 +1252,7 @@ export type UserUpdateWithoutAccountsInput = {
   consents?: Prisma.ConsentUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -1262,6 +1293,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   consents?: Prisma.ConsentUncheckedUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUncheckedUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -1302,6 +1334,7 @@ export type UserCreateWithoutSessionsInput = {
   consents?: Prisma.ConsentCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -1342,6 +1375,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   consents?: Prisma.ConsentUncheckedCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceUncheckedCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -1398,6 +1432,7 @@ export type UserUpdateWithoutSessionsInput = {
   consents?: Prisma.ConsentUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -1438,6 +1473,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   consents?: Prisma.ConsentUncheckedUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUncheckedUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPaymentsInput = {
@@ -1478,6 +1514,7 @@ export type UserCreateWithoutPaymentsInput = {
   consents?: Prisma.ConsentCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPaymentsInput = {
@@ -1518,6 +1555,7 @@ export type UserUncheckedCreateWithoutPaymentsInput = {
   consents?: Prisma.ConsentUncheckedCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceUncheckedCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPaymentsInput = {
@@ -1574,6 +1612,7 @@ export type UserUpdateWithoutPaymentsInput = {
   consents?: Prisma.ConsentUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPaymentsInput = {
@@ -1614,6 +1653,7 @@ export type UserUncheckedUpdateWithoutPaymentsInput = {
   consents?: Prisma.ConsentUncheckedUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUncheckedUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMfaDevicesInput = {
@@ -1654,6 +1694,7 @@ export type UserCreateWithoutMfaDevicesInput = {
   consents?: Prisma.ConsentCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMfaDevicesInput = {
@@ -1694,6 +1735,7 @@ export type UserUncheckedCreateWithoutMfaDevicesInput = {
   consents?: Prisma.ConsentUncheckedCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceUncheckedCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMfaDevicesInput = {
@@ -1750,6 +1792,7 @@ export type UserUpdateWithoutMfaDevicesInput = {
   consents?: Prisma.ConsentUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMfaDevicesInput = {
@@ -1790,6 +1833,7 @@ export type UserUncheckedUpdateWithoutMfaDevicesInput = {
   consents?: Prisma.ConsentUncheckedUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUncheckedUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutBackupCodesInput = {
@@ -1830,6 +1874,7 @@ export type UserCreateWithoutBackupCodesInput = {
   consents?: Prisma.ConsentCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutBackupCodesInput = {
@@ -1870,6 +1915,7 @@ export type UserUncheckedCreateWithoutBackupCodesInput = {
   consents?: Prisma.ConsentUncheckedCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceUncheckedCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutBackupCodesInput = {
@@ -1926,6 +1972,7 @@ export type UserUpdateWithoutBackupCodesInput = {
   consents?: Prisma.ConsentUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBackupCodesInput = {
@@ -1966,6 +2013,7 @@ export type UserUncheckedUpdateWithoutBackupCodesInput = {
   consents?: Prisma.ConsentUncheckedUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUncheckedUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOrganizationsInput = {
@@ -2006,6 +2054,7 @@ export type UserCreateWithoutOrganizationsInput = {
   consents?: Prisma.ConsentCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOrganizationsInput = {
@@ -2046,6 +2095,7 @@ export type UserUncheckedCreateWithoutOrganizationsInput = {
   consents?: Prisma.ConsentUncheckedCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceUncheckedCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOrganizationsInput = {
@@ -2102,6 +2152,7 @@ export type UserUpdateWithoutOrganizationsInput = {
   consents?: Prisma.ConsentUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrganizationsInput = {
@@ -2142,6 +2193,7 @@ export type UserUncheckedUpdateWithoutOrganizationsInput = {
   consents?: Prisma.ConsentUncheckedUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUncheckedUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOrganizationInvitesInput = {
@@ -2182,6 +2234,7 @@ export type UserCreateWithoutOrganizationInvitesInput = {
   consents?: Prisma.ConsentCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOrganizationInvitesInput = {
@@ -2222,6 +2275,7 @@ export type UserUncheckedCreateWithoutOrganizationInvitesInput = {
   consents?: Prisma.ConsentUncheckedCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceUncheckedCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOrganizationInvitesInput = {
@@ -2278,6 +2332,7 @@ export type UserUpdateWithoutOrganizationInvitesInput = {
   consents?: Prisma.ConsentUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrganizationInvitesInput = {
@@ -2318,6 +2373,7 @@ export type UserUncheckedUpdateWithoutOrganizationInvitesInput = {
   consents?: Prisma.ConsentUncheckedUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUncheckedUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutUploadsInput = {
@@ -2358,6 +2414,7 @@ export type UserCreateWithoutUploadsInput = {
   consents?: Prisma.ConsentCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutUploadsInput = {
@@ -2398,6 +2455,7 @@ export type UserUncheckedCreateWithoutUploadsInput = {
   consents?: Prisma.ConsentUncheckedCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceUncheckedCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutUploadsInput = {
@@ -2454,6 +2512,7 @@ export type UserUpdateWithoutUploadsInput = {
   consents?: Prisma.ConsentUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUploadsInput = {
@@ -2494,6 +2553,7 @@ export type UserUncheckedUpdateWithoutUploadsInput = {
   consents?: Prisma.ConsentUncheckedUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUncheckedUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -2534,6 +2594,7 @@ export type UserCreateWithoutAuditLogsInput = {
   consents?: Prisma.ConsentCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -2574,6 +2635,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   consents?: Prisma.ConsentUncheckedCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceUncheckedCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -2630,6 +2692,7 @@ export type UserUpdateWithoutAuditLogsInput = {
   consents?: Prisma.ConsentUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -2670,6 +2733,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   consents?: Prisma.ConsentUncheckedUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUncheckedUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -2710,6 +2774,7 @@ export type UserCreateWithoutNotificationsInput = {
   consents?: Prisma.ConsentCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -2750,6 +2815,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   consents?: Prisma.ConsentUncheckedCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceUncheckedCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -2806,6 +2872,7 @@ export type UserUpdateWithoutNotificationsInput = {
   consents?: Prisma.ConsentUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -2846,6 +2913,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   consents?: Prisma.ConsentUncheckedUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUncheckedUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutApiKeysInput = {
@@ -2886,6 +2954,7 @@ export type UserCreateWithoutApiKeysInput = {
   consents?: Prisma.ConsentCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutApiKeysInput = {
@@ -2926,6 +2995,7 @@ export type UserUncheckedCreateWithoutApiKeysInput = {
   consents?: Prisma.ConsentUncheckedCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceUncheckedCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutApiKeysInput = {
@@ -2982,6 +3052,7 @@ export type UserUpdateWithoutApiKeysInput = {
   consents?: Prisma.ConsentUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApiKeysInput = {
@@ -3022,6 +3093,7 @@ export type UserUncheckedUpdateWithoutApiKeysInput = {
   consents?: Prisma.ConsentUncheckedUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUncheckedUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutConsentsInput = {
@@ -3062,6 +3134,7 @@ export type UserCreateWithoutConsentsInput = {
   apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutConsentsInput = {
@@ -3102,6 +3175,7 @@ export type UserUncheckedCreateWithoutConsentsInput = {
   apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
   creditBalance?: Prisma.CreditBalanceUncheckedCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutConsentsInput = {
@@ -3158,6 +3232,7 @@ export type UserUpdateWithoutConsentsInput = {
   apiKeys?: Prisma.ApiKeyUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConsentsInput = {
@@ -3198,6 +3273,7 @@ export type UserUncheckedUpdateWithoutConsentsInput = {
   apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
   creditBalance?: Prisma.CreditBalanceUncheckedUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutBlogPostsInput = {
@@ -3238,6 +3314,7 @@ export type UserCreateWithoutBlogPostsInput = {
   apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentCreateNestedManyWithoutUserInput
   creditBalance?: Prisma.CreditBalanceCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutBlogPostsInput = {
@@ -3278,6 +3355,7 @@ export type UserUncheckedCreateWithoutBlogPostsInput = {
   apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentUncheckedCreateNestedManyWithoutUserInput
   creditBalance?: Prisma.CreditBalanceUncheckedCreateNestedOneWithoutUserInput
+  aiCostEvents?: Prisma.AICostEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutBlogPostsInput = {
@@ -3334,6 +3412,7 @@ export type UserUpdateWithoutBlogPostsInput = {
   apiKeys?: Prisma.ApiKeyUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentUpdateManyWithoutUserNestedInput
   creditBalance?: Prisma.CreditBalanceUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBlogPostsInput = {
@@ -3374,6 +3453,7 @@ export type UserUncheckedUpdateWithoutBlogPostsInput = {
   apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentUncheckedUpdateManyWithoutUserNestedInput
   creditBalance?: Prisma.CreditBalanceUncheckedUpdateOneWithoutUserNestedInput
+  aiCostEvents?: Prisma.AICostEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCreditBalanceInput = {
@@ -3414,6 +3494,7 @@ export type UserCreateWithoutCreditBalanceInput = {
   apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
+  aiCostEvents?: Prisma.AICostEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreditBalanceInput = {
@@ -3454,6 +3535,7 @@ export type UserUncheckedCreateWithoutCreditBalanceInput = {
   apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentUncheckedCreateNestedManyWithoutUserInput
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
+  aiCostEvents?: Prisma.AICostEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreditBalanceInput = {
@@ -3510,6 +3592,7 @@ export type UserUpdateWithoutCreditBalanceInput = {
   apiKeys?: Prisma.ApiKeyUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
+  aiCostEvents?: Prisma.AICostEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreditBalanceInput = {
@@ -3550,6 +3633,187 @@ export type UserUncheckedUpdateWithoutCreditBalanceInput = {
   apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentUncheckedUpdateManyWithoutUserNestedInput
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
+  aiCostEvents?: Prisma.AICostEventUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAiCostEventsInput = {
+  id?: string
+  email: string
+  name?: string | null
+  image?: string | null
+  emailVerified?: Date | string | null
+  password?: string | null
+  role?: $Enums.Role
+  customerId?: string | null
+  tier?: string
+  subscriptionTier?: string | null
+  trialEndsAt?: Date | string | null
+  licenseKey?: string | null
+  githubUsername?: string | null
+  githubAccessAt?: Date | string | null
+  githubAccessStatus?: string | null
+  resetToken?: string | null
+  resetExpires?: Date | string | null
+  verifyToken?: string | null
+  sessionVersion?: number
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  deletedAt?: Date | string | null
+  anonymizedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  mfaDevices?: Prisma.MFADeviceCreateNestedManyWithoutUserInput
+  backupCodes?: Prisma.BackupCodeCreateNestedManyWithoutUserInput
+  organizations?: Prisma.OrganizationMemberCreateNestedManyWithoutUserInput
+  organizationInvites?: Prisma.OrganizationInviteCreateNestedManyWithoutInviterInput
+  uploads?: Prisma.UploadCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutUserInput
+  consents?: Prisma.ConsentCreateNestedManyWithoutUserInput
+  blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
+  creditBalance?: Prisma.CreditBalanceCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAiCostEventsInput = {
+  id?: string
+  email: string
+  name?: string | null
+  image?: string | null
+  emailVerified?: Date | string | null
+  password?: string | null
+  role?: $Enums.Role
+  customerId?: string | null
+  tier?: string
+  subscriptionTier?: string | null
+  trialEndsAt?: Date | string | null
+  licenseKey?: string | null
+  githubUsername?: string | null
+  githubAccessAt?: Date | string | null
+  githubAccessStatus?: string | null
+  resetToken?: string | null
+  resetExpires?: Date | string | null
+  verifyToken?: string | null
+  sessionVersion?: number
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  deletedAt?: Date | string | null
+  anonymizedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  mfaDevices?: Prisma.MFADeviceUncheckedCreateNestedManyWithoutUserInput
+  backupCodes?: Prisma.BackupCodeUncheckedCreateNestedManyWithoutUserInput
+  organizations?: Prisma.OrganizationMemberUncheckedCreateNestedManyWithoutUserInput
+  organizationInvites?: Prisma.OrganizationInviteUncheckedCreateNestedManyWithoutInviterInput
+  uploads?: Prisma.UploadUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutUserInput
+  consents?: Prisma.ConsentUncheckedCreateNestedManyWithoutUserInput
+  blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
+  creditBalance?: Prisma.CreditBalanceUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAiCostEventsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAiCostEventsInput, Prisma.UserUncheckedCreateWithoutAiCostEventsInput>
+}
+
+export type UserUpsertWithoutAiCostEventsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAiCostEventsInput, Prisma.UserUncheckedUpdateWithoutAiCostEventsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAiCostEventsInput, Prisma.UserUncheckedCreateWithoutAiCostEventsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAiCostEventsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAiCostEventsInput, Prisma.UserUncheckedUpdateWithoutAiCostEventsInput>
+}
+
+export type UserUpdateWithoutAiCostEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  subscriptionTier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenseKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  githubUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  githubAccessAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  githubAccessStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verifyToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessionVersion?: Prisma.IntFieldUpdateOperationsInput | number
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  anonymizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  mfaDevices?: Prisma.MFADeviceUpdateManyWithoutUserNestedInput
+  backupCodes?: Prisma.BackupCodeUpdateManyWithoutUserNestedInput
+  organizations?: Prisma.OrganizationMemberUpdateManyWithoutUserNestedInput
+  organizationInvites?: Prisma.OrganizationInviteUpdateManyWithoutInviterNestedInput
+  uploads?: Prisma.UploadUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutUserNestedInput
+  consents?: Prisma.ConsentUpdateManyWithoutUserNestedInput
+  blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
+  creditBalance?: Prisma.CreditBalanceUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAiCostEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.StringFieldUpdateOperationsInput | string
+  subscriptionTier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenseKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  githubUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  githubAccessAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  githubAccessStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verifyToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessionVersion?: Prisma.IntFieldUpdateOperationsInput | number
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  anonymizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  mfaDevices?: Prisma.MFADeviceUncheckedUpdateManyWithoutUserNestedInput
+  backupCodes?: Prisma.BackupCodeUncheckedUpdateManyWithoutUserNestedInput
+  organizations?: Prisma.OrganizationMemberUncheckedUpdateManyWithoutUserNestedInput
+  organizationInvites?: Prisma.OrganizationInviteUncheckedUpdateManyWithoutInviterNestedInput
+  uploads?: Prisma.UploadUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutUserNestedInput
+  consents?: Prisma.ConsentUncheckedUpdateManyWithoutUserNestedInput
+  blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
+  creditBalance?: Prisma.CreditBalanceUncheckedUpdateOneWithoutUserNestedInput
 }
 
 
@@ -3571,6 +3835,7 @@ export type UserCountOutputType = {
   apiKeys: number
   consents: number
   blogPosts: number
+  aiCostEvents: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3587,6 +3852,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   apiKeys?: boolean | UserCountOutputTypeCountApiKeysArgs
   consents?: boolean | UserCountOutputTypeCountConsentsArgs
   blogPosts?: boolean | UserCountOutputTypeCountBlogPostsArgs
+  aiCostEvents?: boolean | UserCountOutputTypeCountAiCostEventsArgs
 }
 
 /**
@@ -3690,6 +3956,13 @@ export type UserCountOutputTypeCountBlogPostsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.BlogPostWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAiCostEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AICostEventWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3730,6 +4003,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   consents?: boolean | Prisma.User$consentsArgs<ExtArgs>
   blogPosts?: boolean | Prisma.User$blogPostsArgs<ExtArgs>
   creditBalance?: boolean | Prisma.User$creditBalanceArgs<ExtArgs>
+  aiCostEvents?: boolean | Prisma.User$aiCostEventsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -3830,6 +4104,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   consents?: boolean | Prisma.User$consentsArgs<ExtArgs>
   blogPosts?: boolean | Prisma.User$blogPostsArgs<ExtArgs>
   creditBalance?: boolean | Prisma.User$creditBalanceArgs<ExtArgs>
+  aiCostEvents?: boolean | Prisma.User$aiCostEventsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -3852,6 +4127,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     consents: Prisma.$ConsentPayload<ExtArgs>[]
     blogPosts: Prisma.$BlogPostPayload<ExtArgs>[]
     creditBalance: Prisma.$CreditBalancePayload<ExtArgs> | null
+    aiCostEvents: Prisma.$AICostEventPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -4286,6 +4562,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   consents<T extends Prisma.User$consentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$consentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConsentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   blogPosts<T extends Prisma.User$blogPostsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$blogPostsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   creditBalance<T extends Prisma.User$creditBalanceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$creditBalanceArgs<ExtArgs>>): Prisma.Prisma__CreditBalanceClient<runtime.Types.Result.GetResult<Prisma.$CreditBalancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  aiCostEvents<T extends Prisma.User$aiCostEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$aiCostEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AICostEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5055,6 +5332,30 @@ export type User$creditBalanceArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   include?: Prisma.CreditBalanceInclude<ExtArgs> | null
   where?: Prisma.CreditBalanceWhereInput
+}
+
+/**
+ * User.aiCostEvents
+ */
+export type User$aiCostEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AICostEvent
+   */
+  select?: Prisma.AICostEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AICostEvent
+   */
+  omit?: Prisma.AICostEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AICostEventInclude<ExtArgs> | null
+  where?: Prisma.AICostEventWhereInput
+  orderBy?: Prisma.AICostEventOrderByWithRelationInput | Prisma.AICostEventOrderByWithRelationInput[]
+  cursor?: Prisma.AICostEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AICostEventScalarFieldEnum | Prisma.AICostEventScalarFieldEnum[]
 }
 
 /**
