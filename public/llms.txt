@@ -1,34 +1,76 @@
-# Fabrk - Next.js 15 SaaS Boilerplate
-> 100+ production-ready components, auth, payments, multi-tenancy
+# Fabrk - Next.js SaaS Boilerplate
 
-## Documentation
-- /CLAUDE.md - AI agent guidance
-- /.agent-workspace/CLAUDE.md - Detailed patterns and architecture
+> Fabrk is a production-ready Next.js SaaS boilerplate with terminal-inspired UI, authentication, payments, and multi-tenancy. Ship your SaaS in days, not months.
 
-## Quick Start
-npm install && npm run dev
+## What is Fabrk?
 
-## Tech Stack
-Next.js 15, TypeScript, Prisma, NextAuth v5, Stripe/Polar
+Fabrk is a complete SaaS starter kit built with Next.js 16 (App Router), React 19, TypeScript, and Tailwind CSS 4. It includes:
+
+- **62+ UI Components**: Terminal-styled, accessible components built on Radix UI
+- **18 Themes**: Dark/light terminal themes with a unique design aesthetic
+- **Authentication**: NextAuth v5 with email, Google, GitHub, and magic links
+- **Payments**: Stripe, Polar.sh, and Lemonsqueezy integration
+- **Multi-tenancy**: Organization management with roles and permissions
+- **AI Integration**: OpenAI-powered chat, text generation, image generation, and voice
+
+## Key Features
+
+### Authentication
+- Email/password login with secure sessions
+- OAuth providers (Google, GitHub)
+- Magic link authentication
+- Two-factor authentication (2FA)
+- Password reset flow
+
+### Payments & Billing
+- Subscription management
+- One-time payments
+- Usage-based billing with credits
+- Customer portal integration
+- Invoice generation
+
+### Multi-Tenancy
+- Organizations with team members
+- Role-based access control (RBAC)
+- Invitations and member management
+- Organization switching
+
+### Developer Experience
+- TypeScript throughout
+- Prisma ORM with PostgreSQL
+- Environment validation with Zod
+- Pre-configured ESLint and Prettier
+- Git hooks with Husky
+
+## Pricing
+
+Fabrk is available for a one-time purchase of $199 USD. This includes:
+- Lifetime access to all updates
+- Commercial license for unlimited projects
+- Email support
+- Access to the component library
+
+## Technical Specifications
+
+- Framework: Next.js 16 (App Router)
+- Language: TypeScript 5.x
+- Styling: Tailwind CSS 4
+- Database: PostgreSQL with Prisma 7
+- Authentication: NextAuth v5
+- Payments: Stripe, Polar.sh, Lemonsqueezy
+- Email: Resend
+- Deployment: Vercel, Docker, self-hosted
 
 ## Project Structure
+
 - src/app/ - Next.js App Router pages and API routes
-- src/components/ - React components (ui/, landing/, settings/, etc.)
+- src/components/ - React components (ui/, charts/, marketing/, etc.)
 - src/lib/ - Utilities, auth, database, email, payments
 - prisma/ - Database schema and migrations
 
-## Key Features
-- Authentication (OAuth, Magic Link, Credentials)
-- Multi-tenancy with organizations
-- Stripe/Polar payments integration
-- File uploads (S3-compatible)
-- Email system with templates
-- Rate limiting and security
-- Audit logging
-- Feature flags
-
 ## Component Categories
-- UI primitives (Button, Input, Card, etc.)
+
+- UI primitives (Button, Input, Card, Dialog, etc.)
 - Data display (Tables, Charts, Lists)
 - Forms and validation
 - Navigation and layout
@@ -36,10 +78,27 @@ Next.js 15, TypeScript, Prisma, NextAuth v5, Stripe/Polar
 - Admin dashboards
 - Settings and preferences
 
-## For AI Agents
-Read CLAUDE.md first for complete instructions on:
+## Links
+
+- Website: https://fabrk.dev
+- Documentation: https://fabrk.dev/docs
+- Pricing: https://fabrk.dev/pricing
+- Features: https://fabrk.dev/features
+- Component Library: https://fabrk.dev/library
+- Blog: https://fabrk.dev/blog
+
+## Contact
+
+- Email: support@fabrk.dev
+
+## For AI Agents (Development)
+
+Read CLAUDE.md for complete instructions on:
 - Code conventions and patterns
-- Component structure
-- API design
-- Testing approaches
-- Common tasks
+- Component structure and usage
+- API design patterns
+- Common development tasks
+
+---
+
+This content is optimized for AI assistants. For the full interactive experience, visit https://fabrk.dev
