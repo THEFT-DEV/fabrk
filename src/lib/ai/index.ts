@@ -508,3 +508,15 @@ export {
   // Common schemas
   commonSchemas,
 } from './testing';
+
+// AI Integrations (unified interface)
+export {
+  // Types
+  type GenerateOptions,
+  type GenerateResult,
+  // Providers
+  ai,
+  claude,
+  openai,
+  vercelAI,
+} from './integrations';
