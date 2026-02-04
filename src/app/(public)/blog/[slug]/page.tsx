@@ -1,6 +1,6 @@
 /**
  * Blog Post Detail Page
- * Copied from indx - uses getDocumentBySlug from outstatic/server
+ * Uses react-markdown with design system components
  */
 
 import { Metadata } from 'next';
@@ -8,10 +8,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getDocumentBySlug, getDocumentSlugs } from 'outstatic/server';
-import { remark } from 'remark';
-import html from 'remark-html';
 import { cn } from '@/lib/utils';
 import { mode } from '@/design-system';
+import { MarkdownContent } from '@/components/blog/markdown-content';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -30,11 +29,6 @@ function calculateReadingTime(content: string): string {
   const words = content?.split(/\s+/).length || 0;
   const minutes = Math.ceil(words / wordsPerMinute);
   return `${minutes} min read`;
-}
-
-async function markdownToHtml(markdown: string): Promise<string> {
-  const result = await remark().use(html).process(markdown);
-  return result.toString();
 }
 
 export async function generateStaticParams() {
@@ -87,8 +81,6 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound();
   }
 
-  const contentHtml = await markdownToHtml(post.content);
-
   return (
     <div className="bg-background min-h-screen">
       <article className="container mx-auto max-w-4xl px-4 py-12">
@@ -132,10 +124,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         {/* Content */}
         <div className={cn("border-border bg-card border p-6 md:p-8", mode.radius)}>
-          <div
-            className="prose prose-invert max-w-none font-mono prose-headings:font-mono prose-headings:text-foreground prose-p:text-foreground prose-a:text-primary prose-strong:text-foreground prose-code:text-foreground prose-li:text-foreground"
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
-          />
+          <MarkdownContent content={post.content} />
         </div>
 
         {/* Footer */}
