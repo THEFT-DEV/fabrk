@@ -1,25 +1,45 @@
 /**
  * RSS Feed Route
- * Generates RSS 2.0 feed from blog posts
+ * Generates RSS 2.0 feed from Outstatic blog posts
  */
 
-import { getPublishedPosts, type BlogPost } from '@/lib/blog';
+import { getDocuments } from 'outstatic/server';
 import { siteConfig } from '@/lib/metadata';
 
+interface BlogPost {
+  title: string;
+  slug: string;
+  description: string;
+  publishedAt: string;
+  author: { name: string };
+  status: string;
+}
+
 export async function GET() {
-  const posts = getPublishedPosts();
+  const posts = getDocuments('posts', [
+    'title',
+    'slug',
+    'description',
+    'publishedAt',
+    'author',
+    'status',
+  ]).filter((post) => post.status === 'published') as BlogPost[];
+
+  // Sort by date descending
+  posts.sort((a, b) =>
+    new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  );
 
   const rssItems = posts
     .map(
-      (post: BlogPost) => `
+      (post) => `
     <item>
       <title><![CDATA[${post.title}]]></title>
       <link>${siteConfig.url}/blog/${post.slug}</link>
       <guid isPermaLink="true">${siteConfig.url}/blog/${post.slug}</guid>
-      <pubDate>${post.publishedAt ? new Date(post.publishedAt).toUTCString() : new Date().toUTCString()}</pubDate>
-      <description><![CDATA[${post.excerpt || ''}]]></description>
+      <pubDate>${new Date(post.publishedAt).toUTCString()}</pubDate>
+      <description><![CDATA[${post.description || ''}]]></description>
       ${post.author?.name ? `<author>${post.author.name}</author>` : ''}
-      ${post.category ? `<category>${post.category.name}</category>` : ''}
     </item>`
     )
     .join('');
