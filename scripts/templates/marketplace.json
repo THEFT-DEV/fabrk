@@ -1,0 +1,48 @@
+{
+  "name": "Marketplace",
+  "description": "SaaS + Search and Storage for marketplace platforms.",
+  "setup_time": "6-7 minutes",
+  "api_keys_needed": 5,
+  "dependencies": [
+    "stripe",
+    "@stripe/stripe-js",
+    "resend",
+    "posthog-js",
+    "algoliasearch",
+    "@aws-sdk/client-s3"
+  ],
+  "env": {
+    "DATABASE_URL": "{{PROMPT:PostgreSQL connection string}}",
+    "NEXTAUTH_SECRET": "{{AUTO_GENERATE}}",
+    "NEXTAUTH_URL": "http://localhost:3000",
+    "NEXT_PUBLIC_APP_URL": "http://localhost:3000",
+    "NODE_ENV": "development",
+    "STRIPE_SECRET_KEY": "{{PROMPT:Stripe secret key (sk_test_...)}}",
+    "STRIPE_WEBHOOK_SECRET": "{{PROMPT:Stripe webhook secret (whsec_...)}}",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "{{PROMPT:Stripe publishable key (pk_test_...)}}",
+    "RESEND_API_KEY": "{{PROMPT:Resend API key (re_...)}}",
+    "NEXT_PUBLIC_POSTHOG_KEY": "{{PROMPT:PostHog project API key (phc_...)}}",
+    "NEXT_PUBLIC_POSTHOG_HOST": "https://us.i.posthog.com",
+    "ALGOLIA_APP_ID": "{{PROMPT:Algolia Application ID}}",
+    "ALGOLIA_ADMIN_KEY": "{{PROMPT:Algolia Admin API key}}",
+    "NEXT_PUBLIC_ALGOLIA_SEARCH_KEY": "{{PROMPT:Algolia Search-Only API key}}",
+    "S3_BUCKET": "{{PROMPT:S3/R2 bucket name}}",
+    "S3_REGION": "{{PROMPT:S3 region (e.g., us-east-1)}}",
+    "S3_ACCESS_KEY_ID": "{{PROMPT:S3/R2 access key ID}}",
+    "S3_SECRET_ACCESS_KEY": "{{PROMPT:S3/R2 secret access key}}"
+  },
+  "features": {
+    "database": "postgresql",
+    "auth": true,
+    "payments": "stripe",
+    "email": "resend",
+    "analytics": "posthog",
+    "ai": null,
+    "search": "algolia",
+    "storage": "s3"
+  },
+  "post_setup": [
+    "npm run db:push",
+    "npm run dev"
+  ]
+}
