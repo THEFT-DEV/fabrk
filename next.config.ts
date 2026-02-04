@@ -114,6 +114,14 @@ const nextConfig: NextConfig = {
   // Output configuration
   output: "standalone",
 
+  // Include markdown files in serverless bundle for Vercel deployment
+  // This ensures blog posts are available at runtime on serverless functions
+  outputFileTracingIncludes: {
+    '/blog': ['./outstatic/content/**/*'],
+    '/blog/[slug]': ['./outstatic/content/**/*'],
+    '/feed.xml': ['./outstatic/content/**/*'],
+  },
+
   async headers() {
     return [
       {
