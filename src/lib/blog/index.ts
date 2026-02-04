@@ -1,24 +1,10 @@
 /**
  * Blog Module
- * Git-based blog using Outstatic CMS
+ * Filesystem-based blog reading markdown files with YAML frontmatter
  */
 
-export {
-  getPublishedPosts,
-  getPostBySlug,
-  getPostById,
-  getAllPosts,
-  getAllPostsForFeed,
-  createPost,
-  updatePost,
-  deletePost,
-  incrementViewCount,
-  getCategories,
-  createCategory,
-  deleteCategory,
-  type BlogPostWithAuthor,
-} from './outstatic';
+export { getPublishedPosts, getPostBySlug, type BlogPost } from './get-posts';
 
-export { generateSlug, formatDate, formatReadTime, generateExcerpt, isValidSlug } from './utils';
+export { formatDate, formatReadTime } from './utils';
 
 export { mdxComponents } from './mdx-components';

@@ -1,17 +1,17 @@
 /**
  * RSS Feed Route
- * Generates RSS 2.0 feed from Outstatic blog posts
+ * Generates RSS 2.0 feed from blog posts
  */
 
-import { getAllPostsForFeed } from '@/lib/blog';
+import { getPublishedPosts, type BlogPost } from '@/lib/blog';
 import { siteConfig } from '@/lib/metadata';
 
 export async function GET() {
-  const posts = await getAllPostsForFeed();
+  const posts = getPublishedPosts();
 
   const rssItems = posts
     .map(
-      (post) => `
+      (post: BlogPost) => `
     <item>
       <title><![CDATA[${post.title}]]></title>
       <link>${siteConfig.url}/blog/${post.slug}</link>

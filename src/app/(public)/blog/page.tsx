@@ -6,7 +6,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getPublishedBlogPosts, getFeaturedBlogPosts } from '@/data/blog-posts';
+import { getPublishedPosts } from '@/lib/blog/get-posts';
 import { mode } from '@/design-system';
 import { cn } from '@/lib/utils';
 
@@ -23,8 +23,8 @@ export default async function BlogPage({
   const params = await searchParams;
   const categorySlug = params.category;
 
-  // Get posts from data source
-  const allPosts = getPublishedBlogPosts();
+  // Get posts from filesystem
+  const allPosts = getPublishedPosts();
 
   // Filter by category if provided
   const posts = categorySlug
