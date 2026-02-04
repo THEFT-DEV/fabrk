@@ -6,7 +6,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getPublishedBlogPosts, getFeaturedBlogPosts } from '@/data/blog-posts';
 import { mode } from '@/design-system';
 import { cn } from '@/lib/utils';
 
@@ -17,6 +16,64 @@ export const metadata: Metadata = {
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
+const allPosts = [
+  {
+    id: 'aeo-guide',
+    slug: 'what-is-aeo-answer-engine-optimization',
+    title: 'What is AEO? The Complete Guide to Answer Engine Optimization',
+    excerpt: 'Answer Engine Optimization (AEO) is the practice of optimizing content for AI-powered search engines like ChatGPT, Perplexity, and Google AI Overviews. Learn how to get your content featured in AI responses.',
+    author: { name: 'Fabrk Team', image: null },
+    category: { name: 'SEO', slug: 'seo' },
+    publishedAt: new Date('2026-02-01'),
+    featured: true,
+    readTime: 8,
+  },
+  {
+    id: 'geo-guide',
+    slug: 'what-is-geo-generative-engine-optimization',
+    title: 'What is GEO? Generative Engine Optimization Explained',
+    excerpt: 'GEO (Generative Engine Optimization) focuses on optimizing content for generative AI models. Learn the key differences from traditional SEO and AEO.',
+    author: { name: 'Fabrk Team', image: null },
+    category: { name: 'SEO', slug: 'seo' },
+    publishedAt: new Date('2026-02-02'),
+    featured: true,
+    readTime: 6,
+  },
+  {
+    id: 'seo-comparison',
+    slug: 'seo-vs-aeo-vs-geo-comparison',
+    title: 'SEO vs AEO vs GEO: Complete Comparison Guide',
+    excerpt: 'Understanding the differences between SEO, AEO, and GEO and how to optimize for all three in your content strategy.',
+    author: { name: 'Fabrk Team', image: null },
+    category: { name: 'SEO', slug: 'seo' },
+    publishedAt: new Date('2026-02-03'),
+    featured: false,
+    readTime: 10,
+  },
+  {
+    id: 'seo-checklist',
+    slug: 'technical-seo-checklist-2026',
+    title: 'Technical SEO Checklist 2026: The Complete Guide',
+    excerpt: 'A comprehensive technical SEO checklist covering all essential elements to ensure your website is properly optimized for search engines.',
+    author: { name: 'Fabrk Team', image: null },
+    category: { name: 'SEO', slug: 'seo' },
+    publishedAt: new Date('2026-01-28'),
+    featured: false,
+    readTime: 12,
+  },
+  {
+    id: 'ai-search-guide',
+    slug: 'building-for-ai-search-practical-guide',
+    title: 'Building for AI Search: A Practical Guide',
+    excerpt: 'Practical strategies and implementation tips for optimizing your content and website for AI-powered search engines.',
+    author: { name: 'Fabrk Team', image: null },
+    category: { name: 'SEO', slug: 'seo' },
+    publishedAt: new Date('2026-02-04'),
+    featured: false,
+    readTime: 9,
+  },
+];
+
 export default async function BlogPage({
   searchParams,
 }: {
@@ -24,9 +81,6 @@ export default async function BlogPage({
 }) {
   const params = await searchParams;
   const categorySlug = params.category;
-
-  // Get posts from data source
-  const allPosts = getPublishedBlogPosts();
 
   // Filter by category if provided
   const posts = categorySlug
