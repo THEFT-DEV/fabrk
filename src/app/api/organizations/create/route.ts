@@ -58,8 +58,6 @@ export const POST = withCsrfProtection(async (req: NextRequest) => {
       ownerId: session.user.id,
     });
 
-    // TODO: Add analytics tracking if needed
-
     return NextResponse.json({
       success: true,
       organization: {

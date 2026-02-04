@@ -216,8 +216,7 @@ CardFooter.displayName = 'CardFooter';
 // Export core components
 export { Card, CardHeader, CardContent, CardFooter };
 
-// Re-export marketing components for backwards compatibility
-// TODO: Update imports to use '@/components/ui/terminal-card' directly
+// Re-export marketing components for convenience (also available from '@/components/ui/terminal-card')
 export {
   Stat,
   StatGroup,
