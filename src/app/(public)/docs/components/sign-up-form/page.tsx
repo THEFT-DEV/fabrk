@@ -1,7 +1,7 @@
 'use client';
 
 import { ComponentShowcaseTemplate } from '@/components/docs';
-import { SignUpForm } from '@/components/auth/sign-in-form';
+import { SignUpForm } from '@/components/auth/sign-up-form';
 
 export default function SignUpFormPage() {
   return (
@@ -10,7 +10,7 @@ export default function SignUpFormPage() {
       category="Specialized"
       title="Sign Up Form"
       description="A complete sign-up form with name, email, password, terms acceptance, and social auth. Terminal-styled and ready to use."
-      importCode={`import { SignUpForm } from "@/components/auth/sign-in-form"`}
+      importCode={`import { SignUpForm } from "@/components/auth/sign-up-form"`}
       mainPreview={{
         preview: (
           <div className="border-border mx-auto max-w-md border p-4">
