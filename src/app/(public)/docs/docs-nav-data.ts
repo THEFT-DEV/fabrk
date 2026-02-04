@@ -572,6 +572,11 @@ const rawNavigation: NavSection[] = [
         href: '/docs/guides/ai-development/testing',
         icon: TestTube,
       },
+      {
+        title: 'TROUBLESHOOTING',
+        href: '/docs/guides/ai-development/troubleshooting',
+        icon: Wrench,
+      },
     ],
   },
 
