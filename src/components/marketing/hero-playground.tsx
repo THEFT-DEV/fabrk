@@ -51,11 +51,13 @@ function DashboardDemo() {
         <CardHeader code="0x10" title="RECENT TRANSACTIONS" />
         <CardContent className="p-4">
           <div className="space-y-4">
+            {/* eslint-disable ai/no-hardcoded-colors -- False positive: #1234 is an invoice number, not a color */}
             {[
               'Payment received from user_4821',
               'New subscription started',
               'Invoice #1234 paid',
             ].map((item, i) => (
+              /* eslint-enable ai/no-hardcoded-colors */
               <div key={i} className={cn('border-primary flex items-center gap-4 border-l-2 pl-3')}>
                 <Check className={cn('h-3 w-3', mode.color.text.success)} />
                 <span className={cn('text-xs', mode.font)}>{item}</span>

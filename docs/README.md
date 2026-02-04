@@ -77,6 +77,18 @@ Deployment guides for various platforms.
 - [PRODUCTION-DEPLOYMENT.md](10-deployment/PRODUCTION-DEPLOYMENT.md) - Production setup
 - [ALTERNATIVE-DEPLOYMENTS.md](10-deployment/ALTERNATIVE-DEPLOYMENTS.md) - Other platforms
 
+### [12 - AI Development](12-ai-development/)
+Tools for developers using AI assistants (Claude Code, Cursor, ChatGPT).
+
+- [README.md](12-ai-development/README.md) - Overview and quick start
+- [VALIDATION.md](12-ai-development/VALIDATION.md) - All validation commands
+- [COST-TRACKING.md](12-ai-development/COST-TRACKING.md) - API cost monitoring
+- [DESIGN-SYSTEM.md](12-ai-development/DESIGN-SYSTEM.md) - Rules AI must follow
+- [TYPE-SAFETY.md](12-ai-development/TYPE-SAFETY.md) - Type patterns for AI code
+- [SECURITY.md](12-ai-development/SECURITY.md) - Security scanning
+- [TESTING.md](12-ai-development/TESTING.md) - Testing AI-generated code
+- [TROUBLESHOOTING.md](12-ai-development/TROUBLESHOOTING.md) - Common issues
+
 ### [Design System Specs](design-system/spec/)
 Component specifications and design tokens.
 
@@ -103,6 +115,12 @@ Component specifications and design tokens.
 1. Check [03-guides/](03-guides/) for Stripe integration
 2. Configure webhooks at `/api/webhooks/stripe`
 3. Set up environment variables
+
+### Building with AI Assistants
+1. [AI Development Overview](12-ai-development/README.md) - Setup validation tools
+2. [Design System Rules](12-ai-development/DESIGN-SYSTEM.md) - Rules AI must follow
+3. [Cost Tracking](12-ai-development/COST-TRACKING.md) - Monitor API spending
+4. Run `npm run ai:pre-deploy` before each deployment
 
 ---
 

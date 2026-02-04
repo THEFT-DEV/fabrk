@@ -1,8 +1,6 @@
 import { FeatureGuideTemplate } from '@/components/docs';
 import { DocsSection, DocsCard } from '@/components/docs';
 import { Bell, Activity, Users, Zap } from 'lucide-react';
-import { mode } from '@/design-system';
-import { cn } from '@/lib/utils';
 
 export const metadata = {
   title: 'Real-Time with Pusher - Fabrk Documentation',

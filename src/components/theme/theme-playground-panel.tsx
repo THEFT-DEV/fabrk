@@ -69,7 +69,7 @@ interface ThemeConfig {
 // CONSTANTS
 // =============================================================================
 
-/* eslint-disable design-system/no-hardcoded-colors -- Theme definition colors (not styling) */
+/* eslint-disable ai/no-hardcoded-colors -- Theme accent colors must be hardcoded hex values to define the actual theme options */
 const ACCENT_COLORS = [
   // Dark themes - CRT effect
   { id: 'amber', color: '#ffb000', name: 'Amber', mode: 'dark', effect: 'crt' },
@@ -92,7 +92,7 @@ const ACCENT_COLORS = [
   { id: 'spectrum', color: '#4455bb', name: 'Spectrum', mode: 'light', effect: 'crt' },
   { id: 'infrared', color: '#cc3333', name: 'Infrared', mode: 'light', effect: 'none' },
 ] as const;
-/* eslint-enable design-system/no-hardcoded-colors */
+ 
 
 const RADIUS_OPTIONS: { value: RadiusOption; label: string; cssValue: string }[] = [
   { value: 'none', label: 'None', cssValue: '0' },
@@ -181,7 +181,7 @@ interface ThemePlaygroundPanelProps {
   showTrigger?: boolean;
 }
 
-export function ThemePlaygroundPanel({ showTrigger = false }: ThemePlaygroundPanelProps) {
+export function ThemePlaygroundPanel({ showTrigger: _showTrigger = false }: ThemePlaygroundPanelProps) {
   const playgroundContext = useContext(ThemePlaygroundContext);
   const { colorTheme, setColorTheme } = useThemeContext();
 
@@ -506,7 +506,7 @@ export function ThemePlaygroundPanel({ showTrigger = false }: ThemePlaygroundPan
     `;
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
-  }, [config.bodyFont, config.headlineFont, config.bodyLetterSpacing, config.headlineLetterSpacing, config.uiTextCase, mounted]);
+  }, [config, mounted]);
 
   const handleAccentChange = useCallback(
     (id: string) => {
@@ -547,7 +547,7 @@ export function ThemePlaygroundPanel({ showTrigger = false }: ThemePlaygroundPan
     const headlineFontOption = FONT_OPTIONS.find((f) => f.value === config.headlineFont);
     const bodySpacingOption = LETTER_SPACING_OPTIONS.find((l) => l.value === config.bodyLetterSpacing);
     const headlineSpacingOption = LETTER_SPACING_OPTIONS.find((l) => l.value === config.headlineLetterSpacing);
-    const uiTextTransform = config.uiTextCase === 'uppercase' ? 'uppercase' : 'none';
+    const _uiTextTransform = config.uiTextCase === 'uppercase' ? 'uppercase' : 'none';
 
     const themeCode = `/* FABRK THEME: ${themeInfo?.name?.toUpperCase() || config.accentColor.toUpperCase()} */
 
@@ -656,12 +656,16 @@ export function ThemePlaygroundPanel({ showTrigger = false }: ThemePlaygroundPan
         >
           {/* Header - Draggable */}
           <div
+            role="toolbar"
+            aria-label="Theme panel controls"
+            tabIndex={0}
             className={cn(
               'flex shrink-0 items-center justify-between p-3',
               !isMinimized && 'border-b border-border',
               'cursor-grab active:cursor-grabbing'
             )}
             onMouseDown={handleDragStart}
+            onKeyDown={(e) => e.key === 'Enter' && handleDragStart(e as unknown as React.MouseEvent)}
           >
             <div className="flex items-center gap-2">
               <GripVertical className="h-4 w-4 text-muted-foreground" />
@@ -1110,37 +1114,73 @@ export function ThemePlaygroundPanel({ showTrigger = false }: ThemePlaygroundPan
             <>
               {/* Edges */}
               <div
+                role="separator"
+                aria-orientation="horizontal"
+                aria-label="Resize top"
+                tabIndex={0}
                 className="absolute top-0 left-2 right-2 h-1 cursor-n-resize hover:bg-primary/20"
                 onMouseDown={(e) => handleResizeStart(e, 'n')}
+                onKeyDown={(e) => e.key === 'Enter' && handleResizeStart(e as unknown as React.MouseEvent, 'n')}
               />
               <div
+                role="separator"
+                aria-orientation="horizontal"
+                aria-label="Resize bottom"
+                tabIndex={0}
                 className="absolute bottom-0 left-2 right-2 h-1 cursor-s-resize hover:bg-primary/20"
                 onMouseDown={(e) => handleResizeStart(e, 's')}
+                onKeyDown={(e) => e.key === 'Enter' && handleResizeStart(e as unknown as React.MouseEvent, 's')}
               />
               <div
+                role="separator"
+                aria-orientation="vertical"
+                aria-label="Resize left"
+                tabIndex={0}
                 className="absolute left-0 top-2 bottom-2 w-1 cursor-w-resize hover:bg-primary/20"
                 onMouseDown={(e) => handleResizeStart(e, 'w')}
+                onKeyDown={(e) => e.key === 'Enter' && handleResizeStart(e as unknown as React.MouseEvent, 'w')}
               />
               <div
+                role="separator"
+                aria-orientation="vertical"
+                aria-label="Resize right"
+                tabIndex={0}
                 className="absolute right-0 top-2 bottom-2 w-1 cursor-e-resize hover:bg-primary/20"
                 onMouseDown={(e) => handleResizeStart(e, 'e')}
+                onKeyDown={(e) => e.key === 'Enter' && handleResizeStart(e as unknown as React.MouseEvent, 'e')}
               />
               {/* Corners */}
               <div
+                role="separator"
+                aria-label="Resize top-left corner"
+                tabIndex={0}
                 className="absolute top-0 left-0 h-3 w-3 cursor-nw-resize hover:bg-primary/30"
                 onMouseDown={(e) => handleResizeStart(e, 'nw')}
+                onKeyDown={(e) => e.key === 'Enter' && handleResizeStart(e as unknown as React.MouseEvent, 'nw')}
               />
               <div
+                role="separator"
+                aria-label="Resize top-right corner"
+                tabIndex={0}
                 className="absolute top-0 right-0 h-3 w-3 cursor-ne-resize hover:bg-primary/30"
                 onMouseDown={(e) => handleResizeStart(e, 'ne')}
+                onKeyDown={(e) => e.key === 'Enter' && handleResizeStart(e as unknown as React.MouseEvent, 'ne')}
               />
               <div
+                role="separator"
+                aria-label="Resize bottom-left corner"
+                tabIndex={0}
                 className="absolute bottom-0 left-0 h-3 w-3 cursor-sw-resize hover:bg-primary/30"
                 onMouseDown={(e) => handleResizeStart(e, 'sw')}
+                onKeyDown={(e) => e.key === 'Enter' && handleResizeStart(e as unknown as React.MouseEvent, 'sw')}
               />
               <div
+                role="separator"
+                aria-label="Resize bottom-right corner"
+                tabIndex={0}
                 className="absolute bottom-0 right-0 h-3 w-3 cursor-se-resize hover:bg-primary/30"
                 onMouseDown={(e) => handleResizeStart(e, 'se')}
+                onKeyDown={(e) => e.key === 'Enter' && handleResizeStart(e as unknown as React.MouseEvent, 'se')}
               />
             </>
           )}

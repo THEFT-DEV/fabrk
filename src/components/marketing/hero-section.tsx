@@ -5,7 +5,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { PolarCheckoutButton } from '@/components/polar/checkout-button';
 import { cn } from '@/lib/utils';

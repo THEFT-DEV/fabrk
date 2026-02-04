@@ -53,7 +53,7 @@ function NavigationDemo() {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className={cn('w-[280px]', mode.radius)}>
+            <SheetContent side="right" className={cn('w-72', mode.radius)}>
               <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
               <div className="flex flex-col gap-4 pt-8">
                 <span className="text-muted-foreground font-mono text-xs">[NAVIGATE]:</span>

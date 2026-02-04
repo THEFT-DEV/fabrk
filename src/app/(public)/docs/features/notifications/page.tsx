@@ -1,8 +1,6 @@
 import { FeatureGuideTemplate } from '@/components/docs';
 import { DocsSection, DocsCard } from '@/components/docs';
 import { Bell, Database, Zap, CheckCircle } from 'lucide-react';
-import { mode } from '@/design-system';
-import { cn } from '@/lib/utils';
 
 export const metadata = {
   title: 'Notifications System - Fabrk Documentation',

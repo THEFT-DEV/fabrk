@@ -115,7 +115,7 @@ export function ContactForm() {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* SECURITY: Honeypot fields - hidden from users, bots will fill them */}
-            <div className="absolute -left-[9999px] opacity-0" aria-hidden="true">
+            <div className="pointer-events-none absolute -translate-x-full scale-0 opacity-0" aria-hidden="true">
               <input
                 type="text"
                 name="website"

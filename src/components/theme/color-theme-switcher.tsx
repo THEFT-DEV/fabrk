@@ -13,6 +13,7 @@ import { mode } from '@/design-system';
 import { cn } from '@/lib/utils';
 
 // Minimal theme set - Ayu light + CRT phosphor themes
+/* eslint-disable ai/no-hardcoded-colors -- Theme preview colors must be hardcoded to show actual theme colors */
 const themes = [
   // Light theme
   { id: 'light', name: 'Light Mode', preview: '#f8f9fa' },

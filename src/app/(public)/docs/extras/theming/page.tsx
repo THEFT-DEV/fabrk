@@ -169,7 +169,7 @@ export function MyNavbar() {
       {/* Color Themes */}
       <DocsSection title="Color Themes">
         <div className="grid gap-2 sm:grid-cols-2">
-          {/* eslint-disable design-system/no-hardcoded-colors, design-system/no-inline-styles -- Theme color examples */}
+          {/* eslint-disable ai/no-hardcoded-colors, design-system/no-hardcoded-colors, design-system/no-inline-styles -- Theme color examples */}
           {[
             { name: 'Light', desc: 'Clean white background', color: '#ffffff' },
             { name: 'Dark', desc: 'Pure black background', color: '#1d232a' },

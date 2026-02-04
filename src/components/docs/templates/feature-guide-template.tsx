@@ -159,12 +159,12 @@ export function FeatureGuideTemplate({
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-border border-b">
-                    <th className={`w-[15%] pb-2 pr-4 text-left uppercase ${docsTypography.caption}`}>Option</th>
-                    <th className={`w-[30%] pb-2 pr-4 text-left uppercase ${docsTypography.caption}`}>Type</th>
-                    <th className={`w-[20%] pb-2 pr-4 text-left uppercase ${docsTypography.caption}`}>
+                    <th className={`w-1/6 pb-2 pr-4 text-left uppercase ${docsTypography.caption}`}>Option</th>
+                    <th className={`w-1/4 pb-2 pr-4 text-left uppercase ${docsTypography.caption}`}>Type</th>
+                    <th className={`w-1/6 pb-2 pr-4 text-left uppercase ${docsTypography.caption}`}>
                       Default
                     </th>
-                    <th className={`w-[35%] pb-2 text-left uppercase ${docsTypography.caption}`}>
+                    <th className={`w-5/12 pb-2 text-left uppercase ${docsTypography.caption}`}>
                       Description
                     </th>
                   </tr>

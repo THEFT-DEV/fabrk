@@ -5,7 +5,6 @@
 
 import { docsTypography } from '../typography';
 import { CodeBlock } from '@/components/ui/code-block';
-import { mode } from '@/design-system';
 import { cn } from '@/lib/utils';
 
 interface DocsStepProps {

@@ -119,7 +119,7 @@ await queueWelcomeEmail({
 });`,
           language: 'typescript',
         },
-        /* eslint-disable design-system/no-hardcoded-colors -- Email HTML requires inline styles with specific colors (CSS variables not supported in email clients) */
+        /* eslint-disable ai/no-hardcoded-colors, design-system/no-hardcoded-colors -- Email HTML requires inline styles with specific colors (CSS variables not supported in email clients) */
         {
           title: 'Creating Custom Templates',
           description: 'Create HTML template functions in src/emails/',

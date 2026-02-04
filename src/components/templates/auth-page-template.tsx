@@ -104,7 +104,7 @@ export interface AuthPageTemplateProps {
 // SOCIAL AUTH ICONS
 // =============================================================================
 
-/* eslint-disable design-system/no-hardcoded-colors -- Google brand colors required per guidelines */
+/* eslint-disable ai/no-hardcoded-colors, design-system/no-hardcoded-colors -- Google brand colors required per brand guidelines */
 function GoogleIcon({ className }: { className?: string }) {
   // https://developers.google.com/identity/branding-guidelines
   return (
@@ -128,7 +128,7 @@ function GoogleIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-/* eslint-enable design-system/no-hardcoded-colors */
+/* eslint-enable ai/no-hardcoded-colors, design-system/no-hardcoded-colors */
 
 // =============================================================================
 // COMPONENT

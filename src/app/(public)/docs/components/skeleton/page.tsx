@@ -15,8 +15,8 @@ export default function SkeletonPage() {
       description="A loading placeholder component that displays an animated pulse effect while content is being fetched or processed."
       importCode={`import { Skeleton } from "@/components/ui/skeleton";`}
       mainPreview={{
-        preview: <Skeleton className="h-12 w-[250px]" />,
-        code: `<Skeleton className="h-12 w-[250px]" />`,
+        preview: <Skeleton className="h-12 w-64" />,
+        code: `<Skeleton className="h-12 w-64" />`,
       }}
       variants={[
         {
@@ -24,22 +24,22 @@ export default function SkeletonPage() {
           description: 'Skeleton placeholders for text content',
           preview: (
             <div className="space-y-2">
-              <Skeleton className="h-4 w-[250px]" />
-              <Skeleton className="h-4 w-[200px]" />
-              <Skeleton className="h-4 w-[150px]" />
+              <Skeleton className="h-4 w-64" />
+              <Skeleton className="h-4 w-52" />
+              <Skeleton className="h-4 w-40" />
             </div>
           ),
           code: `<div className="space-y-2">
-  <Skeleton className="h-4 w-[250px]" />
-  <Skeleton className="h-4 w-[200px]" />
-  <Skeleton className="h-4 w-[150px]" />
+  <Skeleton className="h-4 w-64" />
+  <Skeleton className="h-4 w-52" />
+  <Skeleton className="h-4 w-40" />
 </div>`,
         },
         {
           title: 'Card Skeleton',
           description: 'Full card loading state with header and content',
           preview: (
-            <Card className="w-[350px]">
+            <Card className="max-w-sm">
               <CardHeader code="0x00" title="LOADING" />
               <CardContent className="space-y-2">
                 <Skeleton className="h-4 w-full" />
@@ -48,7 +48,7 @@ export default function SkeletonPage() {
               </CardContent>
             </Card>
           ),
-          code: `<Card className="w-[350px]">
+          code: `<Card className="max-w-sm">
   <CardHeader code="0x00" title="LOADING" />
   <CardContent className="space-y-2">
     <Skeleton className="h-4 w-full" />
@@ -64,16 +64,16 @@ export default function SkeletonPage() {
             <div className="flex items-center space-x-4">
               <Skeleton className={cn('h-12 w-12', mode.radius)} />
               <div className="space-y-2">
-                <Skeleton className="h-4 w-[200px]" />
-                <Skeleton className="h-4 w-[150px]" />
+                <Skeleton className="h-4 w-52" />
+                <Skeleton className="h-4 w-40" />
               </div>
             </div>
           ),
           code: `<div className="flex items-center space-x-4">
   <Skeleton className="h-12 w-12" />
   <div className="space-y-2">
-    <Skeleton className="h-4 w-[200px]" />
-    <Skeleton className="h-4 w-[150px]" />
+    <Skeleton className="h-4 w-52" />
+    <Skeleton className="h-4 w-40" />
   </div>
 </div>`,
         },
@@ -110,7 +110,7 @@ export default function SkeletonPage() {
           description: 'Rectangle skeleton for image placeholders',
           preview: (
             <div className="space-y-4">
-              <Skeleton className={cn('h-[200px] w-full', mode.radius)} />
+              <Skeleton className={cn('h-48 w-full', mode.radius)} />
               <div className="space-y-2">
                 <Skeleton className="h-4 w-full" />
                 <Skeleton className="h-4 w-4/5" />
@@ -118,7 +118,7 @@ export default function SkeletonPage() {
             </div>
           ),
           code: `<div className="space-y-4">
-  <Skeleton className="h-[200px] w-full" />
+  <Skeleton className="h-48 w-full" />
   <div className="space-y-2">
     <Skeleton className="h-4 w-full" />
     <Skeleton className="h-4 w-4/5" />
@@ -255,7 +255,7 @@ export default function SkeletonPage() {
                   • Use appropriate shapes: rounded-none for terminal style, w-12 h-12 for avatars
                 </li>
                 <li className="text-xs">
-                  • Vary widths for text lines (w-[250px], w-[200px], w-[150px] for natural look)
+                  • Vary widths for text lines (w-64, w-52, w-40 for natural look)
                 </li>
                 <li className="text-xs">
                   • Group skeleton items to match final layout (lists, cards, grids)

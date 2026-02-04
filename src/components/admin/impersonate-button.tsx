@@ -96,6 +96,7 @@ export function ImpersonateButton({
             <Label htmlFor="reason" className={cn('text-xs', mode.font)}>
               [REASON]:
             </Label>
+            {/* eslint-disable ai/no-hardcoded-colors -- False positive: #1234 is a ticket number, not a color */}
             <Input
               id="reason"
               value={reason}
@@ -103,6 +104,7 @@ export function ImpersonateButton({
               placeholder="e.g., Customer support ticket #1234"
               className={cn('text-sm', mode.font)}
             />
+            {/* eslint-enable ai/no-hardcoded-colors */}
             <p className={cn('text-muted-foreground text-xs', mode.font)}>
               Optional but recommended for audit purposes
             </p>

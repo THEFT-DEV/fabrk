@@ -177,11 +177,11 @@ export default function DialogPage() {
               <DialogTrigger asChild>
                 <Button variant="outline">&gt; WIDE DIALOG</Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[600px]">
+              <DialogContent className="sm:max-w-2xl">
                 <DialogHeader>
                   <DialogTitle>Custom Width Dialog</DialogTitle>
                   <DialogDescription>
-                    This dialog has a custom width of 600px on larger screens.
+                    This dialog uses max-w-2xl for wider content.
                   </DialogDescription>
                 </DialogHeader>
               </DialogContent>
@@ -191,11 +191,11 @@ export default function DialogPage() {
   <DialogTrigger asChild>
     <Button variant="outline">&gt; WIDE DIALOG</Button>
   </DialogTrigger>
-  <DialogContent className="sm:max-w-[600px]">
+  <DialogContent className="sm:max-w-2xl">
     <DialogHeader>
       <DialogTitle>Custom Width Dialog</DialogTitle>
       <DialogDescription>
-        Custom width of 600px on larger screens.
+        Custom max-width for larger dialogs.
       </DialogDescription>
     </DialogHeader>
   </DialogContent>

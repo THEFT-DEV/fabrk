@@ -2,8 +2,6 @@ import { FeatureGuideTemplate } from '@/components/docs';
 import { DocsSection, DocsCard, DocsCallout } from '@/components/docs';
 import Link from 'next/link';
 import { UserCog, Shield, Eye, FileText, AlertTriangle, Lock } from 'lucide-react';
-import { mode } from '@/design-system';
-import { cn } from '@/lib/utils';
 
 export const metadata = {
   title: 'User Impersonation - Fabrk Docs',

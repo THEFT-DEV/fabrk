@@ -15,7 +15,7 @@ export default function TabsPage() {
       mainPreview={{
         code: `import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
-<Tabs defaultValue="account" className="w-[400px]">
+<Tabs defaultValue="account" className="max-w-md">
   <TabsList>
     <TabsTrigger value="account">Account</TabsTrigger>
     <TabsTrigger value="password">Password</TabsTrigger>
@@ -28,7 +28,7 @@ export default function TabsPage() {
   </TabsContent>
 </Tabs>`,
         preview: (
-          <Tabs defaultValue="account" className="w-[400px]">
+          <Tabs defaultValue="account" className="max-w-md">
             <TabsList>
               <TabsTrigger value="account">Account</TabsTrigger>
               <TabsTrigger value="password">Password</TabsTrigger>
@@ -118,7 +118,7 @@ export default function TabsPage() {
         {
           title: 'Disabled Tab',
           description: 'Individual tabs can be disabled to prevent interaction',
-          code: `<Tabs defaultValue="enabled" className="w-[400px]">
+          code: `<Tabs defaultValue="enabled" className="max-w-md">
   <TabsList>
     <TabsTrigger value="enabled">Enabled</TabsTrigger>
     <TabsTrigger value="disabled" disabled>Disabled</TabsTrigger>
@@ -135,7 +135,7 @@ export default function TabsPage() {
   </TabsContent>
 </Tabs>`,
           preview: (
-            <Tabs defaultValue="enabled" className="w-[400px]">
+            <Tabs defaultValue="enabled" className="max-w-md">
               <TabsList>
                 <TabsTrigger value="enabled">Enabled</TabsTrigger>
                 <TabsTrigger value="disabled" disabled>

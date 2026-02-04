@@ -6,7 +6,6 @@
  * 100% coverage of the design system.
  * Use this to validate fonts, colors, spacing, and all components.
  */
-import { Suspense } from 'react';
 
 // UI Components
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
@@ -49,7 +48,6 @@ import { TerminalSpinner } from '@/components/ui/terminal-spinner';
 import { TypeWriter } from '@/components/ui/typewriter';
 import { StatCard } from '@/components/ui/stat-card';
 import { KpiCard } from '@/components/ui/kpi-card';
-import { TerminalSpinner as Spinner } from '@/components/ui/terminal-spinner';
 
 // Design System
 import { mode } from '@/design-system';
@@ -57,10 +55,8 @@ import { cn } from '@/lib/utils';
 
 // Icons
 import {
-  AlertCircle, Check, ChevronRight, Code, Copy, Download,
-  FileText, Folder, Home, Info, Layers, Mail, Menu,
-  MoreHorizontal, Search, Settings, Terminal, User, Zap,
-  TrendingUp, TrendingDown, Activity, Database
+  AlertCircle, FileText, Info, MoreHorizontal, Search,
+  Settings, Terminal, User, TrendingUp, Activity, Database
 } from 'lucide-react';
 
 export default function StyleGuidePage() {

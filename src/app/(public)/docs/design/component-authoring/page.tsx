@@ -114,13 +114,13 @@ className="text-primary hover:bg-accent"`}
             </div>
             <div>
               <p className="text-destructive font-semibold">DO NOT: Hardcode Colors</p>
-              {/* eslint-disable design-system/no-hardcoded-colors -- Documentation example showing incorrect patterns */}
+              {/* eslint-disable ai/no-hardcoded-colors, design-system/no-hardcoded-colors -- Documentation example showing incorrect patterns */}
               <pre className="bg-muted mt-2 overflow-x-auto p-2 font-mono text-xs">
                 {`className="bg-white text-black"
 className="bg-gray-100 border-gray-300"
 style={{ backgroundColor: "#ffffff" }}`}
               </pre>
-              {/* eslint-enable design-system/no-hardcoded-colors */}
+              {/* eslint-enable ai/no-hardcoded-colors, design-system/no-hardcoded-colors */}
             </div>
           </div>
         </DocsCard>

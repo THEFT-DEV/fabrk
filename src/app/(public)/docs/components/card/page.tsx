@@ -15,7 +15,7 @@ export default function CardPage() {
       importCode={`import { Card, CardHeader, CardContent, CardFooter, MetricCard } from "@/components/ui/card";`}
       mainPreview={{
         preview: (
-          <Card className="w-[350px]">
+          <Card className="max-w-sm">
             <CardHeader code="0x00" title="CARD TITLE" meta="Card description" />
             <CardContent>
               <p className="text-sm">
@@ -27,7 +27,7 @@ export default function CardPage() {
             </CardFooter>
           </Card>
         ),
-        code: `<Card className="w-[350px]">
+        code: `<Card className="max-w-sm">
   <CardHeader code="0x00" title="CARD TITLE" meta="Card description" />
   <CardContent>
     <p className="text-sm">This is the card content area where you can place any content.</p>
@@ -42,13 +42,13 @@ export default function CardPage() {
           title: 'Simple Card',
           description: 'A minimal card with just content',
           preview: (
-            <Card className="w-[350px]">
+            <Card className="max-w-sm">
               <CardContent>
                 <p className="text-sm">Simple card with just content, no header or footer.</p>
               </CardContent>
             </Card>
           ),
-          code: `<Card className="w-[350px]">
+          code: `<Card className="max-w-sm">
   <CardContent>
     <p className="text-sm">Simple card with just content, no header or footer.</p>
   </CardContent>
@@ -58,14 +58,14 @@ export default function CardPage() {
           title: 'Card with Icon',
           description: 'Card with icon in header',
           preview: (
-            <Card className="w-[350px]">
+            <Card className="max-w-sm">
               <CardHeader code="0x01" title="SETTINGS" icon={<Settings className="h-4 w-4" />} />
               <CardContent>
                 <p className="text-sm">Card with icon in the header area.</p>
               </CardContent>
             </Card>
           ),
-          code: `<Card className="w-[350px]">
+          code: `<Card className="max-w-sm">
   <CardHeader
     code="0x01"
     title="SETTINGS"
@@ -80,7 +80,7 @@ export default function CardPage() {
           title: 'Card with Footer',
           description: 'Card with action buttons in footer',
           preview: (
-            <Card className="w-[350px]">
+            <Card className="max-w-sm">
               <CardHeader code="0x02" title="CONFIRM ACTION" meta="Are you sure?" />
               <CardFooter>
                 <Button variant="outline">&gt; CANCEL</Button>
@@ -88,7 +88,7 @@ export default function CardPage() {
               </CardFooter>
             </Card>
           ),
-          code: `<Card className="w-[350px]">
+          code: `<Card className="max-w-sm">
   <CardHeader code="0x02" title="CONFIRM ACTION" meta="Are you sure?" />
   <CardFooter>
     <Button variant="outline">&gt; CANCEL</Button>
@@ -100,14 +100,14 @@ export default function CardPage() {
           title: 'Interactive Card',
           description: 'Card with hover effects for clickable content',
           preview: (
-            <Card className="w-[350px]" interactive>
+            <Card className="max-w-sm" interactive>
               <CardHeader code="0x03" title="INTERACTIVE CARD" meta="Click or hover" />
               <CardContent>
                 <p className="text-sm">This card has hover effects with the interactive prop.</p>
               </CardContent>
             </Card>
           ),
-          code: `<Card className="w-[350px]" interactive>
+          code: `<Card className="max-w-sm" interactive>
   <CardHeader code="0x03" title="INTERACTIVE CARD" meta="Click or hover" />
   <CardContent>
     <p className="text-sm">This card has hover effects with the interactive prop.</p>
@@ -119,19 +119,19 @@ export default function CardPage() {
           description: 'Cards with different tone variants',
           preview: (
             <div className="grid gap-4">
-              <Card tone="primary" className="w-[350px]">
+              <Card tone="primary" className="max-w-sm">
                 <CardHeader code="0x04" title="PRIMARY TONE" />
                 <CardContent>
                   <p className="text-sm">Card with primary border tone.</p>
                 </CardContent>
               </Card>
-              <Card tone="success" className="w-[350px]">
+              <Card tone="success" className="max-w-sm">
                 <CardHeader code="0x05" title="SUCCESS TONE" />
                 <CardContent>
                   <p className="text-sm">Card with success border tone.</p>
                 </CardContent>
               </Card>
-              <Card tone="warning" className="w-[350px]">
+              <Card tone="warning" className="max-w-sm">
                 <CardHeader code="0x06" title="WARNING TONE" />
                 <CardContent>
                   <p className="text-sm">Card with warning border tone.</p>

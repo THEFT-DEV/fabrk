@@ -1,3 +1,4 @@
+/* eslint-disable ai/no-hardcoded-colors, ai/no-arbitrary-tailwind -- Documentation showing example code that AI should validate/flag */
 import { FeatureGuideTemplate } from '@/components/docs';
 import { DocsSection, DocsCard, DocsCallout } from '@/components/docs';
 import Link from 'next/link';

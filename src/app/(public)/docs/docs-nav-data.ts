@@ -532,6 +532,50 @@ const rawNavigation: NavSection[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════════════════
+  // PHASE 8.5: AI DEVELOPMENT GUIDES
+  // ═══════════════════════════════════════════════════════════════════════════
+  {
+    title: 'AI DEVELOPMENT',
+    items: [
+      {
+        title: 'AI DEV OVERVIEW',
+        href: '/docs/guides/ai-development',
+        icon: Bot,
+      },
+      {
+        title: 'VALIDATION',
+        href: '/docs/guides/ai-development/validation',
+        icon: Check,
+      },
+      {
+        title: 'COST TRACKING',
+        href: '/docs/guides/ai-development/cost-tracking',
+        icon: Coins,
+      },
+      {
+        title: 'DESIGN RULES',
+        href: '/docs/guides/ai-development/design-system',
+        icon: Paintbrush,
+      },
+      {
+        title: 'TYPE SAFETY',
+        href: '/docs/guides/ai-development/type-safety',
+        icon: FileCode,
+      },
+      {
+        title: 'SECURITY SCAN',
+        href: '/docs/guides/ai-development/security',
+        icon: ShieldCheck,
+      },
+      {
+        title: 'TESTING',
+        href: '/docs/guides/ai-development/testing',
+        icon: TestTube,
+      },
+    ],
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
   // PHASE 9: SECURITY
   // ═══════════════════════════════════════════════════════════════════════════
   {

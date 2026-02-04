@@ -1,3 +1,4 @@
+/* eslint-disable ai/no-hardcoded-colors -- Email template examples require inline styles with hardcoded colors */
 import { FeatureGuideTemplate } from '@/components/docs';
 import { DocsSection, DocsCard } from '@/components/docs';
 import { Mail, Users, CreditCard, Bell } from 'lucide-react';

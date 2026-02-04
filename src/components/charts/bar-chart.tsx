@@ -115,7 +115,7 @@ export function BarChart({
                 {xAxisFormatter ? xAxisFormatter(String(label ?? '')) : label}
               </p>
               <div className="space-y-1">
-                {/* eslint-disable design-system/no-inline-styles -- Dynamic color from Recharts entry */}
+                { }
                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 {payload.map((entry: any, index: number) => (
                   <p key={index} className={cn('text-muted-foreground text-xs', mode.font)}>
@@ -129,7 +129,7 @@ export function BarChart({
                     </span>
                   </p>
                 ))}
-                {/* eslint-enable design-system/no-inline-styles */}
+                { }
               </div>
             </div>
           );

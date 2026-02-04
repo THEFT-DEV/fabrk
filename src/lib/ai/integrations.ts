@@ -288,7 +288,7 @@ export const vercelAI = {
    * });
    */
   async generate(options: GenerateOptions): Promise<APIResponse<GenerateResult>> {
-    const { prompt, feature, userId, maxTokens = 1024, systemPrompt } = options;
+    const { prompt, feature: _feature, userId: _userId, maxTokens = 1024, systemPrompt } = options;
 
     try {
       const { generateText } = await import('ai');
@@ -307,7 +307,7 @@ export const vercelAI = {
         maxOutputTokens: maxTokens,
       });
 
-      const duration = Date.now() - startTime;
+      const _duration = Date.now() - startTime;
 
       // Estimate tokens (rough approximation)
       const estimatedPromptTokens = Math.ceil(prompt.length / 4);

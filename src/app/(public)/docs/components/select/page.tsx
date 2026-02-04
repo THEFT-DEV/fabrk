@@ -31,7 +31,7 @@ export default function SelectPage() {
       mainPreview={{
         preview: (
           <Select>
-            <SelectTrigger className="w-[200px]">
+            <SelectTrigger className="w-52">
               <SelectValue placeholder="Select a fruit" />
             </SelectTrigger>
             <SelectContent>
@@ -42,7 +42,7 @@ export default function SelectPage() {
           </Select>
         ),
         code: `<Select>
-  <SelectTrigger className="w-[200px]">
+  <SelectTrigger className="w-52">
     <SelectValue placeholder="Select a fruit" />
   </SelectTrigger>
   <SelectContent>
@@ -60,7 +60,7 @@ export default function SelectPage() {
             <div className="grid gap-2">
               <Label htmlFor="framework">{formatLabel('Framework')}</Label>
               <Select>
-                <SelectTrigger id="framework" className="w-[200px]">
+                <SelectTrigger id="framework" className="w-52">
                   <SelectValue placeholder="Select framework" />
                 </SelectTrigger>
                 <SelectContent>
@@ -74,7 +74,7 @@ export default function SelectPage() {
           code: `<div className="grid gap-2">
   <Label htmlFor="framework">[FRAMEWORK]:</Label>
   <Select>
-    <SelectTrigger id="framework" className="w-[200px]">
+    <SelectTrigger id="framework" className="w-52">
       <SelectValue placeholder="Select framework" />
     </SelectTrigger>
     <SelectContent>
@@ -90,7 +90,7 @@ export default function SelectPage() {
           description: 'Select with grouped options.',
           preview: (
             <Select>
-              <SelectTrigger className="w-[200px]">
+              <SelectTrigger className="w-52">
                 <SelectValue placeholder="Select timezone" />
               </SelectTrigger>
               <SelectContent>
@@ -109,7 +109,7 @@ export default function SelectPage() {
             </Select>
           ),
           code: `<Select>
-  <SelectTrigger className="w-[200px]">
+  <SelectTrigger className="w-52">
     <SelectValue placeholder="Select timezone" />
   </SelectTrigger>
   <SelectContent>
@@ -132,7 +132,7 @@ export default function SelectPage() {
           description: 'Disabled select component.',
           preview: (
             <Select disabled>
-              <SelectTrigger className="w-[200px]">
+              <SelectTrigger className="w-52">
                 <SelectValue placeholder="Disabled" />
               </SelectTrigger>
               <SelectContent>
@@ -141,7 +141,7 @@ export default function SelectPage() {
             </Select>
           ),
           code: `<Select disabled>
-  <SelectTrigger className="w-[200px]">
+  <SelectTrigger className="w-52">
     <SelectValue placeholder="Disabled" />
   </SelectTrigger>
   <SelectContent>
@@ -154,7 +154,7 @@ export default function SelectPage() {
           description: 'Select with a disabled option.',
           preview: (
             <Select>
-              <SelectTrigger className="w-[200px]">
+              <SelectTrigger className="w-52">
                 <SelectValue placeholder="Select role" />
               </SelectTrigger>
               <SelectContent>
@@ -167,7 +167,7 @@ export default function SelectPage() {
             </Select>
           ),
           code: `<Select>
-  <SelectTrigger className="w-[200px]">
+  <SelectTrigger className="w-52">
     <SelectValue placeholder="Select role" />
   </SelectTrigger>
   <SelectContent>

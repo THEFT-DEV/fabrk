@@ -82,7 +82,7 @@ export default function ScrollAreaPage() {
           description: 'Enable both horizontal and vertical scrolling.',
           preview: (
             <ScrollArea className="h-48 w-full">
-              <div className="w-[800px] p-4">
+              <div className="min-w-max p-4">
                 {Array.from({ length: 15 }).map((_, i) => (
                   <div key={i} className="border-border border-b py-2 last:border-0">
                     <span className="text-primary">&gt;</span> Wide content that scrolls
@@ -94,7 +94,7 @@ export default function ScrollAreaPage() {
             </ScrollArea>
           ),
           code: `<ScrollArea className="h-48 w-full">
-  <div className="w-[800px]">Wide content</div>
+  <div className="min-w-max">Wide content</div>
   <ScrollBar orientation="horizontal" />
 </ScrollArea>`,
         },

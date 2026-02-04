@@ -179,7 +179,7 @@ export function AiQrGenerator({
               mode.color.border.default
             )}
           >
-            { }
+            {/* eslint-disable ai/no-hardcoded-colors -- QR codes require explicit black/white colors for proper scanning */}
             <QRCodeSVG
               value={value || ' '}
               size={parseInt(size)}

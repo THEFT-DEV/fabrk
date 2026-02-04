@@ -3,7 +3,7 @@
  * Git-based content fetching for blog posts
  */
 
-import { getDocuments, getDocumentBySlug, load } from 'outstatic/server';
+import { getDocuments, getDocumentBySlug } from 'outstatic/server';
 
 // Type for Outstatic post document
 export type OutstaticPost = {

@@ -53,7 +53,7 @@ const defaultSocialProviders: SocialProvider[] = [
   {
     id: 'google',
     name: 'Google',
-    /* eslint-disable design-system/no-hardcoded-colors -- Google brand colors required */
+    /* eslint-disable ai/no-hardcoded-colors, design-system/no-hardcoded-colors -- Google brand colors required per brand guidelines */
     icon: (
       <svg className="h-4 w-4" viewBox="0 0 24 24">
         <path
@@ -74,7 +74,7 @@ const defaultSocialProviders: SocialProvider[] = [
         />
       </svg>
     ),
-    /* eslint-enable design-system/no-hardcoded-colors */
+    /* eslint-enable ai/no-hardcoded-colors, design-system/no-hardcoded-colors */
   },
 ];
 
@@ -372,7 +372,7 @@ export function SignUpForm({
       {/* Sign Up Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* SECURITY: Honeypot fields - hidden from users, bots will fill them */}
-        <div className="absolute -left-[9999px] opacity-0" aria-hidden="true">
+        <div className="pointer-events-none absolute -translate-x-full scale-0 opacity-0" aria-hidden="true">
           <input
             type="text"
             name="website"

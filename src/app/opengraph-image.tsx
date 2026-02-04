@@ -1,4 +1,4 @@
-/* eslint-disable design-system/no-inline-styles, design-system/no-hardcoded-colors -- OG images require inline styles, ImageResponse doesn't support Tailwind */
+/* eslint-disable ai/no-hardcoded-colors, design-system/no-hardcoded-colors, design-system/no-inline-styles -- OG images require inline styles with hardcoded colors, ImageResponse doesn't support CSS variables or Tailwind */
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';

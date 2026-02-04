@@ -165,7 +165,7 @@ export function CostWidget({ showFeatures = false, className }: CostWidgetProps)
             className={cn(
               'h-2',
               budgetStatus === 'danger' && '[&>div]:bg-destructive',
-              budgetStatus === 'warning' && '[&>div]:bg-yellow-500'
+              budgetStatus === 'warning' && '[&>div]:bg-warning'
             )}
           />
           <div className="mt-1 flex justify-between text-xs text-muted-foreground">
@@ -268,7 +268,7 @@ export function CostTrend({ compareTo = 'yesterday', className }: CostTrendProps
     <span
       className={cn(
         'inline-flex items-center gap-1 text-sm',
-        isUp ? 'text-destructive' : 'text-green-500',
+        isUp ? 'text-destructive' : 'text-success',
         className
       )}
     >
@@ -311,12 +311,12 @@ export function BudgetAlert({ threshold = 70, className }: BudgetAlertProps) {
         mode.radius,
         status === 'danger'
           ? 'border-destructive bg-destructive/10'
-          : 'border-yellow-500 bg-yellow-500/10',
+          : 'border-warning bg-warning/10',
         className
       )}
     >
       <AlertTriangle
-        className={cn('h-5 w-5', status === 'danger' ? 'text-destructive' : 'text-yellow-500')}
+        className={cn('h-5 w-5', status === 'danger' ? 'text-destructive' : 'text-warning')}
       />
       <div>
         <p className="text-sm font-medium">

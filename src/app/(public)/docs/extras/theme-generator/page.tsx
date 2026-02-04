@@ -301,7 +301,7 @@ function generateThemeCSS(
 /* eslint-enable design-system/no-hardcoded-colors */
 
 // Preset color palettes
-/* eslint-disable design-system/no-hardcoded-colors -- Theme generator requires preset hex colors for user input */
+/* eslint-disable ai/no-hardcoded-colors, design-system/no-hardcoded-colors -- Theme generator requires preset hex colors for user input */
 const PRESET_COLORS = [
   { name: 'Indigo', hex: '#6366f1' },
   { name: 'Purple', hex: '#9333ea' },
@@ -316,12 +316,12 @@ const PRESET_COLORS = [
   { name: 'Sky', hex: '#0ea5e9' },
   { name: 'Blue', hex: '#3b82f6' },
 ];
-/* eslint-enable design-system/no-hardcoded-colors */
+/* eslint-enable ai/no-hardcoded-colors, design-system/no-hardcoded-colors */
 
 export default function ThemeGeneratorPage() {
   const [themeName, setThemeName] = useState('Custom Theme');
   const [themeId, setThemeId] = useState('custom-theme');
-  // eslint-disable-next-line design-system/no-hardcoded-colors -- Default preset color for theme generator initialization
+  // eslint-disable-next-line ai/no-hardcoded-colors, design-system/no-hardcoded-colors -- Default preset color for theme generator initialization
   const [primaryColor, setPrimaryColor] = useState('#6366f1');
   const [isDark, setIsDark] = useState(true);
   const [chromaIntensity, setChromaIntensity] = useState(1);
@@ -513,7 +513,7 @@ export default function ThemeGeneratorPage() {
               <Label htmlFor="primary-color" className={cn(mode.font, 'text-xs')}>
                 [PRIMARY COLOR]:
               </Label>
-              {/* eslint-disable design-system/no-hardcoded-colors, design-system/no-inline-styles -- Color inputs display user-selected hex values */}
+              {/* eslint-disable ai/no-hardcoded-colors, design-system/no-hardcoded-colors, design-system/no-inline-styles -- Color inputs display user-selected hex values */}
               <div className="flex gap-2">
                 <Input
                   id="primary-color"

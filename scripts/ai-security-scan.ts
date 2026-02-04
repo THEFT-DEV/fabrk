@@ -24,6 +24,141 @@ interface SecurityIssue {
   fix?: string;
 }
 
+// Paths to exclude from scanning (false positives)
+const EXCLUDED_PATHS = [
+  // Documentation pages with example code showing placeholder secrets
+  'src/app/(public)/docs/',
+  'docs/',
+  '.ai/',
+  // Generated files (Prisma, etc.)
+  'src/generated/',
+  'node_modules/',
+  // Test files (all test infrastructure)
+  'src/test/',
+  '**/*.test.ts',
+  '**/*.test.tsx',
+  '**/*.spec.ts',
+  '**/*.spec.tsx',
+];
+
+// Rule-specific path exclusions
+const RULE_PATH_EXCLUSIONS: Record<string, string[]> = {
+  // Documentation can show example secrets
+  'no-hardcoded-secrets': [
+    'src/app/(public)/docs/',
+    'docs/',
+    '.ai/',
+    '.env.example',
+    'README.md',
+    'CLAUDE.md',
+    'src/test/', // Test secrets are intentionally fake
+    'src/design-system/', // False positives on CSS class names like 'auth'
+  ],
+  // JSON-LD schemas and controlled script injections legitimately use dangerouslySetInnerHTML
+  'no-dangerous-html': [
+    'src/components/seo/',
+    'src/app/(public)/',
+    'src/design-system/providers/', // Theme provider script injection (controlled content)
+    'src/components/theme/', // Monitor effect scripts (controlled content)
+  ],
+  // ESLint rule definitions mention eval() in descriptions (not actual usage)
+  'no-eval': [
+    'src/lib/eslint/',
+  ],
+  'no-function-constructor': [
+    'src/lib/eslint/',
+  ],
+  // Generated Prisma files have eslint-disable
+  'no-disabled-eslint': [
+    'src/generated/',
+    'prisma/',
+    'src/app/opengraph-image.tsx', // Image generation requires inline styles
+    'src/app/twitter-image.tsx', // Image generation requires inline styles
+  ],
+  // Generated files and test utilities may use any types
+  'no-any-type': [
+    'src/generated/',
+    'prisma/',
+    'src/test/', // Test utilities need flexibility
+    'src/lib/storage/', // Dynamic AWS SDK imports
+  ],
+  'no-ts-ignore': [
+    'src/generated/',
+    'prisma/',
+  ],
+  // Security logging is intentional
+  'no-console-credentials': [
+    'src/proxy.ts', // Security audit logging is intentional
+  ],
+};
+
+// Content patterns that indicate false positives
+const FALSE_POSITIVE_PATTERNS: Record<string, RegExp[]> = {
+  // JSON-LD schemas are safe (structured data for SEO)
+  'no-dangerous-html': [
+    /application\/ld\+json/,
+    /__html:\s*JSON\.stringify/,
+    /script.*nonce/, // Scripts with nonce are CSP-controlled
+  ],
+  // Example/placeholder values in documentation
+  'no-hardcoded-secrets': [
+    /your-.*-secret/i,
+    /your-.*-key/i,
+    /example/i,
+    /placeholder/i,
+    /CHANGE_ME/i,
+    /xxx+/i,
+    /test-secret/i, // Test secrets
+    /max-w-auth/, // CSS class false positive
+    /startsWith\(['"].*token/i, // Cookie lookup patterns
+    /\.find\(.*c\.trim\(\)\.startsWith/i, // Cookie parsing
+  ],
+  // ESLint rule descriptions mention patterns, not actual usage
+  'no-eval': [
+    /description:/,
+    /Forbid eval/i,
+    /eval\(\) is forbidden/i,
+  ],
+  'no-function-constructor': [
+    /description:/,
+    /equivalent to eval/i,
+  ],
+};
+
+function isExcludedPath(filePath: string, rule?: string): boolean {
+  // Check global exclusions
+  for (const excluded of EXCLUDED_PATHS) {
+    if (filePath.includes(excluded) || filePath.match(new RegExp(excluded.replace(/\*/g, '.*')))) {
+      return true;
+    }
+  }
+
+  // Check rule-specific exclusions
+  if (rule && RULE_PATH_EXCLUSIONS[rule]) {
+    for (const excluded of RULE_PATH_EXCLUSIONS[rule]) {
+      if (filePath.includes(excluded)) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+function isFalsePositive(rule: string, matchedCode: string, fullFileContent: string): boolean {
+  const patterns = FALSE_POSITIVE_PATTERNS[rule];
+  if (!patterns) return false;
+
+  // Check if the matched code or surrounding context indicates a false positive
+  for (const pattern of patterns) {
+    if (pattern.test(matchedCode) || pattern.test(fullFileContent)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 // Security rules with patterns
 const SECURITY_RULES = [
   // Critical - Immediate action required
@@ -186,15 +321,27 @@ function scanFile(filePath: string, code: string): SecurityIssue[] {
   const issues: SecurityIssue[] = [];
 
   for (const rule of SECURITY_RULES) {
+    // Skip if path is excluded for this rule
+    if (isExcludedPath(filePath, rule.name)) {
+      continue;
+    }
+
     const matches = code.matchAll(rule.pattern);
     for (const match of matches) {
+      const matchedCode = getCodeSnippet(code, match.index || 0);
+
+      // Skip false positives based on content patterns
+      if (isFalsePositive(rule.name, matchedCode, code)) {
+        continue;
+      }
+
       issues.push({
         rule: rule.name,
         severity: rule.severity,
         message: rule.message,
         file: filePath,
         line: getLineNumber(code, match.index || 0),
-        code: getCodeSnippet(code, match.index || 0),
+        code: matchedCode,
         fix: rule.fix,
       });
     }

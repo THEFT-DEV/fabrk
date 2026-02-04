@@ -128,11 +128,11 @@ export default function SeparatorPage() {
           preview: (
             <div className="w-full max-w-md space-y-4">
               <div>Above</div>
-              <Separator className="h-[2px]" />
+              <Separator className="h-0.5" />
               <div>Below</div>
             </div>
           ),
-          code: `<Separator className="h-[2px]" />`,
+          code: `<Separator className="h-0.5" />`,
         },
         {
           title: 'With Text',
@@ -184,8 +184,8 @@ export default function SeparatorPage() {
         'Uses proper ARIA roles based on decorative prop',
         "Decorative separators have role='none' (not announced by screen readers)",
         "Semantic separators have role='separator' with aria-orientation",
-        'Horizontal separators: h-[1px] w-full',
-        'Vertical separators: h-full w-[1px]',
+        'Horizontal separators: h-px w-full',
+        'Vertical separators: h-full w-px',
         'Background uses design token (bg-border) for theme support',
       ]}
       previous={{ title: 'Select', href: '/docs/components/select' }}
@@ -254,7 +254,7 @@ export default function SeparatorPage() {
                   • Customize color with bg-primary or other design tokens (not hardcoded)
                 </li>
                 <li className="text-xs">
-                  • Increase height (h-[2px]) for stronger visual separation
+                  • Increase height (h-0.5) for stronger visual separation
                 </li>
                 <li className="text-xs">
                   • Combine with text using absolute positioning for &quot;OR&quot; dividers

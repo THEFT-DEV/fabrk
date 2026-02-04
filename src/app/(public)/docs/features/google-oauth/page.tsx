@@ -119,7 +119,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 });`,
           language: 'typescript',
         },
-        /* eslint-disable design-system/no-hardcoded-colors -- Google brand colors are required for official Google icon */
+        /* eslint-disable ai/no-hardcoded-colors, design-system/no-hardcoded-colors -- Google brand colors are required for official Google icon */
         {
           title: 'Sign In Button',
           description: 'Add Google sign-in to your login page',

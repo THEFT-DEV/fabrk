@@ -153,7 +153,7 @@ const TYPE_SAFETY_PATTERNS = {
     suggestion: 'Use specific types instead of "any"',
   },
 
-  // @ts-ignore comments
+  // TypeScript ignore comments
   tsIgnore: {
     pattern: /@ts-ignore|@ts-nocheck/g,
     message: 'TypeScript ignore directive',
@@ -335,7 +335,6 @@ export class CodeValidator {
     type: ValidationIssue['type']
   ): ValidationIssue[] {
     const issues: ValidationIssue[] = [];
-    const lines = code.split('\n');
 
     for (const [, config] of Object.entries(patterns)) {
       // Reset regex lastIndex

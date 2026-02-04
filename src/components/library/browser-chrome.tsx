@@ -19,15 +19,15 @@ export function BrowserChrome({ children, title, url, className }: BrowserChrome
     <div className={cn('bg-background overflow-hidden border', mode.radius, className)}>
       {/* macOS Window Header */}
       <div className="border-border flex items-center justify-between border-b px-4 py-3">
-        {/* Traffic Lights */}
-        {/* eslint-disable design-system/no-hardcoded-colors -- macOS window control colors are intentional */}
+        {/* Traffic Lights - macOS standard colors */}
+        {/* eslint-disable ai/no-hardcoded-colors, design-system/no-hardcoded-colors -- macOS traffic light colors must match standard red/yellow/green */}
         <div className="flex items-center gap-2">
           <div className="size-3 rounded-full bg-[#FF5F57]" />
           <div className="size-3 rounded-full bg-[#FFBD2E]" />
           <div className="size-3 rounded-full bg-[#28CA42]" />
         </div>
-        {/* eslint-enable design-system/no-hardcoded-colors */}
-
+        {/* eslint-enable ai/no-hardcoded-colors, design-system/no-hardcoded-colors */}
+        
         {/* Title/URL */}
         {(title || url) && (
           <div className={cn('flex-1 text-center text-xs', mode.font, mode.color.text.muted)}>
