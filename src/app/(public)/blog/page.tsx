@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   description: 'Latest articles, tutorials, and updates from Fabrk',
 };
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
 export default async function BlogPage({
   searchParams,
 }: {
