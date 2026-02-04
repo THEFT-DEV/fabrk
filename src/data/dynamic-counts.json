@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-03T21:43:04.498Z",
+  "generatedAt": "2026-02-04T08:11:20.593Z",
   "counts": {
     "uiComponents": 62,
     "themes": 18,
@@ -7,8 +7,8 @@
     "apiRoutes": 71,
     "testFiles": 23,
     "languages": 6,
-    "docsPages": 120,
-    "liveDocsPages": 159
+    "docsPages": 129,
+    "liveDocsPages": 170
   },
   "strings": {
     "components": "62+",
@@ -17,6 +17,6 @@
     "apiRoutes": "71+",
     "testFiles": "23+",
     "languages": "6",
-    "docsPages": "120+"
+    "docsPages": "129+"
   }
 }
