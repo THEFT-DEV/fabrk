@@ -245,7 +245,7 @@ The optimization landscape has three distinct strategies, each targeting differe
 ];
 
 export function getPublishedBlogPosts() {
-  return blogPosts.filter(post => post.featured === false || true).sort((a, b) =>
+  return blogPosts.sort((a, b) =>
     b.publishedAt.getTime() - a.publishedAt.getTime()
   );
 }
