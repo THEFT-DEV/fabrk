@@ -29,7 +29,7 @@ const examples = {
     title: 'Terminal',
     description: 'Display terminal commands',
     code: `<Terminal
-  command="npm install next-mdx-remote"
+  command="npm install fabrk"
   output="added 42 packages in 2s"
 />`,
   },
