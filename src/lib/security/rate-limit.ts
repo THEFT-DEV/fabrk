@@ -25,6 +25,15 @@ interface RateLimitStore {
   resetTime: number;
 }
 
+interface RateLimitInstance {
+  limit(identifier: string): Promise<{
+    success: boolean;
+    limit: number;
+    remaining: number;
+    reset: number;
+  }>;
+}
+
 // In-memory store (use Redis/Upstash in production)
 // Exported for testing purposes
 export const limitStore = new Map<string, RateLimitStore>();
@@ -176,7 +185,7 @@ export const RateLimiters = {
  * Caches the client instance to avoid creating new connections on each request
  */
 let redisClient: unknown = null;
-let ratelimitInstances = new Map<string, unknown>();
+let ratelimitInstances = new Map<string, RateLimitInstance>();
 
 /**
  * Get or create Redis client singleton
@@ -209,13 +218,13 @@ function getRedisClient(): unknown {
 /**
  * Get or create Ratelimit instance for a specific config
  */
-function getRatelimitInstance(config: RateLimitConfig): unknown {
+function getRatelimitInstance(config: RateLimitConfig): RateLimitInstance | null {
   const redis = getRedisClient();
   if (!redis) return null;
 
   const key = `${config.maxRequests}:${config.interval}`;
   if (ratelimitInstances.has(key)) {
-    return ratelimitInstances.get(key);
+    return ratelimitInstances.get(key) ?? null;
   }
 
   try {
@@ -230,7 +239,7 @@ function getRatelimitInstance(config: RateLimitConfig): unknown {
     });
 
     ratelimitInstances.set(key, instance);
-    return instance;
+    return instance as RateLimitInstance;
   } catch {
     logger.warn('[Rate Limit] @upstash/ratelimit not installed, using in-memory rate limiting');
     return null;
@@ -271,8 +280,7 @@ export async function checkRateLimitRedis(
   }
 
   try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Dynamic import from @upstash/ratelimit
-    const { success, limit, remaining, reset } = await (ratelimit as any).limit(identifier);
+    const { success, limit, remaining, reset } = await ratelimit.limit(identifier);
     return { success, limit, remaining, reset };
   } catch (error: unknown) {
     logger.error('[Rate Limit] Upstash error, falling back to in-memory', error);

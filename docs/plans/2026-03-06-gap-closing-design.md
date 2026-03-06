@@ -41,48 +41,19 @@ These require minimal effort but close visible competitive gaps.
 **Effort:** 4-6 hours
 **Repo:** fabrk-dev
 
-### 1.2 Docker Compose for Local Dev
-**Gap:** ShipAI has one-command Docker setup. FABRK has none.
-**Plan:**
-- Create `docker-compose.yml` with PostgreSQL 17 + Redis 7.4 + app
-- Create `Dockerfile` for development
-- Add `.dockerignore`
-- Update README with Docker setup instructions
-- Add `npm run docker:up` and `npm run docker:down` scripts
-**Effort:** 3-4 hours
-**Repo:** fabrk-dev
+### 1.2 Docker Compose for Local Dev — DONE
+`docker-compose.yml` with PostgreSQL 17 + Redis 7.4, `.dockerignore`, `npm run docker:*` scripts.
 
-### 1.3 Environment Strategy
-**Gap:** ShipAI has dev/staging/prod env configs with service toggles.
-**Plan:**
-- Create `.env.development`, `.env.staging`, `.env.production` templates
-- Add `SERVICE_*` toggles to `src/lib/env/index.ts` (e.g., `SERVICE_REDIS`, `SERVICE_STORAGE`)
-- Add `FEATURE_*` toggles for optional modules (e.g., `FEATURE_AI`, `FEATURE_BILLING`)
-- Update setup wizard to configure these
-**Effort:** 2-3 hours
-**Repo:** fabrk-dev
+### 1.3 Environment Strategy — DONE
+`SERVICE_*` and `FEATURE_*` toggles added to `src/lib/env/index.ts` and `.env.example`.
 
-### 1.4 Recipes Documentation
-**Gap:** ShipAI has how-to recipes. FABRK has basic README.
-**Plan:**
-- Create `docs/recipes/` directory
-- Write: "Rebrand Your App" (change name, logo, colors, fonts)
-- Write: "Add a New Feature Module" (page + API route + service)
-- Write: "Deploy to Production" (Vercel checklist)
-- Write: "Add a Payment Provider" (configure Stripe/Polar/Lemon)
-- Write: "Customize a Theme" (create your own terminal theme)
-**Effort:** 3-4 hours
-**Repo:** fabrk-dev
+### 1.4 Recipes Documentation — DONE
+5 recipes in `docs/recipes/`: rebrand, add feature, add payment, customize theme, deploy.
 
 ### 1.5 Branding System
-**Gap:** ShipAI has env-driven product identity. FABRK config is in `src/config/index.ts`.
-**Plan:**
-- Ensure `src/config/index.ts` reads all branding from env vars
-- Add env vars: `APP_NAME`, `APP_DESCRIPTION`, `APP_URL`, `APP_LOGO_URL`
-- Ensure all pages reference config, not hardcoded strings
-- Document in recipes
-**Effort:** 2-3 hours
-**Repo:** fabrk-dev
+**Gap:** ~30 files with hardcoded "Fabrk" references. Marketing files are intentional.
+**Remaining:** Audit core files (`src/lib/metadata.ts`, `src/app/layout.tsx`) to use config references.
+**Effort:** 1-2 hours
 
 ---
 
@@ -278,38 +249,4 @@ Before extracting any module:
 
 ## Success Criteria
 
-After completing all phases:
-
-- [ ] i18n with 4+ languages
-- [ ] Docker one-command local dev
-- [ ] Redis-backed cache and rate limiting
-- [ ] Background job processing with BullMQ
-- [ ] Structured logging with Pino
-- [ ] Admin dashboard with real data
-- [ ] AI orchestration with multi-provider streaming
-- [ ] 8+ pre-built AI handlers
-- [ ] Vector memory / RAG support
-- [ ] Full documentation site
-- [ ] Comparison pages for SEO
-- [ ] Lighthouse 95+ on all pages
-- [ ] All features extractable to fabrk-framework
-
-## Competitive Position After Plan
-
-| Feature | ShipAI | FABRK (After) |
-|---------|--------|---------------|
-| AI Handlers | 11 | 8+ |
-| Themes | 1 (dark) | 18 |
-| Payment Providers | 1 (Stripe) | 3 |
-| Components | 60+ | 70+ |
-| i18n Languages | 7 | 4+ |
-| Docker Setup | Yes | Yes |
-| Background Jobs | Yes | Yes |
-| Vector Memory | Yes (Qdrant) | Yes (multi-provider) |
-| Design System | No | Yes (OKLCH tokens) |
-| Price | $299 | Free |
-| Lighthouse | 98 | 95+ |
-| Docs | Good | Comprehensive |
-| Social Proof | Fake | Real |
-
-FABRK matches or exceeds ShipAI on every dimension except raw AI handler count (8 vs 11), while maintaining advantages in design system, pricing, payment flexibility, and honesty.
+After all phases, FABRK matches or exceeds ShipAI on every dimension (AI handlers, Docker, i18n, jobs, vector memory, docs, Lighthouse 95+) while maintaining advantages in design system (18 themes), pricing (free), payment flexibility (3 providers), and honesty (no fake social proof).

@@ -11,6 +11,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ---
 
+## RULE #0: CODE STANDARDS (NON-NEGOTIABLE)
+
+**File size limits:** Max 300 lines/file, 150 lines/component, 50 lines/function.
+
+**Architecture:** One responsibility per file. Aliases only (`@/lib/`, `@/components/`). Zod schemas on all external boundaries. Full TypeScript — no `any`, no `as unknown`, no type suppression.
+
+**Quality:** Zero dead code, zero TODOs, zero stubs. All edge cases handled. Every async call has error handling. No prop drilling. Comments explain WHY, never WHAT.
+
+**Security:** Sanitise input at boundaries. Never expose secrets to client. Parameterised queries only. Auth at route/middleware level.
+
+**Before writing:** Scan context, find bugs/anti-patterns, fix them. If a file exceeds limits, split first.
+
+**Never:** AI slop names (handler, data, temp). 200-line components. Skipped error handling. Unnecessary deps. Code you wouldn't ship.
+
+See `.claude/agents/engineering/code-standards.md` for full spec.
+
+---
+
 ## RULE #1: USE THE EXISTING COMPONENTS
 
 **This boilerplate has 70+ pre-built components (62 UI + 8 charts). You MUST use them.**

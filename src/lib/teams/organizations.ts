@@ -11,6 +11,7 @@
  */
 
 import { prisma } from '@/lib/prisma';
+import type { Prisma } from '@/generated/prisma/client';
 
 // Re-export types
 export type { OrgRole } from './types';
@@ -244,7 +245,6 @@ export async function updateOrganizationSettings(
 
   await prisma.organization.update({
     where: { id: organizationId },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    data: { settings: settings as any },
+    data: { settings: settings as Prisma.InputJsonValue },
   });
 }

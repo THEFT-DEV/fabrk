@@ -23,6 +23,12 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts';
+import type { Payload } from 'recharts/types/component/DefaultTooltipContent';
+
+interface TooltipCallbackProps {
+  active?: boolean;
+  payload?: ReadonlyArray<Payload<number, string>>;
+}
 import { DollarSign, TrendingUp } from 'lucide-react';
 
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
@@ -102,8 +108,7 @@ export function RevenueChart({
   // Memoize tooltip component to prevent recreation on every render (industry-standard pattern)
   const CustomTooltip = React.useMemo(
     () =>
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Recharts TooltipContentProps is complex
-      ({ active, payload }: any) => {
+      ({ active, payload }: TooltipCallbackProps) => {
         if (active && payload && payload.length) {
           return (
             <div className={cn('border-border bg-card border p-4', mode.radius)}>
@@ -114,14 +119,14 @@ export function RevenueChart({
                 <p className="text-muted-foreground text-xs">
                   MRR:{' '}
                   <span className="text-primary font-semibold">
-                    {formatCurrency(payload[0].value)}
+                    {formatCurrency(Number(payload[0].value ?? 0))}
                   </span>
                 </p>
                 {showArr && payload[1] && (
                   <p className="text-muted-foreground text-xs">
                     ARR:{' '}
                     <span className="text-accent font-semibold">
-                      {formatCurrency(payload[1].value)}
+                      {formatCurrency(Number(payload[1].value ?? 0))}
                     </span>
                   </p>
                 )}

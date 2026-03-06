@@ -18,11 +18,10 @@
 import { getCostTracker } from './cost';
 import { AppError, successResponse, errorResponse, type APIResponse } from '@/types/ai';
 
-// Type definitions for optional SDKs
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// SDK types — openai is installed, anthropic may not be
+import type { ChatCompletion } from 'openai/resources/chat/completions';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- @anthropic-ai/sdk is an optional peer dep
 type AnthropicMessage = any;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type OpenAICompletion = any;
 
 // ============================================================================
 // TYPES
@@ -79,9 +78,8 @@ export const claude = {
     } = options;
 
     try {
-      // Dynamic import to avoid requiring SDK at build time
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const Anthropic = (await import('@anthropic-ai/sdk' as any)).default;
+      // @ts-expect-error - Optional peer dependency, not installed in all environments
+      const Anthropic = (await import('@anthropic-ai/sdk')).default;
       const client = new Anthropic();
 
       const tracker = getCostTracker();
@@ -135,8 +133,8 @@ export const claude = {
    */
   async isAvailable(): Promise<boolean> {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      await import('@anthropic-ai/sdk' as any);
+      // @ts-expect-error - Optional peer dependency
+      await import('@anthropic-ai/sdk');
       return !!process.env.ANTHROPIC_API_KEY;
     } catch {
       return false;
@@ -174,14 +172,12 @@ export const openai = {
     } = options;
 
     try {
-      // Dynamic import to avoid requiring SDK at build time
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const OpenAI = (await import('openai' as any)).default;
+      const OpenAI = (await import('openai')).default;
       const client = new OpenAI();
 
       const tracker = getCostTracker();
 
-      const result: OpenAICompletion = await tracker.trackOpenAICall({
+      const result: ChatCompletion = await tracker.trackOpenAICall({
         model,
         feature,
         prompt,
@@ -244,8 +240,7 @@ export const openai = {
         input: text,
       });
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const embeddings = response.data.map((d: any) => d.embedding);
+      const embeddings = response.data.map((d: { embedding: number[] }) => d.embedding);
       return successResponse(embeddings);
     } catch (error) {
       console.error('OpenAI embedding error:', error);

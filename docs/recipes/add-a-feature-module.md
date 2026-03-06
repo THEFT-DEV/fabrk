@@ -43,13 +43,10 @@ Create `src/components/projects/project-list.tsx`:
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Card, CardHeader, CardContent, Badge } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Card, CardHeader, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/table';
-import { cn } from '@/lib/utils';
-import { mode } from '@/design-system';
-import { Plus } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface Project {
   id: string;
@@ -65,55 +62,28 @@ export function ProjectList({ userId }: { userId: string }) {
   useEffect(() => {
     fetch('/api/projects')
       .then((res) => res.json())
-      .then((data) => {
-        setProjects(data.data || []);
-        setLoading(false);
-      });
+      .then((data) => { setProjects(data.data || []); setLoading(false); });
   }, []);
 
-  if (loading) {
-    return (
-      <div className="space-y-4">
-        <Skeleton className="h-10 w-full" />
-        <Skeleton className="h-10 w-full" />
-        <Skeleton className="h-10 w-full" />
-      </div>
-    );
-  }
+  if (loading) return <Skeleton className="h-40 w-full" />;
 
   return (
     <Card>
-      <CardHeader
-        title="projects.db"
-        code="0xA1"
-        action={
-          <Button size="sm" className={cn(mode.radius, mode.font, 'text-xs')}>
-            <Plus className="mr-1 size-3" />
-            {'> NEW PROJECT'}
-          </Button>
-        }
-      />
+      <CardHeader title="projects.db" code="0xA1" />
       <CardContent>
         <Table>
           <TableHeader>
             <TableRow>
               <TableHead>NAME</TableHead>
               <TableHead>STATUS</TableHead>
-              <TableHead>CREATED</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {projects.map((project) => (
-              <TableRow key={project.id}>
-                <TableCell className="font-medium">{project.name}</TableCell>
+            {projects.map((p) => (
+              <TableRow key={p.id}>
+                <TableCell>{p.name}</TableCell>
                 <TableCell>
-                  <Badge
-                    code={project.status === 'active' ? '0x01' : '0x00'}
-                    label={project.status.toUpperCase()}
-                  />
-                </TableCell>
-                <TableCell className="text-muted-foreground">
-                  {new Date(project.createdAt).toLocaleDateString()}
+                  <Badge code={p.status === 'active' ? '0x01' : '0x00'} label={p.status.toUpperCase()} />
                 </TableCell>
               </TableRow>
             ))}
@@ -130,7 +100,7 @@ export function ProjectList({ userId }: { userId: string }) {
 Create `src/app/api/projects/route.ts`:
 
 ```ts
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 
 export async function GET() {
@@ -140,7 +110,6 @@ export async function GET() {
   }
 
   try {
-    // Replace with your actual data fetching
     const projects = await getProjects(session.user.id);
     return NextResponse.json({ data: projects }, { status: 200 });
   } catch (error) {
@@ -148,29 +117,9 @@ export async function GET() {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
-
-export async function POST(req: NextRequest) {
-  const session = await auth();
-  if (!session?.user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
-  try {
-    const body = await req.json();
-    const { name } = body;
-
-    if (!name) {
-      return NextResponse.json({ error: 'Name is required' }, { status: 400 });
-    }
-
-    const project = await createProject({ name, userId: session.user.id });
-    return NextResponse.json({ data: project }, { status: 201 });
-  } catch (error) {
-    console.error('Failed to create project:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
-  }
-}
 ```
+
+Add `POST`, `PUT`, `DELETE` handlers following the same `auth()` guard pattern.
 
 ## 4. Create the Service Layer
 
@@ -188,17 +137,7 @@ export async function getProjects(userId: string) {
 
 export async function createProject(data: { name: string; userId: string }) {
   return prisma.project.create({
-    data: {
-      name: data.name,
-      userId: data.userId,
-      status: 'active',
-    },
-  });
-}
-
-export async function deleteProject(id: string, userId: string) {
-  return prisma.project.delete({
-    where: { id, userId },
+    data: { name: data.name, userId: data.userId, status: 'active' },
   });
 }
 ```

@@ -68,35 +68,9 @@ Last updated: 2026-03-06
 
 ## Action Plan
 
-### Quick Wins (This Week) - Small Effort, High Impact
+See `docs/plans/2026-03-06-gap-closing-design.md` for the phased implementation plan.
 
-- [ ] **SEO utilities** - Add dynamic sitemap.xml, robots.txt, JSON-LD structured data, canonical helpers, meta utilities
-- [ ] **i18n** - Add next-intl with at least English + Spanish + French + German
-- [ ] **Real social proof** - Add GitHub stars counter, actual npm downloads, real user quotes (no faking numbers like ShipAI does)
-- [ ] **Lighthouse audit** - Run Lighthouse, fix issues, target 95+ score and display it
-- [ ] **Feature flags** - Add FEATURE_* and SERVICE_* env toggles to enable/disable modules
-- [ ] **Health endpoint** - Add /api/health with service status checks
-- [ ] **Recipes docs** - Add "Rebrand", "Add a Feature", "Deploy to Production" guides
-
-### Medium Effort (Next 2 Weeks)
-
-- [ ] **Admin dashboard wiring** - Connect existing admin components to real data (users, subscriptions, usage analytics)
-- [ ] **Docker Compose** - Add docker-compose.yml for local dev with PostgreSQL, Redis, app
-- [ ] **Background jobs** - Add BullMQ or similar for async processing, cron scheduling
-- [ ] **Redis integration** - Caching layer + rate limiting middleware
-- [ ] **Observability basics** - Structured logging with Pino, basic error tracking
-- [ ] **File upload/storage** - S3-compatible storage integration (MinIO for local dev, S3 for prod)
-- [ ] **Environment strategy** - Dev/staging/prod env configs with service availability toggles
-- [ ] **Branding system** - Env-driven product identity (name, logo, colors configurable via env vars)
-
-### Large Effort (Framework Roadmap - Next Month)
-
-- [ ] **AI orchestration layer** - Multi-provider support via Vercel AI SDK, streaming, tool use
-- [ ] **AI handlers/skills** - Pre-built handlers for common AI patterns (chat, summarize, extract, generate)
-- [ ] **Vector memory** - Qdrant or Pinecone integration for embeddings/RAG
-- [ ] **Full admin panel** - Users, traces, usage analytics, billing views, log explorer
-- [ ] **Multi-scope memory** - Chat/project/file level context with structured extraction for AI features
-- [ ] **Documentation site** - Full docs with getting started, codebase guides, feature docs, deployment, recipes
+**Completed:** Docker Compose, environment strategy (SERVICE_*/FEATURE_* toggles), recipes documentation, SEO toolkit (already existed), health endpoint (already existed), feature flags (already existed).
 
 ---
 

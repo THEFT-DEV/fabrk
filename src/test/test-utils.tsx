@@ -6,6 +6,7 @@
 import { render, RenderOptions } from '@testing-library/react';
 import { ReactElement, ReactNode } from 'react';
 import { SessionProvider } from 'next-auth/react';
+import type { Session } from 'next-auth';
 import { vi, expect } from 'vitest';
 
 // Mock session data
@@ -29,11 +30,9 @@ export const mockAdminSession = {
   expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
 };
 
-// Custom render with providers
 interface ProvidersProps {
   children: ReactNode;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  session?: any;
+  session?: Session | null;
 }
 
 function Providers({ children, session }: ProvidersProps) {
@@ -41,8 +40,7 @@ function Providers({ children, session }: ProvidersProps) {
 }
 
 interface CustomRenderOptions extends Omit<RenderOptions, 'wrapper'> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  session?: any;
+  session?: Session | null;
 }
 
 export function renderWithProviders(ui: ReactElement, options?: CustomRenderOptions) {
@@ -54,18 +52,14 @@ export function renderWithProviders(ui: ReactElement, options?: CustomRenderOpti
   });
 }
 
-// Mock API response
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function mockApiResponse(data: any, status = 200) {
+export function mockApiResponse(data: unknown, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
     headers: { 'Content-Type': 'application/json' },
   });
 }
 
-// Mock fetch
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function mockFetch(response: any, status = 200) {
+export function mockFetch(response: unknown, status = 200) {
   global.fetch = vi.fn(() => Promise.resolve(mockApiResponse(response, status)));
 }
 
@@ -162,9 +156,7 @@ export function createTestPayment(overrides = {}) {
   };
 }
 
-// Assert API response
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function expectApiResponse(response: Response, expectedData: any) {
+export function expectApiResponse(response: Response, expectedData: unknown) {
   expect(response.status).toBe(200);
   return response.json().then((data) => {
     expect(data).toEqual(expectedData);

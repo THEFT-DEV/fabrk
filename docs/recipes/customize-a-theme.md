@@ -73,76 +73,22 @@ Add a new block in `src/app/globals.css` after the existing themes:
 ```css
 /* Cyberpunk Neon - Hot pink on dark */
 [data-theme='neon'] {
+  /* Core tokens - set your hue (330 = pink), adjust lightness/chroma */
   --background: 5% 0.01 330;
   --foreground: 85% 0.3 330;
   --card: 8% 0.02 330;
   --card-foreground: 85% 0.3 330;
-  --popover: 10% 0.03 330;
-  --popover-foreground: 85% 0.3 330;
   --primary: 55% 0.3 330;
   --primary-foreground: 5% 0.01 330;
-  --secondary: 70% 0.28 330;
-  --secondary-foreground: 5% 0.01 330;
   --muted: 18% 0.05 330;
   --muted-foreground: 68% 0.22 330;
-  --accent: 75% 0.3 330;
-  --accent-foreground: 5% 0.01 330;
-  --destructive: 80% 0.32 330;
-  --destructive-foreground: 5% 0.01 330;
   --border: 42% 0.2 330;
-  --input: 42% 0.2 330;
   --ring: 60% 0.25 330;
 
-  --success: 65% 0.28 330;
-  --success-foreground: 5% 0.01 330;
-  --warning: 70% 0.26 330;
-  --warning-foreground: 5% 0.01 330;
-  --info: 60% 0.24 330;
-  --info-foreground: 5% 0.01 330;
-
-  --chart-1: 65% 0.28 330;
-  --chart-2: 55% 0.24 330;
-  --chart-3: 70% 0.26 330;
-  --chart-4: 60% 0.22 330;
-  --chart-5: 50% 0.2 330;
-  --chart-6: 75% 0.3 330;
-  --chart-7: 45% 0.18 330;
-  --chart-8: 62% 0.25 330;
-  --chart-9: 58% 0.23 330;
-
-  /* Semantic mappings (copy from any existing theme) */
-  --color-bg-canvas: var(--background);
-  --color-bg-surface: var(--card);
-  --color-bg-elevated: var(--popover);
-  --color-bg-sunken: var(--muted);
-  --color-text-primary: var(--foreground);
-  --color-text-secondary: var(--muted-foreground);
-  --color-text-tertiary: var(--secondary-foreground);
-  --color-text-inverse: var(--primary-foreground);
-  --color-text-disabled: var(--muted-foreground);
-  --color-border-default: var(--border);
-  --color-border-muted: var(--input);
-  --color-border-strong: var(--ring);
-  --color-border-focus: var(--ring);
-  --color-status-success: var(--success);
-  --color-status-success-bg: var(--success);
-  --color-status-warning: var(--warning);
-  --color-status-warning-bg: var(--warning);
-  --color-status-error: var(--destructive);
-  --color-status-error-bg: var(--destructive);
-  --color-status-info: var(--info);
-  --color-status-info-bg: var(--info);
-
-  /* Code syntax highlighting */
-  --code-fg: oklch(65% 0.25 330);
-  --code-bg: oklch(8% 0.02 330);
-  --code-comment: oklch(50% 0.15 330);
-  --code-string: oklch(60% 0.22 330);
-  --code-punctuation: oklch(50% 0.2 330);
-  --code-number: oklch(55% 0.22 330);
-  --code-keyword: oklch(65% 0.25 330);
-  --code-function: oklch(70% 0.28 330);
-  --code-selector: oklch(60% 0.22 330);
+  /* Copy remaining tokens (popover, secondary, accent, destructive,
+     success/warning/info, chart-1 through chart-9, semantic mappings,
+     code syntax) from any existing theme in globals.css and
+     adjust the hue value to match your color. */
 }
 ```
 
@@ -154,56 +100,20 @@ Find the theme list in your theme dropdown component and add your new theme:
 { value: 'neon', label: 'Neon' },
 ```
 
-### Step 3: Optional -- Add CRT Body Styles
+### Step 3: Verify
 
-If your theme should use a custom body font or background effect, add:
-
-```css
-[data-theme='neon'] body {
-  --font-body: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --font-headline: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-}
-```
-
-## The Mode System
-
-Components do not reference CSS variables directly. They use the `mode` object from `@/design-system`:
-
-```tsx
-import { mode } from '@/design-system';
-import { cn } from '@/lib/utils';
-
-// mode.radius  -> "rounded-dynamic" (resolves to var(--radius))
-// mode.font    -> "font-mono"
-// mode.color.bg.base  -> "bg-background"
-// mode.color.text.primary -> "text-foreground"
-
-<div className={cn('border border-border', mode.radius, mode.color.bg.surface)}>
-  <p className={mode.color.text.muted}>Themed text</p>
-</div>
-```
-
-This means your new theme works automatically -- every component already uses semantic tokens that resolve to your CSS variables.
-
-## Quick Reference: OKLCH Hue Values
-
-| Hue | Color |
-|-----|-------|
-| 0 | Red |
-| 30 | Orange |
-| 60 | Yellow |
-| 90 | Yellow-green |
-| 120-140 | Green |
-| 180 | Cyan |
-| 200-220 | Blue |
-| 270 | Purple |
-| 300 | Magenta |
-| 330 | Pink/Hot pink |
-
-## Validation
+Your theme works automatically — all components use the `mode` object from `@/design-system`, which resolves to your CSS variables.
 
 ```bash
-npm run validate:themes
+npm run validate:themes    # Checks all required tokens are defined
+npm run dev                # Preview your theme in the theme dropdown
 ```
 
-This checks that all required tokens are defined for each theme.
+## OKLCH Hue Reference
+
+| Hue | Color | Hue | Color |
+|-----|-------|-----|-------|
+| 0 | Red | 180 | Cyan |
+| 30 | Orange | 200-220 | Blue |
+| 60 | Yellow | 270 | Purple |
+| 120-140 | Green | 330 | Pink |

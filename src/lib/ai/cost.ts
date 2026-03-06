@@ -463,8 +463,8 @@ export class AICostTracker {
     userId?: string;
     metadata?: Record<string, unknown>;
     fn: () => Promise<{
-      choices: Array<{ message: { content: string } }>;
-      usage: { prompt_tokens: number; completion_tokens: number };
+      choices: Array<{ message: { content: string | null } }>;
+      usage?: { prompt_tokens: number; completion_tokens: number };
     }>;
   }): Promise<T> {
     const startTime = Date.now();
@@ -473,8 +473,8 @@ export class AICostTracker {
       const response = await fn();
       const durationMs = Date.now() - startTime;
 
-      const promptTokens = response.usage.prompt_tokens;
-      const completionTokens = response.usage.completion_tokens;
+      const promptTokens = response.usage?.prompt_tokens ?? 0;
+      const completionTokens = response.usage?.completion_tokens ?? 0;
       const { costUSD, provider } = calculateCost(
         model,
         promptTokens,

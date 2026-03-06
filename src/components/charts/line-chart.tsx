@@ -11,8 +11,16 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts';
+import type { Payload } from 'recharts/types/component/DefaultTooltipContent';
 import { cn } from '@/lib/utils';
 import { mode } from '@/design-system';
+
+type ChartPayload = Payload<number, string>;
+interface TooltipCallbackProps {
+  active?: boolean;
+  payload?: ReadonlyArray<ChartPayload>;
+  label?: string | number;
+}
 
 // Theme colors using CSS custom properties directly
 const THEME_COLORS = {
@@ -96,8 +104,7 @@ export function LineChart({
   // Memoize tooltip to prevent recreation on every render
   const CustomTooltipContent = React.useMemo(
     () =>
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Recharts TooltipContentProps is complex
-      ({ active, payload, label }: any) => {
+      ({ active, payload, label }: TooltipCallbackProps) => {
         if (active && payload && payload.length) {
           return (
             <div className={cn(mode.color.border.default, 'bg-card border px-4 py-2', mode.radius)}>
@@ -105,9 +112,7 @@ export function LineChart({
                 {xAxisFormatter ? xAxisFormatter(String(label ?? '')) : label}
               </p>
               <div className="space-y-1">
-                { }
-                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                {payload.map((entry: any, index: number) => (
+                {payload?.map((entry: ChartPayload, index: number) => (
                   <p key={index} className={cn('text-muted-foreground text-xs', mode.font)}>
                     <span
                       className="mr-2 inline-block h-2 w-2"
@@ -115,11 +120,10 @@ export function LineChart({
                     />
                     {entry.name}:{' '}
                     <span className="text-foreground font-semibold">
-                      {tooltipFormatter ? tooltipFormatter(entry.value, entry.name) : entry.value}
+                      {tooltipFormatter ? tooltipFormatter(Number(entry.value), String(entry.name)) : entry.value}
                     </span>
                   </p>
                 ))}
-                { }
               </div>
             </div>
           );

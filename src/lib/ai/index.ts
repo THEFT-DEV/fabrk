@@ -28,32 +28,26 @@
  * @optional
  */
 
-// Dynamic imports for optional dependencies (type safety not available until SDK installed)
-// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Dynamic import requires any until SDK installed
-let OpenAI: any;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Dynamic import requires any until SDK installed
-let Anthropic: any;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Dynamic import instance
-let openai: any;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Dynamic import instance
-let anthropic: any;
+/* eslint-disable @typescript-eslint/no-explicit-any --
+   openai and @anthropic-ai/sdk are optional peer deps. Their types don't exist
+   at compile time in environments where they aren't installed. Every call site
+   guards with a null check before use. */
+let openai: any = null;
+let anthropic: any = null;
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 try {
-  OpenAI = require('openai').default || require('openai');
-  openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
+  const OpenAI = require('openai').default || require('openai');
+  openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 } catch {
-  // OpenAI SDK is optional - silent skip for optional dependencies
+  // OpenAI SDK not installed — features that need it will throw at call time
 }
 
 try {
-  Anthropic = require('@anthropic-ai/sdk').default || require('@anthropic-ai/sdk');
-  anthropic = new Anthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY,
-  });
+  const Anthropic = require('@anthropic-ai/sdk').default || require('@anthropic-ai/sdk');
+  anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 } catch {
-  // Anthropic SDK is optional - silent skip for optional dependencies
+  // Anthropic SDK not installed — features that need it will throw at call time
 }
 
 export type AIProvider = 'openai' | 'anthropic';
