@@ -11,6 +11,18 @@ node_modules
 # Archives - historical artifacts, audits, old code
 .archives/
 
+# Firecrawl cache
+.firecrawl/
+
+# Agent-smith generated docs (regenerate with agent-smith)
+AGENTS.md
+
+# Internal root docs
+DEMO_PROMPTS.md
+DESIGN_SYSTEM_AUDIT_PROMPT.md
+STYLE_AUDIT.md
+blog-posts/
+
 # MCP servers - internal AI tooling
 mcp-servers/
 .mcp.json
@@ -211,6 +223,8 @@ docs/api/
 !docs/LIGHTHOUSE-SETUP-SUMMARY.md
 !docs/ONBOARDING-CHECKLIST.md
 !docs/DISTRIBUTION-GITHUB.md
+!docs/COMPETITIVE_ANALYSIS.md
+!docs/plans/
 
 # Test outputs and reports
 test-results.json
