@@ -8,7 +8,7 @@ Last Updated: 2025-12-20
 
 ## 📊 Summary Statistics
 
-- **62 UI Components** (Verified count from `/src/components/ui/`)
+- **60 UI Components** (Verified count from `/src/components/ui/`)
 - **5 Landing Page Templates** (Setup wizard starter pages)
 - **26+ Pre-built Pages** (Auth, Dashboard, Admin, Legal, Landing)
 - **73 API routes** (Auth, Payments, Webhooks, Health)
@@ -16,7 +16,7 @@ Last Updated: 2025-12-20
 - **18 terminal themes** (OKLCH-based color schemes)
 - **Enterprise Features** (MFA, Jobs, Teams, Files, AI)
 
-**Total: 62 production-ready UI components + Full-Stack Features**
+**Total: 60 production-ready UI components + Full-Stack Features**
 
 ---
 
@@ -40,7 +40,7 @@ Each template includes:
 
 ---
 
-## 🎨 UI Components (62 Total - Verified)
+## 🎨 UI Components (60 Total - Verified)
 
 ### Base Components from Radix UI (25)
 All styled with Tailwind CSS, fully accessible (ARIA), and production-ready:

@@ -86,10 +86,10 @@ export async function POST(req: Request) {
 }
 ```
 
-#### Middleware Protection
+#### Proxy Protection
 
 ```typescript
-// src/middleware.ts
+// src/proxy.ts
 import { checkRateLimit, getClientIdentifier } from "@/lib/security";
 
 export async function middleware(req: NextRequest) {
@@ -271,10 +271,10 @@ const nextConfig = {
 export default nextConfig;
 ```
 
-#### Middleware
+#### Proxy
 
 ```typescript
-// src/middleware.ts
+// src/proxy.ts
 import { securityHeadersMiddleware } from "@/lib/security";
 
 export function middleware(req: NextRequest) {

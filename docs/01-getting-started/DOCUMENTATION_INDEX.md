@@ -1,6 +1,6 @@
 # Fabrk Premium - Documentation Index
 
-**Fabrk Premium:** $299 | 62 UI Components | 49+ Templates | 18 Terminal Themes
+**Fabrk Premium:** $299 | 60 UI Components | 49+ Templates | 18 Terminal Themes
 
 Complete index of all documentation organized into numbered sections for easy navigation.
 
@@ -22,7 +22,7 @@ All documentation is organized into numbered folders:
 ```
 docs/
 ├── 01-getting-started/      # Quick start, troubleshooting, setup wizard
-├── 02-components/           # 62 UI components, charts, landing pages
+├── 02-components/           # 60 UI components, charts, landing pages
 ├── 03-guides/               # Feature guides, integrations
 ├── 04-development/          # API docs, testing, browser automation
 ├── 06-features/             # Feature inventory, i18n, accessibility
@@ -39,7 +39,7 @@ docs/
 ### New Developer
 1. **Run `npm run setup`** - Interactive wizard configures everything
 2. [QUICK-START.md](./QUICK-START.md) - Detailed setup options
-3. [COMPONENTS-INVENTORY.md](../02-components/COMPONENTS-INVENTORY.md) - See all 62+ components
+3. [COMPONENTS-INVENTORY.md](../02-components/COMPONENTS-INVENTORY.md) - See all 60+ components
 
 ### Preparing for Launch
 1. [09-launch/LAUNCH-CHECKLIST.md](../09-launch/LAUNCH_CHECKLIST.md) - Pre-launch checklist
@@ -73,7 +73,7 @@ docs/
 **Path:** `docs/02-components/`
 
 **Contents:**
-- **COMPONENTS-INVENTORY.md** - All 62+ components listed
+- **COMPONENTS-INVENTORY.md** - All 60+ components listed
 - **COMPONENT-BEST-PRACTICES.md** - Design patterns
 - **CHARTS-GUIDE.md** - Recharts integration
 - **LANDING-PAGE-VARIATIONS.md** - 4 landing page styles
@@ -187,7 +187,7 @@ docs/
 ## Project Statistics
 
 ### Components & Templates
-- **62 UI components** - Production-ready library
+- **60 UI components** - Production-ready library
 - **5 landing page templates** - Setup wizard starter pages
 - **49+ page templates** - Copy-paste layouts in `/library`
 - **18 terminal themes** - OKLCH color schemes

@@ -8,7 +8,7 @@ Complete guide to optimizing your Fabrk SaaS for maximum speed and performance.
 
 1. [Performance Philosophy](#performance-philosophy)
 2. [Core Web Vitals](#core-web-vitals)
-3. [Next.js 15 Optimization](#nextjs-15-optimization)
+3. [Next.js 16 Optimization](#nextjs-15-optimization)
 4. [Image Optimization](#image-optimization)
 5. [Code Splitting & Lazy Loading](#code-splitting--lazy-loading)
 6. [Database Optimization](#database-optimization)
@@ -98,7 +98,7 @@ import { HeavyChart } from "@/components/heavy-chart";
 ```
 
 **Reduce JavaScript execution:**
-- Use Server Components (default in Next.js 15)
+- Use Server Components (default in Next.js 16)
 - Lazy load client components
 - Remove unused dependencies
 - Code split large bundles
@@ -134,11 +134,11 @@ import { HeavyChart } from "@/components/heavy-chart";
 
 ---
 
-## Next.js 15 Optimization
+## Next.js 16 Optimization
 
 ### 1. Use Server Components by Default
 
-**Server Components (default in Next.js 15):**
+**Server Components (default in Next.js 16):**
 - Render on server
 - Zero JavaScript sent to client
 - Fast initial page load

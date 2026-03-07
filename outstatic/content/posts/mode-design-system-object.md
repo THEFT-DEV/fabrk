@@ -4,7 +4,7 @@ status: 'published'
 author:
   name: 'Fabrk Team'
 slug: 'mode-design-system-object'
-description: 'How Fabrk''s mode object provides consistent, theme-aware styling across all 62+ components. One import, perfect theming.'
+description: 'How Fabrk''s mode object provides consistent, theme-aware styling across all 60+ components. One import, perfect theming.'
 publishedAt: '2026-01-25T10:00:00.000Z'
 ---
 
@@ -574,7 +574,7 @@ import { cn } from '@/lib/utils';
 
 ## Component Integration
 
-all 62 UI components use the mode object internally:
+all 60 UI components use the mode object internally:
 
 ```tsx
 // components/ui/card.tsx

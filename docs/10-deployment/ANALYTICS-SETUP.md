@@ -381,7 +381,7 @@ import { trackEvent } from "@/lib/analytics";
 
 ### Track Page Views (Server Components)
 
-For Next.js 15 with App Router, page views are tracked automatically by GA4. For custom tracking:
+For Next.js 16 with App Router, page views are tracked automatically by GA4. For custom tracking:
 
 ```tsx
 // src/app/variations/page.tsx

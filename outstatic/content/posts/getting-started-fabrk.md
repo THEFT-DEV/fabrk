@@ -350,7 +350,7 @@ This installs approximately 800+ packages including:
 
 **Styling & UI:**
 - Tailwind CSS 4 with JIT compiler
-- 62+ pre-built UI components
+- 60+ pre-built UI components
 - 8 chart components with Recharts
 - Lucide React icons
 
@@ -1389,7 +1389,7 @@ src/
 │   └── layout.tsx         # Root layout
 │
 ├── components/            # React components
-│   ├── ui/                # 62 UI primitives
+│   ├── ui/                # 60 UI primitives
 │   ├── charts/            # 8 chart components
 │   ├── auth/              # Authentication
 │   ├── billing/           # Payments
@@ -1496,7 +1496,7 @@ Components are organized by feature area:
 
 ```
 components/
-├── ui/                    # UI Primitives (62+ components)
+├── ui/                    # UI Primitives (60+ components)
 │   ├── button.tsx         # Button variants
 │   ├── card.tsx           # Card, CardHeader, CardContent
 │   ├── input.tsx          # Form inputs
@@ -1883,7 +1883,7 @@ all 18 themes use the same semantic color tokens:
 
 ## [ COMPONENT LIBRARY TOUR ]
 
-Fabrk includes 62+ UI components and 8 chart components, all designed with the terminal aesthetic.
+Fabrk includes 60+ UI components and 8 chart components, all designed with the terminal aesthetic.
 
 ### UI COMPONENTS OVERVIEW
 

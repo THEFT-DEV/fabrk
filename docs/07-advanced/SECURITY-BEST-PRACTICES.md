@@ -428,7 +428,7 @@ export async function POST(req: Request) {
 **Restrict API access to your domain:**
 
 ```typescript
-// src/middleware.ts
+// src/proxy.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
@@ -717,7 +717,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO app_user;
 **Enforce HTTPS in production:**
 
 ```typescript
-// src/middleware.ts
+// src/proxy.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 

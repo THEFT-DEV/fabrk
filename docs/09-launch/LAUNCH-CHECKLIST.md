@@ -11,7 +11,7 @@ This checklist covers everything needed to launch Fabrk (the boilerplate product
 ### Core Features
 - [x] **Setup Wizard:** `npm run setup` works for all 5 templates (STARTER, SAAS, AI APP, MARKETPLACE, CUSTOM)
 - [x] **Landing Page Templates:** All 5 page templates copy correctly
-- [x] **62 UI Components:** All components verified in `/src/components/ui/`
+- [x] **60 UI Components:** All components verified in `/src/components/ui/`
 - [x] **18 terminal themes:** All themes working with live switching
 - [x] **Multi-Provider Payments:** Stripe, Polar.sh, Lemonsqueezy configured
 
@@ -26,7 +26,7 @@ This checklist covers everything needed to launch Fabrk (the boilerplate product
 ### Documentation
 - [x] **README.md:** Updated with setup wizard instructions
 - [x] **QUICK-START.md:** Setup wizard flow documented
-- [x] **COMPONENTS-INVENTORY.md:** 62+ components listed
+- [x] **COMPONENTS-INVENTORY.md:** 60+ components listed
 - [x] **LICENSE.md:** Commercial license terms verified
 - [x] **SECURITY.md:** Security policy and reporting contacts correct
 

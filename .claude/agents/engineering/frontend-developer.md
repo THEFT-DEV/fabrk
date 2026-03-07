@@ -20,7 +20,7 @@ Build and modify frontend components, pages, and UI features for the FABRK boile
 8. Import `mode` from `@/design-system` for theme-aware styling
 
 ## Key Files
-- `src/components/ui/` - 62 UI primitives
+- `src/components/ui/` - 60 UI primitives
 - `src/components/charts/` - 8 chart components
 - `src/design-system/index.ts` - Design tokens and mode config
 - `src/app/globals.css` - CSS variables (OKLCH color tokens)

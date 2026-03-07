@@ -57,7 +57,7 @@ Last updated: 2026-03-06
 | 1 | Design System | 18 terminal themes, full OKLCH token system, mode config, design enforcement | Dark mode only, generic shadcn |
 | 2 | Visual Identity | Terminal aesthetic - instantly recognizable, stands out | Looks like every other SaaS starter |
 | 3 | Theme Switching | 18 themes switchable at runtime via CSS variables | None |
-| 4 | Component Count | 70+ (62 UI + 8 charts) with design token enforcement | 60+ standard shadcn (no enforcement) |
+| 4 | Component Count | 70+ (60 UI + 8 charts) with design token enforcement | 60+ standard shadcn (no enforcement) |
 | 5 | Payment Providers | 3 (Stripe, Polar, Lemon Squeezy) with identical patterns | Stripe only |
 | 6 | AI Dev Tooling | MCP server, AGENTS.md generation, code validation, AI testing utils | AGENTS.md + skill packages |
 | 7 | Design Enforcement | Token system + mode config prevents off-brand styling | No enforcement, easy to break consistency |

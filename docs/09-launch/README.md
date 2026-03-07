@@ -86,7 +86,7 @@ WEEK 2:   Content creation (blog, videos), community growth
 
 ```
 📊 Codebase Metrics
-├── Components:        62 production-ready UI components
+├── Components:        60 production-ready UI components
 ├── Themes:            18 terminal themes (OKLCH)
 ├── Templates:         49+ page templates
 ├── TypeScript:        100% strict mode
@@ -138,7 +138,7 @@ A: Have a rollback plan. See LAUNCH-CHECKLIST.md "Rollback Plan" section.
 A: Via GitHub private repository. See DISTRIBUTION-SETUP.md for complete setup.
 
 **Q: What's included in the launch?**
-A: Full source code, 62 UI components, complete documentation, test files, all examples.
+A: Full source code, 60 UI components, complete documentation, test files, all examples.
 
 **Q: Can customers extend/customize?**
 A: Yes! Code is copy-paste friendly. Customers should customize, not extend.

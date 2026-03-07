@@ -7,7 +7,7 @@ Design and implement UI components and layouts that follow FABRK's terminal-aest
 - Terminal-inspired aesthetic with 18 themes
 - OKLCH color tokens in `globals.css`
 - `mode` config from `@/design-system` for theme-aware styling
-- 62 UI primitives in `src/components/ui/`
+- 60 UI primitives in `src/components/ui/`
 - 8 chart components in `src/components/charts/`
 
 ## Design System Rules

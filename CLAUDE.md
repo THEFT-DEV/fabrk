@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ```
 ╔═══════════════════════════════════════════════════════════════════╗
 ║  FABRK - Terminal SaaS Boilerplate                                ║
-║  62+ components included. USE THEM.                               ║
+║  70+ components included. USE THEM.                               ║
 ╚═══════════════════════════════════════════════════════════════════╝
 ```
 
@@ -31,10 +31,10 @@ See `.claude/agents/engineering/code-standards.md` for full spec.
 
 ## RULE #1: USE THE EXISTING COMPONENTS
 
-**This boilerplate has 70+ pre-built components (62 UI + 8 charts). You MUST use them.**
+**This boilerplate has 70+ pre-built components (60 UI + 8 charts). You MUST use them.**
 
 ```tsx
-// UI Primitives (62+ components)
+// UI Primitives (60+ components)
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -552,7 +552,7 @@ npm run build
 ```
 
 The MCP server gives AI tools (Claude Code, Cursor, etc.) knowledge of:
-- All 62+ components (62 UI + 8 charts) with props and examples
+- All 68+ components (60 UI + 8 charts) with props and examples
 - 18 terminal themes with color tokens
 - Design system rules and patterns
 - Page and component generation

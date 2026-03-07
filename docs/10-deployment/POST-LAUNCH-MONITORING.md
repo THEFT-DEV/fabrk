@@ -472,7 +472,7 @@ Monitor:
 Monitor API rate limit hits:
 
 ```typescript
-// src/middleware.ts or rate limit middleware
+// src/proxy.ts or rate limit proxy
 import { logEvent } from "@/lib/logger";
 
 if (rateLimitExceeded) {

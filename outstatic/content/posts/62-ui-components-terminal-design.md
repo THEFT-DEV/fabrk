@@ -1,14 +1,14 @@
 ---
-title: '62 UI Components: A Complete Terminal Design System'
+title: '60+ UI Components: A Complete Terminal Design System'
 status: 'published'
 author:
   name: 'Fabrk Team'
 slug: '62-ui-components-terminal-design'
-description: 'Fabrk includes 62 pre-built UI components styled for terminal aesthetics. From buttons to data tables, everything is ready to use.'
+description: 'Fabrk includes 60+ pre-built UI components styled for terminal aesthetics. From buttons to data tables, everything is ready to use.'
 publishedAt: '2026-01-31T10:00:00.000Z'
 ---
 
-**62+ components. 18 themes. Zero design debt.**
+**60+ components. 18 themes. Zero design debt.**
 
 ---
 
@@ -22,7 +22,7 @@ Every SaaS ends up with:
 - Accessibility gaps
 - Design debt that compounds over time
 
-Fabrk solves this with 62 pre-built components that follow a unified terminal design system.
+Fabrk solves this with 60+ pre-built components that follow a unified terminal design system.
 
 ---
 
@@ -39,7 +39,7 @@ Before diving into the components, understand the philosophy:
 
 ## Component Categories
 
-### Form Controls (62+ components)
+### Form Controls (60+ components)
 
 The foundation of any SaaS application:
 
@@ -695,7 +695,7 @@ Components follow terminal conventions:
 
 ## Accessibility
 
-All 62+ components are:
+All 60+ components are:
 
 - **WCAG 2.2 AA compliant** - Tested across all 18 themes
 - **Keyboard navigable** - Tab, Enter, Space, Arrow keys
@@ -818,4 +818,4 @@ export function UserCard({ user }: { user: User }) {
 4. **Use design tokens** for colors - never hardcode
 5. **Compose components** to build complex UIs
 
-62+ components. Zero decisions. Ship faster.
+60+ components. Zero decisions. Ship faster.

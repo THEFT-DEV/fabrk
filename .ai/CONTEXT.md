@@ -42,7 +42,7 @@ import { cn } from '@/lib/utils';
 
 ---
 
-## Available Components (62 UI + 8 Charts)
+## Available Components (60 UI + 8 Charts)
 
 Before building anything, check if it exists:
 

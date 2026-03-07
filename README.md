@@ -104,7 +104,7 @@ You'll receive an email whenever we release new versions with features, fixes, a
 
 ## 🚀 What's Inside
 
-### UI Components (68 Total)
+### UI Components (62 Total)
 
 - **Forms**: Input, Textarea, Select, Checkbox, Radio, Switch, Slider, Calendar, Date Picker, File Upload
 - **Navigation**: Navbar, Sidebar, Tabs, Breadcrumbs, Pagination, Command Palette
@@ -872,7 +872,7 @@ When **stuck or troubleshooting**:
 
 **Q: What makes Fabrk different from other SaaS boilerplates?**
 
-A: Terminal-first design aesthetic (18 themes), multi-provider payments (Stripe/Polar/Lemonsqueezy), 68 production-ready components, and 100% OKLCH color system for perfect theme consistency.
+A: Terminal-first design aesthetic (18 themes), multi-provider payments (Stripe/Polar/Lemonsqueezy), 62 production-ready components, and 100% OKLCH color system for perfect theme consistency.
 
 **Q: Can I use this for client projects?**
 
