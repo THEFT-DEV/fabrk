@@ -63,42 +63,64 @@ export function HeroSection() {
   }, [displayText, phase, wordIndex]);
 
   return (
-    <section className="sticky top-0 z-10 min-h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section className="bg-background sticky top-0 z-10 flex min-h-screen items-center justify-center overflow-hidden">
       <Container size="lg" className="relative z-10">
         <div className="flex flex-col items-center justify-center text-center">
           <Link
             href="/changelog"
             className={cn(
-              'group inline-flex items-center gap-2 border border-border bg-background px-4 py-1.5 mb-10 text-sm transition-all hover:border-primary',
+              'group border-border bg-background hover:border-primary mb-10 inline-flex items-center gap-2 border px-4 py-1.5 text-sm transition-all',
               mode.radius,
               mode.font
             )}
           >
-            <span className={mode.color.text.muted}>v1.3.1</span>
+            <span className={mode.color.text.muted}>v1.4.0</span>
             <span className="text-border">|</span>
             <span className={mode.color.text.muted}>JUST UPDATED</span>
-            <ArrowRight className={cn('h-3 w-3 transition-transform group-hover:translate-x-0.5', mode.color.text.muted)} />
+            <ArrowRight
+              className={cn(
+                'h-3 w-3 transition-transform group-hover:translate-x-0.5',
+                mode.color.text.muted
+              )}
+            />
           </Link>
 
           <div className={cn('mb-10', mode.font)}>
-            <div className={cn('inline-block border border-border bg-background px-4 py-1.5 mb-6', mode.radius)}>
+            <div
+              className={cn(
+                'border-border bg-background mb-6 inline-block border px-4 py-1.5',
+                mode.radius
+              )}
+            >
               <span className={cn('text-sm', mode.color.text.muted)}>BUILD</span>
             </div>
-            <h1 className="text-6xl sm:text-7xl lg:text-9xl font-black tracking-tighter text-foreground min-h-headline whitespace-nowrap">
+            <h1 className="text-foreground min-h-headline text-6xl font-black tracking-tighter whitespace-nowrap sm:text-7xl lg:text-9xl">
               {displayText}
-              <span className="inline-block w-cursor-lg h-cursor bg-primary animate-blink align-baseline -mb-cursor" />
+              <span className="w-cursor-lg h-cursor bg-primary animate-blink -mb-cursor inline-block align-baseline" />
             </h1>
-            <div className={cn('inline-block border border-border bg-background px-4 py-1.5 mt-6', mode.radius)}>
+            <div
+              className={cn(
+                'border-border bg-background mt-6 inline-block border px-4 py-1.5',
+                mode.radius
+              )}
+            >
               <span className={cn('text-sm', mode.color.text.muted)}>IN MINUTES, NOT MONTHS</span>
             </div>
           </div>
 
-          <p className={cn('text-sm max-w-lg mb-10 leading-relaxed', mode.font, mode.color.text.muted)}>
-            Production-ready SaaS boilerplate with auth, payments, and {dynamicCounts.counts.uiComponents} components.
-            Stop writing infrastructure. Ship faster.
+          <p
+            className={cn(
+              'mb-10 max-w-lg text-sm leading-relaxed',
+              mode.font,
+              mode.color.text.muted
+            )}
+          >
+            Production-ready SaaS boilerplate with auth, payments, and{' '}
+            {dynamicCounts.counts.uiComponents} components. Stop writing infrastructure. Ship
+            faster.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 mb-10">
+          <div className="mb-10 flex flex-col gap-4 sm:flex-row">
             <PolarCheckoutButton
               className={cn(
                 'bg-primary text-primary-foreground px-8 py-3 text-sm font-medium',
@@ -113,14 +135,19 @@ export function HeroSection() {
             <DemoVideoModal className={cn('px-8 py-3 text-sm', mode.radius, mode.font)} />
           </div>
 
-          <div className={cn('flex items-center gap-4 sm:gap-6 text-xs', mode.font, mode.color.text.muted)}>
+          <div
+            className={cn(
+              'flex items-center gap-4 text-xs sm:gap-6',
+              mode.font,
+              mode.color.text.muted
+            )}
+          >
             <span>{dynamicCounts.counts.uiComponents} COMPONENTS</span>
             <span className="text-border">|</span>
             <span>{dynamicCounts.counts.themes} THEMES</span>
             <span className="text-border">|</span>
             <span>LIFETIME UPDATES</span>
           </div>
-
         </div>
       </Container>
     </section>

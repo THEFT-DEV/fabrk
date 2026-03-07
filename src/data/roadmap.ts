@@ -2,7 +2,7 @@
  * Roadmap Data
  *
  * Product roadmap and planned features
- * Last updated: 2026-01-22
+ * Last updated: 2026-03-07
  */
 
 export type RoadmapStatus = 'shipped' | 'in_progress' | 'building' | 'planned' | 'exploring';
@@ -57,13 +57,33 @@ export const ROADMAP: RoadmapSection[] = [
   },
   {
     phase: '1.4',
-    date: 'Q1 2026',
-    title: 'IN PROGRESS',
+    date: 'March 2026',
+    title: 'RECENTLY SHIPPED',
     items: [
       {
-        status: 'building',
-        title: 'OKLCH Color Migration',
-        description: 'Replacing remaining hex colors with OKLCH design tokens for full theme consistency',
+        status: 'shipped',
+        title: 'Internationalization (i18n)',
+        description:
+          'Cookie-based locale detection with next-intl, 6 languages, locale switcher in nav',
+        version: 'v1.4.0',
+      },
+      {
+        status: 'shipped',
+        title: 'Proxy Architecture',
+        description: 'Split proxy.ts into 8 focused modules, fixed double rate-limit bug',
+        version: 'v1.4.0',
+      },
+      {
+        status: 'shipped',
+        title: 'Compare Pages',
+        description: '40+ feature comparison table across 8 categories at /compare',
+        version: 'v1.4.0',
+      },
+      {
+        status: 'shipped',
+        title: 'Code Quality Sweep',
+        description: 'Zod boundary validation, type safety improvements, dead code removal',
+        version: 'v1.4.0',
       },
     ],
   },

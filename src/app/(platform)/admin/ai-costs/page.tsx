@@ -167,7 +167,7 @@ export default function AICostsPage() {
   if (loading && !data) {
     return (
       <div className="flex h-96 items-center justify-center">
-        <RefreshCw className="h-8 w-8 animate-spin text-muted-foreground" />
+        <RefreshCw className="text-muted-foreground h-8 w-8 animate-spin" />
       </div>
     );
   }
@@ -175,7 +175,7 @@ export default function AICostsPage() {
   if (error && !data) {
     return (
       <div className="flex h-96 flex-col items-center justify-center gap-4">
-        <AlertTriangle className="h-12 w-12 text-destructive" />
+        <AlertTriangle className="text-destructive h-12 w-12" />
         <p className="text-muted-foreground">{error}</p>
         <Button onClick={fetchData}>&gt; RETRY</Button>
       </div>
@@ -229,22 +229,22 @@ export default function AICostsPage() {
             mode.radius,
             budgetStatus === 'danger'
               ? 'border-destructive bg-destructive/10'
-              : 'border-yellow-500 bg-yellow-500/10'
+              : 'border-warning bg-warning/10'
           )}
         >
           <AlertTriangle
             className={cn(
               'h-5 w-5',
-              budgetStatus === 'danger' ? 'text-destructive' : 'text-yellow-500'
+              budgetStatus === 'danger' ? 'text-destructive' : 'text-warning'
             )}
           />
           <div>
             <p className="text-sm font-medium">
               {budgetStatus === 'danger' ? 'BUDGET EXCEEDED' : 'APPROACHING BUDGET LIMIT'}
             </p>
-            <p className="text-sm text-muted-foreground">
-              {formatCurrency(data.budget.used)} of {formatCurrency(data.budget.daily)} daily
-              budget used ({Math.round(data.budget.percentUsed)}%)
+            <p className="text-muted-foreground text-sm">
+              {formatCurrency(data.budget.used)} of {formatCurrency(data.budget.daily)} daily budget
+              used ({Math.round(data.budget.percentUsed)}%)
             </p>
           </div>
         </div>
@@ -253,11 +253,7 @@ export default function AICostsPage() {
       {/* Today's Stats */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
         <Card tone="primary">
-          <CardHeader
-            code="0x01"
-            title="TODAY'S COST"
-            icon={<DollarSign className="h-4 w-4" />}
-          />
+          <CardHeader code="0x01" title="TODAY'S COST" icon={<DollarSign className="h-4 w-4" />} />
           <CardContent>
             <div className="text-3xl font-bold">{formatCurrency(data.today.cost)}</div>
             <div className="mt-2">
@@ -266,10 +262,10 @@ export default function AICostsPage() {
                 className={cn(
                   'h-2',
                   budgetStatus === 'danger' && '[&>div]:bg-destructive',
-                  budgetStatus === 'warning' && '[&>div]:bg-yellow-500'
+                  budgetStatus === 'warning' && '[&>div]:bg-warning'
                 )}
               />
-              <p className="mt-1 text-xs text-muted-foreground">
+              <p className="text-muted-foreground mt-1 text-xs">
                 {formatCurrency(data.budget.remaining)} remaining
               </p>
             </div>
@@ -285,7 +281,7 @@ export default function AICostsPage() {
           />
           <CardContent>
             <div className="text-3xl font-bold">{formatNumber(data.today.requests)}</div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               {formatNumber(data.period.requests)} in {data.period.days}d
             </p>
           </CardContent>
@@ -299,10 +295,8 @@ export default function AICostsPage() {
             icon={<Zap className="h-4 w-4" />}
           />
           <CardContent>
-            <div className="text-3xl font-bold">
-              {(data.today.successRate * 100).toFixed(1)}%
-            </div>
-            <p className="text-sm text-muted-foreground">
+            <div className="text-3xl font-bold">{(data.today.successRate * 100).toFixed(1)}%</div>
+            <p className="text-muted-foreground text-sm">
               {(data.period.successRate * 100).toFixed(1)}% avg
             </p>
           </CardContent>
@@ -317,7 +311,7 @@ export default function AICostsPage() {
           />
           <CardContent>
             <div className="text-3xl font-bold">{formatDuration(data.today.avgDuration)}</div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               {formatDuration(data.period.avgDuration)} avg
             </p>
           </CardContent>
@@ -336,7 +330,7 @@ export default function AICostsPage() {
                 ? `${(data.today.tokens / 1000).toFixed(1)}k`
                 : data.today.tokens}
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               {data.period.tokens > 1000000
                 ? `${(data.period.tokens / 1000000).toFixed(1)}M`
                 : `${(data.period.tokens / 1000).toFixed(0)}k`}{' '}
@@ -365,7 +359,7 @@ export default function AICostsPage() {
                 tooltipFormatter={(value) => formatCurrency(value)}
               />
             ) : (
-              <div className="flex h-[200px] items-center justify-center text-muted-foreground">
+              <div className="text-muted-foreground flex h-[200px] items-center justify-center">
                 No data available
               </div>
             )}
@@ -388,7 +382,7 @@ export default function AICostsPage() {
                 tooltipFormatter={(value) => formatNumber(value)}
               />
             ) : (
-              <div className="flex h-[200px] items-center justify-center text-muted-foreground">
+              <div className="text-muted-foreground flex h-[200px] items-center justify-center">
                 No data available
               </div>
             )}
@@ -424,17 +418,15 @@ export default function AICostsPage() {
                         {formatCurrency(feature.cost)}
                       </TableCell>
                       <TableCell className="text-right">{formatNumber(feature.requests)}</TableCell>
-                      <TableCell className="text-right text-muted-foreground">
+                      <TableCell className="text-muted-foreground text-right">
                         {formatCurrency(feature.avgCost)}
                       </TableCell>
                       <TableCell className="text-right">
-                        <Badge
-                          variant={feature.successRate >= 0.95 ? 'secondary' : 'destructive'}
-                        >
+                        <Badge variant={feature.successRate >= 0.95 ? 'secondary' : 'destructive'}>
                           {(feature.successRate * 100).toFixed(0)}%
                         </Badge>
                       </TableCell>
-                      <TableCell className="text-right text-muted-foreground">
+                      <TableCell className="text-muted-foreground text-right">
                         {feature.tokens > 1000
                           ? `${(feature.tokens / 1000).toFixed(1)}k`
                           : feature.tokens}
@@ -448,7 +440,7 @@ export default function AICostsPage() {
               </Table>
             </div>
           ) : (
-            <div className="flex h-32 items-center justify-center text-muted-foreground">
+            <div className="text-muted-foreground flex h-32 items-center justify-center">
               No feature data available
             </div>
           )}
@@ -473,7 +465,7 @@ export default function AICostsPage() {
                         <span className="font-semibold">{formatCurrency(model.cost)}</span>
                       </div>
                       <Progress value={percentage} className="h-2" />
-                      <div className="flex justify-between text-xs text-muted-foreground">
+                      <div className="text-muted-foreground flex justify-between text-xs">
                         <span>{formatNumber(model.requests)} requests</span>
                         <span>
                           {model.tokens > 1000000
@@ -487,7 +479,7 @@ export default function AICostsPage() {
                 })}
               </div>
             ) : (
-              <div className="flex h-32 items-center justify-center text-muted-foreground">
+              <div className="text-muted-foreground flex h-32 items-center justify-center">
                 No model data available
               </div>
             )}
@@ -506,20 +498,17 @@ export default function AICostsPage() {
             {data.recentErrors.length > 0 ? (
               <div className="space-y-3">
                 {data.recentErrors.map((err) => (
-                  <div
-                    key={err.id}
-                    className={cn('border border-destructive/30 p-3', mode.radius)}
-                  >
+                  <div key={err.id} className={cn('border-destructive/30 border p-3', mode.radius)}>
                     <div className="flex items-start justify-between gap-2">
                       <div className="min-w-0 flex-1">
                         <p className={cn('truncate text-xs', mode.font)}>{err.error}</p>
-                        <div className="mt-1 flex gap-2 text-xs text-muted-foreground">
+                        <div className="text-muted-foreground mt-1 flex gap-2 text-xs">
                           <span>{err.feature}</span>
                           <span>•</span>
                           <span>{err.model}</span>
                         </div>
                       </div>
-                      <span className="whitespace-nowrap text-xs text-muted-foreground">
+                      <span className="text-muted-foreground text-xs whitespace-nowrap">
                         {formatTimestamp(err.timestamp)}
                       </span>
                     </div>
@@ -527,9 +516,9 @@ export default function AICostsPage() {
                 ))}
               </div>
             ) : (
-              <div className="flex h-32 items-center justify-center text-muted-foreground">
+              <div className="text-muted-foreground flex h-32 items-center justify-center">
                 <div className="text-center">
-                  <Zap className="mx-auto h-8 w-8 text-green-500" />
+                  <Zap className="text-success mx-auto h-8 w-8" />
                   <p className="mt-2">No recent errors</p>
                 </div>
               </div>
@@ -542,9 +531,9 @@ export default function AICostsPage() {
       {data.period.requests === 0 && (
         <Card tone="neutral">
           <CardContent className="flex h-48 flex-col items-center justify-center">
-            <Activity className="h-12 w-12 text-muted-foreground" />
+            <Activity className="text-muted-foreground h-12 w-12" />
             <h3 className="mt-4 text-lg font-semibold">NO AI CALLS TRACKED</h3>
-            <p className="mt-1 text-center text-sm text-muted-foreground">
+            <p className="text-muted-foreground mt-1 text-center text-sm">
               Start using the AICostTracker to track your Claude and OpenAI API costs.
               <br />
               Import from <code className={mode.font}>@/lib/ai</code> and wrap your API calls.
