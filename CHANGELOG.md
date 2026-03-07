@@ -5,6 +5,41 @@ All notable changes to Fabrk will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-03-07
+
+### Added
+- **Internationalization (i18n)** - Cookie-based locale detection with next-intl v4.5.8:
+  - 6 languages: English, Spanish, French, German, Portuguese, Japanese
+  - `<LocaleSwitcher>` component in navigation
+  - Auto-detection from Accept-Language header + cookie persistence
+- **Compare Pages** - `/compare` route with 40+ feature comparison table across 8 categories
+- **Proxy Modules** - Split 329-line `proxy.ts` into 8 focused modules under `src/lib/proxy/`:
+  - `client-ip.ts` - IP extraction and validation
+  - `bot-detection.ts` - Bot pattern matching
+  - `routes.ts` - Route classification and constants
+  - `rate-limit.ts` - Edge-compatible rate limiter
+  - `csp.ts` - CSP header builder
+  - `locale.ts` - Locale resolution
+  - `csrf.ts` - Edge CSRF token generation
+- **Zod Boundary Validation** - Added input schemas to AI API routes (`/api/ai/search`, `/api/ai/memory`)
+
+### Fixed
+- **Double Rate-Limit Bug** - `checkRateLimit` was called twice per request, incrementing counter each time
+- **Hardcoded Colors** - Replaced `text-green-500` with `text-success` in compare table
+- **Unhandled Promise Rejection** - Added `.catch()` to dynamic PostHog import
+- **Type Safety** - Replaced `scope: string` with `scope: MemoryScope` in memory stores
+- **Non-null Assertions** - Replaced `entry.embedding!` with type-narrowing filter
+
+### Changed
+- **Product Hunt Badge** - Moved from hero to footer, resized to button scale (140×30)
+- **Footer** - Deduplicated 13 nav links into data-driven `FooterNavColumn` component (257→163 lines)
+- **Navigation** - Extracted `isLinkActive()` helper, added `NavLink` interface
+- **AI Search Handler** - Renamed `handleSearch` → `executeSearchQuery`, extracted `SearchSource` interface
+- **AI Provider** - Made internal client functions private, added return type annotations
+- **Documentation** - Updated README, CLAUDE.md, blog posts, and comparison data for current state
+
+---
+
 ## [1.3.1] - 2026-02-04
 
 ### Added
