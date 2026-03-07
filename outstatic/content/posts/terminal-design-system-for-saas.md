@@ -355,7 +355,7 @@ Terminal aesthetics often sacrifice accessibility. Fabrk doesn't.
 
 ### WCAG 2.2 AA Compliance
 
-All 18 themes are tested for:
+all 18 themes are tested for:
 - **Contrast ratios** - 4.5:1 minimum for normal text, 3:1 for large text
 - **Focus indicators** - Visible focus states on all interactive elements
 - **Color independence** - Information isn't conveyed by color alone

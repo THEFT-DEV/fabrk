@@ -574,7 +574,7 @@ import { cn } from '@/lib/utils';
 
 ## Component Integration
 
-All 62 UI components use the mode object internally:
+all 62 UI components use the mode object internally:
 
 ```tsx
 // components/ui/card.tsx

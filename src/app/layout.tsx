@@ -19,6 +19,8 @@ import { ThemeScript } from '@/design-system/providers';
 import { MonitorEffectScript } from '@/components/theme/monitor-effect-script';
 import { getNonce } from '@/lib/nonce';
 import { GOOGLE_FONTS_URL } from '@/config/fonts';
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale, getMessages } from 'next-intl/server';
 import './globals.css';
 import './typography.css';
 import '@/styles/crt-effects.css';
@@ -124,36 +126,32 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  // Add your site verification codes when ready
-  // verification: {
-  //   google: "your-google-verification-code",
-  //   yandex: "your-yandex-verification-code",
-  // },
   category: 'technology',
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const nonce = await getNonce();
+  const locale = await getLocale();
+  const messages = await getMessages();
 
   return (
     <html
-      lang="en"
+      lang={locale}
       suppressHydrationWarning
       className={`${GeistSans.variable} ${jetbrainsMono.variable} ${pixelbasel.variable}`}
     >
       <head>
-        {/* Static meta tags for SEO - ensures Lighthouse sees them immediately */}
+        {/* Duplicate meta tag so Lighthouse sees it before Next.js hydration */}
         <meta
           name="description"
           content="A complete UI system with 169 production-ready components, design tokens, automated testing, and AI workflows. Build faster with enforced quality standards."
         />
-        {/* Google Fonts - Theme playground fonts (configured in src/config/fonts.ts) */}
+        {/* Preconnect to Google Fonts for theme playground font switching */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href={GOOGLE_FONTS_URL} rel="stylesheet" />
         <ThemeScript defaultColorTheme="green" storageKeyPrefix="fabrk-theme" nonce={nonce} />
         <MonitorEffectScript nonce={nonce} />
-        {/* Google Tag Manager - Only when GTM_ID is configured */}
         {process.env.NEXT_PUBLIC_GTM_ID && (
           <>
             {/* Google Consent Mode v2 - Must load BEFORE GTM */}
@@ -230,7 +228,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         className="bg-background text-foreground font-body antialiased"
         suppressHydrationWarning
       >
-        {/* Google Tag Manager (noscript) - Only when GTM_ID is configured */}
         {process.env.NEXT_PUBLIC_GTM_ID && (
           <noscript>
             <iframe
@@ -241,10 +238,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             />
           </noscript>
         )}
+        <NextIntlClientProvider messages={messages}>
         <Providers>
-          {/* Vercel Analytics - Only when deployed to Vercel */}
           {process.env.VERCEL && <Analytics />}
-          {/* Skip link - points to main content only (navigation/footer are page-specific) */}
           <a
             href="#main-content"
             className="skip-link focus:bg-primary focus:text-primary-foreground focus:ring-ring sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-6 focus:py-4 focus:font-semibold focus:ring-2 focus:ring-offset-2 focus:outline-none"
@@ -257,6 +253,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </main>
           </div>
         </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

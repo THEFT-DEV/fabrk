@@ -1,34 +1,37 @@
 /**
  * AI Memory API
  *
- * GET  /api/ai/memory - Search memories by query, scope, and scopeId
- * POST /api/ai/memory - Add a new memory entry
- *
- * Query params (GET):
- *   - query: search text (required)
- *   - scope: 'chat' | 'project' | 'user' (required)
- *   - scopeId: scope identifier (required)
- *   - limit: max results (default: 5)
- *
- * Body (POST):
- *   - content: memory text (required)
- *   - scope: 'chat' | 'project' | 'user' (required)
- *   - scopeId: scope identifier (required)
- *   - metadata: optional key-value metadata
+ * GET    /api/ai/memory - Search memories by query, scope, and scopeId
+ * POST   /api/ai/memory - Add a new memory entry
+ * DELETE /api/ai/memory - Remove memory entries by ID
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import { auth } from '@/lib/auth';
 import { addMemory, searchMemory, deleteMemory } from '@/lib/ai/memory';
-import type { MemoryScope } from '@/lib/ai/memory';
 
-const VALID_SCOPES: MemoryScope[] = ['chat', 'project', 'user'];
+const memoryScopeSchema = z.enum(['chat', 'project', 'user']);
 
-function isValidScope(scope: string): scope is MemoryScope {
-  return VALID_SCOPES.includes(scope as MemoryScope);
-}
+const searchParamsSchema = z.object({
+  query: z.string().min(1),
+  scope: memoryScopeSchema,
+  scopeId: z.string().min(1),
+  limit: z.coerce.number().int().min(1).max(50).default(5),
+});
 
-export async function GET(request: NextRequest) {
+const addMemorySchema = z.object({
+  content: z.string().min(1).max(10000),
+  scope: memoryScopeSchema,
+  scopeId: z.string().min(1),
+  metadata: z.record(z.string(), z.unknown()).optional(),
+});
+
+const deleteMemorySchema = z.object({
+  ids: z.array(z.string().min(1)).min(1),
+});
+
+export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     const session = await auth();
     if (!session?.user) {
@@ -36,25 +39,21 @@ export async function GET(request: NextRequest) {
     }
 
     const { searchParams } = new URL(request.url);
-    const query = searchParams.get('query');
-    const scope = searchParams.get('scope');
-    const scopeId = searchParams.get('scopeId');
-    const limit = parseInt(searchParams.get('limit') || '5', 10);
+    const parsed = searchParamsSchema.safeParse({
+      query: searchParams.get('query'),
+      scope: searchParams.get('scope'),
+      scopeId: searchParams.get('scopeId'),
+      limit: searchParams.get('limit') ?? '5',
+    });
 
-    if (!query || !scope || !scopeId) {
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: 'Missing required params: query, scope, scopeId' },
+        { error: parsed.error.issues[0]?.message ?? 'Invalid parameters' },
         { status: 400 }
       );
     }
 
-    if (!isValidScope(scope)) {
-      return NextResponse.json(
-        { error: `Invalid scope: ${scope}. Must be one of: ${VALID_SCOPES.join(', ')}` },
-        { status: 400 }
-      );
-    }
-
+    const { query, scope, scopeId, limit } = parsed.data;
     const results = await searchMemory(query, scope, scopeId, limit);
 
     return NextResponse.json({
@@ -70,35 +69,27 @@ export async function GET(request: NextRequest) {
       count: results.length,
     });
   } catch (error) {
-    console.error('Error searching memories:', error);
+    console.error('[Memory] Search failed:', error);
     return NextResponse.json({ error: 'Failed to search memories' }, { status: 500 });
   }
 }
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const session = await auth();
     if (!session?.user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const body = await request.json();
-    const { content, scope, scopeId, metadata } = body;
-
-    if (!content || !scope || !scopeId) {
+    const parsed = addMemorySchema.safeParse(await request.json());
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: 'Missing required fields: content, scope, scopeId' },
+        { error: parsed.error.issues[0]?.message ?? 'Invalid request body' },
         { status: 400 }
       );
     }
 
-    if (!isValidScope(scope)) {
-      return NextResponse.json(
-        { error: `Invalid scope: ${scope}. Must be one of: ${VALID_SCOPES.join(', ')}` },
-        { status: 400 }
-      );
-    }
-
+    const { content, scope, scopeId, metadata } = parsed.data;
     const entry = await addMemory(content, scope, scopeId, metadata);
 
     return NextResponse.json(
@@ -113,33 +104,31 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (error) {
-    console.error('Error adding memory:', error);
+    console.error('[Memory] Add failed:', error);
     return NextResponse.json({ error: 'Failed to add memory' }, { status: 500 });
   }
 }
 
-export async function DELETE(request: NextRequest) {
+export async function DELETE(request: NextRequest): Promise<NextResponse> {
   try {
     const session = await auth();
     if (!session?.user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const body = await request.json();
-    const { ids } = body;
-
-    if (!ids || !Array.isArray(ids) || ids.length === 0) {
+    const parsed = deleteMemorySchema.safeParse(await request.json());
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: 'Missing required field: ids (array of memory IDs)' },
+        { error: parsed.error.issues[0]?.message ?? 'ids (array of strings) is required' },
         { status: 400 }
       );
     }
 
-    await deleteMemory(ids);
+    await deleteMemory(parsed.data.ids);
 
-    return NextResponse.json({ deleted: ids.length });
+    return NextResponse.json({ deleted: parsed.data.ids.length });
   } catch (error) {
-    console.error('Error deleting memories:', error);
+    console.error('[Memory] Delete failed:', error);
     return NextResponse.json({ error: 'Failed to delete memories' }, { status: 500 });
   }
 }

@@ -119,7 +119,7 @@ import { DonutChart } from '@/components/charts/donut-chart';
 
 Next.js 16 SaaS boilerplate with terminal-inspired design.
 
-**Tech Stack:** Next.js 16 (App Router, React 19) • TypeScript 5.x • NextAuth v5 • Stripe/Polar/Lemonsqueezy • Prisma 7 + PostgreSQL • Tailwind CSS 4 • 18 terminal themes
+**Tech Stack:** Next.js 16 (App Router, React 19) • TypeScript 5.x • NextAuth v5 • Stripe/Polar/Lemonsqueezy • Prisma 7 + PostgreSQL • Tailwind CSS 4 • 18 terminal themes • Vercel AI SDK v5 (Anthropic/OpenAI/Google/Ollama) • Redis + BullMQ • Pino logging • next-intl (6 languages) • Docker Compose
 
 **Requirements:** Node.js 22+ • PostgreSQL 15+ • npm 10+
 
@@ -162,6 +162,15 @@ npm run ai:lint            # AI-specific best practices linting
 npm run ai:security        # Security vulnerability scanning
 npm run ai:cost-report     # Generate AI API cost report
 npm run ai:pre-deploy      # Run all checks before deployment
+
+# Docker (local infrastructure)
+npm run docker:up          # Start PostgreSQL + Redis
+npm run docker:down        # Stop containers
+npm run docker:reset       # Reset volumes and restart
+npm run docker:logs        # Tail container logs
+
+# Background Jobs
+npm run jobs:worker        # Start BullMQ job worker
 ```
 
 ---
@@ -234,19 +243,27 @@ src/
 │   ├── (auth)/            # Auth pages (login, register)
 │   └── api/               # API routes
 ├── components/
-│   ├── ui/                # UI primitives ONLY (57 files) - no business logic
+│   ├── ui/                # UI primitives (60 files) - no business logic
 │   ├── charts/            # Chart components (8 files)
+│   ├── i18n/              # Locale switcher
 │   ├── auth/              # Authentication components
 │   ├── billing/           # Billing/subscription components
-│   ├── admin/             # Admin panel components
+│   ├── admin/             # Admin panel (users, metrics, audit, health)
 │   ├── developer/         # API keys, webhooks
 │   ├── organization/      # Team/org management
 │   ├── notifications/     # Notification center
 │   ├── onboarding/        # Onboarding flows
 │   ├── marketing/         # Landing page sections
 │   └── dashboard/         # Dashboard components
-├── config/                # App configuration
-├── lib/                   # Business logic (auth, payments, email)
+├── i18n/                  # Translation messages (6 languages)
+├── config/                # App, payment, i18n configuration
+├── lib/                   # Business logic
+│   ├── ai/                # AI toolkit (cost, validation, memory, search)
+│   ├── jobs/              # BullMQ background jobs
+│   ├── proxy/             # Proxy modules (rate limit, CSP, bot, locale)
+│   ├── redis.ts           # Redis client (ioredis)
+│   ├── cache.ts           # Write-through cache (Redis + fallback)
+│   └── logger.ts          # Pino structured logging
 └── design-system/         # Theme tokens and mode config
 ```
 
@@ -257,10 +274,14 @@ src/
 
 ### Critical Files
 
+- **`src/proxy.ts`** - Request proxy (rate limiting, CSP, locale, CSRF, admin auth)
 - **`src/config/index.ts`** - Central configuration exports
 - **`src/lib/env/index.ts`** - Environment validation with Zod
 - **`src/lib/auth.ts`** - NextAuth v5 with JWT sessions
 - **`src/design-system/index.ts`** - Design tokens and mode config
+- **`src/config/i18n.ts`** - Locale config (6 languages)
+- **`src/i18n/request.ts`** - Server-side message loading
+- **`docker-compose.yml`** - PostgreSQL 17 + Redis 7.4
 - **`.husky/pre-commit`** - Git hook (type-check + lint-staged)
 
 ---

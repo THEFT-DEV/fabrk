@@ -1,11 +1,11 @@
 import type { NextConfig } from "next";
 import bundleAnalyzer from "@next/bundle-analyzer";
+import createNextIntlPlugin from "next-intl/plugin";
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
 
-// Security headers for production
 const securityHeaders = [
   {
     key: "X-DNS-Prefetch-Control",
@@ -35,8 +35,6 @@ const securityHeaders = [
     key: "Permissions-Policy",
     value: "camera=(), microphone=(), geolocation=()",
   },
-  // CSP is now set in proxy.ts with dynamic nonce generation
-  // Keeping this comment as reference for the CSP policy structure
 ];
 
 const nextConfig: NextConfig = {
@@ -191,5 +189,6 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withBundleAnalyzer(nextConfig);
+const withNextIntl = createNextIntlPlugin();
 
+export default withBundleAnalyzer(withNextIntl(nextConfig));

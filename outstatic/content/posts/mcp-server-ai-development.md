@@ -20,7 +20,7 @@ Model Context Protocol (MCP) is a standard for giving AI tools structured contex
 - **Design system rules** - Tokens, spacing, typography constraints
 - **Code patterns** - Authentication, API routes, database queries
 - **Project structure** - Directory conventions, naming standards
-- **Theme information** - All 18 themes with color tokens
+- **Theme information** - all 18 themes with color tokens
 
 MCP bridges the gap between "AI that can code" and "AI that understands your codebase."
 
@@ -633,7 +633,7 @@ export const architecture = {
     'src/app/(platform)': 'Authenticated app pages',
     'src/app/(auth)': 'Auth pages (login, register)',
     'src/app/api': 'API routes',
-    'src/components/ui': 'UI primitives (62 components)',
+    'src/components/ui': 'UI primitives (62+ components)',
     'src/components/charts': 'Chart components (8)',
     'src/lib': 'Business logic, utilities',
     'src/hooks': 'Custom React hooks',

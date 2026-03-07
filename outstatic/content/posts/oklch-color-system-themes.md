@@ -1,5 +1,5 @@
 ---
-title: 'OKLCH Color System: 18 Terminal Themes That Actually Work'
+title: 'OKLCH Color System: 18 terminal themes That Actually Work'
 status: 'published'
 author:
   name: 'Fabrk Team'

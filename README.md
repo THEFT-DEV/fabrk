@@ -104,12 +104,13 @@ You'll receive an email whenever we release new versions with features, fixes, a
 
 ## 🚀 What's Inside
 
-### UI Components (62 Total)
+### UI Components (68 Total)
 
 - **Forms**: Input, Textarea, Select, Checkbox, Radio, Switch, Slider, Calendar, Date Picker, File Upload
 - **Navigation**: Navbar, Sidebar, Tabs, Breadcrumbs, Pagination, Command Palette
 - **Feedback**: Alert, Toast, Dialog, Drawer, Modal, Progress, Skeleton, Spinner
-- **Data**: Table, Data Table, Card, Badge, Avatar, Chart (7 variants)
+- **Data**: Table, Data Table, Card, Badge, Avatar
+- **Charts**: Bar, Line, Area, Pie, Donut, Funnel, Gauge, Sparkline (8 types)
 - **Layout**: Container, Grid, Stack, Divider, Separator, Scroll Area
 - **Advanced**: Carousel, Combobox, Context Menu, Dropdown, Popover, Tooltip, Accordion, Collapsible
 
@@ -117,11 +118,12 @@ You'll receive an email whenever we release new versions with features, fixes, a
 
 ### Design System
 
-**Terminal aesthetic** with 12 complete themes:
-- 🟢 5 CRT phosphor themes (Green, Red, Blue, Amber, Purple)
-- 🎮 4 retro computer themes (C64, GameBoy, VIC-20, Atari)
-- 📱 2 handheld themes (GameBoy Pocket, ZX Spectrum)
-- ⚫ 1 high-contrast B&W theme
+**Terminal aesthetic** with 18 complete themes:
+- 5 CRT phosphor themes (Green, Red, Blue, Amber, Purple)
+- 4 retro computer themes (C64, GameBoy, VIC-20, Atari)
+- 2 handheld themes (GameBoy Pocket, ZX Spectrum)
+- 6 modern themes (Dracula, Nord, Solarized, Monokai, Gruvbox, Catppuccin)
+- 1 high-contrast B&W theme
 
 **Design principles:**
 - `mode.radius` - Dynamic border radius (theme-controlled via `--radius` CSS variable)
@@ -136,12 +138,35 @@ You'll receive an email whenever we release new versions with features, fixes, a
 |-------|-----------|
 | **Frontend** | Next.js 16 (App Router), React 19, TypeScript strict |
 | **Styling** | Tailwind CSS 4, Radix UI, Framer Motion |
-| **Backend** | Next.js API Routes, Prisma ORM |
-| **Database** | PostgreSQL (production), SQLite (development) |
+| **Backend** | Next.js API Routes, Prisma 7, PostgreSQL |
 | **Auth** | NextAuth v5 (Email magic link, OAuth providers) |
 | **Payments** | Stripe, Polar.sh, Lemonsqueezy (multi-provider) |
+| **AI** | Vercel AI SDK v5 (Anthropic, OpenAI, Google, Ollama) |
+| **Infrastructure** | Redis, BullMQ jobs, Pino logging, Qdrant vector DB |
+| **i18n** | next-intl (6 languages: EN, ES, FR, DE, PT, JA) |
 | **Email** | Resend with React Email templates |
+| **DevOps** | Docker Compose (Postgres + Redis), Husky pre-commit |
 | **Validation** | Zod schemas (runtime type safety) |
+
+### AI Features
+
+- **4 AI providers** - Anthropic (Claude), OpenAI, Google, Ollama (local)
+- **Streaming chat** - Real-time AI responses via Vercel AI SDK
+- **Text tools** - Summarize, rewrite, translate, expand, grammar, tone
+- **Image generation** - DALL-E integration
+- **Speech** - Speech-to-text and text-to-speech
+- **Form generation** - AI-generated forms with structured output
+- **Web search** - SearXNG integration with AI synthesis
+- **Vector memory (RAG)** - Qdrant (production) + in-memory (dev)
+- **Cost tracking** - Per-user AI API cost monitoring with budget alerts
+
+### Infrastructure
+
+- **Redis** - Write-through cache with in-memory fallback (`SERVICE_REDIS` toggle)
+- **BullMQ** - Background jobs: email, cleanup, usage metering, webhooks
+- **Pino** - Structured JSON logging in production, pretty in development
+- **Docker Compose** - PostgreSQL 17 + Redis 7.4 for local development
+- **Feature flags** - `FEATURE_*` and `SERVICE_*` env-driven toggles
 
 ### Security Features (62/62 Audit Score)
 
@@ -172,7 +197,7 @@ Git commits automatically run:
 
 ## 🎨 Customizing Components
 
-all 62 UI components support customization through className props and CSS variables.
+all 68 UI + chart components support customization through className props and CSS variables.
 
 ### Quick Customization Examples
 
@@ -484,7 +509,7 @@ Full design system documentation: `docs/08-design/DESIGN_SYSTEM.md`
 │                     NEXT.JS SERVER (Edge/Node)                   │
 │  ┌───────────────┐  ┌───────────────┐  ┌────────────────┐      │
 │  │  Page Routes  │  │  API Routes   │  │  Middleware    │      │
-│  │  (RSC/SSR)    │  │  (71+ endpoints)│  │  Auth/CSRF    │      │
+│  │  (RSC/SSR)    │  │  (73+ endpoints)│  │  Auth/CSRF    │      │
 │  └───────┬───────┘  └───────┬───────┘  └────────┬───────┘      │
 │          │                  │                     │              │
 │          ▼                  ▼                     ▼              │
@@ -539,35 +564,33 @@ fabrk/
 │   ├── app/
 │   │   ├── (platform)/      # Dashboard and app pages
 │   │   ├── (auth)/          # Auth pages (login, register, etc.)
-│   │   ├── api/             # API routes (71+ endpoints)
+│   │   ├── api/             # API routes (73+ endpoints)
 │   │   ├── docs/            # Documentation site
 │   │   └── library/         # Template showcase
 │   ├── components/
-│   │   ├── ui/              # 62 UI components (Radix primitives)
-│   │   ├── docs/            # Documentation templates
+│   │   ├── ui/              # 60 UI primitives (Radix-based)
+│   │   ├── charts/          # 8 chart components
+│   │   ├── i18n/            # Locale switcher
+│   │   ├── admin/           # Admin panel (users, metrics, audit)
 │   │   ├── dashboard/       # Dashboard components
-│   │   ├── theme/           # Theme switcher components
-│   │   └── shared/          # Shared components (Logo, Footer, etc.)
+│   │   ├── theme/           # Theme switcher
+│   │   └── shared/          # Footer, navigation
 │   ├── lib/
+│   │   ├── ai/              # AI toolkit (cost, validation, memory, search)
+│   │   ├── jobs/            # BullMQ background jobs
+│   │   ├── proxy/           # Proxy modules (rate limit, CSP, locale)
+│   │   ├── redis.ts         # Redis client (ioredis)
+│   │   ├── cache.ts         # Write-through cache
+│   │   ├── logger.ts        # Pino structured logging
 │   │   ├── auth.ts          # NextAuth v5 configuration
-│   │   ├── db/              # Prisma client
-│   │   ├── env.ts           # Environment validation (Zod)
-│   │   ├── stripe.ts        # Stripe client
-│   │   ├── polar.ts         # Polar client
-│   │   └── lemonsqueezy/    # Lemonsqueezy client
-│   ├── config/
-│   │   ├── index.ts         # Config exports
-│   │   ├── app.ts           # App configuration
-│   │   ├── stripe.ts        # Payment provider config
-│   │   └── i18n.ts          # Internationalization
-│   └── design-system/
-│       └── themes/          # 18 terminal themes (OKLCH colors)
-├── prisma/
-│   ├── schema.prisma        # Database schema
-│   └── seed.ts              # Database seeding
-├── public/                  # Static assets
+│   │   └── env/             # Environment validation (Zod)
+│   ├── i18n/                # Translation messages (6 languages)
+│   ├── config/              # App, payment, i18n configuration
+│   └── design-system/       # 18 terminal themes (OKLCH tokens)
+├── prisma/                  # Database schema + seed
+├── docker-compose.yml       # PostgreSQL 17 + Redis 7.4
 ├── CLAUDE.md                # AI assistant guidance
-└── docs/                    # Design system documentation
+└── docs/                    # 190+ documentation pages
 ```
 
 ---
@@ -692,7 +715,7 @@ Fabrk documentation follows the [Diátaxis framework](https://diataxis.fr/) for 
 ### Component Documentation
 
 **Component API documentation** at `/docs/components`:
-- all 62 UI components with props, variants, examples
+- all 68 UI + chart components with props, variants, examples
 - Accessibility compliance notes
 - Terminal styling patterns
 - Copy-paste ready code
@@ -746,7 +769,7 @@ fabrk/
 │
 ├── src/app/(public)/
 │   ├── docs/                         # Live documentation site (Next.js pages)
-│   │   ├── components/               # 62 UI component docs with live previews
+│   │   ├── components/               # 68 component docs with live previews
 │   │   ├── features/                 # Feature guides (payments, auth, etc.)
 │   │   ├── security/                 # Security guides (CSRF, headers, etc.)
 │   │   ├── design/                   # Design system guides
@@ -817,7 +840,7 @@ fabrk/
 3. Visit http://localhost:3000/docs → Interactive docs
     ↓
 4. Browse:
-   • /docs/components → See all 62 UI components
+   • /docs/components → See all 68 UI + chart components
    • /docs/features → Learn to add payments, auth, etc.
    • /library → Copy-paste ready templates
     ↓
@@ -849,7 +872,7 @@ When **stuck or troubleshooting**:
 
 **Q: What makes Fabrk different from other SaaS boilerplates?**
 
-A: Terminal-first design aesthetic (18 themes), multi-provider payments (Stripe/Polar/Lemonsqueezy), 62 production-ready components, and 100% OKLCH color system for perfect theme consistency.
+A: Terminal-first design aesthetic (18 themes), multi-provider payments (Stripe/Polar/Lemonsqueezy), 68 production-ready components, and 100% OKLCH color system for perfect theme consistency.
 
 **Q: Can I use this for client projects?**
 
@@ -1198,7 +1221,7 @@ Contributions welcome! Please:
 1. **Configure authentication** - Set up NextAuth providers in `.env.local`
 2. **Set up payments** - Configure Stripe, Polar, or Lemonsqueezy webhooks
 3. **Customize design** - Choose your terminal theme, adjust colors
-4. **Add features** - Build on top of 62 UI components
+4. **Add features** - Build on top of 68 UI + chart components
 5. **Deploy** - Push to Vercel, set environment variables, go live
 
 **Read CLAUDE.md for AI assistant guidance** - Optimized for Claude Code and other AI tools.
@@ -1243,4 +1266,4 @@ Contributions welcome! Please:
 
 **© 2025 THEFT BV. All rights reserved.**
 
-**Last Updated:** 2026-01-22
+**Last Updated:** 2026-03-07

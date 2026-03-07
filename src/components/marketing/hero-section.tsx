@@ -1,7 +1,3 @@
-/**
- * Hero Section - Full Screen with ASCII Background
- * Large animated ASCII art backdrop
- */
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -66,13 +62,10 @@ export function HeroSection() {
     return () => clearTimeout(timer);
   }, [displayText, phase, wordIndex]);
 
-  const currentWord = displayText;
-
   return (
     <section className="sticky top-0 z-10 min-h-screen flex items-center justify-center overflow-hidden bg-background">
       <Container size="lg" className="relative z-10">
         <div className="flex flex-col items-center justify-center text-center">
-          {/* Version/Update Pill Badge */}
           <Link
             href="/changelog"
             className={cn(
@@ -87,13 +80,12 @@ export function HeroSection() {
             <ArrowRight className={cn('h-3 w-3 transition-transform group-hover:translate-x-0.5', mode.color.text.muted)} />
           </Link>
 
-          {/* Main Headline */}
           <div className={cn('mb-10', mode.font)}>
             <div className={cn('inline-block border border-border bg-background px-4 py-1.5 mb-6', mode.radius)}>
               <span className={cn('text-sm', mode.color.text.muted)}>BUILD</span>
             </div>
             <h1 className="text-6xl sm:text-7xl lg:text-9xl font-black tracking-tighter text-foreground min-h-headline whitespace-nowrap">
-              {currentWord}
+              {displayText}
               <span className="inline-block w-cursor-lg h-cursor bg-primary animate-blink align-baseline -mb-cursor" />
             </h1>
             <div className={cn('inline-block border border-border bg-background px-4 py-1.5 mt-6', mode.radius)}>
@@ -101,13 +93,11 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Description */}
           <p className={cn('text-sm max-w-lg mb-10 leading-relaxed', mode.font, mode.color.text.muted)}>
             Production-ready SaaS boilerplate with auth, payments, and {dynamicCounts.counts.uiComponents} components.
             Stop writing infrastructure. Ship faster.
           </p>
 
-          {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 mb-10">
             <PolarCheckoutButton
               className={cn(
@@ -123,7 +113,6 @@ export function HeroSection() {
             <DemoVideoModal className={cn('px-8 py-3 text-sm', mode.radius, mode.font)} />
           </div>
 
-          {/* Stats Bar */}
           <div className={cn('flex items-center gap-4 sm:gap-6 text-xs', mode.font, mode.color.text.muted)}>
             <span>{dynamicCounts.counts.uiComponents} COMPONENTS</span>
             <span className="text-border">|</span>
@@ -132,22 +121,6 @@ export function HeroSection() {
             <span>LIFETIME UPDATES</span>
           </div>
 
-          {/* Product Hunt Badge - Subtle */}
-          <div className="mt-8">
-            <a
-              href="https://www.producthunt.com/products/fabrk/launches/fabrk?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-fabrk"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="opacity-60 hover:opacity-100 transition-opacity inline-block"
-            >
-              <img
-                alt="Fabrk - Terminal-aesthetic Next.js boilerplate. Stand out. Ship fast | Product Hunt"
-                width="200"
-                height="43"
-                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1053948&theme=neutral&t=1770398539306"
-              />
-            </a>
-          </div>
         </div>
       </Container>
     </section>

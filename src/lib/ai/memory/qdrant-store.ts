@@ -7,8 +7,20 @@
  */
 
 import { logger } from '@/lib/logger';
-import { generateEmbedding, getEmbeddingDimension } from './embeddings';
-import type { MemoryConfig, MemoryEntry, MemorySearchResult, VectorStore } from './types';
+import { generateEmbedding } from './embeddings';
+import type { MemoryConfig, MemoryEntry, MemoryScope, MemorySearchResult, VectorStore } from './types';
+
+interface QdrantSearchHit {
+  id: string;
+  score: number;
+  payload: {
+    content: string;
+    scope: string;
+    scopeId: string;
+    metadata: Record<string, unknown>;
+    createdAt: string;
+  };
+}
 
 export class QdrantStore implements VectorStore {
   private baseUrl: string;
@@ -109,7 +121,7 @@ export class QdrantStore implements VectorStore {
 
   async search(
     query: string,
-    scope: string,
+    scope: MemoryScope,
     scopeId: string,
     limit: number = 5
   ): Promise<MemorySearchResult[]> {
@@ -141,19 +153,7 @@ export class QdrantStore implements VectorStore {
       throw new Error(`Search failed: ${error}`);
     }
 
-    const data = (await res.json()) as {
-      result: Array<{
-        id: string;
-        score: number;
-        payload: {
-          content: string;
-          scope: string;
-          scopeId: string;
-          metadata: Record<string, unknown>;
-          createdAt: string;
-        };
-      }>;
-    };
+    const data = (await res.json()) as { result: QdrantSearchHit[] };
 
     return data.result.map((hit) => ({
       entry: {

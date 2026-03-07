@@ -1,73 +1,51 @@
 /**
  * Vercel AI SDK Provider Configuration
- * Modern AI integration with structured outputs support
- * Supports: Anthropic (Claude), OpenAI, Google (Gemini), and Ollama (local)
+ *
+ * Priority: Anthropic > OpenAI > Google > Ollama
+ * Cloud providers are preferred for better structured output support.
  */
 
 import { createAnthropic } from '@ai-sdk/anthropic';
-import { createOpenAI } from '@ai-sdk/openai';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { createOpenAI } from '@ai-sdk/openai';
 import { createOpenAICompatible } from '@ai-sdk/openai-compatible';
 
-// Provider types
 export type AIProvider = 'anthropic' | 'openai' | 'google' | 'ollama';
 
-// Default Ollama settings
 const OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL || 'http://localhost:11434/v1';
 const OLLAMA_MODEL = process.env.OLLAMA_MODEL || 'llama3.1:8b';
 
-// Get the configured provider based on available API keys
-// Priority: Anthropic > OpenAI > Google > Ollama (cloud providers have better structured output support)
 export function getConfiguredProvider(): AIProvider | null {
-  // Prefer cloud providers for better structured output support
   if (process.env.ANTHROPIC_API_KEY) return 'anthropic';
   if (process.env.OPENAI_API_KEY) return 'openai';
   if (process.env.GOOGLE_AI_API_KEY) return 'google';
-  // Fall back to Ollama for local development (uses text parsing for JSON)
-  if (process.env.OLLAMA_ENABLED === 'true' || process.env.OLLAMA_BASE_URL) {
-    return 'ollama';
-  }
+  if (process.env.OLLAMA_ENABLED === 'true' || process.env.OLLAMA_BASE_URL) return 'ollama';
   return null;
 }
 
-// Create Anthropic (Claude) client
-export function getAnthropicClient() {
+function getAnthropicClient(): ReturnType<typeof createAnthropic> {
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) {
-    throw new Error('ANTHROPIC_API_KEY is not configured');
-  }
+  if (!apiKey) throw new Error('ANTHROPIC_API_KEY is not configured');
   return createAnthropic({ apiKey });
 }
 
-// Create OpenAI client
-export function getOpenAIClient() {
+function getOpenAIClient(): ReturnType<typeof createOpenAI> {
   const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
-    throw new Error('OPENAI_API_KEY is not configured');
-  }
+  if (!apiKey) throw new Error('OPENAI_API_KEY is not configured');
   return createOpenAI({ apiKey });
 }
 
-// Create Google (Gemini) client
-export function getGoogleClient() {
+function getGoogleClient(): ReturnType<typeof createGoogleGenerativeAI> {
   const apiKey = process.env.GOOGLE_AI_API_KEY;
-  if (!apiKey) {
-    throw new Error('GOOGLE_AI_API_KEY is not configured');
-  }
+  if (!apiKey) throw new Error('GOOGLE_AI_API_KEY is not configured');
   return createGoogleGenerativeAI({ apiKey });
 }
 
-// Create Ollama client (OpenAI-compatible API)
-export function getOllamaClient() {
-  return createOpenAICompatible({
-    name: 'ollama',
-    baseURL: OLLAMA_BASE_URL,
-    // Ollama doesn't require an API key
-  });
+function getOllamaClient(): ReturnType<typeof createOpenAICompatible> {
+  return createOpenAICompatible({ name: 'ollama', baseURL: OLLAMA_BASE_URL });
 }
 
-// Get the appropriate model based on provider
-export function getModel(provider?: AIProvider) {
+export function getModel(provider?: AIProvider): ReturnType<ReturnType<typeof createAnthropic>> {
   const activeProvider = provider || getConfiguredProvider();
 
   if (!activeProvider) {
@@ -79,34 +57,30 @@ export function getModel(provider?: AIProvider) {
   switch (activeProvider) {
     case 'anthropic':
       return getAnthropicClient()('claude-sonnet-4-20250514');
-    case 'ollama':
-      return getOllamaClient()(OLLAMA_MODEL);
     case 'openai':
       return getOpenAIClient()('gpt-4o-mini');
     case 'google':
       return getGoogleClient()('gemini-1.5-flash');
-    default:
-      throw new Error(`Unknown provider: ${activeProvider}`);
+    case 'ollama':
+      return getOllamaClient()(OLLAMA_MODEL);
   }
 }
 
-// Check if AI is available
 export function isAIConfigured(): boolean {
   return getConfiguredProvider() !== null;
 }
 
-// Get current provider name (useful for UI)
 export function getCurrentProviderName(): string {
   const provider = getConfiguredProvider();
   switch (provider) {
     case 'anthropic':
       return 'Anthropic (Claude Sonnet)';
-    case 'ollama':
-      return `Ollama (${OLLAMA_MODEL})`;
     case 'openai':
       return 'OpenAI (GPT-4o-mini)';
     case 'google':
       return 'Google (Gemini 1.5 Flash)';
+    case 'ollama':
+      return `Ollama (${OLLAMA_MODEL})`;
     default:
       return 'Not configured';
   }

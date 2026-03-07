@@ -4,20 +4,20 @@
  */
 
 import { NextRequest } from 'next/server';
+import { z } from 'zod';
 import { auth } from '@/lib/auth';
 import { isAIConfigured } from '@/lib/ai';
 import { hasCredits, deductCredits, CREDIT_COSTS } from '@/lib/credits';
-import { handleSearch, type SearchOptions } from '@/lib/ai/handlers/search';
+import { executeSearchQuery, type SearchOptions } from '@/lib/ai/handlers/search';
 
-interface SearchRequest {
-  query: string;
-  context?: string;
-  maxResults?: number;
-}
+const searchRequestSchema = z.object({
+  query: z.string().min(1, 'query is required').max(2000),
+  context: z.string().max(5000).optional(),
+  maxResults: z.number().int().min(1).max(20).optional(),
+});
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest): Promise<Response> {
   try {
-    // Check if AI is configured
     if (!isAIConfigured()) {
       return Response.json(
         {
@@ -29,7 +29,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // SECURITY: Require authentication to prevent API cost abuse
     const session = await auth();
     if (!session?.user?.id) {
       return Response.json(
@@ -39,17 +38,16 @@ export async function POST(req: NextRequest) {
     }
     const userId = session.user.id;
 
-    // Parse request body
-    const { query, context, maxResults }: SearchRequest = await req.json();
-
-    if (!query || typeof query !== 'string') {
+    const parsed = searchRequestSchema.safeParse(await req.json());
+    if (!parsed.success) {
       return Response.json(
-        { error: 'Invalid request', message: 'query is required' },
+        { error: 'Invalid request', message: parsed.error.issues[0]?.message },
         { status: 400 }
       );
     }
 
-    // Check credits before processing
+    const { query, context, maxResults } = parsed.data;
+
     const hasEnough = await hasCredits(userId, CREDIT_COSTS.TEXT_OPERATION);
     if (!hasEnough) {
       return Response.json(
@@ -58,7 +56,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Execute search + synthesis
     const searchOptions: SearchOptions = {
       query,
       context,
@@ -67,9 +64,8 @@ export async function POST(req: NextRequest) {
       feature: 'search',
     };
 
-    const result = await handleSearch(searchOptions);
+    const result = await executeSearchQuery(searchOptions);
 
-    // Deduct credits after successful operation
     await deductCredits(userId, CREDIT_COSTS.TEXT_OPERATION, {
       description: 'AI search',
       endpoint: '/api/ai/search',
@@ -79,13 +75,11 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error('[AI Search Error]:', error);
 
-    if (error instanceof Error) {
-      if (error.message.includes('API key')) {
-        return Response.json(
-          { error: 'Configuration error', message: 'AI provider API key is invalid or missing' },
-          { status: 503 }
-        );
-      }
+    if (error instanceof Error && error.message.includes('API key')) {
+      return Response.json(
+        { error: 'Configuration error', message: 'AI provider API key is invalid or missing' },
+        { status: 503 }
+      );
     }
 
     return Response.json(

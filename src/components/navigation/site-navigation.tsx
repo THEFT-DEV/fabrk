@@ -12,16 +12,28 @@ import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from '@/components/ui/sheet';
 import { ThemePlaygroundTrigger } from '@/components/theme/theme-playground-panel';
+import { LocaleSwitcher } from '@/components/i18n/locale-switcher';
 import { mode } from '@/design-system';
 import { cn } from '@/lib/utils';
 
-// Global navigation links
-const navLinks = [
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+const navLinks: NavLink[] = [
   { label: 'FEATURES', href: '/features' },
   { label: 'PRICING', href: '/#pricing' },
   { label: 'DOCS', href: '/docs' },
   { label: 'FAQ', href: '/#faq' },
 ];
+
+// Hash links (/#pricing) are never active; prefix routes (/docs/*) match by startsWith
+function isLinkActive(href: string, pathname: string): boolean {
+  if (href.startsWith('/#')) return false;
+  if (href === '/docs' || href === '/features') return pathname.startsWith(href);
+  return pathname === href;
+}
 
 // Logo suffix based on section
 const sectionSuffix: Record<string, string> = {
@@ -42,14 +54,12 @@ export function SiteNavigation() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  // Determine suffix for logo based on current section
   const currentSection = pathname.split('/').filter(Boolean)[0] || '';
   const suffix = sectionSuffix[currentSection] || 'CONSOLE';
 
   return (
     <nav id="navigation" className="border-border bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur">
       <div className="flex h-16 w-full items-center px-4 sm:px-6">
-        {/* Logo */}
         <motion.div
           initial={{ opacity: 0, x: -12 }}
           animate={{ opacity: 1, x: 0 }}
@@ -65,61 +75,41 @@ export function SiteNavigation() {
           </Link>
         </motion.div>
 
-        {/* Spacer */}
         <div className="flex-1" />
 
-        {/* Right Side: Nav Links + Theme + CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, x: 12 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
           className="hidden items-center gap-6 md:flex"
         >
-          {/* Global Nav Links */}
           <div className="flex items-center gap-1">
             <span className={cn(mode.font, 'text-muted-foreground text-xs')}>[NAVIGATE]:</span>
             <div className="flex items-center">
-              {navLinks.map((link) => {
-                // Check if this link is active
-                // Hash links (/#features, etc.) don't get highlighted - only actual page routes
-                const isActive = link.href.startsWith('/#')
-                  ? false
-                  : link.href === '/docs'
-                    ? pathname.startsWith('/docs')
-                    : link.href === '/features'
-                      ? pathname.startsWith('/features')
-                      : pathname === link.href;
-
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={cn(
-                      mode.font,
-                      mode.radius,
-                      'px-4 py-1 text-sm transition-colors',
-                      isActive
-                        ? 'bg-primary text-primary-foreground'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    mode.font,
+                    mode.radius,
+                    'px-4 py-1 text-sm transition-colors',
+                    isLinkActive(link.href, pathname)
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  )}
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
 
-          {/* Separator */}
           <div className="bg-border h-6 w-px" />
-
-          {/* Customize */}
+          <LocaleSwitcher />
           <ThemePlaygroundTrigger />
-
-          {/* Separator */}
           <div className="bg-border h-6 w-px" />
 
-          {/* CTA Buttons */}
           <div className="flex items-center gap-2">
             <Button variant="outline" asChild className={cn(mode.radius, mode.font, 'text-xs')}>
               <Link href="/library">&gt; VIEW LIBRARY</Link>
@@ -130,7 +120,6 @@ export function SiteNavigation() {
           </div>
         </motion.div>
 
-        {/* Mobile Menu */}
         <motion.div
           initial={{ opacity: 0, x: 12 }}
           animate={{ opacity: 1, x: 0 }}
@@ -157,35 +146,24 @@ export function SiteNavigation() {
               </div>
               <nav className="flex flex-col space-y-4">
                 <span className={cn(mode.font, 'text-muted-foreground text-xs')}>[NAVIGATE]:</span>
-                {navLinks.map((link) => {
-                  // Hash links don't get highlighted - only actual page routes
-                  const isActive = link.href.startsWith('/#')
-                    ? false
-                    : link.href === '/docs'
-                      ? pathname.startsWith('/docs')
-                      : link.href === '/features'
-                        ? pathname.startsWith('/features')
-                        : pathname === link.href;
-
-                  return (
-                    <SheetClose key={link.href} asChild>
-                      <Link
-                        href={link.href}
-                        className={cn(
-                          mode.font,
-                          mode.radius,
-                          'px-2 py-1 text-sm transition-colors',
-                          isActive
-                            ? 'bg-primary text-primary-foreground'
-                            : 'text-foreground hover:bg-muted'
-                        )}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        &gt; {link.label}
-                      </Link>
-                    </SheetClose>
-                  );
-                })}
+                {navLinks.map((link) => (
+                  <SheetClose key={link.href} asChild>
+                    <Link
+                      href={link.href}
+                      className={cn(
+                        mode.font,
+                        mode.radius,
+                        'px-2 py-1 text-sm transition-colors',
+                        isLinkActive(link.href, pathname)
+                          ? 'bg-primary text-primary-foreground'
+                          : 'text-foreground hover:bg-muted'
+                      )}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      &gt; {link.label}
+                    </Link>
+                  </SheetClose>
+                ))}
                 <div className="border-border border-t pt-6">
                   <span className={cn(mode.font, 'text-muted-foreground mb-4 block text-xs')}>
                     [ACTIONS]:
@@ -205,7 +183,6 @@ export function SiteNavigation() {
             </SheetContent>
           </Sheet>
 
-          {/* Mobile CTA Button */}
           <Button asChild className={cn(mode.radius, mode.font, 'text-xs md:hidden')}>
             <Link href="/#pricing">&gt; START</Link>
           </Button>

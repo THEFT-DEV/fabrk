@@ -22,9 +22,15 @@ export interface SearchOptions {
   feature?: string;
 }
 
+interface SearchSource {
+  title: string;
+  url: string;
+  snippet: string;
+}
+
 export interface SearchResult {
   answer: string;
-  sources: Array<{ title: string; url: string; snippet: string }>;
+  sources: SearchSource[];
   searchAvailable: boolean;
 }
 
@@ -74,7 +80,7 @@ async function executeSearch(
   serviceUrl: string,
   query: string,
   maxResults: number
-): Promise<Array<{ title: string; url: string; snippet: string }>> {
+): Promise<SearchSource[]> {
   const params = new URLSearchParams({
     q: query,
     format: 'json',
@@ -104,8 +110,8 @@ async function executeSearch(
  * Deduplicate sources by URL, keeping the first occurrence.
  */
 function deduplicateSources(
-  sources: Array<{ title: string; url: string; snippet: string }>
-): Array<{ title: string; url: string; snippet: string }> {
+  sources: SearchSource[]
+): SearchSource[] {
   const seen = new Set<string>();
   return sources.filter((s) => {
     if (seen.has(s.url)) return false;
@@ -119,7 +125,7 @@ function deduplicateSources(
  */
 async function synthesize(
   query: string,
-  sources: Array<{ title: string; url: string; snippet: string }>,
+  sources: SearchSource[],
   context?: string
 ): Promise<string> {
   const sourcesBlock = sources
@@ -139,19 +145,65 @@ async function synthesize(
 }
 
 // ---------------------------------------------------------------------------
-// Main handler
+// AI-only fallback (no search service configured)
+// ---------------------------------------------------------------------------
+
+async function respondWithoutSearch(query: string, context?: string): Promise<SearchResult> {
+  const prompt = context ? `${query}\n\nContext: ${context}` : query;
+
+  const { text } = await generateText({
+    model: getModel(),
+    system:
+      'You are a helpful research assistant. Answer the question to the best of your knowledge. Note: you do not have access to live web search, so your answer is based solely on your training data.',
+    prompt,
+  });
+
+  return { answer: text, sources: [], searchAvailable: false };
+}
+
+// ---------------------------------------------------------------------------
+// Full search + synthesis
+// ---------------------------------------------------------------------------
+
+async function searchAndSynthesize(
+  query: string,
+  serviceUrl: string,
+  context?: string,
+  maxResults: number = 5
+): Promise<SearchResult> {
+  const queries = await planSearchQueries(query, context);
+
+  const searchResultArrays = await Promise.all(
+    queries.map((q) => executeSearch(serviceUrl, q, maxResults))
+  );
+
+  const allSources = deduplicateSources(searchResultArrays.flat()).slice(0, maxResults);
+
+  const prompt = context ? `${query}\n\nContext: ${context}` : query;
+
+  if (allSources.length === 0) {
+    const { text } = await generateText({
+      model: getModel(),
+      system:
+        'You are a helpful research assistant. The search returned no results. Answer the question to the best of your knowledge and mention that no web sources were found.',
+      prompt,
+    });
+    return { answer: text, sources: [], searchAvailable: true };
+  }
+
+  const answer = await synthesize(query, allSources, context);
+  return { answer, sources: allSources, searchAvailable: true };
+}
+
+// ---------------------------------------------------------------------------
+// Public API
 // ---------------------------------------------------------------------------
 
 /**
  * Execute a search + AI synthesis flow.
- *
- * 1. Plan search queries from the user's input (using AI).
- * 2. Execute queries against the configured search service.
- * 3. Synthesize results into a coherent answer.
- *
- * When no search service is configured, falls back to AI-only response.
+ * Falls back to AI-only response when no search service is configured.
  */
-export async function handleSearch(options: SearchOptions): Promise<SearchResult> {
+export async function executeSearchQuery(options: SearchOptions): Promise<SearchResult> {
   const { query, context, maxResults = 5 } = options;
 
   if (!isAIConfigured()) {
@@ -160,50 +212,9 @@ export async function handleSearch(options: SearchOptions): Promise<SearchResult
 
   const serviceUrl = getSearchServiceUrl();
 
-  // -- Graceful degradation: AI-only when no search service is available --
   if (!serviceUrl) {
-    const { text } = await generateText({
-      model: getModel(),
-      system:
-        'You are a helpful research assistant. Answer the question to the best of your knowledge. Note: you do not have access to live web search, so your answer is based solely on your training data.',
-      prompt: context ? `${query}\n\nContext: ${context}` : query,
-    });
-
-    return {
-      answer: text,
-      sources: [],
-      searchAvailable: false,
-    };
+    return respondWithoutSearch(query, context);
   }
 
-  // -- Full search + synthesis flow --
-  // Step 1: Plan queries
-  const queries = await planSearchQueries(query, context);
-
-  // Step 2: Execute searches in parallel
-  const searchPromises = queries.map((q) => executeSearch(serviceUrl, q, maxResults));
-  const searchResultArrays = await Promise.all(searchPromises);
-
-  // Flatten and deduplicate
-  const allSources = deduplicateSources(searchResultArrays.flat()).slice(0, maxResults);
-
-  // Step 3: Synthesize (or fall back if no results came back)
-  let answer: string;
-  if (allSources.length === 0) {
-    const { text } = await generateText({
-      model: getModel(),
-      system:
-        'You are a helpful research assistant. The search returned no results. Answer the question to the best of your knowledge and mention that no web sources were found.',
-      prompt: context ? `${query}\n\nContext: ${context}` : query,
-    });
-    answer = text;
-  } else {
-    answer = await synthesize(query, allSources, context);
-  }
-
-  return {
-    answer,
-    sources: allSources,
-    searchAvailable: true,
-  };
+  return searchAndSynthesize(query, serviceUrl, context, maxResults);
 }

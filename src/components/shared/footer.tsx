@@ -1,8 +1,3 @@
-/**
- * ✅ FABRK COMPONENT
- * Footer - Terminal console [SYSTEM INFO] style
- * Production-ready ✓
- */
 import Link from 'next/link';
 import { SimpleIcon } from '@/components/ui/simple-icon';
 import {
@@ -18,6 +13,33 @@ import { cn } from '@/lib/utils';
 import { mode } from '@/design-system';
 import { Card, CardHeader, CardContent, Badge } from '@/components/ui/card';
 
+const NAV_LINK_CLASS = cn(
+  'text-muted-foreground hover:text-foreground text-xs transition-colors',
+  mode.font
+);
+
+const PRODUCT_LINKS = [
+  { href: '/features', label: 'FEATURES' },
+  { href: '/pricing', label: 'PRICING' },
+  { href: '/docs', label: 'DOCS' },
+  { href: '/changelog', label: 'CHANGELOG' },
+  { href: '/roadmap', label: 'ROADMAP' },
+  { href: '/blog', label: 'BLOG' },
+  { href: '/feed.xml', label: 'RSS FEED' },
+] as const;
+
+const COMPANY_LINKS = [
+  { href: '/about', label: 'ABOUT' },
+  { href: '/contact', label: 'CONTACT' },
+] as const;
+
+const LEGAL_LINKS = [
+  { href: '/terms', label: 'TERMS' },
+  { href: '/privacy', label: 'PRIVACY' },
+  { href: '/cookies', label: 'COOKIES' },
+  { href: '/refund', label: 'REFUND' },
+] as const;
+
 const techStack = [
   { name: 'NEXT.JS', path: siNextdotjs.path },
   { name: 'REACT', path: siReact.path },
@@ -27,6 +49,29 @@ const techStack = [
   { name: 'STRIPE', path: siStripe.path },
   { name: 'RESEND', path: siResend.path },
 ];
+
+function FooterNavColumn({
+  title,
+  ariaLabel,
+  links,
+}: {
+  title: string;
+  ariaLabel: string;
+  links: ReadonlyArray<{ readonly href: string; readonly label: string }>;
+}) {
+  return (
+    <div className="p-4">
+      <div className={cn('text-muted-foreground mb-4 text-xs', mode.font)}>[ {title} ]</div>
+      <nav aria-label={ariaLabel} className="flex flex-col gap-2">
+        {links.map((link) => (
+          <Link key={link.href} href={link.href} className={NAV_LINK_CLASS}>
+            &gt; {link.label}
+          </Link>
+        ))}
+      </nav>
+    </div>
+  );
+}
 
 export function Footer() {
   return (
@@ -83,8 +128,8 @@ export function Footer() {
                 >
                   <img
                     alt="Fabrk - Terminal-aesthetic Next.js boilerplate. Stand out. Ship fast | Product Hunt"
-                    width="250"
-                    height="54"
+                    width="140"
+                    height="30"
                     src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1053948&theme=neutral&t=1770398539306"
                   />
                 </a>
@@ -96,149 +141,9 @@ export function Footer() {
               <CardHeader title="nav links.exe │ PID:1024" code="0x72" />
               <CardContent>
                 <div className="divide-border grid grid-cols-3 divide-x">
-                  {/* Product */}
-                  <div className="p-4">
-                    <div className={cn('text-muted-foreground mb-4 text-xs', mode.font)}>
-                      [ PRODUCT ]
-                    </div>
-                    <nav aria-label="Product links" className="flex flex-col gap-2">
-                      <Link
-                        href="/features"
-                        className={cn(
-                          'text-muted-foreground hover:text-foreground text-xs transition-colors',
-                          mode.font
-                        )}
-                      >
-                        &gt; FEATURES
-                      </Link>
-                      <Link
-                        href="/pricing"
-                        className={cn(
-                          'text-muted-foreground hover:text-foreground text-xs transition-colors',
-                          mode.font
-                        )}
-                      >
-                        &gt; PRICING
-                      </Link>
-                      <Link
-                        href="/docs"
-                        className={cn(
-                          'text-muted-foreground hover:text-foreground text-xs transition-colors',
-                          mode.font
-                        )}
-                      >
-                        &gt; DOCS
-                      </Link>
-                      <Link
-                        href="/changelog"
-                        className={cn(
-                          'text-muted-foreground hover:text-foreground text-xs transition-colors',
-                          mode.font
-                        )}
-                      >
-                        &gt; CHANGELOG
-                      </Link>
-                      <Link
-                        href="/roadmap"
-                        className={cn(
-                          'text-muted-foreground hover:text-foreground text-xs transition-colors',
-                          mode.font
-                        )}
-                      >
-                        &gt; ROADMAP
-                      </Link>
-                      <Link
-                        href="/blog"
-                        className={cn(
-                          'text-muted-foreground hover:text-foreground text-xs transition-colors',
-                          mode.font
-                        )}
-                      >
-                        &gt; BLOG
-                      </Link>
-                      <Link
-                        href="/feed.xml"
-                        className={cn(
-                          'text-muted-foreground hover:text-foreground text-xs transition-colors',
-                          mode.font
-                        )}
-                      >
-                        &gt; RSS FEED
-                      </Link>
-                    </nav>
-                  </div>
-
-                  {/* Company */}
-                  <div className="p-4">
-                    <div className={cn('text-muted-foreground mb-4 text-xs', mode.font)}>
-                      [ COMPANY ]
-                    </div>
-                    <nav aria-label="Company links" className="flex flex-col gap-2">
-                      <Link
-                        href="/about"
-                        className={cn(
-                          'text-muted-foreground hover:text-foreground text-xs transition-colors',
-                          mode.font
-                        )}
-                      >
-                        &gt; ABOUT
-                      </Link>
-                      <Link
-                        href="/contact"
-                        className={cn(
-                          'text-muted-foreground hover:text-foreground text-xs transition-colors',
-                          mode.font
-                        )}
-                      >
-                        &gt; CONTACT
-                      </Link>
-                    </nav>
-                  </div>
-
-                  {/* Legal */}
-                  <div className="p-4">
-                    <div className={cn('text-muted-foreground mb-4 text-xs', mode.font)}>
-                      [ LEGAL ]
-                    </div>
-                    <nav aria-label="Legal links" className="flex flex-col gap-2">
-                      <Link
-                        href="/terms"
-                        className={cn(
-                          'text-muted-foreground hover:text-foreground text-xs transition-colors',
-                          mode.font
-                        )}
-                      >
-                        &gt; TERMS
-                      </Link>
-                      <Link
-                        href="/privacy"
-                        className={cn(
-                          'text-muted-foreground hover:text-foreground text-xs transition-colors',
-                          mode.font
-                        )}
-                      >
-                        &gt; PRIVACY
-                      </Link>
-                      <Link
-                        href="/cookies"
-                        className={cn(
-                          'text-muted-foreground hover:text-foreground text-xs transition-colors',
-                          mode.font
-                        )}
-                      >
-                        &gt; COOKIES
-                      </Link>
-                      <Link
-                        href="/refund"
-                        className={cn(
-                          'text-muted-foreground hover:text-foreground text-xs transition-colors',
-                          mode.font
-                        )}
-                      >
-                        &gt; REFUND
-                      </Link>
-                    </nav>
-                  </div>
+                  <FooterNavColumn title="PRODUCT" ariaLabel="Product links" links={PRODUCT_LINKS} />
+                  <FooterNavColumn title="COMPANY" ariaLabel="Company links" links={COMPANY_LINKS} />
+                  <FooterNavColumn title="LEGAL" ariaLabel="Legal links" links={LEGAL_LINKS} />
                 </div>
               </CardContent>
             </Card>

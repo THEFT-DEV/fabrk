@@ -39,7 +39,7 @@ Before diving into the components, understand the philosophy:
 
 ## Component Categories
 
-### Form Controls (14 components)
+### Form Controls (62+ components)
 
 The foundation of any SaaS application:
 
@@ -292,7 +292,7 @@ import { AlertTriangle, CheckCircle, Info, XCircle } from 'lucide-react';
 </Alert>
 
 // Warning alert
-<Alert className={cn('border-yellow-500/50 bg-yellow-500/10', mode.radius)}>
+<Alert className={cn('border-yellow-62/62 bg-yellow-62/62', mode.radius)}>
   <AlertTriangle className="h-4 w-4 text-yellow-500" />
   <AlertTitle className="text-yellow-500">WARNING</AlertTitle>
   <AlertDescription>
@@ -325,7 +325,7 @@ import { Badge } from '@/components/ui/badge';
 <Badge className="bg-success/10 text-success border-success/50">
   [ONLINE]
 </Badge>
-<Badge className="bg-yellow-500/10 text-yellow-500 border-yellow-500/50">
+<Badge className="bg-yellow-62/62 text-yellow-500 border-yellow-62/62">
   [PROCESSING]
 </Badge>
 ```

@@ -27,12 +27,7 @@ export interface VectorStore {
   add(entries: MemoryEntry[]): Promise<void>;
 
   /** Search for relevant memories by semantic similarity */
-  search(
-    query: string,
-    scope: MemoryScope,
-    scopeId: string,
-    limit?: number
-  ): Promise<MemorySearchResult[]>;
+  search(query: string, scope: MemoryScope, scopeId: string, limit?: number): Promise<MemorySearchResult[]>;
 
   /** Delete memory entries by ID */
   delete(ids: string[]): Promise<void>;

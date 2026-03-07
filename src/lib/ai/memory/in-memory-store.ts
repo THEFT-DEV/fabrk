@@ -7,7 +7,7 @@
  */
 
 import { generateEmbedding } from './embeddings';
-import type { MemoryEntry, MemorySearchResult, VectorStore } from './types';
+import type { MemoryEntry, MemoryScope, MemorySearchResult, VectorStore } from './types';
 
 export class InMemoryStore implements VectorStore {
   private entries: Map<string, MemoryEntry> = new Map();
@@ -24,7 +24,7 @@ export class InMemoryStore implements VectorStore {
 
   async search(
     query: string,
-    scope: string,
+    scope: MemoryScope,
     scopeId: string,
     limit: number = 5
   ): Promise<MemorySearchResult[]> {
@@ -48,12 +48,13 @@ export class InMemoryStore implements VectorStore {
         .slice(0, limit);
     }
 
-    // Compute cosine similarity
     return scopedEntries
-      .filter((entry) => entry.embedding && entry.embedding.length > 0)
+      .filter((entry): entry is MemoryEntry & { embedding: number[] } =>
+        Array.isArray(entry.embedding) && entry.embedding.length > 0
+      )
       .map((entry) => ({
         entry,
-        score: cosineSimilarity(queryEmbedding, entry.embedding!),
+        score: cosineSimilarity(queryEmbedding, entry.embedding),
       }))
       .sort((a, b) => b.score - a.score)
       .slice(0, limit);

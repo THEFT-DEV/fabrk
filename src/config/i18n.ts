@@ -1,8 +1,3 @@
-/**
- * i18n Configuration
- * Supported locales and default settings
- */
-
 export const locales = ['en', 'es', 'fr', 'de', 'pt', 'ja'] as const;
 export type Locale = (typeof locales)[number];
 

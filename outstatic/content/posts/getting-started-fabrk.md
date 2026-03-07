@@ -1496,7 +1496,7 @@ Components are organized by feature area:
 
 ```
 components/
-├── ui/                    # UI Primitives (62 components)
+├── ui/                    # UI Primitives (62+ components)
 │   ├── button.tsx         # Button variants
 │   ├── card.tsx           # Card, CardHeader, CardContent
 │   ├── input.tsx          # Form inputs
@@ -1837,7 +1837,7 @@ export const mode = {
 
 ### THEME COLORS
 
-All 18 themes use the same semantic color tokens:
+all 18 themes use the same semantic color tokens:
 
 ```css
 /* Primary semantic tokens */

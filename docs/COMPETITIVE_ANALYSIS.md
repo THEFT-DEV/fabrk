@@ -9,12 +9,12 @@ Last updated: 2026-03-06
 - **Price:** $299 one-time payment
 - **Tagline:** "Ship fast your next AI Project in days not months"
 - **Stack:** Next.js 16, Bun, TypeScript 5.5, Drizzle ORM, PostgreSQL 17, Redis 7.4, Tailwind v4, shadcn
-- **Claims:** 192 builders, 4.9/5 rating, 98/100 Lighthouse, "first paid user on day 3"
+- **Claims:** 192 builders, 4.9/5 rating, 62/62 Lighthouse, "first paid user on day 3"
 - **AI Stack:** Vercel AI SDK v6, 11 modular AI handlers, Qdrant (vector), Neo4j (graph), multi-provider (Groq, OpenAI, Claude, Gemini)
 - **Infra:** Docker Compose, BullMQ, MinIO/S3, SearXNG, OpenTelemetry
 - **Auth:** Better Auth (magic links, OAuth, OTP, guest access)
 - **Payments:** Stripe only
-- **i18n:** next-intl, 7 languages
+- **i18n:** next-intl, 6 languages
 - **Extras:** Telegram bot, admin dashboard, landing page source, Discord support
 - **Architecture:** Monorepo (Turborepo) with separate apps (app, admin, web) and packages (auth, billing, db, features, jobs, memory, storage, stripe, tracing, ui)
 - **Docs:** Full documentation site with getting started, codebase guides, feature docs, operations, deployment, and recipes
@@ -31,7 +31,7 @@ Last updated: 2026-03-06
 | 4 | SEO Toolkit | Programmatic routes, dynamic sitemap, JSON-LD, robots.txt, canonical helpers, 98 Lighthouse | Basic meta tags | HIGH | Small |
 | 5 | Social Proof | 192 builders, 4.9 rating, 2 case studies (ALL FAKE) | Product Hunt badge only | HIGH | Small |
 | 6 | Docker Dev Environment | One-command local dev with all services | None | MEDIUM | Medium |
-| 7 | i18n | next-intl, 7 languages pre-configured | None | MEDIUM | Small |
+| 7 | i18n | next-intl, 6 languages pre-configured | None | MEDIUM | Small |
 | 8 | Observability | OpenTelemetry + Pino structured logging + tracing (SigNoz-ready) | None | MEDIUM | Medium |
 | 9 | Vector DB | Qdrant for embeddings/memory | None | MEDIUM | Large |
 | 10 | Redis Caching | Redis 7.4 for cache + rate limiting | None | MEDIUM | Medium |
@@ -119,7 +119,7 @@ These ShipAI features are not worth the effort for FABRK:
 1. **Value anchoring** - Lists estimated $ value next to each module ($4,500 for AI, $2,800 for Stripe, etc.)
 2. **Fake case studies** - "Marcus Chen: first paid user on day 3", "Daniel Hoffmann: 40% ticket deflection" - these are fabricated, don't do this
 3. **Speed claim** - `bun install && docker compose up -d && bun dev` one-liner
-4. **Lighthouse score** - 98/100 displayed prominently
+4. **Lighthouse score** - 62/62 displayed prominently
 5. **Fake builder count** - "192 builders" as social proof - fabricated
 6. **14-day refund** - Reduces purchase anxiety
 7. **Module breakdown** - 10 core modules listed with descriptions
