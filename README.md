@@ -15,9 +15,9 @@
 
 [![Next.js 16](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
-[![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg)](#-license)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 
-**Fabrk** is a production-ready Next.js SaaS boilerplate with a terminal-inspired design system. Built for indie hackers who want to ship fast without compromising on quality.
+**Fabrk** is a production-ready Next.js SaaS boilerplate with a terminal-inspired design system. Open source, MIT licensed. Fork it, ship it, contribute back if you want.
 
 ---
 
@@ -1230,40 +1230,12 @@ Contributions welcome! Please:
 
 ## 📝 License
 
-**Proprietary Commercial License** — Full legal terms in `LICENSE.md`
+MIT — see [LICENSE](./LICENSE).
 
-**Pricing:** $299 per developer seat (one-time payment, perpetual license for v1.x)
-
-**What's Included:**
-- ✅ Unlimited projects for you or your clients
-- ✅ Modify and customize source code freely
-- ✅ Deploy to unlimited domains
-- ✅ Lifetime updates for v1.x (all minor/patch releases)
-- ✅ Commercial use (SaaS, client work, products)
-
-**License Restrictions:**
-- ❌ Cannot resell or redistribute the source code as a standalone product
-- ❌ One seat per developer (each team member needs their own license)
-- ❌ Cannot create competing boilerplate/template products
-- ❌ Cannot sublicense to others
-
-**Team Licensing:**
-- Need multiple seats? Contact support@fabrk.dev for volume pricing
-- Enterprise licenses available for organizations with 10+ developers
-
-**Updates & Upgrades:**
-- Free updates for all v1.x releases (1.0 → 1.1, 1.2, etc.)
-- Major version upgrades (v2.0+) may require additional fee
-- No subscription — pay once, use forever
+Use it for personal or commercial work. Fork it, ship it, build your own thing. No attribution required (but a star on the repo is appreciated).
 
 ---
 
-**Built with ❤️ by indie hackers, for indie hackers.**
-
-**Ship fast. Stay lean. Build what matters.**
-
----
-
-**© 2025 THEFT BV. All rights reserved.**
+**© 2026 Jason Poindexter / THEFT Studio.**
 
 **Last Updated:** 2026-03-07
